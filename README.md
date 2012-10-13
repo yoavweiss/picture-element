@@ -1,9 +1,18 @@
-This is a non-official version of the proposal at: <a href="http://dvcs.w3.org/hg/html-proposals/raw-file/tip/responsive-images/responsive-images.html">http://dvcs.w3.org/hg/html-proposals/raw-file/tip/responsive-images/responsive-images.html</a>
+# Welcome! 
+This is the bleeding edege version of the ```picture``` element spec.
 
-This repo is indended solely for the sake of basic issue tracking, and public contributions to the editing and formatting of the proposal. Discussion of potential/outstanding issues with the proposal should remain on the <a href="mailto:public-html@w3.org">HTML WG mailing list</a>, <a href="public-respimg@w3.org"><abbr title="Responsive Images Community Group">RICG mailing list</a>, or both.
+It's where we do our crazy experiments before the spec over to the W3C. 
 
-**Issue tracking:** <a href="https://github.com/Wilto/draft-prop/issues/">https://github.com/Wilto/draft-prop/issues/</a>
+## found a bug? Want to discuss something? 
+If you found a problem with the spec, no matter how small, please [file a bug](https://github.com/ResponsiveImagesCG/picture-element/issues).  
 
-**Draft preview:** <a href="https://github.com/Wilto/draft-prop/issues/">http://wilto.github.com/draft-prop/ResponsiveImages.html</a>
+Proposals for normative changes to the specification should take place on the <a href="public-respimg@w3.org"><abbr title="Responsive Images Community Group">RICG mailing list</a>.
 
-**Formally Published:** http://dvcs.w3.org/hg/html-proposals/raw-file/tip/responsive-images/responsive-images.html
+## Draft preview? 
+It's on [github pages](http://responsiveimagescg.github.com/picture-element/). 
+
+## W3C Snapshot
+We keep an [unstable Editor's Draft](http://dvcs.w3.org/hg/html-proposals/raw-file/tip/responsive-images/responsive-images.html) on the W3C's Mecurial Server. As much as possible, we try to make sure that this snapshot has the current concensus of the Community Group. 
+
+## Join us!
+[Join the RI Community Group](http://www.w3.org/community/respimg/) and help us make the Web a better place ... for images :) 
