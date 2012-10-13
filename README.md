@@ -1,5 +1,5 @@
 # Welcome! 
-This is the bleeding edege version of the ```picture``` element spec.
+This is the home of the bleeding edege version of [the ```picture``` element spec](http://responsiveimagescg.github.com/picture-element/).
 
 It's where we do our crazy experiments before the spec over to the W3C. 
 
