@@ -8,11 +8,8 @@ If you found a problem with the spec, no matter how small, please [file a bug](h
 
 Proposals for normative changes to the specification should take place on the <a href="public-respimg@w3.org"><abbr title="Responsive Images Community Group">RICG mailing list</a>.
 
-## Draft preview? 
-It's on [github pages](http://responsiveimagescg.github.com/picture-element/). 
-
-## W3C Snapshot
-We keep an [unstable Editor's Draft](http://dvcs.w3.org/hg/html-proposals/raw-file/tip/responsive-images/responsive-images.html) on the W3C's Mecurial Server. As much as possible, we try to make sure that this snapshot has the current concensus of the Community Group. 
+## Let me see it! 
+It's on [github pages](http://picture.responsiveimages.org). 
 
 ## Join us!
 [Join the RI Community Group](http://www.w3.org/community/respimg/) and help us make the Web a better place ... for images :) 
