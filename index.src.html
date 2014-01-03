@@ -363,9 +363,9 @@ Selecting an Image Source</h4>
 			Let this be <var>selected source</var>.
 
 		<li>
-			The intrinsic width of <var>parent</var> is the result of <a title="find the effective size">finding the effective size</a>
+			The intrinsic width of <var>child</var> is the result of <a title="find the effective size">finding the effective size</a>
 			from <var>source list</var>.
-			The intrinsic resolution of <var>parent</var> is the density associated with <var>selected source</var>.
+			The intrinsic resolution of <var>child</var> is the density associated with <var>selected source</var>.
 
 		<li>
 			<p class='issue'>
@@ -514,12 +514,13 @@ Parsing a <code>sizes</code> Attribute</h4>
 
 	The above grammar must be interpreted per the grammar definition in [[!CSS3VAL]].
 
-	If the value does not parse successfully according to the above grammar,
-	return an empty <a>source size list</a>.
+	let <var>source size list</var> initially be an empty <a>source size list</a>.
+    Set <var>source size list</var>’s default size to the <var>child</var> <a element>img</a>'s <dfn element-attr for="img">width</dfn> attribute.
 
-	Otherwise,
-	let <var>source size list</var> initially be an emtpy <a>source size list</a>.
-	For each <<source-size>> parsed,
+	If the value does not parse successfully according to the above grammar,
+	return <a>source size list</a>.
+
+	Otherwise, for each <<source-size>> parsed,
 	do the following:
 
 	<ol>
