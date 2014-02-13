@@ -603,7 +603,6 @@ Introduction</span><a class=self-link href=#intro></a></h2>
 	a means to create specialized presentations of an image and control when they are presented to a user.
 	This is achieved by introducing the <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element to HTML,
 	and by enhancing the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element to support specifying multiple source urls.
-	Through this, an <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element
 
 <p>	By relying on <a data-biblio-type=normative data-link-type=biblio href=#mediaq title=mediaq>[MEDIAQ]</a>, a user agent can <em>respond</em> to changes in the browsing environment
 	by selecting the image source that most closely matches the browsing environment –
@@ -618,9 +617,6 @@ Introduction</span><a class=self-link href=#intro></a></h2>
 	by degrading gracefully through <a data-link-type=dfn href=#dfn-fallback-content title="fallback content">fallback content</a>
 	(i.e., through the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element)
 	while offering the same accessibility options as the existing <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element.
-
-<p>	This specification also defines the <a class=idl-code data-link-type=interface href=#dom-htmlpictureelement title=htmlpictureelement>HTMLPictureElement</a> interface,
-	through which developers can interact with <a data-link-type=element href=#elementdef-picture title=picture>picture</a> elements.
 
 
 <h3 class="heading settled heading" data-level=1.1 id=when-to-use><span class=secno>1.1 </span><span class=content>
@@ -833,7 +829,7 @@ Definitions</span><a class=self-link href=#defs></a></h2>
 	is not exhaustive; other terms are defined throughout this
 	specification.
 
-<p>	The follow terms are defined by the <a data-biblio-type=normative data-link-type=biblio href=#html title=html>[HTML]</a> specification:
+<p>	The following terms are defined by the <a data-biblio-type=normative data-link-type=biblio href=#html title=html>[HTML]</a> specification:
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-fallback-content><a href=http://dev.w3.org/html5/spec/single-page.html#fallback-content>fallback content</a><a class=self-link href=#dfn-fallback-content></a></dfn>,
 	and <dfn data-dfn-type=dfn data-noexport="" id=dfn-valid-media-query><a href=http://dev.w3.org/html5/spec/single-page.html#valid-media-query>valid media query</a><a class=self-link href=#dfn-valid-media-query></a></dfn>.
 
@@ -1207,12 +1203,8 @@ Interaction with the Preload Scanner</span><a class=self-link href=#preloader></
 	<pre class=idl>interface <dfn class=idl-code data-dfn-type=interface data-export="" data-global-name="" id=dom-htmlpictureelement>HTMLPictureElement<a class=self-link href=#dom-htmlpictureelement></a></dfn> : <a data-link-type=idl href=http://www.w3.org/html/wg/drafts/html/CR/dom.html#htmlelement title=htmlelement>HTMLElement</a> {
   };
 </pre>
-	<p class=issue id=issue-6eda22b6><a class=self-link href=#issue-6eda22b6></a>
-		We could maybe add some more things here,
-		like a list of the relevant <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> elements
-		and the active <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element.
-		Readonly?
-		I dunno.
+	<p class=note>
+		The <code>HTMLPictureElement</code> serves as an extension point for future API extensions.  
 
 <h2 class="heading settled heading" data-level=4 id=the-source-element><span class=secno>4 </span><span class=content>
 Changes to the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> Element</span><a class=self-link href=#the-source-element></a></h2>
@@ -1340,11 +1332,4 @@ Property index</span><a class=self-link href=#property-index></a></h2>
 		but I’m keeping things simple for now.
 
 
-<a href=#issue-7c81674f> ↵ </a></div><div class=issue>
-		We could maybe add some more things here,
-		like a list of the relevant <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> elements
-		and the active <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element.
-		Readonly?
-		I dunno.
-
-<a href=#issue-6eda22b6> ↵ </a></div></div>
+<a href=#issue-7c81674f> ↵ </a></div></div>
