@@ -671,19 +671,20 @@ Interaction with the Preload Scanner</h3>
 <h2 id='the-source-element'>
 Changes to the <a element>source</a> Element</h2>
 
-	The <a element>source</a> element gains <dfn element-attr for="source">srcset</dfn> and <dfn element-attr for="source">sizes</dfn> attributes,
+	The <a element>source</a> element gains <dfn element-attr for="source">srcset</dfn>, <dfn element-attr for="source">sizes</dfn> and <dfn element-attr for="source">media</dfn> attributes,
 	which contain,
 	respectively,
 	a list of one or more image sources,
-	and a set of intrinsic sizes for those sources.
+	a set of intrinsic sizes for those sources
+	and a <a>media query</a>. The <a element-attr for="source">media</a> attribute, if specified, must contain a <a>valid media query</a>.
 
-	The <a element-attr for="source">srcset</a> attribute is reflected by the <a attribute>srcset</a> attribute on the element’s DOM interface.
-	The <a element-attr for="source">sizes</a> attribute is reflected by the <a attribute>sizes</a> attribute on the element’s DOM interface.
+	The IDL attributes <a attribute>srcset</a>, <a attribute>sizes</a> and <a attribute>media</a> must reflect the respective content attributes of the same name. [[!HTML]]
 
 	<pre class='idl'>
 		partial interface HTMLSourceElement {
 			attribute DOMString srcset;
 			attribute DOMString sizes;
+			attribute DOMString media;
 		};
 	</pre>
 
