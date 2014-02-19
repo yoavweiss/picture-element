@@ -357,6 +357,13 @@ Selecting an Image Source</h4>
 			<li>Replace "processing the image candidates" with "<a title="select an image source">selecting an image source</a>".
 			<li>Replace "If the img element's src, srcset, or crossorigin attributes have been set, changed, or removed" with "If the <a element>img</a> element has experienced <a>relevant mutations</a>"
 		</ul>
+
+	While at it, do the following changes elsewhere in the HTML spec:
+
+	<ul>
+		<li>Replace "A user agent that obtains images immediately must also synchronously update the image data of an img element whenever that element has its src, srcset, or crossorigin attribute set, changed, or removed." with "A user agent that obtains images immediately must also synchronously <a>update the image data</a> of an <a element>img</a> element whenever that element experiences <a>relevant mutations</a>."
+		<li>Replace "A user agent that obtains images on demand must update the image data of an img element whenever it needs the image data (i.e. on demand), but only if the img element has a src or srcset attribute, and only if the img element is in the unavailable state. When an img element's src, srcset, or crossorigin attribute set, changed, or removed, if the user agent only obtains images on demand, the img element must return to the unavailable state." with "A user agent that obtains images on demand must <a>update the image data</a> of an <a element>img</a> element whenever it needs the image data (i.e. on demand), but only if the img element is in the unavailable state. When an <a element>img</a> element experiences <a>relevant mutations</a>, if the user agent only obtains images on demand, the <a element>img</a> element must return to the unavailable state."
+	</ul>
 	</div>
 
 	When asked to <dfn>select an image source</dfn> for a given <a element>img</a> element <var>el</var>,
