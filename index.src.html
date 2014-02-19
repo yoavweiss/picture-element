@@ -310,7 +310,7 @@ The <a element>picture</a> Element</h2>
 	it merely provides a context for its contained <a element>img</a>
 	that enables it to choose from multiple source urls.
 
-	A <a element>picture</a> element is associated with a <dfn export>list of source sets</dfn>,
+	An <a element>img</a> element is associated with a <dfn export>list of source sets</dfn>,
 	which is a list of zero or more <a>source sets</a>.
 
 	A <dfn export>source set</dfn> is a set of zero or more <a>image sources</a>,
@@ -334,21 +334,21 @@ Selecting an Image Source</h4>
 	<p class='issue'>
 		This is meant to be the HTML integration point.
 
-	When asked to <dfn>select an image source</dfn> for a given <a element>img</a> element <var>el</var> with a <a element>picture</a> element parent <var>parent</var>,
+	When asked to <dfn>select an image source</dfn> for a given <a element>img</a> element <var>el</var>,
 	user agents must do the following:
 
 	<ol>
 		<li>
-			<a>Update the list of source sets</a> for <var>parent</var>.
+			<a>Update the list of source sets</a> for <var>el</var>.
 
 		<li>
-			If <var>parent</var>’s <a>list of source sets</a> is empty,
+			If <var>el</var>’s <a>list of source sets</a> is empty,
 			<p class='issue'>make the img throw an error, however that's done.</p>
 			Exit this algorithm.
 
 		<li>
 			Otherwise,
-			take the first <a>source set</a> in <var>parent</var>’s <a>list of source sets</a>
+			take the first <a>source set</a> in <var>el</var>’s <a>list of source sets</a>
 			and let it be <var>source set</var>.
 
 		<li>
@@ -375,12 +375,15 @@ Selecting an Image Source</h4>
 <h4 id='update-source-sets'>
 Updating the List of Source Sets</h4>
 
-	When asked to <dfn>update the list of source sets</dfn> for a given <a element>picture</a> element <var>picture</var>,
+	When asked to <dfn>update the list of source sets</dfn> for a given <a element>img</a> element <var>el</var>,
 	user agents must do the following:
 
 	<ol>
 		<li>
-			Initially set <var>picture</var>’s <a>list of source sets</a> to the empty list.
+			Initially set <var>el</var>’s <a>list of source sets</a> to the empty list.
+
+		<li>
+		 Let <var>picture</var> be <var>el</var>’s parent node.
 
 		<li>
 			Iterate through <var>picture</var>’s child elements,
@@ -388,7 +391,7 @@ Updating the List of Source Sets</h4>
 
 			<ol>
 				<li>
-					If <var>child</var> is an <a element>img</a> element:
+					If <var>child</var> is <var>el</var>:
 					<ol>
 						<li>
 							If <var>child</var> has a <a element-attr for="img">srcset</a> attribute,
@@ -425,7 +428,7 @@ Updating the List of Source Sets</h4>
 					continue to the next child.
 
 				<li>
-					<a title="parse a srcset attribute">Parse <var>child</var>’s srcset attribute</a> and let the returned <a>source set</a> be <var>source set</a>.
+					<a title="parse a srcset attribute">Parse <var>child</var>’s srcset attribute</a> and let the returned <a>source set</a> be <var>source set</var>.
 
 				<li>
 					If <var>source set</var> has zero <a>image sources</a>,
@@ -455,7 +458,7 @@ Updating the List of Source Sets</h4>
 					<a>Normalize the source densities</a> of <var>source set</var>.
 
 				<li>
-					Append <var>source set</var> to <var>picture</var>’s <a>list of source sets</a>.
+					Append <var>source set</var> to <var>el</var>’s <a>list of source sets</a>.
 			</ol>
 	</ol>
 
@@ -664,7 +667,7 @@ Interaction with the Preload Scanner</h3>
 	</pre>
 
 	<p class="note">
-		The <code>HTMLPictureElement</code> serves as an extension point for future API extensions.  
+		The <code>HTMLPictureElement</code> serves as an extension point for future API extensions.
 
 <h2 id='the-source-element'>
 Changes to the <a element>source</a> Element</h2>
