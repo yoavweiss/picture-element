@@ -238,6 +238,15 @@ Examples of usage</h3>
 		</pre>
 	</div>
 
+	<div class='example'>
+		The <a element-attr for="img">srcset</a> and <a element-attr for="img">sizes</a> attributes can
+		also be used on the <a element>img</a> element directly, removing the need for the
+		<a element>picture</a> and <a element>source</a> elements in simpler cases.
+
+		<pre>
+			&lt;img src="pic400.jpg" alt="The president giving an award." sizes="100%" srcset="pic400.jpg 400w, pic800.jpg 800w, pic1600.jpg 1600w">
+		</pre>
+	</div>
 
 <h3 id='relationship-to-srcset'>
 Relationship to <code>srcset</code></h3>
@@ -383,11 +392,12 @@ Updating the List of Source Sets</h4>
 			Initially set <var>el</var>’s <a>list of source sets</a> to the empty list.
 
 		<li>
-		 Let <var>picture</var> be <var>el</var>’s parent node.
+		 If <var>el</var> has a parent node and that is a <a element>picture</a> element, let <var>elements</var> be an array containing <var>el</var>’s parent node's child elements, retaining relative order.
+		 Otherwise, let <var>elements</var> be array containing only <var>el</var>.
 
 		<li>
-			Iterate through <var>picture</var>’s child elements,
-			doing the following for each child <var>child</var>:
+			Iterate through <var>elements</var>,
+			doing the following for each item <var>child</var>:
 
 			<ol>
 				<li>
