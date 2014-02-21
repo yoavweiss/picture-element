@@ -293,6 +293,16 @@ Definitions</h2>
 	specification.
 
 	The following terms are defined by the [[!HTML]] specification:
+	<dfn id="dfn-skip-whitespace">skip whitespace</dfn>,
+	<dfn id="dfn-collect-a-sequence-of-characters">collect a sequence of characters</dfn>,
+	<dfn id="dfn-space-character">space character</dfn>,
+	<dfn id="dfn-split-a-string-on-spaces">split a string on spaces</dfn>,
+	<dfn id="dfn-valid-non-negative-integer">valid non-negative integer</dfn>,
+	<dfn id="dfn-rules-for-parsing-non-negative-integers">rules for parsing non-negative integers</dfn>,
+	<dfn id="dfn-valid-floating-point-number">valid floating-point number</dfn>,
+	<dfn id="dfn-rules-for-parsing-floating-point-number-values">rules for parsing floating-point number values</dfn>,
+	<dfn id="dfn-valid-non-empty-url">valid non-empty URL</dfn>
+	and
 	<dfn id="dfn-valid-media-query"><a href="http://dev.w3.org/html5/spec/single-page.html#valid-media-query">valid media query</a></dfn>.
 
 
@@ -483,48 +493,193 @@ Updating the List of Source Sets</h4>
 Parsing a <code>srcset</code> Attribute</h4>
 
 	When asked to <dfn title="parse a srcset attribute|parse its srcset attribute">parse a srcset attribute</dfn> from an element,
-	parse the value of the element's <code>srcset</code> attribute with the following grammar:
-
-	<pre>
-		<dfn>&lt;image-source-list></dfn> = <<image-source>>#
-		<dfn>&lt;image-source></dfn> = <<url>> [ <<resolution>> | <<source-width>> ]?
-	</pre>
-
-	The above grammar must be interpreted per the grammar definition in [[!CSS3VAL]].
-	For the purposes of the above grammar,
-	the <dfn noexport>&lt;url></dfn> production is simply any sequence of non-<a>whitespace</a> characters
-	that does not end in a comma.
-	The <dfn>&lt;source-width></dfn> production is a <a>dimension</a> with a unit of ''w''.
-	All other terminal productions are defined as per CSS.
-
-	If the value does not parse successfully according to the above grammar,
-	return an empty <a>source set</a>.
-
-	Otherwise,
-	let <var>source set</var> initially be an empty <a>source set</a>.
-	For each <<image-source>> parsed,
-	do the following:
+	parse the value of the element's <code>srcset</code> attribute as follows:
 
 	<ol>
 		<li>
-			Let <var>source</var> be a fresh <a>image source</a>.
+			Let <var>input</var> be the value passed to this
+			algorithm.
 
 		<li>
-			Set <var>source</var>’s URL to the parsed <<url>>.
+			Let <var>position</var> be a pointer into
+			<var>input</var>, initially pointing at the start of the
+			string.
 
 		<li>
-			If a <<resolution>> was parsed,
-			set <var>source</var>’s resolution descriptor to the <<resolution>>’s value.
+			Let <var>raw candidates</var> be an initially empty
+			ordered list of URLs with associated unparsed
+			descriptors. The order of entries in the list is the
+			order in which entries are added to the list.
 
 		<li>
-			If a <<source-width>> was parsed,
-			set <var>source</var>’s width descriptor to the <<source-width>>’s value.
+			<i title>Splitting loop</i>: <a>Skip whitespace</a>.
 
 		<li>
-			Append <var>source</var> to <var>source set</var>.
+			<a>Collect a sequence of characters</a> that are not
+			<a>space characters</a>, and let that be <var>url</var>.
+
+		<li>
+			If <var>url</var> ends with a U+002C COMMA character
+			(,), remove that character from <var>url</var> and let
+			<var>descriptors</var> be the empty string. Otherwise,
+			follow these substeps:
+
+			<ol>
+				<li>
+					If <var>url</var> is empty, then jump to
+					the step labeled <i title>descriptor
+					parser</i>.
+
+				<li>
+					<a>Collect a sequence of characters</a>
+					that are not U+002C COMMA characters
+					(,), and let that be
+					<var>descriptors</var>.
+			</ol>
+
+		<li>
+			Add <var>url</var> to <var>raw candidates</var>,
+			associated with <var>descriptors</var>.
+
+		<li>
+			If <var>position</var> is past the end of
+			<var>input</var>, then jump to the step labeled
+			<i title>descriptor parser</i>.
+
+		<li>
+			Advance <var>position</var> to the next character in
+			<var>input</var> (skipping past the U+002C COMMA
+			character (,) separating this candidate from the next).
+
+		<li>
+			Return to the step labeled <i title>splitting loop</i>.
+
+		<li>
+			<i title>Descriptor parser</i>: Let
+			<var>candidates</var> be an initially empty <a>source
+			set</a>. The order of entries in the list is the order
+			in which entries are added to the list.
+
+		<li>
+			For each entry in <var>raw candidates</var> with URL
+			<var>url</var> associated with the unparsed descriptors
+			<var>unparsed descriptors</var>, in the order they were
+			originally added to the list, run these substeps:
+
+			<ol>
+				<li>
+					Let <var>descriptor list</var> be the
+					result of
+					<a title="split a string on spaces">splitting
+					<var>unparsed descriptors</var> on
+					spaces</a>.
+
+				<li>
+					Let <var>error</var> be no.
+
+				<li>
+					Let <var>width</var> be
+					<i title>absent</i>.
+
+				<li>
+					Let <var>density</var> be
+					<i title>absent</i>.
+
+				<li>
+					For each token in <var>descriptor
+					list</var>, run the appropriate set of
+					steps from the following list:
+
+					<dl class=switch>
+						<dt>If the token consists of a
+						<a>valid non-negative
+						integer</a> followed by a U+0077
+						LATIN SMALL LETTER W character
+
+						<dd>
+							<ol>
+								<li>
+									If <var>width</var> and <var>density</var> are not both <i title>absent</i>, then
+									let <var>error</var> be <i title>yes</i>.
+
+								<li>
+									Apply the <a>rules for parsing non-negative integers</a> to the token. Let
+									<var>width</var> be the result.
+							</ol>
+
+						<dt>If the token consists of a
+						<a>valid floating-point
+						number</a> followed by a U+0078
+						LATIN SMALL LETTER X character
+
+						<dd>
+							<ol>
+								<li>
+									If <var>width</var> and <var>density</var> are not both <i title>absent</i>, then
+									let <var>error</var> be <i title>yes</i>.
+
+								<li>
+									Apply the <a>rules for parsing floating-point number values</a> to the token. Let
+									<var>density</var> be the result.
+							</ol>
+					</dl>
+
+				<li>
+					If <var>error</var> is still
+					<i title>no</i>, then add a new <a>image
+					source</a> to <var>candidates</var>
+					whose URL is <var>url</var>, associated
+					with a width <var>width</var> if not
+					<i title>absent</i> and a pixel density
+					<var>density</var> if not
+					<i title>absent</i>.
+			</ol>
+
+		<li>
+			Return <var>candidates</var>.
 	</ol>
 
-	Then return <var>source set</var>.
+	An <dfn>image candidate string</dfn> consists of the following
+	components, in order:
+
+	<ol>
+		<li>
+			Zero or more <a>space characters</a>.
+
+		<li>
+			A <a>valid non-empty URL</a> that does not end with a
+			U+002C COMMA character (,), referencing a
+			non-interactive, optionally animated, image resource
+			that is neither paged nor scripted.
+
+		<li>
+			Zero or more <a>space characters</a>.
+
+		<li>
+			Zero or one of the following:
+
+			<ul>
+				<li>
+					A <i title>width descriptor</i>,
+					consisting of: a <a>space character</a>,
+					a <a>valid non-negative integer</a>
+					representing the <i title>width
+					descriptor</i> value, and a U+0077
+					LATIN SMALL LETTER W character.
+
+				<li>
+					A <i title>pixel density descriptor</i>,
+					consisting of: a <a>space character</a>,
+					a <a>valid floating-point number</a>
+					giving a number greater than zero
+					representing the <i title>pixel density
+					descriptor</i> value, and a U+0078
+					LATIN SMALL LETTER X character.
+			</ul>
+
+		<li>
+			Zero or more <a>space characters</a>.
+	</ol>
 
 <h4 id='parse-sizes-attr'>
 Parsing a <code>sizes</code> Attribute</h4>
