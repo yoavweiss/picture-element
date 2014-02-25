@@ -940,20 +940,55 @@ Interaction with the Preload Scanner</h3>
 <h2 id='the-source-element'>
 Changes to the <a element>source</a> Element</h2>
 
-	The <a element>source</a> element gains <dfn element-attr for="source">srcset</dfn>, <dfn element-attr for="source">sizes</dfn> and <dfn element-attr for="source">media</dfn> attributes,
-	which contain,
-	respectively,
-	a list of one or more image sources,
-	a set of intrinsic sizes for those sources
-	and a <a>media query</a>. The <a element-attr for="source">media</a> attribute, if specified, must contain a <a>valid media query</a>.
+	The <a element>source</a> element, if it has a <a element>picture</a>
+	element as its parent, must have the
+	<dfn element-attr for="source">srcset</dfn> attribute specified. The
+	value must consist of one or more <a>image candidate strings</a>, each
+	separated from the next by a U+002C COMMA character (,).
 
-	The IDL attributes <a attribute>srcset</a>, <a attribute>sizes</a> and <a attribute>media</a> must reflect the respective content attributes of the same name. [[!HTML]]
+	The <a element>source</a> element, if it has a <a element>picture</a>
+	element as its parent, may also have the
+	<dfn element-attr for="source">sizes</dfn> attribute specified. If it is
+	specified, the value must match the <<source-size-list>> grammar.
+
+	The <a element>source</a> element, if it has a <a element>picture</a>
+	element as its parent, may also have the
+	<dfn element-attr for="source">media</dfn> attributes specified. If it
+	is specified, the value must contain a <a>valid media query</a>.
+
+	The <a element>source</a> element, if it has a <a element>picture</a>
+	element as its parent, must not have the
+	<a element-attr for="source">src</a> or
+	<a element-attr for="source">type</a> attributes specified.
+
+	The IDL attributes <a attribute for="HTMLSourceElement">srcset</a>,
+	<a attribute for="HTMLSourceElement">sizes</a> and
+	<a attribute for="HTMLSourceElement">media</a> must reflect the
+	respective content attributes of the same name. [[!HTML]]
 
 	<pre class='idl'>
 		partial interface HTMLSourceElement {
 			attribute DOMString srcset;
 			attribute DOMString sizes;
 			attribute DOMString media;
+		};
+	</pre>
+
+<h2 id='the-img-element'>
+Changes to the <a element>img</a> Element</h2>
+
+	The <a element>img</a> element, if it has a
+	<a element-attr for="img">srcset</a> attribute, may have a
+	<dfn element-attr for="img">sizes</dfn> attribute specified. If it is
+	specified, the value must match the <<source-size-list>> grammar.
+
+	The IDL attribute <a attribute for="HTMLImageElement">sizes</a> must
+	reflect the <a element-attr for="img">sizes</a> content attribute.
+	[[!HTML]]
+
+	<pre class='idl'>
+		partial interface HTMLImageElement {
+			attribute DOMString sizes;
 		};
 	</pre>
 
