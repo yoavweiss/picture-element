@@ -957,6 +957,14 @@ Changes to the <a element>source</a> Element</h2>
 		};
 	</pre>
 
+	When a <a element>source</a> element is a child of a
+	<a element>picture</a> element and has a following sibling
+	<a element>source</a> element or <a element>img</a> element with a
+	<a element-attr for="img">srcset</a> attribute specified, it must have
+	the <a element-attr for="source">media</a> attribute specified with a
+	value that is not defined to always evaluate to true for all devices
+	(e.g. <code title>all</code> or variations thereof). [[!MEDIAQ]]
+
 <h2 id='acks'>
 Acknowledgements</h2>
 
