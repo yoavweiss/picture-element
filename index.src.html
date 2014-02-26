@@ -974,8 +974,18 @@ Changes to the <a element>source</a> Element</h2>
 
 	The <a element>source</a> element, if it has a <a element>picture</a>
 	element as its parent, must not have the
-	<a element-attr for="source">src</a> or
-	<a element-attr for="source">type</a> attributes specified.
+	<a element-attr for="source">src</a> attribute specified.
+
+	The <dfn element-attr for="source">type</dfn> attribute, when specified
+	on a <a element>source</a> element that it has a <a element>picture</a>
+	element as its parent, gives the type of the images in the <a>source
+	set</a>, to allow the user agent to skip to the next
+	<a element>source</a> if it does not support the given type.
+
+	<p class='note'>If the <a element-attr for='source'>type</a> attribute
+	is <em>not</em> specified, the user agent will not select a different
+	<a element>source</a> element if it finds that it does not support
+	the image format after fetching it.
 
 	The IDL attributes <a attribute for="HTMLSourceElement">srcset</a>,
 	<a attribute for="HTMLSourceElement">sizes</a> and
