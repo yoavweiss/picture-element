@@ -922,7 +922,7 @@ Interaction with the Preload Scanner</h3>
 				page.
 			<li>
 				iframes that may contain viewport dependant resources should have their dimensions defined either in markup
-                    (as <a element-attr for=iframe>height</a> and <a element-attr for=iframe>width</a> attributes) or as inline CSS rules.
+					(as <a element-attr for=iframe>height</a> and <a element-attr for=iframe>width</a> attributes) or as inline CSS rules.
 		</ul>
 	</div>
 
@@ -961,9 +961,14 @@ Changes to the <a element>source</a> Element</h2>
 	<a element>picture</a> element and has a following sibling
 	<a element>source</a> element or <a element>img</a> element with a
 	<a element-attr for="img">srcset</a> attribute specified, it must have
-	the <a element-attr for="source">media</a> attribute specified with a
-	value that is not defined to always evaluate to true for all devices
-	(e.g. <code title>all</code> or variations thereof). [[!MEDIAQ]]
+	at least one of the following:
+	<ul>
+		<li> A <a element-attr for="source">media</a> attribute specified with a
+		value that is not defined to always evaluate to true for all devices
+		(e.g. <code title>all</code> or variations thereof).
+		[[!MEDIAQ]]
+		<li> A <a element-attr for="source">type</a> attribute specified.
+	</ul>
 
 <h2 id='acks'>
 Acknowledgements</h2>
