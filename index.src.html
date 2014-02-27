@@ -342,7 +342,8 @@ The <a element>picture</a> Element</h2>
 	and optionally either a density descriptor,
 	or a width descriptor.
 
-	A <dfn export>source size list</dfn> is a list of zero or more pairs of a <a>media query</a> and a <<length>>,
+	A <dfn export>source size list</dfn> is either an error or a list of
+	zero or more pairs of a <a>media query</a> and a <<length>>,
 	and optionally a default <<length>>.
 
 	The <dfn>relevant mutations</dfn> for an <a element>img</a> element are as follows:
@@ -529,6 +530,11 @@ Updating the List of Source Sets</h4>
 							and let <var>source set</var>’s <a>source size list</a> be the returned value.
 							Otherwise,
 							let <var>source set</var>’s <a>source size list</a> be an empty <a>source size list</a>.
+
+						<li>
+							If the <var>source set</var>’s <a>source size list</a> is an error, let <var>source
+							set</var> be an empty <a>source set</a>.
+
 						<li>
 							If <var>child</var> has a <a element-attr for="img">src</a> attribute and <var>source set</var> does not contain a
 							<var>source</var> with a <<resolution>> value of 1,
@@ -571,6 +577,10 @@ Updating the List of Source Sets</h4>
 					and let <var>source set</var>’s <a>source size list</a> be the returned value.
 					Otherwise,
 					let <var>source set</var>’s <a>source size list</a> be an empty <a>source size list</a>.
+
+				<li>
+					If the <var>source set</var>’s <a>source size list</a> is an error, continue
+					to the next child.
 
 				<li>
 					If <var>child</var> has a <a element-attr for="source">type</a> attribute,
@@ -797,7 +807,7 @@ Parsing a <code>sizes</code> Attribute</h4>
 	The above grammar must be interpreted per the grammar definition in [[!CSS3VAL]].
 
 	If the value does not parse successfully according to the above grammar,
-	return an empty <a>source size list</a>.
+	return an error.
 
 	Otherwise,
 	let <var>source size list</var> initially be an empty <a>source size list</a>.
