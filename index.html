@@ -836,8 +836,8 @@ Relationship to <code>srcset</code></span><a class=self-link href=#relationship-
 	to address the complete set of <a href=http://usecases.responsiveimages.org/>use cases and requirements
 	for responsive images</a> (see <a data-biblio-type=normative data-link-type=biblio href=#respimg-usecases title=respimg-usecases>[respimg-usecases]</a>).
 
-<p>	Furthermore, this specification <a href=#parse-srcset-attr>extends the <code>srcset</code> attribute </a> to adequately address the <a href=http://usecases.responsiveimages.org/#h3_viewport-based-selection>
-	viewport based selection</a> use case.
+<p>	Furthermore, this specification <a href=#parse-srcset-attr>extends the <code>srcset</code> attribute</a>
+	to adequately address the <a href=http://usecases.responsiveimages.org/#h3_viewport-based-selection>viewport based selection</a> use case.
 
 <h2 class="heading settled heading" data-level=2 id=defs><span class=secno>2 </span><span class=content>
 Definitions</span><a class=self-link href=#defs></a></h2>
@@ -937,7 +937,7 @@ Sub-Algorithms</span><a class=self-link href=#algos></a></h3>
 <h4 class="heading settled heading" data-level=3.1.1 id=select-image-source><span class=secno>3.1.1 </span><span class=content>
 Selecting an Image Source</span><a class=self-link href=#select-image-source></a></h4>
 
-	<div class="issue monkey-patch" id=issue-63081366><a class=self-link href=#issue-63081366></a>
+	<div class="issue monkey-patch" id=issue-58bdc3bf><a class=self-link href=#issue-58bdc3bf></a>
 		In the HTML spec, in the algorithm <a data-link-type=dfn href=#dfn-update-the-image-data title="update the image data">update the image data</a>,
 		replace the whole step that calls "processing the image
 		candidates" with the following step:
@@ -969,8 +969,7 @@ Selecting an Image Source</span><a class=self-link href=#select-image-source></a
 				Replace "If the img element’s src, srcset, or
 				crossorigin attributes have been set, changed,
 				or removed" with "If the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a>
-				element has experienced <a data-link-type=dfn href=#relevant-mutations title="relevant mutations">relevant
-				mutations</a>"
+				element has experienced <a data-link-type=dfn href=#relevant-mutations title="relevant mutations">relevant mutations</a>"
 		</ul>
 
 <p>		While at it, do the following changes elsewhere in the HTML spec:
@@ -1024,7 +1023,7 @@ Selecting an Image Source</span><a class=self-link href=#select-image-source></a
 
 		<li>
 			Otherwise,
-			take <var>el</var>’s <a data-link-type=dfn title=" "> </a><a data-link-type=dfn href=#source-set title="source set">source set</a>
+			take <var>el</var>’s <a data-link-type=dfn href=#source-set title="source set">source set</a>
 			and let it be <var>source set</var>.
 
 		<li>
@@ -1712,8 +1711,7 @@ Property index</span><a class=self-link href=#property-index></a></h2>
 				Replace "If the img element’s src, srcset, or
 				crossorigin attributes have been set, changed,
 				or removed" with "If the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a>
-				element has experienced <a data-link-type=dfn href=#relevant-mutations title="relevant mutations">relevant
-				mutations</a>"
+				element has experienced <a data-link-type=dfn href=#relevant-mutations title="relevant mutations">relevant mutations</a>"
 		</ul>
 
 <p>		While at it, do the following changes elsewhere in the HTML spec:
@@ -1752,7 +1750,7 @@ Property index</span><a class=self-link href=#property-index></a></h2>
 				<a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element must return to the
 				unavailable state."
 		</ul>
-	<a href=#issue-63081366> ↵ </a></div>
+	<a href=#issue-58bdc3bf> ↵ </a></div>
 
 <div class=issue>
 		This just selects a single image and then sticks with it,
