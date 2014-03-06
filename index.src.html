@@ -74,7 +74,7 @@ Examples of usage</h3>
 		<pre>
 			&lt;picture>
 				&lt;source srcset="pic1x.jpg 1x, pic2x.jpg 2x, pic4x.jpg 4x">
-				&lt;img alt="A rad wolf." src="pic1x.jpg">
+				&lt;img alt="<a href="images/a-rad-wolf.gif">A rad wolf</a>" src="pic1x.jpg">
 			&lt;/picture>
 		</pre>
 
@@ -93,6 +93,14 @@ Examples of usage</h3>
 		but will result in something useful
 		(though perhaps lower-resolution than the user would like)
 		being displayed even in older user agents.
+
+		Alternately, because this example uses only a single <a element>source</a> element
+		and none of the more advanced attributes,
+		it can be rewritten to use only <a element>img</a>:
+
+		<pre>
+		&lt;img alt="A rad wolf" srcset="pic1x.jpg 1x, pic2x.jpg 2x, pic4x.jpg 4x"
+		                      src="pix1x.jpg"></pre>
 	</div>
 
 	<div class='example'>
