@@ -74,7 +74,7 @@ Examples of usage</h3>
 		<pre>
 			&lt;picture>
 				&lt;source srcset="pic1x.jpg 1x, pic2x.jpg 2x, pic4x.jpg 4x">
-				&lt;img alt="<a href="images/a-rad-wolf.gif">A rad wolf</a>" src="pic1x.jpg">
+				&lt;img alt="<a href="images/a-rad-wolf.gif">A rad wolf</a>" src="pic1x.jpg" width="500px" height="500px">
 			&lt;/picture>
 		</pre>
 
