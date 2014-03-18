@@ -269,7 +269,7 @@ Examples of usage</h3>
 				&lt;/picture>
 		</pre>
 
-		In this example, the user agent will chose the first source that has a
+		In this example, the user agent will choose the first source that has a
 		<a element-attr>type</a> attribute with a supported MIME type. If the
 		user agent supports WebP images, the first <a element>source</a> element
 		will be chosen. If not, but the user agent does support JPEG XR images,
