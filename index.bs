@@ -240,7 +240,7 @@ Examples of usage</h3>
 					&lt;picture>
 						&lt;source media="(min-width: 45em)" srcset="large-1.jpg, large-2.jpg 2x">
 						&lt;source media="(min-width: 18em)" srcset="med-1.jpg, med-2.jpg 2x">
-						&lt;img src="small-1.jpg" srcset="small-2.jpg 2x" alt="" width="200" height="200">
+						&lt;img src="small-1.jpg" srcset="small-2.jpg 2x" alt="">
 					&lt;/picture>
 					&lt;figcaption>A figure of a fox jumping over a lazy box.&lt;/figcaption>
 			&lt;/figure>
