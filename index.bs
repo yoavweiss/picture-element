@@ -264,6 +264,7 @@ Examples of usage</h3>
 		<pre>
 				&lt;picture>
 					&lt;source type="image/webp" srcset="dogs-1.webp, dogs-2.webp 2x">
+					&lt;source type="image/vnd.ms-photo" srcset="dogs-1.jxr, dogs-2.jxr 2x">
 					&lt;img src="dogs-1.jpg" srcset="dogs-2.jpg 2x" alt="Hundreds of hot dogs" width="600" height="200">
 				&lt;/picture>
 		</pre>
@@ -271,7 +272,9 @@ Examples of usage</h3>
 		In this example, the user agent will chose the first source that has a
 		<a element-attr>type</a> attribute with a supported MIME type. If the
 		user agent supports WebP images, the first <a element>source</a> element
-		will be chosen. If WebP is not supported, the <a element>img</a> element will be
+		will be chosen. If not, but the user agent does support JPEG XR images,
+		the second <a element>source</a> element will be chosen. If neither of
+		those formats are supported, the <a element>img</a> element will be
 		chosen. Then, the user agent chooses which of the different-density
 		sources to load, based on information it knows about the user’s device.
 	</div>
