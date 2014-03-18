@@ -74,7 +74,8 @@ Examples of usage</h3>
 		<pre>
 			&lt;picture>
 				&lt;source srcset="pic1x.jpg 1x, pic2x.jpg 2x, pic4x.jpg 4x">
-				&lt;img alt="<a href="images/a-rad-wolf.gif">A rad wolf</a>" src="pic1x.jpg" width="500px" height="500px">
+				&lt;img alt="<a href="images/a-rad-wolf.gif">A rad wolf</a>"
+						src="pic1x.jpg" width="500" height="500">
 			&lt;/picture>
 		</pre>
 
@@ -100,7 +101,7 @@ Examples of usage</h3>
 
 		<pre>
 		&lt;img alt="A rad wolf" srcset="pic1x.jpg 1x, pic2x.jpg 2x, pic4x.jpg 4x"
-		                      src="pix1x.jpg" width="500px" height="500px"></pre>
+		                      src="pix1x.jpg" width="500" height="500"></pre>
 	</div>
 
 	<div class='example'>
@@ -253,7 +254,8 @@ Examples of usage</h3>
 		<a element>picture</a> and <a element>source</a> elements in simpler cases.
 
 		<pre>
-			&lt;img src="pic400.jpg" alt="The president giving an award." sizes="100%" srcset="pic400.jpg 400w, pic800.jpg 800w, pic1600.jpg 1600w">
+			&lt;img src="pic400.jpg" alt="The president giving an award." sizes="100%"
+					srcset="pic400.jpg 400w, pic800.jpg 800w, pic1600.jpg 1600w">
 		</pre>
 	</div>
 
