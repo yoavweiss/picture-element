@@ -842,7 +842,7 @@ Parsing a <code>sizes</code> Attribute</h4>
 
 	<pre>
 		<dfn>&lt;source-size-list></dfn> = <<source-size>>#?
-		<dfn>&lt;source-size></dfn> = <<media-query>>? <<length>>
+		<dfn>&lt;source-size></dfn> = <<media-condition>>? <<length>>
 	</pre>
 
 	The above grammar must be interpreted per the grammar definition in [[!CSS3VAL]].
@@ -857,18 +857,18 @@ Parsing a <code>sizes</code> Attribute</h4>
 
 	<ol>
 		<li>
-			If the parsed <<source-size>> does not contain a <<media-query>>,
+			If the parsed <<source-size>> does not contain a <<media-condition>>,
 			set <var>source size list</var>’s default size to the parsed <<length>>.
 			<span class='note'>This can be set multiple times; last wins.</span>
 			Continue to the next <<source-size>>.
 
 		<li>
-			If the <<media-query>> evaluates to false,
+			If the <<media-condition>> evaluates to false,
 			continue to the next <<source-size>>.
 
 		<li>
 			Otherwise,
-			create a new pair of the parsed <<media-query>> and the parsed <<length>>,
+			create a new pair of the parsed <<media-condition>> and the parsed <<length>>,
 			and append it to <var>source size list</var>.
 	</ol>
 
