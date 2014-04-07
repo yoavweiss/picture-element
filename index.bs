@@ -365,16 +365,14 @@ The <a element>picture</a> Element</h2>
 	An <a element>img</a> element is associated with a <a>source set</a>.
 
 	A <dfn export>source set</dfn> is a set of zero or more <a>image sources</a>,
-	optionally a <a>source size list</a>,
+	a <a>source size</a>,
 	and optionally a <a>media query</a>.
 
 	An <dfn export>image source</dfn> is a URL,
 	and optionally either a density descriptor,
 	or a width descriptor.
 
-	A <dfn export>source size list</dfn> is either an error or a list of
-	zero or more pairs of a <a>media query</a> and a <<length>>,
-	and optionally a default <<length>>.
+	A <dfn export>source size</dfn> is a <<length>>.
 
 	The <dfn>relevant mutations</dfn> for an <a element>img</a> element are as follows:
 
@@ -510,8 +508,7 @@ Selecting an Image Source</h4>
 			Let this be <var>selected source</var>.
 
 		<li>
-			The intrinsic width of <var>el</var> is the result of <a title="find the effective size">finding the effective size</a>
-			from <var>source list</var>.
+			The intrinsic width of <var>el</var> is <var>source set</var>'s <a>source size</a>.
 			The intrinsic resolution of <var>el</var> is the density associated with <var>selected source</var>.
 
 		<li>
@@ -555,15 +552,8 @@ Updating the Source Set</h4>
 							let <var>source set</var> be an empty <a>source set</a>.
 
 						<li>
-							If <var>child</var> has a <a element-attr for="img">sizes</a> attribute,
-							<a>parse its sizes attribute</a>
-							and let <var>source set</var>’s <a>source size list</a> be the returned value.
-							Otherwise,
-							let <var>source set</var>’s <a>source size list</a> be an empty <a>source size list</a>.
-
-						<li>
-							If the <var>source set</var>’s <a>source size list</a> is an error, let <var>source
-							set</var> be an empty <a>source set</a>.
+							<a title="parse a sizes attribute">Parse <var>child</var>'s sizes attribute</a> and
+							let the returned <a>source set</a> be <var>source size</var>.
 
 						<li>
 							If <var>child</var> has a <a element-attr for="img">src</a> attribute and <var>source set</var> does not contain a
@@ -603,15 +593,8 @@ Updating the Source Set</h4>
 					continue to the next child.
 
 				<li>
-					If <var>child</var> has a <a element-attr for="source">sizes</a> attribute,
-					<a>parse its sizes attribute</a>
-					and let <var>source set</var>’s <a>source size list</a> be the returned value.
-					Otherwise,
-					let <var>source set</var>’s <a>source size list</a> be an empty <a>source size list</a>.
-
-				<li>
-					If the <var>source set</var>’s <a>source size list</a> is an error, continue
-					to the next child.
+					<a title="parse its sizes attribute">Parse <var>child</var>'s sizes attribute</a>
+					and let <var>source set</var>’s <a>source size</a> be the returned value.
 
 				<li>
 					If <var>child</var> has a <a element-attr for="source">type</a> attribute,
@@ -838,39 +821,66 @@ Parsing a <code>srcset</code> Attribute</h4>
 Parsing a <code>sizes</code> Attribute</h4>
 
 	When asked to <dfn title="parse a sizes attribute|parse its sizes attribute">parse a sizes attribute</dfn> from an element,
-	parse the value of the element's <code>sizes</code> attribute with the following grammar:
+	run the following steps:
+
+	<ol>
+		<li>
+			Let <var>input</var> be the value of the element's sizes attribute,
+			or the empty string if it's absent.
+
+		<li>
+			Let <var>component values</var> be an empty list.
+
+		<li>
+			Let <var>reached eof</var> be false.
+
+		<li>
+			<i title>Consume</i>: If <var>reached eof</var> is true,
+			return ''300px'' and abort these steps.
+			Otherwise, <a spec=css-syntax>consume a component value</a> and let <var>component value</var> be the returned value. [[!CSS3SYN]]
+
+		<li>
+			If <var>component value</var> is not a <<comma-token>> or an <<eof-token>>,
+			append <var>component value</var> to <var>component values</var> and then
+			jump back to the step labeled <i title>consume</i>.
+			Otherwise, if <var>component value</var> is an <<eof-token>>,
+			let <var>reached eof</var> be true.
+
+		<li>
+			If <var>component values</var> is empty,
+			jump back to the step labeled <i title>consume</i>.
+
+		<li>
+			Remove the last item from <var>component values</var>
+			and let <var>raw length</var> be the removed item.
+
+		<li>
+			Parse <var>raw length</var> as a <<length>>
+			and let <var>length</var> be the result. [[!CSS3VAL]]
+			If this failed, jump to the step labeled <i title>consume</i>.
+
+		<li>
+			If <var>tokens</var> is empty, return <var>length</var> and abort these steps.
+
+		<li>
+			Parse <var>tokens</var> as a <<media-condition>>
+			and let <var>media</var> be the result. [[!MEDIAQ]]
+			If this failed, jump to the step labeled <i title>consume</i>.
+
+		<li>
+			If <var>media</var> evaluates to false,
+			jump to the step labeled <i title>consume</i>.
+
+		<li>
+			Return <var>length</var>.
+	</ol>
+
+	A <dfn export>valid source size list</dfn> is a string that matches the following grammar: [[!CSS3VAL]]
 
 	<pre>
 		<dfn>&lt;source-size-list></dfn> = <<source-size>>#?
 		<dfn>&lt;source-size></dfn> = <<media-condition>>? <<length>>
 	</pre>
-
-	The above grammar must be interpreted per the grammar definition in [[!CSS3VAL]].
-
-	If the value does not parse successfully according to the above grammar,
-	return an error.
-
-	Otherwise,
-	let <var>source size list</var> initially be an empty <a>source size list</a>.
-	For each <<source-size>> parsed,
-	do the following:
-
-	<ol>
-		<li>
-			If the parsed <<source-size>> does not contain a <<media-condition>>,
-			set <var>source size list</var>’s default size to the parsed <<length>>.
-			<span class='note'>This can be set multiple times; last wins.</span>
-			Continue to the next <<source-size>>.
-
-		<li>
-			If the <<media-condition>> evaluates to false,
-			continue to the next <<source-size>>.
-
-		<li>
-			Otherwise,
-			create a new pair of the parsed <<media-condition>> and the parsed <<length>>,
-			and append it to <var>source size list</var>.
-	</ol>
 
 <h4 id='normalize-source-densities'>
 Normalizing the Source Densities</h4>
@@ -885,11 +895,10 @@ Normalizing the Source Densities</h4>
 
 	<ol>
 		<li>
-			<a>Find the effective size</a> from <var>source set</var>’s <a>source size list</a>,
-			and let the result be <var>effective size</var>.
+			Let <var>source size</var> be <var>source set</var>’s <a>source size</a>.
 
 		<li>
-			For each <a>image source</a> in <var>source set</var>’s <a>source size list</a>:
+			For each <a>image source</a> in <var>source set</var>:
 
 			<ol>
 				<li>
@@ -899,7 +908,7 @@ Normalizing the Source Densities</h4>
 				<li>
 					Otherwise, if the <a>image source</a> has a size descriptor,
 					replace the size descriptor with a density descriptor
-					with a value of <code>size descriptor / effective size</code>
+					with a value of <code>size descriptor / source size</code>
 					and a unit of ''x''.
 
 				<li>
@@ -908,30 +917,6 @@ Normalizing the Source Densities</h4>
 			</ol>
 	</ol>
 
-
-<h4 id='find-effective-size'>
-Finding the Effective Size</h4>
-
-	When asked to <dfn>find the effective size</dfn> from a <a>source size list</a> <var>list</var>,
-	user agents must do the following:
-
-	<ol>
-		<li>
-			If <var>list</var> contains any <<media-query>>/<<length>> pairs,
-			find the first <<media-query>>, in pair order,
-			that evaluates to true.
-			If one was successfully found,
-			return the <<length>> from its pair.
-
-		<li>
-			Otherwise,
-			if <var>list</var> has a default size,
-			return that.
-
-		<li>
-			Otherwise,
-			return ''300px''.
-	</ol>
 
 <h3 id='preloader'>
 Interaction with the Preload Scanner</h3>
@@ -1000,7 +985,7 @@ Changes to the <a element>source</a> Element</h2>
 	The <a element>source</a> element, if it has a <a element>picture</a>
 	element as its parent, may also have the
 	<dfn element-attr for="source">sizes</dfn> attribute specified. If it is
-	specified, the value must match the <<source-size-list>> grammar.
+	specified, the value must be a <a>valid source size list</a>.
 
 	The <a element>source</a> element, if it has a <a element>picture</a>
 	element as its parent, may also have the
@@ -1054,7 +1039,7 @@ Changes to the <a element>img</a> Element</h2>
 	The <a element>img</a> element, if it has a
 	<a element-attr for="img">srcset</a> attribute, may have a
 	<dfn element-attr for="img">sizes</dfn> attribute specified. If it is
-	specified, the value must match the <<source-size-list>> grammar.
+	specified, the value must be a <a>valid source size list</a>.
 
 	The IDL attribute <a attribute for="HTMLImageElement">sizes</a> must
 	reflect the <a element-attr for="img">sizes</a> content attribute.
