@@ -836,7 +836,7 @@ Parsing a <code>sizes</code> Attribute</h4>
 
 		<li>
 			<i title>Consume</i>: If <var>reached eof</var> is true,
-			return ''300px'' and abort these steps.
+			return ''100%'' and abort these steps.
 			Otherwise, <a spec=css-syntax>consume a component value</a> and let <var>component value</var> be the returned value. [[!CSS3SYN]]
 
 		<li>
