@@ -864,7 +864,9 @@ Parsing a <code>sizes</code> Attribute</h4>
 			If this failed, jump to the step labeled <i title>new group</i>.
 
 		<li>
-			If <var>component values</var> is empty, return <var>length</var> and abort these steps.
+			If <var>component values</var> is empty
+			or consists of only <<whitespace-token>>s,
+			return <var>length</var> and abort these steps.
 
 		<li>
 			Parse <var>component values</var> as a <<media-condition>>

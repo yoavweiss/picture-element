@@ -1413,7 +1413,9 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 			If this failed, jump to the step labeled <i title="">new group</i>.
 
 		<li>
-			If <var>component values</var> is empty, return <var>length</var> and abort these steps.
+			If <var>component values</var> is empty
+			or consists of only <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-syntax-3/#typedef-whitespace-token title="<whitespace-token>">&lt;whitespace-token&gt;</a>s,
+			return <var>length</var> and abort these steps.
 
 		<li>
 			Parse <var>component values</var> as a <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a>
