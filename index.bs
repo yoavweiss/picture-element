@@ -553,7 +553,7 @@ Updating the Source Set</h4>
 
 						<li>
 							<a title="parse a sizes attribute">Parse <var>child</var>'s sizes attribute</a> and
-							let the returned <a>source set</a> be <var>source size</var>.
+							and let <var>source set</var>’s <a>source size</a> be the returned value.
 
 						<li>
 							If <var>child</var> has a <a element-attr for="img">src</a> attribute and <var>source set</var> does not contain a
@@ -829,10 +829,10 @@ Parsing a <code>sizes</code> Attribute</h4>
 			or the empty string if it's absent.
 
 		<li>
-			Let <var>component values</var> be an empty list.
+			Let <var>reached eof</var> be false.
 
 		<li>
-			Let <var>reached eof</var> be false.
+			<i title>New group</i>: Let <var>component values</var> be an empty list.
 
 		<li>
 			<i title>Consume</i>: If <var>reached eof</var> is true,
@@ -847,8 +847,12 @@ Parsing a <code>sizes</code> Attribute</h4>
 			let <var>reached eof</var> be true.
 
 		<li>
+			While the last item in <var>component values</var> is a <<whitespace-token>>,
+			remove it from <var>component values</var>.
+
+		<li>
 			If <var>component values</var> is empty,
-			jump back to the step labeled <i title>consume</i>.
+			jump back to the step labeled <i title>new group</i>.
 
 		<li>
 			Remove the last item from <var>component values</var>
@@ -857,19 +861,19 @@ Parsing a <code>sizes</code> Attribute</h4>
 		<li>
 			Parse <var>raw length</var> as a <<length>>
 			and let <var>length</var> be the result. [[!CSS3VAL]]
-			If this failed, jump to the step labeled <i title>consume</i>.
+			If this failed, jump to the step labeled <i title>new group</i>.
 
 		<li>
-			If <var>tokens</var> is empty, return <var>length</var> and abort these steps.
+			If <var>component values</var> is empty, return <var>length</var> and abort these steps.
 
 		<li>
-			Parse <var>tokens</var> as a <<media-condition>>
+			Parse <var>component values</var> as a <<media-condition>>
 			and let <var>media</var> be the result. [[!MEDIAQ]]
-			If this failed, jump to the step labeled <i title>consume</i>.
+			If this failed, jump to the step labeled <i title>new group</i>.
 
 		<li>
 			If <var>media</var> evaluates to false,
-			jump to the step labeled <i title>consume</i>.
+			jump to the step labeled <i title>new group</i>.
 
 		<li>
 			Return <var>length</var>.

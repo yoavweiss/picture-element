@@ -552,14 +552,14 @@ span.issue, span.note {
 </p>
   <h1 class="p-name no-ref" id=title>The picture Element</h1>
   <h2 class="no-num no-toc no-ref heading settled heading" id=subtitle><span class=content>Editor’s Draft,
-    <span class=dt-updated><span class=value-title title=20140407>7 April 2014</span></span></span></h2>
+    <span class=dt-updated><span class=value-title title=20140408>8 April 2014</span></span></span></h2>
   <div data-fill-with=spec-metadata><dl><dt>This version:<dd><a class=u-url href=http://picture.responsiveimages.org>http://picture.responsiveimages.org</a><dt>Editor’s Draft:<dd><a href=http://picture.responsiveimages.org>http://picture.responsiveimages.org</a><dt>Test Suite:<dd>None Yet<dt>Editors:
 <dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://xanthir.com/contact/>Tab Atkins</a> (<span class="p-org org">Google</span>)<dd class="p-author h-card vcard"><span class="p-name fn">Marcos Cáceres</span> (<span class="p-org org">Mozilla</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://matmarquis.com/>Mat Marquis</a><dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://blog.yoav.ws/>Yoav Weiss</a><dd class="p-author h-card vcard"><a class="p-name fn u-email email" href=mailto:simonp@opera.com>Simon Pieters</a> (<span class="p-org org">Opera Software</span>)<dt>Version History:<dd><a href=https://github.com/ResponsiveImagesCG/picture-element/commits/gh-pages>Commit History</a><dd><a href=https://twitter.com/respimg_commits>Github commits on Twitter</a><dt>Participate:<dd><a href=http://w3c.responsiveimages.org>Join the Responsive Images Community Group</a><dd><a href=http://list.responsiveimages.org>Public Mailing List</a><dd><a href=irc://irc.w3.org:6665/#respimg>IRC: #respimg on W3C’s IRC</a><dd><a href=https://twitter.com/respimg>Twitter</a><dd><a href=https://github.com/ResponsiveImagesCG/picture-element>Github</a></dl></div>
   <div data-fill-with=warning></div>
   <p class=copyright data-fill-with=copyright><a href=http://creativecommons.org/publicdomain/zero/1.0/ rel=license><img alt=CC0 src=http://i.creativecommons.org/p/zero/1.0/80x15.png></a>
 To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 7 April 2014,
+In addition, as of 8 April 2014,
 the editors have made this specification available under the
 <a href=http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0 rel=license>Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
@@ -1102,7 +1102,7 @@ Updating the Source Set</span><a class=self-link href=#update-source-set></a></h
 
 						<li>
 							<a data-link-type=dfn href=#parse-a-sizes-attribute title="parse a sizes attribute">Parse <var>child</var>’s sizes attribute</a> and
-							let the returned <a data-link-type=dfn href=#source-set title="source set">source set</a> be <var>source size</var>.
+							and let <var>source set</var>’s <a data-link-type=dfn href=#source-size title="source size">source size</a> be the returned value.
 
 						<li>
 							If <var>child</var> has a <a data-link-for=img data-link-type=element-attr title=src>src</a> attribute and <var>source set</var> does not contain a
@@ -1378,10 +1378,10 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 			or the empty string if it’s absent.
 
 		<li>
-			Let <var>component values</var> be an empty list.
+			Let <var>reached eof</var> be false.
 
 		<li>
-			Let <var>reached eof</var> be false.
+			<i title="">New group</i>: Let <var>component values</var> be an empty list.
 
 		<li>
 			<i title="">Consume</i>: If <var>reached eof</var> is true,
@@ -1396,8 +1396,12 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 			let <var>reached eof</var> be true.
 
 		<li>
+			While the last item in <var>component values</var> is a <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-syntax-3/#typedef-whitespace-token title="<whitespace-token>">&lt;whitespace-token&gt;</a>,
+			remove it from <var>component values</var>.
+
+		<li>
 			If <var>component values</var> is empty,
-			jump back to the step labeled <i title="">consume</i>.
+			jump back to the step labeled <i title="">new group</i>.
 
 		<li>
 			Remove the last item from <var>component values</var>
@@ -1406,19 +1410,19 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 		<li>
 			Parse <var>raw length</var> as a <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-values-3/#length-value title="<length>">&lt;length&gt;</a>
 			and let <var>length</var> be the result. <a data-biblio-type=normative data-link-type=biblio href=#css3val title=css3val>[CSS3VAL]</a>
-			If this failed, jump to the step labeled <i title="">consume</i>.
+			If this failed, jump to the step labeled <i title="">new group</i>.
 
 		<li>
-			If <var>tokens</var> is empty, return <var>length</var> and abort these steps.
+			If <var>component values</var> is empty, return <var>length</var> and abort these steps.
 
 		<li>
-			Parse <var>tokens</var> as a <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a>
+			Parse <var>component values</var> as a <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a>
 			and let <var>media</var> be the result. <a data-biblio-type=normative data-link-type=biblio href=#mediaq title=mediaq>[MEDIAQ]</a>
-			If this failed, jump to the step labeled <i title="">consume</i>.
+			If this failed, jump to the step labeled <i title="">new group</i>.
 
 		<li>
 			If <var>media</var> evaluates to false,
-			jump to the step labeled <i title="">consume</i>.
+			jump to the step labeled <i title="">new group</i>.
 
 		<li>
 			Return <var>length</var>.
