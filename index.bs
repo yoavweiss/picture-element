@@ -372,7 +372,11 @@ The <a element>picture</a> Element</h2>
 	and optionally either a density descriptor,
 	or a width descriptor.
 
-	A <dfn export>source size</dfn> is a <<length>>.
+	A <dfn export>source size</dfn> is a <<source-size-value>>.
+	When a <a>source size</a> is a <<percentage>>,
+	or is a <<length>> with a unit relative to the viewport,
+	it must be interpreted relative to the <a element>img</a> element's document's viewport.
+	Other units must be interpreted the same as in media queries. [[!MEDIAQ]]
 
 	The <dfn>relevant mutations</dfn> for an <a element>img</a> element are as follows:
 
@@ -856,17 +860,19 @@ Parsing a <code>sizes</code> Attribute</h4>
 
 		<li>
 			Remove the last item from <var>component values</var>
-			and let <var>raw length</var> be the removed item.
+			and let <var>raw size</var> be the removed item.
 
 		<li>
-			Parse <var>raw length</var> as a <<length>>
-			and let <var>length</var> be the result. [[!CSS3VAL]]
-			If this failed, jump to the step labeled <i title>new group</i>.
+			Parse <var>raw size</var> as a <<source-size-value>>
+			and let <var>size</var> be the result. [[!CSS3VAL]]
+			If this failed,
+			or if <var>size</var> is negative,
+			jump to the step labeled <i title>new group</i>.
 
 		<li>
 			If <var>component values</var> is empty
 			or consists of only <<whitespace-token>>s,
-			return <var>length</var> and abort these steps.
+			return <var>size</var> and abort these steps.
 
 		<li>
 			Parse <var>component values</var> as a <<media-condition>>
@@ -878,15 +884,18 @@ Parsing a <code>sizes</code> Attribute</h4>
 			jump to the step labeled <i title>new group</i>.
 
 		<li>
-			Return <var>length</var>.
+			Return <var>size</var>.
 	</ol>
 
 	A <dfn export>valid source size list</dfn> is a string that matches the following grammar: [[!CSS3VAL]]
 
 	<pre>
 		<dfn>&lt;source-size-list></dfn> = <<source-size>>#?
-		<dfn>&lt;source-size></dfn> = <<media-condition>>? <<length>>
+		<dfn>&lt;source-size></dfn> = <<media-condition>>? <<source-size-value>>
+		<dfn>&lt;source-size-value></dfn> = <<length>> | <<percentage>>
 	</pre>
+
+	A <<source-size-value>> must not be negative.
 
 <h4 id='normalize-source-densities'>
 Normalizing the Source Densities</h4>

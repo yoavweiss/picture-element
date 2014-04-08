@@ -921,7 +921,11 @@ Attributes: Global attributes
 	and optionally either a density descriptor,
 	or a width descriptor.
 
-<p>	A <dfn data-dfn-type=dfn data-export="" id=source-size>source size<a class=self-link href=#source-size></a></dfn> is a <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-values-3/#length-value title="<length>">&lt;length&gt;</a>.
+<p>	A <dfn data-dfn-type=dfn data-export="" id=source-size>source size<a class=self-link href=#source-size></a></dfn> is a <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>.
+	When a <a data-link-type=dfn href=#source-size title="source size">source size</a> is a <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-values-3/#percentage-value title="<percentage>">&lt;percentage&gt;</a>,
+	or is a <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-values-3/#length-value title="<length>">&lt;length&gt;</a> with a unit relative to the viewport,
+	it must be interpreted relative to the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element’s document’s viewport.
+	Other units must be interpreted the same as in media queries. <a data-biblio-type=normative data-link-type=biblio href=#mediaq title=mediaq>[MEDIAQ]</a>
 
 <p>	The <dfn data-dfn-type=dfn data-noexport="" id=relevant-mutations>relevant mutations<a class=self-link href=#relevant-mutations></a></dfn> for an <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element are as follows:
 
@@ -1405,17 +1409,19 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 
 		<li>
 			Remove the last item from <var>component values</var>
-			and let <var>raw length</var> be the removed item.
+			and let <var>raw size</var> be the removed item.
 
 		<li>
-			Parse <var>raw length</var> as a <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-values-3/#length-value title="<length>">&lt;length&gt;</a>
-			and let <var>length</var> be the result. <a data-biblio-type=normative data-link-type=biblio href=#css3val title=css3val>[CSS3VAL]</a>
-			If this failed, jump to the step labeled <i title="">new group</i>.
+			Parse <var>raw size</var> as a <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>
+			and let <var>size</var> be the result. <a data-biblio-type=normative data-link-type=biblio href=#css3val title=css3val>[CSS3VAL]</a>
+			If this failed,
+			or if <var>size</var> is negative,
+			jump to the step labeled <i title="">new group</i>.
 
 		<li>
 			If <var>component values</var> is empty
 			or consists of only <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-syntax-3/#typedef-whitespace-token title="<whitespace-token>">&lt;whitespace-token&gt;</a>s,
-			return <var>length</var> and abort these steps.
+			return <var>size</var> and abort these steps.
 
 		<li>
 			Parse <var>component values</var> as a <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a>
@@ -1427,14 +1433,17 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 			jump to the step labeled <i title="">new group</i>.
 
 		<li>
-			Return <var>length</var>.
+			Return <var>size</var>.
 	</ol>
 
 <p>	A <dfn data-dfn-type=dfn data-export="" id=valid-source-size-list>valid source size list<a class=self-link href=#valid-source-size-list></a></dfn> is a string that matches the following grammar: <a data-biblio-type=normative data-link-type=biblio href=#css3val title=css3val>[CSS3VAL]</a>
 
 	<pre>  <dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size-list>&lt;source-size-list&gt;<a class=self-link href=#typedef-source-size-list></a></dfn> = <a class="production css-code" data-link-type=type href=#typedef-source-size title="<source-size>">&lt;source-size&gt;</a>#?
-  <dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size>&lt;source-size&gt;<a class=self-link href=#typedef-source-size></a></dfn> = <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a>? <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-values-3/#length-value title="<length>">&lt;length&gt;</a>
+  <dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size>&lt;source-size&gt;<a class=self-link href=#typedef-source-size></a></dfn> = <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a>? <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>
+  <dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size-value>&lt;source-size-value&gt;<a class=self-link href=#typedef-source-size-value></a></dfn> = <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-values-3/#length-value title="<length>">&lt;length&gt;</a> | <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-values-3/#percentage-value title="<percentage>">&lt;percentage&gt;</a>
 </pre>
+<p>	A <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a> must not be negative.
+
 <h4 class="heading settled heading" data-level=3.1.5 id=normalize-source-densities><span class=secno>3.1.5 </span><span class=content>
 Normalizing the Source Densities</span><a class=self-link href=#normalize-source-densities></a></h4>
 
@@ -1677,6 +1686,7 @@ Index</span><a class=self-link href=#index></a></h2>
 <li>source size, <a href=#source-size title="section 3">3</a>
 <li>&lt;source-size&gt;, <a href=#typedef-source-size title="section 3.1.4">3.1.4</a>
 <li>&lt;source-size-list&gt;, <a href=#typedef-source-size-list title="section 3.1.4">3.1.4</a>
+<li>&lt;source-size-value&gt;, <a href=#typedef-source-size-value title="section 3.1.4">3.1.4</a>
 <li>space character, <a href=#dfn-space-character title="section 2">2</a>
 <li>split a string on spaces, <a href=#dfn-split-a-string-on-spaces title="section 2">2</a>
 <li>srcset<ul><li>element-attr for source, <a href=#element-attrdef-srcset title="section 4">4</a>
