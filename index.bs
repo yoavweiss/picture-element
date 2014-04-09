@@ -817,9 +817,12 @@ Parsing a <code>srcset</code> Attribute</h4>
 
 	If the <a element>source</a> or <a element>img</a> element has a
 	sizes attribute present, all <a>image candidate strings</a> for that
-	element must have the <i title>width descriptor</i> specified. If the
-	sizes attribute is not present, all <a>image candidate strings</a> for
-	that element must not have the <i title>width descriptor</i> specified.
+	element must have the <i title>width descriptor</i> specified.
+
+	If an <a>image candidate string</a> for an <a element>source</a> or <a element>img</a> element
+	has the <i title>width descriptor</i> specified,
+	all other <a>image candidate strings</a> for that element
+	must also have the <i title>width descriptor</i> specified.
 
 <h4 id='parse-sizes-attr'>
 Parsing a <code>sizes</code> Attribute</h4>
@@ -890,8 +893,8 @@ Parsing a <code>sizes</code> Attribute</h4>
 	A <dfn export>valid source size list</dfn> is a string that matches the following grammar: [[!CSS3VAL]]
 
 	<pre>
-		<dfn>&lt;source-size-list></dfn> = <<source-size>>#?
-		<dfn>&lt;source-size></dfn> = <<media-condition>>? <<source-size-value>>
+		<dfn>&lt;source-size-list></dfn> = <<source-size>>#+ [ , <<source-size-value>> ]? | <<source-size-value>>
+		<dfn>&lt;source-size></dfn> = <<media-condition>> <<source-size-value>>
 		<dfn>&lt;source-size-value></dfn> = <<length>> | <<percentage>>
 	</pre>
 
