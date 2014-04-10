@@ -1004,6 +1004,10 @@ Changes to the <a element>source</a> Element</h2>
 	<dfn element-attr for="source">srcset</dfn> attribute specified. The
 	value must consist of one or more <a>image candidate strings</a>, each
 	separated from the next by a U+002C COMMA character (,).
+	If an <a>image candidate string</a> contains no descriptors
+	and no <a>space characters</a> after the URL,
+	the following <a>image candidate string</a>, if there is one,
+	must begin with one or more <a>space characters</a>.
 
 	The <a element>source</a> element, if it has a <a element>picture</a>
 	element as its parent, may also have the
