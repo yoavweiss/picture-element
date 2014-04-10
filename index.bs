@@ -1071,8 +1071,15 @@ Changes to the <a element>img</a> Element</h2>
 	<pre class='idl'>
 		partial interface HTMLImageElement {
 			attribute DOMString sizes;
+			readonly attribute DOMString? currentSrc;
 		};
 	</pre>
+
+	The IDL attribute <a attribute>currentSrc</a> must initially be set to the value <code>null</code>.
+	When asked to <a>select an image source</a> for the <a element>img</a> element,
+	if the algorithm returns a <var>selected source</var>,
+	the <a attribute>currentSrc</a> IDL attribute must be set to the serialization of that source's URL;
+	otherwise, it must be set to the value <code>null</code>.
 
 <h2 id='acks'>
 Acknowledgements</h2>
