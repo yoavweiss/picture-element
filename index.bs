@@ -165,7 +165,7 @@ Examples of usage</h3>
 
 		<pre>
 			&lt;picture>
-				&lt;source sizes="100%" srcset="pic400.jpg 400w, pic800.jpg 800w, pic1600.jpg 1600w">
+				&lt;source sizes="100vw" srcset="pic400.jpg 400w, pic800.jpg 800w, pic1600.jpg 1600w">
 				&lt;img src="pic400.jpg" alt="The president giving an award.">
 			&lt;/picture>
 		</pre>
@@ -207,7 +207,7 @@ Examples of usage</h3>
 
 		<pre>
 			&lt;picture>
-				&lt;source sizes="(max-width: 30em) 100%, (max-width: 50em) 50%, calc(33% - 100px)"
+				&lt;source sizes="(max-width: 30em) 100vw, (max-width: 50em) 50vw, calc(33vw - 100px)"
 								srcset="pic100.jpg 100w, pic200.jpg 200w, pic400.jpg 400w,
 												pic800.jpg 800w, pic1600.jpg 1600w, pic3200.jpg 3200w">
 				&lt;img src="pic400.jpg" alt="The president giving an award.">
@@ -215,7 +215,7 @@ Examples of usage</h3>
 		</pre>
 
 		The <a element-attr for="source">sizes</a> attribute sets up the layout breakpoints at ''30em'' and ''50em'',
-		and declares the image sizes between these breakpoints to be ''100%'', ''50%'', or ''calc(33% - 100px)''.
+		and declares the image sizes between these breakpoints to be ''100vw'', ''50vw'', or ''calc(33vw - 100px)''.
 
 		The six image sources provided automatically cover every reasonable possibility.
 		For small screens (phone size, or even smaller, like watches),
@@ -254,9 +254,12 @@ Examples of usage</h3>
 		<a element>picture</a> and <a element>source</a> elements in simpler cases.
 
 		<pre>
-			&lt;img src="pic400.jpg" alt="The president giving an award." sizes="100%"
+			&lt;img src="pic400.jpg" alt="The president giving an award." sizes="100vw"
 					srcset="pic400.jpg 400w, pic800.jpg 800w, pic1600.jpg 1600w">
 		</pre>
+
+		In this example, the <a element-attr for="img">sizes</a> attribute could also be removed,
+		since the default value is ''100vw''.
 	</div>
 
 	<div class='example'>
@@ -373,8 +376,7 @@ The <a element>picture</a> Element</h2>
 	or a width descriptor.
 
 	A <dfn export>source size</dfn> is a <<source-size-value>>.
-	When a <a>source size</a> is a <<percentage>>,
-	or is a <<length>> with a unit relative to the viewport,
+	When a <a>source size</a> has a unit relative to the viewport,
 	it must be interpreted relative to the <a element>img</a> element's document's viewport.
 	Other units must be interpreted the same as in media queries. [[!MEDIAQ]]
 
@@ -843,7 +845,7 @@ Parsing a <code>sizes</code> Attribute</h4>
 
 		<li>
 			<i title>Consume</i>: If <var>reached eof</var> is true,
-			return ''100%'' and abort these steps.
+			return ''100vw'' and abort these steps.
 			Otherwise, <a spec=css-syntax>consume a component value</a> and let <var>component value</var> be the returned value. [[!CSS3SYN]]
 
 		<li>
@@ -895,7 +897,7 @@ Parsing a <code>sizes</code> Attribute</h4>
 	<pre>
 		<dfn>&lt;source-size-list></dfn> = <<source-size>>#+ [ , <<source-size-value>> ]? | <<source-size-value>>
 		<dfn>&lt;source-size></dfn> = <<media-condition>> <<source-size-value>>
-		<dfn>&lt;source-size-value></dfn> = <<length>> | <<percentage>>
+		<dfn>&lt;source-size-value></dfn> = <<length>>
 	</pre>
 
 	A <<source-size-value>> must not be negative.
@@ -1076,6 +1078,6 @@ Acknowledgements</h2>
 	list of participants</a> of the Responsive Images Community Group is
 	available at the W3C Community Group Website.
 
-	Contributions also from: David Newton, Ilya Grigorik and Leon de
+	Contributions also from: David Newton, Ilya Grigorik, John Schoenick and Leon de
 	Rijke. Special thanks to Adrian Bateman for providing the group with
 	guidance.
