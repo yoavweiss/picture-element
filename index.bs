@@ -562,8 +562,9 @@ Updating the Source Set</h4>
 							and let <var>source set</var>’s <a>source size</a> be the returned value.
 
 						<li>
-							If <var>child</var> has a <a element-attr for="img">src</a> attribute and <var>source set</var> does not contain a
-							<var>source</var> with a <<resolution>> value of 1,
+							If <var>child</var> has a <a element-attr for="img">src</a> attribute and <var>source set</var> does not contain an
+							<a>image source</a> with a density descriptor value of 1,
+							and no <a>image source</a> with a width descriptor,
 							append the <var>child</var>'s src attribute value to the <a>source set</a>.
 
 						<li>

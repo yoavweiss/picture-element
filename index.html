@@ -1111,8 +1111,9 @@ Updating the Source Set</span><a class=self-link href=#update-source-set></a></h
 							and let <var>source set</var>’s <a data-link-type=dfn href=#source-size title="source size">source size</a> be the returned value.
 
 						<li>
-							If <var>child</var> has a <a data-link-for=img data-link-type=element-attr title=src>src</a> attribute and <var>source set</var> does not contain a
-							<var>source</var> with a <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-values-3/#resolution-value title="<resolution>">&lt;resolution&gt;</a> value of 1,
+							If <var>child</var> has a <a data-link-for=img data-link-type=element-attr title=src>src</a> attribute and <var>source set</var> does not contain an
+							<a data-link-type=dfn href=#image-source title="image source">image source</a> with a density descriptor value of 1,
+							and no <a data-link-type=dfn href=#image-source title="image source">image source</a> with a width descriptor,
 							append the <var>child</var>’s src attribute value to the <a data-link-type=dfn href=#source-set title="source set">source set</a>.
 
 						<li>
