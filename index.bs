@@ -826,6 +826,9 @@ Parsing a <code>srcset</code> Attribute</h4>
 	all other <a>image candidate strings</a> for that element
 	must also have the <i title>width descriptor</i> specified.
 
+	The specified width in an <a>image candidate string</a>'s <i title>width descriptor</i>
+	must match the intrinsic width in the resource given by the <a>image candidate string</a>'s URL.
+
 <h4 id='parse-sizes-attr'>
 Parsing a <code>sizes</code> Attribute</h4>
 
