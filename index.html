@@ -1280,10 +1280,8 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 					steps from the following list:
 
 					<dl class=switch>
-						<dt>If the token consists of a
-						<a data-link-type=dfn href=#dfn-valid-non-negative-integer title="valid non-negative integer">valid non-negative
-						integer</a> followed by a U+0077
-						LATIN SMALL LETTER W character
+						<dt>If the token consists of a <a data-link-type=dfn href=#dfn-valid-non-negative-integer title="valid non-negative integer">valid non-negative integer</a> other than zero
+						followed by a "w" (U+0077 LATIN SMALL LETTER W) character
 
 						<dd>
 							<ol>
@@ -1427,7 +1425,7 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 			Parse <var>raw size</var> as a <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>
 			and let <var>size</var> be the result. <a data-biblio-type=normative data-link-type=biblio href=#css3val title=css3val>[CSS3VAL]</a>
 			If this failed,
-			or if <var>size</var> is negative or zero,
+			or if <var>size</var> is negative,
 			jump to the step labeled <i title="">new group</i>.
 
 		<li>
@@ -1445,6 +1443,10 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 			jump to the step labeled <i title="">new group</i>.
 
 		<li>
+			If <var>size</var> is less than the <a data-link-type=dfn href=#minimum-source-size title="minimum source size">minimum source size</a>,
+			set it to the <a data-link-type=dfn href=#minimum-source-size title="minimum source size">minimum source size</a>.
+
+		<li>
 			Return <var>size</var>.
 	</ol>
 
@@ -1454,7 +1456,12 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
   <dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size>&lt;source-size&gt;<a class=self-link href=#typedef-source-size></a></dfn> = <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a> <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>
   <dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size-value>&lt;source-size-value&gt;<a class=self-link href=#typedef-source-size-value></a></dfn> = <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-values-3/#length-value title="<length>">&lt;length&gt;</a>
 </pre>
-<p>	A <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a> must not be negative and must not be zero.
+<p>	A <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a> must not be negative.
+
+<p>	User agents must establish a user-agent-specific <dfn data-dfn-type=dfn data-noexport="" id=minimum-source-size>minimum source size<a class=self-link href=#minimum-source-size></a></dfn>
+	which is greater than zero and less than or equal to <span class=css data-link-type=maybe title=1px>1px</span>,
+	which prevents the chosen source size from being too small (or zero).
+	It’s suggested that this size be the size of a device pixel on the screen being rendered to.
 
 <h4 class="heading settled heading" data-level=3.1.5 id=normalize-source-densities><span class=secno>3.1.5 </span><span class=content>
 Normalizing the Source Densities</span><a class=self-link href=#normalize-source-densities></a></h4>
@@ -1688,6 +1695,7 @@ Index</span><a class=self-link href=#index></a></h2>
 <li>image candidate string, <a href=#image-candidate-string title="section 3.1.3">3.1.3</a>
 <li>image source, <a href=#image-source title="section 3">3</a>
 <li>media, <a href=#element-attrdef-media title="section 4">4</a>
+<li>minimum source size, <a href=#minimum-source-size title="section 3.1.4">3.1.4</a>
 <li>normalize the source densities, <a href=#normalize-the-source-densities title="section 3.1.5">3.1.5</a>
 <li>parse a sizes attribute, <a href=#parse-a-sizes-attribute title="section 3.1.4">3.1.4</a>
 <li>parse a srcset attribute, <a href=#parse-a-srcset-attribute title="section 3.1.3">3.1.3</a>

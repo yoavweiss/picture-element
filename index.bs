@@ -736,10 +736,8 @@ Parsing a <code>srcset</code> Attribute</h4>
 					steps from the following list:
 
 					<dl class=switch>
-						<dt>If the token consists of a
-						<a>valid non-negative
-						integer</a> followed by a U+0077
-						LATIN SMALL LETTER W character
+						<dt>If the token consists of a <a>valid non-negative integer</a> other than zero
+						followed by a "w" (U+0077 LATIN SMALL LETTER W) character
 
 						<dd>
 							<ol>
@@ -883,7 +881,7 @@ Parsing a <code>sizes</code> Attribute</h4>
 			Parse <var>raw size</var> as a <<source-size-value>>
 			and let <var>size</var> be the result. [[!CSS3VAL]]
 			If this failed,
-			or if <var>size</var> is negative or zero,
+			or if <var>size</var> is negative,
 			jump to the step labeled <i title>new group</i>.
 
 		<li>
@@ -901,6 +899,10 @@ Parsing a <code>sizes</code> Attribute</h4>
 			jump to the step labeled <i title>new group</i>.
 
 		<li>
+			If <var>size</var> is less than the <a>minimum source size</a>,
+			set it to the <a>minimum source size</a>.
+
+		<li>
 			Return <var>size</var>.
 	</ol>
 
@@ -912,7 +914,12 @@ Parsing a <code>sizes</code> Attribute</h4>
 		<dfn>&lt;source-size-value></dfn> = <<length>>
 	</pre>
 
-	A <<source-size-value>> must not be negative and must not be zero.
+	A <<source-size-value>> must not be negative.
+
+	User agents must establish a user-agent-specific <dfn>minimum source size</dfn>
+	which is greater than zero and less than or equal to ''1px'',
+	which prevents the chosen source size from being too small (or zero).
+	It's suggested that this size be the size of a device pixel on the screen being rendered to.
 
 <h4 id='normalize-source-densities'>
 Normalizing the Source Densities</h4>
