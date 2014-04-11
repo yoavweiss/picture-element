@@ -552,14 +552,14 @@ span.issue, span.note {
 </p>
   <h1 class="p-name no-ref" id=title>The picture Element</h1>
   <h2 class="no-num no-toc no-ref heading settled heading" id=subtitle><span class=content>Editor’s Draft,
-    <span class=dt-updated><span class=value-title title=20140410>10 April 2014</span></span></span></h2>
+    <span class=dt-updated><span class=value-title title=20140411>11 April 2014</span></span></span></h2>
   <div data-fill-with=spec-metadata><dl><dt>This version:<dd><a class=u-url href=http://picture.responsiveimages.org>http://picture.responsiveimages.org</a><dt>Editor’s Draft:<dd><a href=http://picture.responsiveimages.org>http://picture.responsiveimages.org</a><dt>Test Suite:<dd>None Yet<dt>Editors:
 <dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://xanthir.com/contact/>Tab Atkins</a> (<span class="p-org org">Google</span>)<dd class="p-author h-card vcard"><span class="p-name fn">Marcos Cáceres</span> (<span class="p-org org">Mozilla</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://matmarquis.com/>Mat Marquis</a><dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://blog.yoav.ws/>Yoav Weiss</a><dd class="p-author h-card vcard"><a class="p-name fn u-email email" href=mailto:simonp@opera.com>Simon Pieters</a> (<span class="p-org org">Opera Software</span>)<dt>Version History:<dd><a href=https://github.com/ResponsiveImagesCG/picture-element/commits/gh-pages>Commit History</a><dd><a href=https://twitter.com/respimg_commits>Github commits on Twitter</a><dt>Participate:<dd><a href=http://w3c.responsiveimages.org>Join the Responsive Images Community Group</a><dd><a href=http://list.responsiveimages.org>Public Mailing List</a><dd><a href=irc://irc.w3.org:6665/#respimg>IRC: #respimg on W3C’s IRC</a><dd><a href=https://twitter.com/respimg>Twitter</a><dd><a href=https://github.com/ResponsiveImagesCG/picture-element>Github</a></dl></div>
   <div data-fill-with=warning></div>
   <p class=copyright data-fill-with=copyright><a href=http://creativecommons.org/publicdomain/zero/1.0/ rel=license><img alt=CC0 src=http://i.creativecommons.org/p/zero/1.0/80x15.png></a>
 To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 10 April 2014,
+In addition, as of 11 April 2014,
 the editors have made this specification available under the
 <a href=http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0 rel=license>Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
@@ -888,8 +888,9 @@ Definitions</span><a class=self-link href=#defs></a></h2>
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-rules-for-parsing-floating-point-number-values>rules for parsing floating-point number values<a class=self-link href=#dfn-rules-for-parsing-floating-point-number-values></a></dfn>,
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-valid-non-empty-url>valid non-empty URL<a class=self-link href=#dfn-valid-non-empty-url></a></dfn>,
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-update-the-image-data><a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/embedded-content-1.html#update-the-image-data>update the image data</a><a class=self-link href=#dfn-update-the-image-data></a></dfn>,
+	<dfn data-dfn-type=dfn data-noexport="" id=dfn-valid-media-query><a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/common-microsyntaxes.html#valid-media-query>valid media query</a><a class=self-link href=#dfn-valid-media-query></a></dfn>,
 	and
-	<dfn data-dfn-type=dfn data-noexport="" id=dfn-valid-media-query><a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/common-microsyntaxes.html#valid-media-query>valid media query</a><a class=self-link href=#dfn-valid-media-query></a></dfn>.
+	<dfn data-dfn-type=dfn data-noexport="" id=dfn-current-pixel-density>current pixel density<a class=self-link href=#dfn-current-pixel-density></a></dfn>.
 
 
 <h2 class="heading settled heading" data-level=3 id=the-picture-element><span class=secno>3 </span><span class=content>
@@ -961,6 +962,13 @@ Attributes: Global attributes
 			<a data-link-for=media data-link-type=element-attr title=media>media</a> attributes are
 			set, changed, or removed.
 	</ul>
+
+<p>	When an <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element has a <a data-link-type=dfn href=#dfn-current-pixel-density title="current pixel density">current pixel density</a> that is zero,
+	the element’s intrinsic dimensions must be +Infinity CSS pixels by +Infinity CSS pixels.
+
+<p class=note>	Note: User agents are expected to have limits in how big images can be
+	rendered, which is allowed by HTML’s
+	<a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#hardwareLimitations>hardware limitations</a> clause. <a data-biblio-type=informative data-link-type=biblio href=#html title=html>[HTML]</a>
 
 <h3 class="heading settled heading" data-level=3.1 id=algos><span class=secno>3.1 </span><span class=content>
 Sub-Algorithms</span><a class=self-link href=#algos></a></h3>
@@ -1423,7 +1431,7 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 			Parse <var>raw size</var> as a <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>
 			and let <var>size</var> be the result. <a data-biblio-type=normative data-link-type=biblio href=#css3val title=css3val>[CSS3VAL]</a>
 			If this failed,
-			or if <var>size</var> is negative,
+			or if <var>size</var> is negative or zero,
 			jump to the step labeled <i title="">new group</i>.
 
 		<li>
@@ -1450,7 +1458,7 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
   <dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size>&lt;source-size&gt;<a class=self-link href=#typedef-source-size></a></dfn> = <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a> <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>
   <dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size-value>&lt;source-size-value&gt;<a class=self-link href=#typedef-source-size-value></a></dfn> = <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-values-3/#length-value title="<length>">&lt;length&gt;</a>
 </pre>
-<p>	A <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a> must not be negative.
+<p>	A <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a> must not be negative and must not be zero.
 
 <h4 class="heading settled heading" data-level=3.1.5 id=normalize-source-densities><span class=secno>3.1.5 </span><span class=content>
 Normalizing the Source Densities</span><a class=self-link href=#normalize-source-densities></a></h4>
@@ -1476,9 +1484,9 @@ Normalizing the Source Densities</span><a class=self-link href=#normalize-source
 					continue to the next <a data-link-type=dfn href=#image-source title="image source">image source</a>.
 
 				<li>
-					Otherwise, if the <a data-link-type=dfn href=#image-source title="image source">image source</a> has a size descriptor,
-					replace the size descriptor with a density descriptor
-					with a value of <code>size descriptor / source size</code>
+					Otherwise, if the <a data-link-type=dfn href=#image-source title="image source">image source</a> has a width descriptor,
+					replace the width descriptor with a density descriptor
+					with a value of <code>width descriptor / source size</code>
 					and a unit of <span class=css data-link-type=maybe title=x>x</span>.
 
 				<li>
@@ -1613,8 +1621,15 @@ Changes to the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/h
 
 	<pre class=idl>partial interface <a class=idl-code data-global-name="" data-link-type=interface href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#htmlimageelement title=htmlimageelement>HTMLImageElement</a> {
     attribute DOMString <dfn class=idl-code data-dfn-for=HTMLImageElement data-dfn-type=attribute data-export="" data-global-name="HTMLImageElement<interface>/sizes<attribute>" id=dom-htmlimageelement-sizes>sizes<a class=self-link href=#dom-htmlimageelement-sizes></a></dfn>;
+    readonly attribute DOMString? <dfn class=idl-code data-dfn-for=HTMLImageElement data-dfn-type=attribute data-export="" data-global-name="HTMLImageElement<interface>/currentsrc<attribute>" id=dom-htmlimageelement-currentsrc>currentSrc<a class=self-link href=#dom-htmlimageelement-currentsrc></a></dfn>;
   };
 </pre>
+<p>	The IDL attribute <a class=idl-code data-link-type=attribute href=#dom-htmlimageelement-currentsrc title=currentsrc>currentSrc</a> must initially be set to the value <code>null</code>.
+	When asked to <a data-link-type=dfn href=#select-an-image-source title="select an image source">select an image source</a> for the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element,
+	if the algorithm returns a <var>selected source</var>,
+	the <a class=idl-code data-link-type=attribute href=#dom-htmlimageelement-currentsrc title=currentsrc>currentSrc</a> IDL attribute must be set to the serialization of that source’s URL;
+	otherwise, it must be set to the value <code>null</code>.
+
 <h2 class="heading settled heading" data-level=6 id=acks><span class=secno>6 </span><span class=content>
 Acknowledgements</span><a class=self-link href=#acks></a></h2>
 
@@ -1671,6 +1686,8 @@ Informative References</span><a class=self-link href=#informative></a></h3>
 Index</span><a class=self-link href=#index></a></h2>
 <div data-fill-with=index><ul class=indexlist>
 <li>collect a sequence of characters, <a href=#dfn-collect-a-sequence-of-characters title="section 2">2</a>
+<li>current pixel density, <a href=#dfn-current-pixel-density title="section 2">2</a>
+<li>currentSrc, <a href=#dom-htmlimageelement-currentsrc title="section 5">5</a>
 <li>HTMLPictureElement, <a href=#dom-htmlpictureelement title="section 3.3">3.3</a>
 <li>image candidate string, <a href=#image-candidate-string title="section 3.1.3">3.1.3</a>
 <li>image source, <a href=#image-source title="section 3">3</a>

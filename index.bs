@@ -337,8 +337,9 @@ Definitions</h2>
 	<dfn id="dfn-rules-for-parsing-floating-point-number-values">rules for parsing floating-point number values</dfn>,
 	<dfn id="dfn-valid-non-empty-url">valid non-empty URL</dfn>,
 	<dfn id="dfn-update-the-image-data"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/embedded-content-1.html#update-the-image-data">update the image data</a></dfn>,
+	<dfn id="dfn-valid-media-query"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/common-microsyntaxes.html#valid-media-query">valid media query</a></dfn>,
 	and
-	<dfn id="dfn-valid-media-query"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/common-microsyntaxes.html#valid-media-query">valid media query</a></dfn>.
+	<dfn id="dfn-current-pixel-density">current pixel density</dfn>.
 
 
 <h2 id='the-picture-element'>
@@ -412,6 +413,13 @@ The <a element>picture</a> Element</h2>
 			<a element-attr for="media">media</a> attributes are
 			set, changed, or removed.
 	</ul>
+
+	When an <a element>img</a> element has a <a>current pixel density</a> that is zero,
+	the element's intrinsic dimensions must be +Infinity CSS pixels by +Infinity CSS pixels.
+
+	Note: User agents are expected to have limits in how big images can be
+	rendered, which is allowed by HTML's
+	<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#hardwareLimitations">hardware limitations</a> clause. [[HTML]]
 
 <h3 id='algos'>
 Sub-Algorithms</h3>
@@ -874,7 +882,7 @@ Parsing a <code>sizes</code> Attribute</h4>
 			Parse <var>raw size</var> as a <<source-size-value>>
 			and let <var>size</var> be the result. [[!CSS3VAL]]
 			If this failed,
-			or if <var>size</var> is negative,
+			or if <var>size</var> is negative or zero,
 			jump to the step labeled <i title>new group</i>.
 
 		<li>
@@ -903,7 +911,7 @@ Parsing a <code>sizes</code> Attribute</h4>
 		<dfn>&lt;source-size-value></dfn> = <<length>>
 	</pre>
 
-	A <<source-size-value>> must not be negative.
+	A <<source-size-value>> must not be negative and must not be zero.
 
 <h4 id='normalize-source-densities'>
 Normalizing the Source Densities</h4>
@@ -929,9 +937,9 @@ Normalizing the Source Densities</h4>
 					continue to the next <a>image source</a>.
 
 				<li>
-					Otherwise, if the <a>image source</a> has a size descriptor,
-					replace the size descriptor with a density descriptor
-					with a value of <code>size descriptor / source size</code>
+					Otherwise, if the <a>image source</a> has a width descriptor,
+					replace the width descriptor with a density descriptor
+					with a value of <code>width descriptor / source size</code>
 					and a unit of ''x''.
 
 				<li>
