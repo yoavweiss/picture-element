@@ -414,9 +414,6 @@ The <a element>picture</a> Element</h2>
 			set, changed, or removed.
 	</ul>
 
-	When an <a element>img</a> element has a <a>current pixel density</a> that is zero,
-	the element's intrinsic dimensions must be +Infinity CSS pixels by +Infinity CSS pixels.
-
 	Note: User agents are expected to have limits in how big images can be
 	rendered, which is allowed by HTML's
 	<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#hardwareLimitations">hardware limitations</a> clause. [[HTML]]
