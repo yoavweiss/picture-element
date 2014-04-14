@@ -522,10 +522,6 @@ Selecting an Image Source</h4>
 			Let this be <var>selected source</var>.
 
 		<li>
-			The intrinsic width of <var>el</var> is <var>source set</var>'s <a>source size</a>.
-			The intrinsic resolution of <var>el</var> is the density associated with <var>selected source</var>.
-
-		<li>
 			Return <var>selected source</var> and its associated pixel density.
 	</ol>
 
