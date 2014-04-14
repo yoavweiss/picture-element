@@ -842,17 +842,6 @@ Parsing a <code>sizes</code> Attribute</h4>
 	(or the empty string, if the attribute is absent),
 	and let <var>unparsed sizes list</var> be the result.
 
-	<strong>Simplest algo</strong>
-
-	Attempt to parse each entry of <var>unparsed sizes list</var> as a <<source-size>>,
-	or, for the last entry, as either a <<source-size>> or a <<source-size-value>>.
-	For the first one that parses successfully,
-	return the value of the <<source-size-value>> so parsed.
-	If no entry parses successfully,
-	return ''100vw''.
-
-	<strong>Slightly more complex algo</strong>
-
 	For each <var>unparsed size</var> in <var>unparsed sizes list</var>:
 
 	<ol>
