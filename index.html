@@ -1388,8 +1388,7 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 
 <p>	<strong>Simplest algo</strong>
 
-<p>	Attempt to parse each entry of <var>unparsed sizes list</var> as a <a class="production css-code" data-link-type=type href=#typedef-source-size title="<source-size>">&lt;source-size&gt;</a>,
-	or, for the last entry, as either a <a class="production css-code" data-link-type=type href=#typedef-source-size title="<source-size>">&lt;source-size&gt;</a> or a <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>.
+<p>	Attempt to parse each entry of <var>unparsed sizes list</var> as a <a class="production css-code" data-link-type=type href=#typedef-source-size title="<source-size>">&lt;source-size&gt;</a> or <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>.
 	For the first one that parses successfully,
 	return the value of the <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a> so parsed.
 	If no entry parses successfully,
@@ -1440,6 +1439,15 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
   <dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size-value>&lt;source-size-value&gt;<a class=self-link href=#typedef-source-size-value></a></dfn> = <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-values-3/#length-value title="<length>">&lt;length&gt;</a>
 </pre>
 <p>	A <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a> must not be negative and must not be zero.
+
+<p class=note>	Note: While a <a data-link-type=dfn href=#valid-source-size-list title="valid source size list">valid source size list</a> only contains a bare <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>
+	(without an accompanying <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a>)
+	as the last entry in the <a class="production css-code" data-link-type=type href=#typedef-source-size-list title="<source-size-list>">&lt;source-size-list&gt;</a>,
+	the parsing algorithm technically allows such at any point in the list,
+	and will accept it immediately as the size
+	if the preceding entries in the list weren’t used.
+	This is to enable future extensions,
+	and protect against simple author errors such as a final trailing comma.
 
 <h4 class="heading settled heading" data-level=3.1.5 id=normalize-source-densities><span class=secno>3.1.5 </span><span class=content>
 Normalizing the Source Densities</span><a class=self-link href=#normalize-source-densities></a></h4>
