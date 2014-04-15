@@ -892,10 +892,6 @@ Parsing a <code>sizes</code> Attribute</h4>
 			jump to the step labeled <i title>new group</i>.
 
 		<li>
-			If <var>size</var> is less than the <a>minimum source size</a>,
-			set it to the <a>minimum source size</a>.
-
-		<li>
 			Return <var>size</var>.
 	</ol>
 
@@ -908,11 +904,6 @@ Parsing a <code>sizes</code> Attribute</h4>
 	</pre>
 
 	A <<source-size-value>> must not be negative.
-
-	User agents must establish a user-agent-specific <dfn>minimum source size</dfn>
-	which is greater than zero and less than or equal to ''1px'',
-	which prevents the chosen source size from being too small (or zero).
-	It's suggested that this size be the size of a device pixel on the screen being rendered to.
 
 <h4 id='normalize-source-densities'>
 Normalizing the Source Densities</h4>
