@@ -848,7 +848,7 @@ Parsing a <code>sizes</code> Attribute</h4>
 		<li>
 			Remove all consecutive <<whitespace-token>>s
 			from the end of <var>unparsed size</var>.
-			If this removes <em>all</em> the tokens from <var>unparsed size</var>,
+			If <var>unparsed size</var> is now empty,
 			continue to the next iteration of this algorithm.
 
 		<li>
