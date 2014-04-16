@@ -838,67 +838,45 @@ Parsing a <code>srcset</code> Attribute</h4>
 Parsing a <code>sizes</code> Attribute</h4>
 
 	When asked to <dfn title="parse a sizes attribute|parse its sizes attribute">parse a sizes attribute</dfn> from an element,
-	run the following steps:
+	<a>parse a comma-separated list of component values</a> from the value of the element's <a element-attr title>sizes</a> attribute
+	(or the empty string, if the attribute is absent),
+	and let <var>unparsed sizes list</var> be the result.
+
+	For each <var>unparsed size</var> in <var>unparsed sizes list</var>:
 
 	<ol>
 		<li>
-			Let <var>input</var> be the value of the element's sizes attribute,
-			or the empty string if it's absent.
+			Remove all consecutive <<whitespace-token>>s
+			from the end of <var>unparsed size</var>.
+			If <var>unparsed size</var> is now empty,
+			continue to the next iteration of this algorithm.
 
 		<li>
-			Let <var>reached eof</var> be false.
+			If the last <a>component value</a> in <var>unparsed size</var>
+			is a valid non-negative non-zero <<source-size-value>>,
+			let <var>size</var> be its value
+			and remove the <a>component value</a> from <var>unparsed size</var>.
+			Otherwise,
+			continue to the next iteration of this algorithm.
 
 		<li>
-			<i title>New group</i>: Let <var>component values</var> be an empty list.
+			If all remaining <a>component values</a> in <var>unparsed size</var>
+			are <<whitespace-token>>s,
+			return <var>size</var> and exit this algorithm.
 
 		<li>
-			<i title>Consume</i>: If <var>reached eof</var> is true,
-			return ''100vw'' and abort these steps.
-			Otherwise, <a spec=css-syntax>consume a component value</a> and let <var>component value</var> be the returned value. [[!CSS3SYN]]
+			Parse the remaining <a>component values</a> in <var>unparsed size</var>
+			as a <<media-condition>>.
+			If it does not parse correctly,
+			or it does parse correctly but the <<media-condition>> evaluates to false,
+			continue to the next iteration of this algorithm.
 
 		<li>
-			If <var>component value</var> is not a <<comma-token>> or an <<eof-token>>,
-			append <var>component value</var> to <var>component values</var> and then
-			jump back to the step labeled <i title>consume</i>.
-			Otherwise, if <var>component value</var> is an <<eof-token>>,
-			let <var>reached eof</var> be true.
-
-		<li>
-			While the last item in <var>component values</var> is a <<whitespace-token>>,
-			remove it from <var>component values</var>.
-
-		<li>
-			If <var>component values</var> is empty,
-			jump back to the step labeled <i title>new group</i>.
-
-		<li>
-			Remove the last item from <var>component values</var>
-			and let <var>raw size</var> be the removed item.
-
-		<li>
-			Parse <var>raw size</var> as a <<source-size-value>>
-			and let <var>size</var> be the result. [[!CSS3VAL]]
-			If this failed,
-			or if <var>size</var> is negative or zero,
-			jump to the step labeled <i title>new group</i>.
-
-		<li>
-			If <var>component values</var> is empty
-			or consists of only <<whitespace-token>>s,
-			return <var>size</var> and abort these steps.
-
-		<li>
-			Parse <var>component values</var> as a <<media-condition>>
-			and let <var>media</var> be the result. [[!MEDIAQ]]
-			If this failed, jump to the step labeled <i title>new group</i>.
-
-		<li>
-			If <var>media</var> evaluates to false,
-			jump to the step labeled <i title>new group</i>.
-
-		<li>
-			Return <var>size</var>.
+			Return <var>size</var> and exit this algorithm.
 	</ol>
+
+	If the above algorithm exhausts <var>unparsed sizes list</var> without returning a <var>size</var> value,
+	return ''100vw''.
 
 	A <dfn export>valid source size list</dfn> is a string that matches the following grammar: [[!CSS3VAL]]
 
@@ -909,6 +887,15 @@ Parsing a <code>sizes</code> Attribute</h4>
 	</pre>
 
 	A <<source-size-value>> must not be negative and must not be zero.
+
+	Note: While a <a>valid source size list</a> only contains a bare <<source-size-value>>
+	(without an accompanying <<media-condition>>)
+	as the last entry in the <<source-size-list>>,
+	the parsing algorithm technically allows such at any point in the list,
+	and will accept it immediately as the size
+	if the preceding entries in the list weren't used.
+	This is to enable future extensions,
+	and protect against simple author errors such as a final trailing comma.
 
 <h4 id='normalize-source-densities'>
 Normalizing the Source Densities</h4>
