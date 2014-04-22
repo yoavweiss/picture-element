@@ -958,9 +958,6 @@ The <a data-link-type=element href=#elementdef-picture title=picture>picture</a>
 			set, changed, or removed.
 	</ul>
 
-<p>	When an <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element has a <a data-link-type=dfn href=#dfn-current-pixel-density title="current pixel density">current pixel density</a> that is zero,
-	the element’s intrinsic dimensions must be +Infinity CSS pixels by +Infinity CSS pixels.
-
 <p class=note>	Note: User agents are expected to have limits in how big images can be
 	rendered, which is allowed by HTML’s
 	<a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#hardwareLimitations>hardware limitations</a> clause. <a data-biblio-type=informative data-link-type=biblio href=#html title=html>[HTML]</a>
@@ -1276,10 +1273,8 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 					steps from the following list:
 
 					<dl class=switch>
-						<dt>If the token consists of a
-						<a data-link-type=dfn href=#dfn-valid-non-negative-integer title="valid non-negative integer">valid non-negative
-						integer</a> followed by a U+0077
-						LATIN SMALL LETTER W character
+						<dt>If the token consists of a <a data-link-type=dfn href=#dfn-valid-non-negative-integer title="valid non-negative integer">valid non-negative integer</a>
+						followed by a "w" (U+0077 LATIN SMALL LETTER W) character
 
 						<dd>
 							<ol>
@@ -1288,8 +1283,9 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 									let <var>error</var> be <i title="">yes</i>.
 
 								<li>
-									Apply the <a data-link-type=dfn href=#dfn-rules-for-parsing-non-negative-integers title="rules for parsing non-negative integers">rules for parsing non-negative integers</a> to the token. Let
-									<var>width</var> be the result.
+									Apply the <a data-link-type=dfn href=#dfn-rules-for-parsing-non-negative-integers title="rules for parsing non-negative integers">rules for parsing non-negative integers</a> to the token.
+									If the result is zero, let <var>error</var> be <i title="">yes</i>.
+									Otherwise, let <var>width</var> be the result.
 							</ol>
 
 						<dt>If the token consists of a
@@ -1397,7 +1393,7 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 
 		<li>
 			If the last <a data-link-type=dfn href=http://dev.w3.org/csswg/css-syntax-3/#component-value title="component value">component value</a> in <var>unparsed size</var>
-			is a valid non-negative non-zero <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>,
+			is a valid non-negative <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>,
 			let <var>size</var> be its value
 			and remove the <a data-link-type=dfn href=http://dev.w3.org/csswg/css-syntax-3/#component-value title="component value">component value</a> from <var>unparsed size</var>.
 			Otherwise,
@@ -1428,7 +1424,7 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
   <dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size>&lt;source-size&gt;<a class=self-link href=#typedef-source-size></a></dfn> = <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a> <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>
   <dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size-value>&lt;source-size-value&gt;<a class=self-link href=#typedef-source-size-value></a></dfn> = <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-values-3/#length-value title="<length>">&lt;length&gt;</a>
 </pre>
-<p>	A <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a> must not be negative and must not be zero.
+<p>	A <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a> must not be negative.
 
 <p class=note>	Note: While a <a data-link-type=dfn href=#valid-source-size-list title="valid source size list">valid source size list</a> only contains a bare <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>
 	(without an accompanying <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a>)
