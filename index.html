@@ -552,14 +552,14 @@ span.issue, span.note {
 </p>
   <h1 class="p-name no-ref" id=title>The picture Element</h1>
   <h2 class="no-num no-toc no-ref heading settled heading" id=subtitle><span class=content>Editor’s Draft,
-    <span class=dt-updated><span class=value-title title=20140414>14 April 2014</span></span></span></h2>
+    <span class=dt-updated><span class=value-title title=20140422>22 April 2014</span></span></span></h2>
   <div data-fill-with=spec-metadata><dl><dt>This version:<dd><a class=u-url href=http://picture.responsiveimages.org>http://picture.responsiveimages.org</a><dt>Editor’s Draft:<dd><a href=http://picture.responsiveimages.org>http://picture.responsiveimages.org</a><dt>Test Suite:<dd>None Yet<dt>Editors:
 <dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://xanthir.com/contact/>Tab Atkins</a> (<span class="p-org org">Google</span>)<dd class="p-author h-card vcard"><span class="p-name fn">Marcos Cáceres</span> (<span class="p-org org">Mozilla</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://matmarquis.com/>Mat Marquis</a><dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://blog.yoav.ws/>Yoav Weiss</a><dd class="p-author h-card vcard"><a class="p-name fn u-email email" href=mailto:simonp@opera.com>Simon Pieters</a> (<span class="p-org org">Opera Software</span>)<dt>Version History:<dd><a href=https://github.com/ResponsiveImagesCG/picture-element/commits/gh-pages>Commit History</a><dd><a href=https://twitter.com/respimg_commits>Github commits on Twitter</a><dt>Participate:<dd><a href=http://w3c.responsiveimages.org>Join the Responsive Images Community Group</a><dd><a href=http://list.responsiveimages.org>Public Mailing List</a><dd><a href=irc://irc.w3.org:6665/#respimg>IRC: #respimg on W3C’s IRC</a><dd><a href=https://twitter.com/respimg>Twitter</a><dd><a href=https://github.com/ResponsiveImagesCG/picture-element>Github</a></dl></div>
   <div data-fill-with=warning></div>
   <p class=copyright data-fill-with=copyright><a href=http://creativecommons.org/publicdomain/zero/1.0/ rel=license><img alt=CC0 src=http://i.creativecommons.org/p/zero/1.0/80x15.png></a>
 To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 14 April 2014,
+In addition, as of 22 April 2014,
 the editors have made this specification available under the
 <a href=http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0 rel=license>Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
@@ -1069,7 +1069,7 @@ Selecting an Image Source</span><a class=self-link href=#select-image-source></a
 			Return <var>selected source</var> and its associated pixel density.
 	</ol>
 
-	<p class=issue id=issue-db0987e0><a class=self-link href=#issue-db0987e0></a>
+	<p class=issue id=issue-a854d749><a class=self-link href=#issue-a854d749></a>
 		This just selects a single image and then sticks with it,
 		unlike CSS’s <a class=css data-link-type=maybe href=http://dev.w3.org/csswg/css-images-4/#funcdef-image title=image()>image()</a>,
 		but similar to <code>srcset</code>.
@@ -1168,7 +1168,7 @@ Updating the Source Set</span><a class=self-link href=#update-source-set></a></h
 			</ol>
 	</ol>
 
-	<p class=issue id=issue-7c81674f><a class=self-link href=#issue-7c81674f></a>
+	<p class=issue id=issue-beebbb07><a class=self-link href=#issue-beebbb07></a>
 		I’d like to allow individual sources to specify a type as well with a <span class=css data-link-type=maybe title=type()>type()</span> function,
 		overriding the default type specified by the <a data-link-for=source data-link-type=element-attr href=#element-attrdef-type title=type>type</a> attribute,
 		but I’m keeping things simple for now.
@@ -1386,28 +1386,18 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 	(or the empty string, if the attribute is absent),
 	and let <var>unparsed sizes list</var> be the result.
 
-<p>	<strong>Simplest algo</strong>
-
-<p>	Attempt to parse each entry of <var>unparsed sizes list</var> as a <a class="production css-code" data-link-type=type href=#typedef-source-size title="<source-size>">&lt;source-size&gt;</a> or <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>.
-	For the first one that parses successfully,
-	return the value of the <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a> so parsed.
-	If no entry parses successfully,
-	return <span class=css data-link-type=maybe title=100vw>100vw</span>.
-
-<p>	<strong>Slightly more complex algo</strong>
-
 <p>	For each <var>unparsed size</var> in <var>unparsed sizes list</var>:
 
 	<ol>
 		<li>
 			Remove all consecutive <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-syntax-3/#typedef-whitespace-token title="<whitespace-token>">&lt;whitespace-token&gt;</a>s
 			from the end of <var>unparsed size</var>.
-			If this removes <em>all</em> the tokens from <var>unparsed size</var>,
+			If <var>unparsed size</var> is now empty,
 			continue to the next iteration of this algorithm.
 
 		<li>
 			If the last <a data-link-type=dfn href=http://dev.w3.org/csswg/css-syntax-3/#component-value title="component value">component value</a> in <var>unparsed size</var>
-			is a valid positive <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>,
+			is a valid non-negative non-zero <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>,
 			let <var>size</var> be its value
 			and remove the <a data-link-type=dfn href=http://dev.w3.org/csswg/css-syntax-3/#component-value title="component value">component value</a> from <var>unparsed size</var>.
 			Otherwise,
@@ -1804,10 +1794,10 @@ Property index</span><a class=self-link href=#property-index></a></h2>
 		but similar to <code>srcset</code>.
 		That okay?
 
-<a href=#issue-db0987e0> ↵ </a></div><div class=issue>
+<a href=#issue-a854d749> ↵ </a></div><div class=issue>
 		I’d like to allow individual sources to specify a type as well with a <span class=css data-link-type=maybe title=type()>type()</span> function,
 		overriding the default type specified by the <a data-link-for=source data-link-type=element-attr href=#element-attrdef-type title=type>type</a> attribute,
 		but I’m keeping things simple for now.
 
 
-<a href=#issue-7c81674f> ↵ </a></div></div>
+<a href=#issue-beebbb07> ↵ </a></div></div>
