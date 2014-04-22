@@ -552,14 +552,14 @@ span.issue, span.note {
 </p>
   <h1 class="p-name no-ref" id=title>The picture Element</h1>
   <h2 class="no-num no-toc no-ref heading settled heading" id=subtitle><span class=content>Editor’s Draft,
-    <span class=dt-updated><span class=value-title title=20140411>11 April 2014</span></span></span></h2>
+    <span class=dt-updated><span class=value-title title=20140422>22 April 2014</span></span></span></h2>
   <div data-fill-with=spec-metadata><dl><dt>This version:<dd><a class=u-url href=http://picture.responsiveimages.org>http://picture.responsiveimages.org</a><dt>Editor’s Draft:<dd><a href=http://picture.responsiveimages.org>http://picture.responsiveimages.org</a><dt>Test Suite:<dd>None Yet<dt>Editors:
 <dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://xanthir.com/contact/>Tab Atkins</a> (<span class="p-org org">Google</span>)<dd class="p-author h-card vcard"><span class="p-name fn">Marcos Cáceres</span> (<span class="p-org org">Mozilla</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://matmarquis.com/>Mat Marquis</a><dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://blog.yoav.ws/>Yoav Weiss</a><dd class="p-author h-card vcard"><a class="p-name fn u-email email" href=mailto:simonp@opera.com>Simon Pieters</a> (<span class="p-org org">Opera Software</span>)<dt>Version History:<dd><a href=https://github.com/ResponsiveImagesCG/picture-element/commits/gh-pages>Commit History</a><dd><a href=https://twitter.com/respimg_commits>Github commits on Twitter</a><dt>Participate:<dd><a href=http://w3c.responsiveimages.org>Join the Responsive Images Community Group</a><dd><a href=http://list.responsiveimages.org>Public Mailing List</a><dd><a href=irc://irc.w3.org:6665/#respimg>IRC: #respimg on W3C’s IRC</a><dd><a href=https://twitter.com/respimg>Twitter</a><dd><a href=https://github.com/ResponsiveImagesCG/picture-element>Github</a></dl></div>
   <div data-fill-with=warning></div>
   <p class=copyright data-fill-with=copyright><a href=http://creativecommons.org/publicdomain/zero/1.0/ rel=license><img alt=CC0 src=http://i.creativecommons.org/p/zero/1.0/80x15.png></a>
 To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 11 April 2014,
+In addition, as of 22 April 2014,
 the editors have made this specification available under the
 <a href=http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0 rel=license>Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
@@ -958,9 +958,6 @@ The <a data-link-type=element href=#elementdef-picture title=picture>picture</a>
 			set, changed, or removed.
 	</ul>
 
-<p>	When an <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element has a <a data-link-type=dfn href=#dfn-current-pixel-density title="current pixel density">current pixel density</a> that is zero,
-	the element’s intrinsic dimensions must be +Infinity CSS pixels by +Infinity CSS pixels.
-
 <p class=note>	Note: User agents are expected to have limits in how big images can be
 	rendered, which is allowed by HTML’s
 	<a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#hardwareLimitations>hardware limitations</a> clause. <a data-biblio-type=informative data-link-type=biblio href=#html title=html>[HTML]</a>
@@ -1069,7 +1066,7 @@ Selecting an Image Source</span><a class=self-link href=#select-image-source></a
 			Return <var>selected source</var> and its associated pixel density.
 	</ol>
 
-	<p class=issue id=issue-db0987e0><a class=self-link href=#issue-db0987e0></a>
+	<p class=issue id=issue-a854d749><a class=self-link href=#issue-a854d749></a>
 		This just selects a single image and then sticks with it,
 		unlike CSS’s <a class=css data-link-type=maybe href=http://dev.w3.org/csswg/css-images-4/#funcdef-image title=image()>image()</a>,
 		but similar to <code>srcset</code>.
@@ -1168,7 +1165,7 @@ Updating the Source Set</span><a class=self-link href=#update-source-set></a></h
 			</ol>
 	</ol>
 
-	<p class=issue id=issue-7c81674f><a class=self-link href=#issue-7c81674f></a>
+	<p class=issue id=issue-beebbb07><a class=self-link href=#issue-beebbb07></a>
 		I’d like to allow individual sources to specify a type as well with a <span class=css data-link-type=maybe title=type()>type()</span> function,
 		overriding the default type specified by the <a data-link-for=source data-link-type=element-attr href=#element-attrdef-type title=type>type</a> attribute,
 		but I’m keeping things simple for now.
@@ -1439,10 +1436,6 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 			jump to the step labeled <i title="">new group</i>.
 
 		<li>
-			If <var>size</var> is less than the <a data-link-type=dfn href=#minimum-source-size title="minimum source size">minimum source size</a>,
-			set it to the <a data-link-type=dfn href=#minimum-source-size title="minimum source size">minimum source size</a>.
-
-		<li>
 			Return <var>size</var>.
 	</ol>
 
@@ -1453,11 +1446,6 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
   <dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size-value>&lt;source-size-value&gt;<a class=self-link href=#typedef-source-size-value></a></dfn> = <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-values-3/#length-value title="<length>">&lt;length&gt;</a>
 </pre>
 <p>	A <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a> must not be negative.
-
-<p>	User agents must establish a user-agent-specific <dfn data-dfn-type=dfn data-noexport="" id=minimum-source-size>minimum source size<a class=self-link href=#minimum-source-size></a></dfn>
-	which is greater than zero and less than or equal to <span class=css data-link-type=maybe title=1px>1px</span>,
-	which prevents the chosen source size from being too small (or zero).
-	It’s suggested that this size be the size of a device pixel on the screen being rendered to.
 
 <h4 class="heading settled heading" data-level=3.1.5 id=normalize-source-densities><span class=secno>3.1.5 </span><span class=content>
 Normalizing the Source Densities</span><a class=self-link href=#normalize-source-densities></a></h4>
@@ -1695,7 +1683,6 @@ Index</span><a class=self-link href=#index></a></h2>
 <li>image candidate string, <a href=#image-candidate-string title="section 3.1.3">3.1.3</a>
 <li>image source, <a href=#image-source title="section 3">3</a>
 <li>media, <a href=#element-attrdef-media title="section 4">4</a>
-<li>minimum source size, <a href=#minimum-source-size title="section 3.1.4">3.1.4</a>
 <li>normalize the source densities, <a href=#normalize-the-source-densities title="section 3.1.5">3.1.5</a>
 <li>parse a sizes attribute, <a href=#parse-a-sizes-attribute title="section 3.1.4">3.1.4</a>
 <li>parse a srcset attribute, <a href=#parse-a-srcset-attribute title="section 3.1.3">3.1.3</a>
@@ -1815,10 +1802,10 @@ Property index</span><a class=self-link href=#property-index></a></h2>
 		but similar to <code>srcset</code>.
 		That okay?
 
-<a href=#issue-db0987e0> ↵ </a></div><div class=issue>
+<a href=#issue-a854d749> ↵ </a></div><div class=issue>
 		I’d like to allow individual sources to specify a type as well with a <span class=css data-link-type=maybe title=type()>type()</span> function,
 		overriding the default type specified by the <a data-link-for=source data-link-type=element-attr href=#element-attrdef-type title=type>type</a> attribute,
 		but I’m keeping things simple for now.
 
 
-<a href=#issue-7c81674f> ↵ </a></div></div>
+<a href=#issue-beebbb07> ↵ </a></div></div>
