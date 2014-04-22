@@ -1273,7 +1273,7 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 					steps from the following list:
 
 					<dl class=switch>
-						<dt>If the token consists of a <a data-link-type=dfn href=#dfn-valid-non-negative-integer title="valid non-negative integer">valid non-negative integer</a> other than zero
+						<dt>If the token consists of a <a data-link-type=dfn href=#dfn-valid-non-negative-integer title="valid non-negative integer">valid non-negative integer</a>
 						followed by a "w" (U+0077 LATIN SMALL LETTER W) character
 
 						<dd>
@@ -1283,8 +1283,9 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 									let <var>error</var> be <i title="">yes</i>.
 
 								<li>
-									Apply the <a data-link-type=dfn href=#dfn-rules-for-parsing-non-negative-integers title="rules for parsing non-negative integers">rules for parsing non-negative integers</a> to the token. Let
-									<var>width</var> be the result.
+									Apply the <a data-link-type=dfn href=#dfn-rules-for-parsing-non-negative-integers title="rules for parsing non-negative integers">rules for parsing non-negative integers</a> to the token.
+									If the result is zero, let <var>error</var> be <i title="">yes</i>.
+									Otherwise, let <var>width</var> be the result.
 							</ol>
 
 						<dt>If the token consists of a
@@ -1392,7 +1393,7 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 
 		<li>
 			If the last <a data-link-type=dfn href=http://dev.w3.org/csswg/css-syntax-3/#component-value title="component value">component value</a> in <var>unparsed size</var>
-			is a valid non-negative non-zero <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>,
+			is a valid non-negative <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>,
 			let <var>size</var> be its value
 			and remove the <a data-link-type=dfn href=http://dev.w3.org/csswg/css-syntax-3/#component-value title="component value">component value</a> from <var>unparsed size</var>.
 			Otherwise,
