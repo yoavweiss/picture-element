@@ -729,7 +729,7 @@ Parsing a <code>srcset</code> Attribute</h4>
 					steps from the following list:
 
 					<dl class=switch>
-						<dt>If the token consists of a <a>valid non-negative integer</a> other than zero
+						<dt>If the token consists of a <a>valid non-negative integer</a>
 						followed by a "w" (U+0077 LATIN SMALL LETTER W) character
 
 						<dd>
@@ -739,8 +739,9 @@ Parsing a <code>srcset</code> Attribute</h4>
 									let <var>error</var> be <i title>yes</i>.
 
 								<li>
-									Apply the <a>rules for parsing non-negative integers</a> to the token. Let
-									<var>width</var> be the result.
+									Apply the <a>rules for parsing non-negative integers</a> to the token.
+									If the result is zero, let <var>error</var> be <i title>yes</i>.
+									Otherwise, let <var>width</var> be the result.
 							</ol>
 
 						<dt>If the token consists of a
