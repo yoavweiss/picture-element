@@ -849,7 +849,7 @@ Parsing a <code>sizes</code> Attribute</h4>
 
 		<li>
 			If the last <a>component value</a> in <var>unparsed size</var>
-			is a valid non-negative non-zero <<source-size-value>>,
+			is a valid non-negative <<source-size-value>>,
 			let <var>size</var> be its value
 			and remove the <a>component value</a> from <var>unparsed size</var>.
 			Otherwise,
