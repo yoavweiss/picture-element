@@ -856,8 +856,9 @@ Parsing a <code>sizes</code> Attribute</h4>
 			continue to the next iteration of this algorithm.
 
 		<li>
-			If all remaining <a>component values</a> in <var>unparsed size</var>
-			are <<whitespace-token>>s,
+			Remove all consecutive <<whitespace-token>>s
+			from the end of <var>unparsed size</var>.
+			If <var>unparsed size</var> is now empty,
 			return <var>size</var> and exit this algorithm.
 
 		<li>

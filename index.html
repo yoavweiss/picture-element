@@ -1400,8 +1400,9 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 			continue to the next iteration of this algorithm.
 
 		<li>
-			If all remaining <a data-link-type=dfn href=http://dev.w3.org/csswg/css-syntax-3/#component-value title="component values">component values</a> in <var>unparsed size</var>
-			are <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-syntax-3/#typedef-whitespace-token title="<whitespace-token>">&lt;whitespace-token&gt;</a>s,
+			Remove all consecutive <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-syntax-3/#typedef-whitespace-token title="<whitespace-token>">&lt;whitespace-token&gt;</a>s
+			from the end of <var>unparsed size</var>.
+			If <var>unparsed size</var> is now empty,
 			return <var>size</var> and exit this algorithm.
 
 		<li>
