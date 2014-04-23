@@ -877,7 +877,7 @@ Parsing a <code>sizes</code> Attribute</h4>
 	A <dfn export>valid source size list</dfn> is a string that matches the following grammar: [[!CSS3VAL]]
 
 	<pre>
-		<dfn>&lt;source-size-list></dfn> = <<source-size>>#+ [ , <<source-size-value>> ]? | <<source-size-value>>
+		<dfn>&lt;source-size-list></dfn> = <<source-size>># [ , <<source-size-value>> ]? | <<source-size-value>>
 		<dfn>&lt;source-size></dfn> = <<media-condition>> <<source-size-value>>
 		<dfn>&lt;source-size-value></dfn> = <<length>>
 	</pre>
