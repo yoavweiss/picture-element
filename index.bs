@@ -409,8 +409,9 @@ The <a element>picture</a> Element</h2>
 			The element's parent is a <a element>picture</a> element
 			and a <a element>source</a> element that is a previous
 			sibling has its <a element-attr for="source">srcset</a>,
-			<a element-attr for="source">sizes</a> or
-			<a element-attr for="media">media</a> attributes are
+			<a element-attr for="source">sizes</a>,
+			<a element-attr for="source">media</a> or
+			<a element-attr for="source">type</a> attributes are
 			set, changed, or removed.
 	</ul>
 
