@@ -552,14 +552,14 @@ span.issue, span.note {
 </p>
   <h1 class="p-name no-ref" id=title>The picture Element</h1>
   <h2 class="no-num no-toc no-ref heading settled heading" id=subtitle><span class=content>Editor’s Draft,
-    <span class=dt-updated><span class=value-title title=20140502>2 May 2014</span></span></span></h2>
+    <span class=dt-updated><span class=value-title title=20140505>5 May 2014</span></span></span></h2>
   <div data-fill-with=spec-metadata><dl><dt>This version:<dd><a class=u-url href=http://picture.responsiveimages.org>http://picture.responsiveimages.org</a><dt>Editor’s Draft:<dd><a href=http://picture.responsiveimages.org>http://picture.responsiveimages.org</a><dt>Test Suite:<dd>None Yet<dt>Editors:
 <dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://xanthir.com/contact/>Tab Atkins</a> (<span class="p-org org">Google</span>)<dd class="p-author h-card vcard"><span class="p-name fn">Marcos Cáceres</span> (<span class="p-org org">Mozilla</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://matmarquis.com/>Mat Marquis</a><dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://blog.yoav.ws/>Yoav Weiss</a><dd class="p-author h-card vcard"><a class="p-name fn u-email email" href=mailto:simonp@opera.com>Simon Pieters</a> (<span class="p-org org">Opera Software</span>)<dt>Version History:<dd><a href=https://github.com/ResponsiveImagesCG/picture-element/commits/gh-pages>Commit History</a><dd><a href=https://twitter.com/respimg_commits>Github commits on Twitter</a><dt>Participate:<dd><a href=http://w3c.responsiveimages.org>Join the Responsive Images Community Group</a><dd><a href=http://list.responsiveimages.org>Public Mailing List</a><dd><a href=irc://irc.w3.org:6665/#respimg>IRC: #respimg on W3C’s IRC</a><dd><a href=https://twitter.com/respimg>Twitter</a><dd><a href=https://github.com/ResponsiveImagesCG/picture-element>Github</a></dl></div>
   <div data-fill-with=warning></div>
   <p class=copyright data-fill-with=copyright><a href=http://creativecommons.org/publicdomain/zero/1.0/ rel=license><img alt=CC0 src=http://i.creativecommons.org/p/zero/1.0/80x15.png></a>
 To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 2 May 2014,
+In addition, as of 5 May 2014,
 the editors have made this specification available under the
 <a href=http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0 rel=license>Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
@@ -896,7 +896,7 @@ Definitions</span><a class=self-link href=#defs></a></h2>
 <h2 class="heading settled heading" data-level=3 id=the-picture-element><span class=secno>3 </span><span class=content>
 The <a data-link-type=element href=#elementdef-picture title=picture>picture</a> Element</span><a class=self-link href=#the-picture-element></a></h2>
 
-<table class="definition elementdef"><tr><th>Name:<td><dfn data-dfn-type=element data-export="" id=elementdef-picture>picture<a class=self-link href=#elementdef-picture></a></dfn><tr><th>Categories:<td>Flow content, Phrasing content, Embedded content, Palpable content<tr><th>Contexts:<td>Where embedded content is expected<tr><th>Content model:<td>Zero or more <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> elements, followed by one <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element.<tr><th>Attributes:<td>Global attributes</table>
+<table class="definition elementdef"><tr><th>Name:<td><dfn data-dfn-type=element data-export="" id=elementdef-picture>picture<a class=self-link href=#elementdef-picture></a></dfn><tr><th>Categories:<td>Flow content, Phrasing content, Embedded content, Palpable content<tr><th>Contexts:<td>Where embedded content is expected<tr><th>Content model:<td>Zero or more <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> elements, followed by one <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element, optionally intermixed with script-supporting elements.<tr><th>Attributes:<td>Global attributes</table>
 <p>	The <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element is a container which provides multiples sources to its contained <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element,
 	allowing the displayed image to vary based on the density of the screen
 	or other environmental factors expressed as <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-query title="media queries">media queries</a>.
@@ -929,28 +929,28 @@ The <a data-link-type=element href=#elementdef-picture title=picture>picture</a>
 
 <p>	<ul>
 		<li>
-			The element’s <a data-link-for=img data-link-type=element-attr title=src>src</a>,
+<p>			The element’s <a data-link-for=img data-link-type=element-attr title=src>src</a>,
 			<a data-link-for=img data-link-type=element-attr title=srcset>srcset</a>,
 			<a data-link-for=img data-link-type=element-attr href=#element-attrdef-sizes title=sizes>sizes</a> or
 			<a data-link-for=img data-link-type=element-attr title=crossorigin>crossorigin</a> attributes are
 			set, changed, or removed.
 
 		<li>
-			The element is inserted into or removed from a
+<p>			The element is inserted into or removed from a
 			<a data-link-type=element href=#elementdef-picture title=picture>picture</a> parent element.
 
 		<li>
-			The element’s parent is a <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element
+<p>			The element’s parent is a <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element
 			and a <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element is inserted as a
 			previous sibling.
 
 		<li>
-			The element’s parent is a <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element
+<p>			The element’s parent is a <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element
 			and a <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element that was a previous
 			sibling is removed.
 
 		<li>
-			The element’s parent is a <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element
+<p>			The element’s parent is a <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element
 			and a <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element that is a previous
 			sibling has its <a data-link-for=source data-link-type=element-attr href=#element-attrdef-srcset title=srcset>srcset</a>,
 			<a data-link-for=source data-link-type=element-attr href=#element-attrdef-sizes0 title=sizes>sizes</a>,
@@ -969,14 +969,14 @@ Sub-Algorithms</span><a class=self-link href=#algos></a></h3>
 <h4 class="heading settled heading" data-level=3.1.1 id=select-image-source><span class=secno>3.1.1 </span><span class=content>
 Selecting an Image Source</span><a class=self-link href=#select-image-source></a></h4>
 
-	<div class="issue monkey-patch" id=issue-58bdc3bf><a class=self-link href=#issue-58bdc3bf></a>
+	<div class="issue monkey-patch" id=issue-3e3bbf7a><a class=self-link href=#issue-3e3bbf7a></a>
 		In the HTML spec, in the algorithm <a data-link-type=dfn href=#dfn-update-the-image-data title="update the image data">update the image data</a>,
 		replace the whole step that calls "processing the image
 		candidates" with the following step:
 
 		<ol>
 			<li>
-				Let <var>selected source</var> and <var>selected
+<p>				Let <var>selected source</var> and <var>selected
 				pixel density</var> be the URL and pixel density
 				that results from
 				<a data-link-type=dfn href=#select-an-image-source title="select an image source">selecting an image source</a>.
@@ -989,16 +989,16 @@ Selecting an Image Source</span><a class=self-link href=#select-image-source></a
 
 <p>		<ul>
 			<li>
-				Remove "does not have a srcset attribute
+<p>				Remove "does not have a srcset attribute
 				specified,"
 
 			<li>
-				Replace "processing the image candidates" with
+<p>				Replace "processing the image candidates" with
 				"<a data-link-type=dfn href=#select-an-image-source title="select an image source">selecting an
 				image source</a>".
 
 			<li>
-				Replace "If the img element’s src, srcset, or
+<p>				Replace "If the img element’s src, srcset, or
 				crossorigin attributes have been set, changed,
 				or removed" with "If the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a>
 				element has experienced <a data-link-type=dfn href=#relevant-mutations title="relevant mutations">relevant mutations</a>"
@@ -1008,7 +1008,7 @@ Selecting an Image Source</span><a class=self-link href=#select-image-source></a
 
 <p>		<ul>
 			<li>
-				Replace "A user agent that obtains images
+<p>				Replace "A user agent that obtains images
 				immediately must also synchronously update the
 				image data of an img element whenever that
 				element has its src, srcset, or crossorigin
@@ -1019,7 +1019,7 @@ Selecting an Image Source</span><a class=self-link href=#select-image-source></a
 				element experiences <a data-link-type=dfn href=#relevant-mutations title="relevant mutations">relevant mutations</a>."
 
 			<li>
-				Replace "A user agent that obtains images on
+<p>				Replace "A user agent that obtains images on
 				demand must update the image data of an img
 				element whenever it needs the image data (i.e.
 				on demand), but only if the img element has a
@@ -1047,24 +1047,24 @@ Selecting an Image Source</span><a class=self-link href=#select-image-source></a
 
 	<ol>
 		<li>
-			<a data-link-type=dfn href=#update-the-source-set title="update the source set">Update the source set</a> for <var>el</var>.
+<p>			<a data-link-type=dfn href=#update-the-source-set title="update the source set">Update the source set</a> for <var>el</var>.
 
 		<li>
-			If <var>el</var>’s <a data-link-type=dfn href=#source-set title="source set">source set</a> is empty,
+<p>			If <var>el</var>’s <a data-link-type=dfn href=#source-set title="source set">source set</a> is empty,
 			return null as the URL and undefined as the pixel density and abort these steps.
 
 		<li>
-			Otherwise,
+<p>			Otherwise,
 			take <var>el</var>’s <a data-link-type=dfn href=#source-set title="source set">source set</a>
 			and let it be <var>source set</var>.
 
 		<li>
-			In a UA-specific manner,
+<p>			In a UA-specific manner,
 			choose one <a data-link-type=dfn href=#image-source title="image source">image source</a> from <var>source set</var>.
 			Let this be <var>selected source</var>.
 
 		<li>
-			Return <var>selected source</var> and its associated pixel density.
+<p>			Return <var>selected source</var> and its associated pixel density.
 	</ol>
 
 	<p class=issue id=issue-a854d749><a class=self-link href=#issue-a854d749></a>
@@ -1081,64 +1081,64 @@ Updating the Source Set</span><a class=self-link href=#update-source-set></a></h
 
 	<ol>
 		<li>
-			Initially set <var>el</var>’s <a data-link-type=dfn href=#source-set title="source set">source set</a> to an empty <a data-link-type=dfn href=#source-set title="source set">source set</a>.
+<p>			Initially set <var>el</var>’s <a data-link-type=dfn href=#source-set title="source set">source set</a> to an empty <a data-link-type=dfn href=#source-set title="source set">source set</a>.
 
 		<li>
-			If <var>el</var> has a parent node and that is a <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element,
+<p>			If <var>el</var> has a parent node and that is a <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element,
 			let <var>elements</var> be an array containing <var>el</var>’s parent node’s child elements, retaining relative order.
 			Otherwise, let <var>elements</var> be array containing only <var>el</var>.
 
 		<li>
-			Iterate through <var>elements</var>,
+<p>			Iterate through <var>elements</var>,
 			doing the following for each item <var>child</var>:
 
 			<ol>
 				<li>
-					If <var>child</var> is <var>el</var>:
+<p>					If <var>child</var> is <var>el</var>:
 					<ol>
 						<li>
-							If <var>child</var> has a <a data-link-for=img data-link-type=element-attr title=srcset>srcset</a> attribute,
+<p>							If <var>child</var> has a <a data-link-for=img data-link-type=element-attr title=srcset>srcset</a> attribute,
 							<a data-link-type=dfn href=#parse-a-srcset-attribute title="parse a srcset attribute">parse <var>child</var>’s srcset attribute</a>
 							and let the returned <a data-link-type=dfn href=#source-set title="source set">source set</a> be <var>source set</var>.
 							Otherwise,
 							let <var>source set</var> be an empty <a data-link-type=dfn href=#source-set title="source set">source set</a>.
 
 						<li>
-							<a data-link-type=dfn href=#parse-a-sizes-attribute title="parse a sizes attribute">Parse <var>child</var>’s sizes attribute</a> and
+<p>							<a data-link-type=dfn href=#parse-a-sizes-attribute title="parse a sizes attribute">Parse <var>child</var>’s sizes attribute</a> and
 							and let <var>source set</var>’s <a data-link-type=dfn href=#source-size title="source size">source size</a> be the returned value.
 
 						<li>
-							If <var>child</var> has a <a data-link-for=img data-link-type=element-attr title=src>src</a> attribute and <var>source set</var> does not contain an
+<p>							If <var>child</var> has a <a data-link-for=img data-link-type=element-attr title=src>src</a> attribute and <var>source set</var> does not contain an
 							<a data-link-type=dfn href=#image-source title="image source">image source</a> with a density descriptor value of 1,
 							and no <a data-link-type=dfn href=#image-source title="image source">image source</a> with a width descriptor,
 							append the <var>child</var>’s src attribute value to the <a data-link-type=dfn href=#source-set title="source set">source set</a>.
 
 						<li>
-							Set the returned <a data-link-type=dfn href=#source-set title="source set">source set</a> to be <var>el</var>’s <a data-link-type=dfn href=#source-set title="source set">source set</a>.
+<p>							Set the returned <a data-link-type=dfn href=#source-set title="source set">source set</a> to be <var>el</var>’s <a data-link-type=dfn href=#source-set title="source set">source set</a>.
 
 						<li>
-							Exit the "Updating the Source Set" algorithm.
+<p>							Exit the "Updating the Source Set" algorithm.
 					</ol>
 
 				<li>
-					If <var>child</var> is not a <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element,
+<p>					If <var>child</var> is not a <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element,
 					continue to the next child.
 					Otherwise, <var>child</var> is a <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element.
 
 				<li>
-					If <var>child</var> does not have a <a data-link-for=source data-link-type=element-attr href=#element-attrdef-srcset title=srcset>srcset</a> attribute,
+<p>					If <var>child</var> does not have a <a data-link-for=source data-link-type=element-attr href=#element-attrdef-srcset title=srcset>srcset</a> attribute,
 					continue to the next child.
 
 				<li>
-					<a data-link-type=dfn href=#parse-a-srcset-attribute title="parse a srcset attribute">Parse <var>child</var>’s srcset attribute</a> and
+<p>					<a data-link-type=dfn href=#parse-a-srcset-attribute title="parse a srcset attribute">Parse <var>child</var>’s srcset attribute</a> and
 					let the returned <a data-link-type=dfn href=#source-set title="source set">source set</a> be <var>source set</var>.
 
 				<li>
-					If <var>source set</var> has zero <a data-link-type=dfn href=#image-source title="image sources">image sources</a>,
+<p>					If <var>source set</var> has zero <a data-link-type=dfn href=#image-source title="image sources">image sources</a>,
 					continue to the next child.
 
 				<li>
-					If <var>child</var> has a <a data-link-for=source data-link-type=element-attr href=#element-attrdef-media title=media>media</a> attribute,
+<p>					If <var>child</var> has a <a data-link-for=source data-link-type=element-attr href=#element-attrdef-media title=media>media</a> attribute,
 					and its value is a <a data-link-type=dfn href=#dfn-valid-media-query title="valid media query">valid media query</a> which evaluates to true,
 					attach the <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-query title="media query">media query</a> to <var>source set</var>.
 					If its value is not a <a data-link-type=dfn href=#dfn-valid-media-query title="valid media query">valid media query</a>,
@@ -1146,22 +1146,22 @@ Updating the Source Set</span><a class=self-link href=#update-source-set></a></h
 					continue to the next child.
 
 				<li>
-					<a data-link-type=dfn href=#parse-a-sizes-attribute title="parse its sizes attribute">Parse <var>child</var>’s sizes attribute</a>
+<p>					<a data-link-type=dfn href=#parse-a-sizes-attribute title="parse its sizes attribute">Parse <var>child</var>’s sizes attribute</a>
 					and let <var>source set</var>’s <a data-link-type=dfn href=#source-size title="source size">source size</a> be the returned value.
 
 				<li>
-					If <var>child</var> has a <a data-link-for=source data-link-type=element-attr href=#element-attrdef-type title=type>type</a> attribute,
+<p>					If <var>child</var> has a <a data-link-for=source data-link-type=element-attr href=#element-attrdef-type title=type>type</a> attribute,
 					and its value is an unknown or unsupported MIME type,
 					continue to the next child.
 
 				<li>
-					<a data-link-type=dfn href=#normalize-the-source-densities title="normalize the source densities">Normalize the source densities</a> of <var>source set</var>.
+<p>					<a data-link-type=dfn href=#normalize-the-source-densities title="normalize the source densities">Normalize the source densities</a> of <var>source set</var>.
 
 				<li>
-					Set <a data-link-type=dfn href=#source-set title="source set">source set</a> to be <var>el</var>’s <a data-link-type=dfn href=#source-set title="source set">source set</a>.
+<p>					Set <a data-link-type=dfn href=#source-set title="source set">source set</a> to be <var>el</var>’s <a data-link-type=dfn href=#source-set title="source set">source set</a>.
 
 				<li>
-					Exit the "Updating the Source Set" algorithm.
+<p>					Exit the "Updating the Source Set" algorithm.
 
 			</ol>
 	</ol>
@@ -1180,96 +1180,96 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 
 	<ol>
 		<li>
-			Let <var>input</var> be the value passed to this
+<p>			Let <var>input</var> be the value passed to this
 			algorithm.
 
 		<li>
-			Let <var>position</var> be a pointer into
+<p>			Let <var>position</var> be a pointer into
 			<var>input</var>, initially pointing at the start of the
 			string.
 
 		<li>
-			Let <var>raw candidates</var> be an initially empty
+<p>			Let <var>raw candidates</var> be an initially empty
 			ordered list of URLs with associated unparsed
 			descriptors. The order of entries in the list is the
 			order in which entries are added to the list.
 
 		<li>
-			<i title="">Splitting loop</i>: <a data-link-type=dfn href=#dfn-skip-whitespace title="skip whitespace">Skip whitespace</a>.
+<p>			<i title="">Splitting loop</i>: <a data-link-type=dfn href=#dfn-skip-whitespace title="skip whitespace">Skip whitespace</a>.
 
 		<li>
-			<a data-link-type=dfn href=#dfn-collect-a-sequence-of-characters title="collect a sequence of characters">Collect a sequence of characters</a> that are not
+<p>			<a data-link-type=dfn href=#dfn-collect-a-sequence-of-characters title="collect a sequence of characters">Collect a sequence of characters</a> that are not
 			<a data-link-type=dfn href=#dfn-space-character title="space characters">space characters</a>, and let that be <var>url</var>.
 
 		<li>
-			If <var>url</var> ends with a U+002C COMMA character
+<p>			If <var>url</var> ends with a U+002C COMMA character
 			(,), remove that character from <var>url</var> and let
 			<var>descriptors</var> be the empty string. Otherwise,
 			follow these substeps:
 
 			<ol>
 				<li>
-					If <var>url</var> is empty, then jump to
+<p>					If <var>url</var> is empty, then jump to
 					the step labeled <i title="">descriptor
 					parser</i>.
 
 				<li>
-					<a data-link-type=dfn href=#dfn-collect-a-sequence-of-characters title="collect a sequence of characters">Collect a sequence of characters</a>
+<p>					<a data-link-type=dfn href=#dfn-collect-a-sequence-of-characters title="collect a sequence of characters">Collect a sequence of characters</a>
 					that are not U+002C COMMA characters
 					(,), and let that be
 					<var>descriptors</var>.
 			</ol>
 
 		<li>
-			Add <var>url</var> to <var>raw candidates</var>,
+<p>			Add <var>url</var> to <var>raw candidates</var>,
 			associated with <var>descriptors</var>.
 
 		<li>
-			If <var>position</var> is past the end of
+<p>			If <var>position</var> is past the end of
 			<var>input</var>, then jump to the step labeled
 			<i title="">descriptor parser</i>.
 
 		<li>
-			Advance <var>position</var> to the next character in
+<p>			Advance <var>position</var> to the next character in
 			<var>input</var> (skipping past the U+002C COMMA
 			character (,) separating this candidate from the next).
 
 		<li>
-			Return to the step labeled <i title="">splitting loop</i>.
+<p>			Return to the step labeled <i title="">splitting loop</i>.
 
 		<li>
-			<i title="">Descriptor parser</i>: Let
+<p>			<i title="">Descriptor parser</i>: Let
 			<var>candidates</var> be an initially empty <a data-link-type=dfn href=#source-set title="source set">source
 			set</a>. The order of entries in the list is the order
 			in which entries are added to the list.
 
 		<li>
-			For each entry in <var>raw candidates</var> with URL
+<p>			For each entry in <var>raw candidates</var> with URL
 			<var>url</var> associated with the unparsed descriptors
 			<var>unparsed descriptors</var>, in the order they were
 			originally added to the list, run these substeps:
 
 			<ol>
 				<li>
-					Let <var>descriptor list</var> be the
+<p>					Let <var>descriptor list</var> be the
 					result of
 					<a data-link-type=dfn href=#dfn-split-a-string-on-spaces title="split a string on spaces">splitting
 					<var>unparsed descriptors</var> on
 					spaces</a>.
 
 				<li>
-					Let <var>error</var> be no.
+<p>					Let <var>error</var> be no.
 
 				<li>
-					Let <var>width</var> be
+<p>					Let <var>width</var> be
 					<i title="">absent</i>.
 
 				<li>
-					Let <var>density</var> be
+<p>					Let <var>density</var> be
 					<i title="">absent</i>.
 
 				<li>
-					For each token in <var>descriptor
+<p>					For each token in <var>descriptor
 					list</var>, run the appropriate set of
 					steps from the following list:
 
@@ -1280,11 +1280,11 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 						<dd>
 							<ol>
 								<li>
-									If <var>width</var> and <var>density</var> are not both <i title="">absent</i>, then
+<p>									If <var>width</var> and <var>density</var> are not both <i title="">absent</i>, then
 									let <var>error</var> be <i title="">yes</i>.
 
 								<li>
-									Apply the <a data-link-type=dfn href=#dfn-rules-for-parsing-non-negative-integers title="rules for parsing non-negative integers">rules for parsing non-negative integers</a> to the token.
+<p>									Apply the <a data-link-type=dfn href=#dfn-rules-for-parsing-non-negative-integers title="rules for parsing non-negative integers">rules for parsing non-negative integers</a> to the token.
 									If the result is zero, let <var>error</var> be <i title="">yes</i>.
 									Otherwise, let <var>width</var> be the result.
 							</ol>
@@ -1297,17 +1297,17 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 						<dd>
 							<ol>
 								<li>
-									If <var>width</var> and <var>density</var> are not both <i title="">absent</i>, then
+<p>									If <var>width</var> and <var>density</var> are not both <i title="">absent</i>, then
 									let <var>error</var> be <i title="">yes</i>.
 
 								<li>
-									Apply the <a data-link-type=dfn href=#dfn-rules-for-parsing-floating-point-number-values title="rules for parsing floating-point number values">rules for parsing floating-point number values</a> to the token. Let
+<p>									Apply the <a data-link-type=dfn href=#dfn-rules-for-parsing-floating-point-number-values title="rules for parsing floating-point number values">rules for parsing floating-point number values</a> to the token. Let
 									<var>density</var> be the result.
 							</ol>
 					</dl>
 
 				<li>
-					If <var>error</var> is still
+<p>					If <var>error</var> is still
 					<i title="">no</i>, then add a new <a data-link-type=dfn href=#image-source title="image source">image
 					source</a> to <var>candidates</var>
 					whose URL is <var>url</var>, associated
@@ -1318,7 +1318,7 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 			</ol>
 
 		<li>
-			Return <var>candidates</var>.
+<p>			Return <var>candidates</var>.
 	</ol>
 
 <p>	An <dfn data-dfn-type=dfn data-noexport="" id=image-candidate-string>image candidate string<a class=self-link href=#image-candidate-string></a></dfn> consists of the following
@@ -1326,23 +1326,23 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 
 	<ol>
 		<li>
-			Zero or more <a data-link-type=dfn href=#dfn-space-character title="space characters">space characters</a>.
+<p>			Zero or more <a data-link-type=dfn href=#dfn-space-character title="space characters">space characters</a>.
 
 		<li>
-			A <a data-link-type=dfn href=#dfn-valid-non-empty-url title="valid non-empty url">valid non-empty URL</a> that does not end with a
+<p>			A <a data-link-type=dfn href=#dfn-valid-non-empty-url title="valid non-empty url">valid non-empty URL</a> that does not end with a
 			U+002C COMMA character (,), referencing a
 			non-interactive, optionally animated, image resource
 			that is neither paged nor scripted.
 
 		<li>
-			Zero or more <a data-link-type=dfn href=#dfn-space-character title="space characters">space characters</a>.
+<p>			Zero or more <a data-link-type=dfn href=#dfn-space-character title="space characters">space characters</a>.
 
 		<li>
-			Zero or one of the following:
+<p>			Zero or one of the following:
 
 <p>			<ul>
 				<li>
-					A <i title="">width descriptor</i>,
+<p>					A <i title="">width descriptor</i>,
 					consisting of: a <a data-link-type=dfn href=#dfn-space-character title="space character">space character</a>,
 					a <a data-link-type=dfn href=#dfn-valid-non-negative-integer title="valid non-negative integer">valid non-negative integer</a>
 					representing the <i title="">width
@@ -1350,7 +1350,7 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 					LATIN SMALL LETTER W character.
 
 				<li>
-					A <i title="">pixel density descriptor</i>,
+<p>					A <i title="">pixel density descriptor</i>,
 					consisting of: a <a data-link-type=dfn href=#dfn-space-character title="space character">space character</a>,
 					a <a data-link-type=dfn href=#dfn-valid-floating-point-number title="valid floating-point number">valid floating-point number</a>
 					giving a number greater than zero
@@ -1360,7 +1360,7 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 			</ul>
 
 		<li>
-			Zero or more <a data-link-type=dfn href=#dfn-space-character title="space characters">space characters</a>.
+<p>			Zero or more <a data-link-type=dfn href=#dfn-space-character title="space characters">space characters</a>.
 	</ol>
 
 <p>	If the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> or <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element has a
@@ -1387,13 +1387,13 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 
 	<ol>
 		<li>
-			Remove all consecutive <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-syntax-3/#typedef-whitespace-token title="<whitespace-token>">&lt;whitespace-token&gt;</a>s
+<p>			Remove all consecutive <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-syntax-3/#typedef-whitespace-token title="<whitespace-token>">&lt;whitespace-token&gt;</a>s
 			from the end of <var>unparsed size</var>.
 			If <var>unparsed size</var> is now empty,
 			continue to the next iteration of this algorithm.
 
 		<li>
-			If the last <a data-link-type=dfn href=http://dev.w3.org/csswg/css-syntax-3/#component-value title="component value">component value</a> in <var>unparsed size</var>
+<p>			If the last <a data-link-type=dfn href=http://dev.w3.org/csswg/css-syntax-3/#component-value title="component value">component value</a> in <var>unparsed size</var>
 			is a valid non-negative <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>,
 			let <var>size</var> be its value
 			and remove the <a data-link-type=dfn href=http://dev.w3.org/csswg/css-syntax-3/#component-value title="component value">component value</a> from <var>unparsed size</var>.
@@ -1401,20 +1401,20 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 			continue to the next iteration of this algorithm.
 
 		<li>
-			Remove all consecutive <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-syntax-3/#typedef-whitespace-token title="<whitespace-token>">&lt;whitespace-token&gt;</a>s
+<p>			Remove all consecutive <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-syntax-3/#typedef-whitespace-token title="<whitespace-token>">&lt;whitespace-token&gt;</a>s
 			from the end of <var>unparsed size</var>.
 			If <var>unparsed size</var> is now empty,
 			return <var>size</var> and exit this algorithm.
 
 		<li>
-			Parse the remaining <a data-link-type=dfn href=http://dev.w3.org/csswg/css-syntax-3/#component-value title="component values">component values</a> in <var>unparsed size</var>
+<p>			Parse the remaining <a data-link-type=dfn href=http://dev.w3.org/csswg/css-syntax-3/#component-value title="component values">component values</a> in <var>unparsed size</var>
 			as a <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a>.
 			If it does not parse correctly,
 			or it does parse correctly but the <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a> evaluates to false,
 			continue to the next iteration of this algorithm.
 
 		<li>
-			Return <var>size</var> and exit this algorithm.
+<p>			Return <var>size</var> and exit this algorithm.
 	</ol>
 
 <p>	If the above algorithm exhausts <var>unparsed sizes list</var> without returning a <var>size</var> value,
@@ -1450,24 +1450,24 @@ Normalizing the Source Densities</span><a class=self-link href=#normalize-source
 
 	<ol>
 		<li>
-			Let <var>source size</var> be <var>source set</var>’s <a data-link-type=dfn href=#source-size title="source size">source size</a>.
+<p>			Let <var>source size</var> be <var>source set</var>’s <a data-link-type=dfn href=#source-size title="source size">source size</a>.
 
 		<li>
-			For each <a data-link-type=dfn href=#image-source title="image source">image source</a> in <var>source set</var>:
+<p>			For each <a data-link-type=dfn href=#image-source title="image source">image source</a> in <var>source set</var>:
 
 			<ol>
 				<li>
-					If the <a data-link-type=dfn href=#image-source title="image source">image source</a> has a density descriptor,
+<p>					If the <a data-link-type=dfn href=#image-source title="image source">image source</a> has a density descriptor,
 					continue to the next <a data-link-type=dfn href=#image-source title="image source">image source</a>.
 
 				<li>
-					Otherwise, if the <a data-link-type=dfn href=#image-source title="image source">image source</a> has a width descriptor,
+<p>					Otherwise, if the <a data-link-type=dfn href=#image-source title="image source">image source</a> has a width descriptor,
 					replace the width descriptor with a density descriptor
 					with a value of <code>width descriptor / source size</code>
 					and a unit of <span class=css data-link-type=maybe title=x>x</span>.
 
 				<li>
-					Otherwise,
+<p>					Otherwise,
 					give the <a data-link-type=dfn href=#image-source title="image source">image source</a> a density descriptor of <span class=css data-link-type=maybe title=1x>1x</span>.
 			</ol>
 	</ol>
@@ -1491,11 +1491,11 @@ Interaction with the Preload Scanner</span><a class=self-link href=#preloader></
 
 <p>	<ul>
 		<li>
-			The preload scanner must be able to correctly determine the truth value of
+<p>			The preload scanner must be able to correctly determine the truth value of
 			<span class=css data-link-type=maybe title=@media/width>@media/width</span>, <span class=css data-link-type=maybe title=@media/device-width>@media/device-width</span>, <span class=css data-link-type=maybe title=@media/height>@media/height</span>, <span class=css data-link-type=maybe title=@media/device-height>@media/device-height</span>, and <span class=css data-link-type=maybe title=@media/resolution>@media/resolution</span> <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-feature title="media features">media features</a>.
 
 		<li>
-			The preload scanner may be able to correctly determine the truth value of any other <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-feature title="media feature">media feature</a>.
+<p>			The preload scanner may be able to correctly determine the truth value of any other <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-feature title="media feature">media feature</a>.
 			If it encounters an unknown <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-feature title="media feature">media feature</a>,
 			or one which it cannot correctly determine the truth value of,
 			it must not attempt to preload <strong>any</strong> URL for the given <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element.
@@ -1509,10 +1509,10 @@ Interaction with the Preload Scanner</span><a class=self-link href=#preloader></
 <p>		Authors should be aware of these limitations, and should follow the following best practices:
 		<ul>
 			<li>
-				@viewport CSS rules should be defined inline whenever viewport dependant resources need to be fetched as part of the
+<p>				@viewport CSS rules should be defined inline whenever viewport dependant resources need to be fetched as part of the
 				page.
 			<li>
-				iframes that may contain viewport dependant resources should have their dimensions defined either in markup
+<p>				iframes that may contain viewport dependant resources should have their dimensions defined either in markup
 					(as <a data-link-for=iframe data-link-type=element-attr title=height>height</a> and <a data-link-for=iframe data-link-type=element-attr title=width>width</a> attributes) or as inline CSS rules.
 		</ul>
 	</div>
@@ -1570,9 +1570,9 @@ Changes to the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/h
 	respective content attributes of the same name. <a data-biblio-type=normative data-link-type=biblio href=#html title=html>[HTML]</a>
 
 	<pre class=idl>partial interface <a class=idl-code data-global-name="" data-link-type=interface href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#htmlsourceelement title=htmlsourceelement>HTMLSourceElement</a> {
-    attribute DOMString <dfn class=idl-code data-dfn-for=HTMLSourceElement data-dfn-type=attribute data-export="" data-global-name="HTMLSourceElement<interface>/srcset<attribute>" id=dom-htmlsourceelement-srcset>srcset<a class=self-link href=#dom-htmlsourceelement-srcset></a></dfn>;
-    attribute DOMString <dfn class=idl-code data-dfn-for=HTMLSourceElement data-dfn-type=attribute data-export="" data-global-name="HTMLSourceElement<interface>/sizes<attribute>" id=dom-htmlsourceelement-sizes>sizes<a class=self-link href=#dom-htmlsourceelement-sizes></a></dfn>;
-    attribute DOMString <a class=idl-code data-global-name="HTMLSourceElement<interface>/media<attribute>" data-link-for=HTMLSourceElement data-link-type=attribute href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#dom-source-media title=media>media</a>;
+    attribute DOMString <dfn class=idl-code data-dfn-for=HTMLSourceElement data-dfn-type=attribute data-export="" data-global-name="HTMLSourceElement<interface>/srcset<attribute>" data-type=DOMString id=dom-htmlsourceelement-srcset>srcset<a class=self-link href=#dom-htmlsourceelement-srcset></a></dfn>;
+    attribute DOMString <dfn class=idl-code data-dfn-for=HTMLSourceElement data-dfn-type=attribute data-export="" data-global-name="HTMLSourceElement<interface>/sizes<attribute>" data-type=DOMString id=dom-htmlsourceelement-sizes>sizes<a class=self-link href=#dom-htmlsourceelement-sizes></a></dfn>;
+    attribute DOMString <a class=idl-code data-global-name="HTMLSourceElement<interface>/media<attribute>" data-link-for=HTMLSourceElement data-link-type=attribute data-type=DOMString href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#dom-source-media title=media>media</a>;
   };
 </pre>
 <p>	When a <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element is a child of a
@@ -1601,8 +1601,8 @@ Changes to the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/h
 	<a data-biblio-type=normative data-link-type=biblio href=#html title=html>[HTML]</a>
 
 	<pre class=idl>partial interface <a class=idl-code data-global-name="" data-link-type=interface href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#htmlimageelement title=htmlimageelement>HTMLImageElement</a> {
-    attribute DOMString <dfn class=idl-code data-dfn-for=HTMLImageElement data-dfn-type=attribute data-export="" data-global-name="HTMLImageElement<interface>/sizes<attribute>" id=dom-htmlimageelement-sizes>sizes<a class=self-link href=#dom-htmlimageelement-sizes></a></dfn>;
-    readonly attribute DOMString? <dfn class=idl-code data-dfn-for=HTMLImageElement data-dfn-type=attribute data-export="" data-global-name="HTMLImageElement<interface>/currentsrc<attribute>" id=dom-htmlimageelement-currentsrc>currentSrc<a class=self-link href=#dom-htmlimageelement-currentsrc></a></dfn>;
+    attribute DOMString <dfn class=idl-code data-dfn-for=HTMLImageElement data-dfn-type=attribute data-export="" data-global-name="HTMLImageElement<interface>/sizes<attribute>" data-type=DOMString id=dom-htmlimageelement-sizes>sizes<a class=self-link href=#dom-htmlimageelement-sizes></a></dfn>;
+    readonly attribute DOMString? <dfn class=idl-code data-dfn-for=HTMLImageElement data-dfn-type=attribute data-export="" data-global-name="HTMLImageElement<interface>/currentsrc<attribute>" data-readonly="" data-type=DOMString? id=dom-htmlimageelement-currentsrc>currentSrc<a class=self-link href=#dom-htmlimageelement-currentsrc></a></dfn>;
   };
 </pre>
 <p>	The IDL attribute <a class=idl-code data-link-type=attribute href=#dom-htmlimageelement-currentsrc title=currentsrc>currentSrc</a> must initially be set to the value <code>null</code>.
@@ -1720,7 +1720,7 @@ Property index</span><a class=self-link href=#property-index></a></h2>
 
 		<ol>
 			<li>
-				Let <var>selected source</var> and <var>selected
+<p>				Let <var>selected source</var> and <var>selected
 				pixel density</var> be the URL and pixel density
 				that results from
 				<a data-link-type=dfn href=#select-an-image-source title="select an image source">selecting an image source</a>.
@@ -1733,16 +1733,16 @@ Property index</span><a class=self-link href=#property-index></a></h2>
 
 <p>		<ul>
 			<li>
-				Remove "does not have a srcset attribute
+<p>				Remove "does not have a srcset attribute
 				specified,"
 
 			<li>
-				Replace "processing the image candidates" with
+<p>				Replace "processing the image candidates" with
 				"<a data-link-type=dfn href=#select-an-image-source title="select an image source">selecting an
 				image source</a>".
 
 			<li>
-				Replace "If the img element’s src, srcset, or
+<p>				Replace "If the img element’s src, srcset, or
 				crossorigin attributes have been set, changed,
 				or removed" with "If the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a>
 				element has experienced <a data-link-type=dfn href=#relevant-mutations title="relevant mutations">relevant mutations</a>"
@@ -1752,7 +1752,7 @@ Property index</span><a class=self-link href=#property-index></a></h2>
 
 <p>		<ul>
 			<li>
-				Replace "A user agent that obtains images
+<p>				Replace "A user agent that obtains images
 				immediately must also synchronously update the
 				image data of an img element whenever that
 				element has its src, srcset, or crossorigin
@@ -1763,7 +1763,7 @@ Property index</span><a class=self-link href=#property-index></a></h2>
 				element experiences <a data-link-type=dfn href=#relevant-mutations title="relevant mutations">relevant mutations</a>."
 
 			<li>
-				Replace "A user agent that obtains images on
+<p>				Replace "A user agent that obtains images on
 				demand must update the image data of an img
 				element whenever it needs the image data (i.e.
 				on demand), but only if the img element has a
@@ -1784,7 +1784,7 @@ Property index</span><a class=self-link href=#property-index></a></h2>
 				<a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element must return to the
 				unavailable state."
 		</ul>
-	<a href=#issue-58bdc3bf> ↵ </a></div>
+	<a href=#issue-3e3bbf7a> ↵ </a></div>
 
 <div class=issue>
 		This just selects a single image and then sticks with it,

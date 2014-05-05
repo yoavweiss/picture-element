@@ -349,7 +349,7 @@ The <a element>picture</a> Element</h2>
 	Name: picture
 	Categories: Flow content, Phrasing content, Embedded content, Palpable content
 	Contexts: Where embedded content is expected
-	Content Model: Zero or more <a element>source</a> elements, followed by one <a element>img</a> element.
+	Content Model: Zero or more <a element>source</a> elements, followed by one <a element>img</a> element, optionally intermixed with script-supporting elements.
 	Attributes: Global attributes
 	</pre>
 
