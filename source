@@ -1,0 +1,1287 @@
+<!--
+
+License for the imported HTML spec:
+
+  Written by Ian Hickson (Google, ian@hixie.ch)
+  Parts © Copyright 2004-2014 Apple Inc., Mozilla Foundation, and Opera Software ASA
+  You are granted a license to use, reproduce and create derivative works of this document
+
+License for the contributions to this file as of 2014-05-06:
+
+  To the extent possible under law, the editors have waived all copyright and related or neighboring rights to this work.
+  In addition, as of 6 May 2014, the editors have made this specification available under the Open Web Foundation Agreement Version 1.0,
+  which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
+
+-->
+
+  <!-- START OF PICTURE SECTION -->
+
+  <!-- <h4>The <dfn><code>picture</code></dfn> * element</h4> -->
+
+  <!-- <h4>The <dfn><code>imgcandidate</code></dfn> * element</h4> --> <!--(or whatever it gets called)-->
+
+  <h4>The <dfn><code>img</code></dfn> element</h4>
+
+  <dl class="element">
+   <dt><span data-x="element-dfn-categories">Categories</span>:</dt>
+   <dd><span>Flow content</span>.</dd>
+   <dd><span>Phrasing content</span>.</dd>
+   <dd><span>Embedded content</span>.</dd>
+   <dd><span>Form-associated element</span>.</dd>
+   <dd>If the element has a <code data-x="attr-hyperlink-usemap">usemap</code> attribute: <span>Interactive content</span>.</dd>
+   <dd><span>Palpable content</span>.</dd>
+   <dt><span data-x="element-dfn-contexts">Contexts in which this element can be used</span>:</dt>
+   <dd>Where <span>embedded content</span> is expected.</dd>
+   <dt><span data-x="element-dfn-content-model">Content model</span>:</dt>
+   <dd>Empty.</dd>
+   <dt><span data-x="element-dfn-attributes">Content attributes</span>:</dt>
+   <dd><span>Global attributes</span></dd>
+   <dd><code data-x="attr-img-alt">alt</code></dd>
+   <dd><code data-x="attr-img-src">src</code></dd>
+   <dd><code data-x="attr-img-srcset">srcset</code></dd>
+   <dd><code data-x="attr-img-crossorigin">crossorigin</code></dd>
+   <dd><code data-x="attr-hyperlink-usemap">usemap</code></dd>
+   <dd><code data-x="attr-img-ismap">ismap</code></dd>
+   <dd><code data-x="attr-dim-width">width</code></dd>
+   <dd><code data-x="attr-dim-height">height</code></dd>
+   <dt><span data-x="element-dfn-dom">DOM interface</span>:</dt><!--TOPIC:DOM APIs-->
+   <dd>
+<pre class="idl">[NamedConstructor=<span data-x="dom-image">Image</span>(optional unsigned long width, optional unsigned long height)]
+interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
+           attribute DOMString <span data-x="dom-img-alt">alt</span>;
+           attribute DOMString <span data-x="dom-img-src">src</span>;
+           attribute DOMString <span data-x="dom-img-srcset">srcset</span>;
+           attribute DOMString <span data-x="dom-img-crossOrigin">crossOrigin</span>;
+           attribute DOMString <span data-x="dom-img-useMap">useMap</span>;
+           attribute boolean <span data-x="dom-img-isMap">isMap</span>;
+           attribute unsigned long <span data-x="dom-img-width">width</span>;
+           attribute unsigned long <span data-x="dom-img-height">height</span>;
+  readonly attribute unsigned long <span data-x="dom-img-naturalWidth">naturalWidth</span>;
+  readonly attribute unsigned long <span data-x="dom-img-naturalHeight">naturalHeight</span>;
+  readonly attribute boolean <span data-x="dom-img-complete">complete</span>;
+};</pre>
+   </dd>
+  </dl><!--TOPIC:HTML-->
+
+  <p>An <code>img</code> element represents an image.</p>
+
+  <!-- v2 ideas for <img>:
+
+     * Maps sites would like to know which images are already cached, so that they can use images
+       that are vaguely suitable while they wait for the most appropriate image to download.
+
+       Almost like lowsrc="", except that many images might be appropriate.
+
+       Slight hitch: their images are at a different origin, and we don't want to allow arbitrary
+       cross-origin inspection (privacy leak risk). So it will require them to do CORS opt-in.
+
+     * See note at rel=noreferrer.
+
+  -->
+
+  <p>The image given by the <dfn data-x="attr-img-src"><code>src</code></dfn> and <dfn
+  data-x="attr-img-srcset"><code>srcset</code></dfn> attributes is the embedded content; the value of
+  the <dfn data-x="attr-img-alt"><code>alt</code></dfn> attribute provides equivalent content for
+  those who cannot process images or who have image loading disabled (i.e. it is the
+  <code>img</code> element's <span>fallback content</span>).</p>
+
+  <p>The requirements on the <code data-x="attr-img-alt">alt</code> attribute's value are described
+  <a href="#alt">in the next section</a>.</p>
+
+  <p>The <code data-x="attr-img-src">src</code> attribute must be present, and must contain a
+  <span>valid non-empty URL potentially surrounded by spaces</span> referencing a non-interactive,
+  optionally animated, image resource that is neither paged nor scripted.</p>
+
+  <p>The <code data-x="attr-img-srcset">srcset</code> attribute may also be present. If present, its
+  value must consist of one or more <span data-x="image candidate string">image candidate
+  strings</span>, each separated from the next by a U+002C COMMA character (,). This attribute
+  allows authors to provide alternative images for environments with smaller screens or screens with
+  higher pixel densities.</p>
+
+  <div class="note">
+
+   <p>The <code data-x="attr-img-srcset">srcset</code> attribute allows authors to provide a set of
+   images to handle graphical displays of varying dimensions and pixel densities.</p>
+
+   <p>The attribute essentially takes a comma-separated list of URLs each with one or more
+   descriptors giving the maximum viewport dimensions and pixel density allowed to use the image.
+   From the available options, the user agent then picks the most appropriate image. If the viewport
+   dimensions or pixel density changes, the user agent can replace the image data with a new image
+   on the fly.</p>
+
+   <p>To specify an image, give first a URL, then one or more descriptors of the form 100w, 100h, or
+   2x, where "100w" means "maximum viewport width of 100 CSS pixels", "100h" is the same but for
+   height, and "2x" means "maximum pixel density of 2 device pixels per CSS pixel".</p>
+
+  </div>
+
+  <p>An <dfn>image candidate string</dfn> consists of the following components, in order, with the
+  further restrictions described below this list:</p>
+
+  <ol>
+
+   <li>Zero or more <span data-x="space character">space characters</span>.</li>
+
+   <li>A <span>valid non-empty URL</span> referencing a non-interactive, optionally animated, image
+   resource that is neither paged nor scripted.</li>
+
+   <li>Zero or more <span data-x="space character">space characters</span>.</li>
+
+   <li>Optionally a <i>width descriptor</i>, consisting of: a <span>space character</span>, a
+   <span>valid non-negative integer</span> representing the <i>width descriptor value</i>, and a
+   U+0077 LATIN SMALL LETTER W character.</li>
+
+   <li>Zero or more <span data-x="space character">space characters</span>.</li>
+
+   <li>Optionally a <i>height descriptor</i>, consisting of: a <span>space character</span>, a
+   <span>valid non-negative integer</span> representing the <i>height descriptor value</i>, and a
+   U+0068 LATIN SMALL LETTER H character.</li>
+
+   <li>Zero or more <span data-x="space character">space characters</span>.</li>
+
+   <li>Optionally a <i>pixel density descriptor</i>, consisting of: a <span>space character</span>,
+   a <span>valid floating-point number</span> giving a number greater than zero representing the
+   <i>pixel density descriptor value</i>, and a U+0078 LATIN SMALL LETTER X character.</li>
+
+   <li>Zero or more <span data-x="space character">space characters</span>.</li>
+
+  </ol>
+
+  <p>Each <span>image candidate string</span> must have at least one of the three optional
+  descriptors. There must not be two <span data-x="image candidate string">image candidate
+  strings</span> in a <code data-x="attr-img-srcset">srcset</code> attribute whose <i>width
+  descriptor value</i>, <i>height descriptor value</i>, and <i>pixel density descriptor value</i>
+  are each identical to their counterpart in the other <span>image candidate string</span>; for the
+  purposes of this requirement, omitted <i>width descriptors</i> and <i>height descriptors</i> are
+  considered to have the value "Infinity", and omitted <i>pixel density descriptors</i> are
+  considered to have the value 1.</p>
+
+  <div class="example">
+
+   <p>In this example, a banner that takes half the viewport is provided in two versions, one for
+   wide screen and one for narrow screens.</p>
+
+   <pre>&lt;h1>&lt;img alt="The Breakfast Combo"
+         src="banner.jpeg"
+         srcset="banner-HD.jpeg 2x, banner-phone.jpeg 100w, banner-phone-HD.jpeg 100w 2x">&lt;/h1></pre>
+
+  </div>
+
+  <p class="note">The requirements above imply that images can be static bitmaps (e.g. PNGs, GIFs,
+  JPEGs), single-page vector documents (single-page PDFs, XML files with an SVG root element),
+  animated bitmaps (APNGs, animated GIFs), animated vector graphics (XML files with an SVG root
+  element that use declarative SMIL animation), and so forth. However, these definitions preclude
+  SVG files with script, multipage PDF files, interactive MNG files, HTML documents, plain text
+  documents, and so forth. <a href="#refsPNG">[PNG]</a> <a href="#refsGIF">[GIF]</a> <a
+  href="#refsJPEG">[JPEG]</a> <a href="#refsPDF">[PDF]</a> <a href="#refsXML">[XML]</a> <a
+  href="#refsAPNG">[APNG]</a> <!-- <a href="#refsAGIF">[AGIF]</a> --> <a href="#refsSVG">[SVG]</a>
+  <a href="#refsMNG">[MNG]</a> </p>
+
+  <p>The <code>img</code> element must not be used as a layout tool. In particular, <code>img</code>
+  elements should not be used to display transparent images, as such images rarely convey meaning and
+  rarely add anything useful to the document.</p>
+
+  <hr>
+
+  <p>The <dfn data-x="attr-img-crossorigin"><code>crossorigin</code></dfn> attribute is a <span>CORS
+  settings attribute</span>. Its purpose is to allow images from third-party sites that allow
+  cross-origin access to be used with <code>canvas</code>.</p>
+
+  <div class="impl">
+
+  <hr>
+
+  <p>An <code>img</code> is always in one of the following states:</p>
+
+  <dl>
+
+   <dt><dfn data-x="img-none">Unavailable</dfn></dt>
+   <dd>The user agent hasn't obtained any image data.</dd>
+
+   <dt><dfn data-x="img-inc">Partially available</dfn></dt>
+   <dd>The user agent has obtained some of the image data.</dd>
+
+   <dt><dfn data-x="img-all">Completely available</dfn></dt>
+   <dd>The user agent has obtained all of the image data and at least the image dimensions are
+   available.</dd>
+
+   <dt><dfn data-x="img-error">Broken</dfn></dt>
+   <dd>The user agent has obtained all of the image data that it can, but it cannot even decode the
+   image enough to get the image dimensions (e.g. the image is corrupted, or the format is not
+   supported, or no data could be obtained).</dd>
+
+  </dl>
+
+  <p>When an <code>img</code> element is either in the <span data-x="img-inc">partially
+  available</span> state or in the <span data-x="img-all">completely available</span> state, it is
+  said to be <dfn data-x="img-available">available</dfn>.</p>
+
+  <p>An <code>img</code> element is initially <span data-x="img-none">unavailable</span>.</p>
+
+  <p>When an <code>img</code> element is <span data-x="img-available">available</span>, it
+  <span>provides a paint source</span> whose width is the image's intrinsic width, whose height is
+  the image's intrinsic height, and whose appearance is the intrinsic appearance of the image.</p>
+
+  <p>In a <span>browsing context</span> where <span data-x="concept-bc-noscript">scripting is
+  disabled</span>, user agents may obtain images immediately or on demand. In a <span>browsing
+  context</span> where <span data-x="concept-bc-noscript">scripting is enabled</span>, user agents
+  must obtain images immediately.</p>
+
+  <p>A user agent that obtains images immediately must synchronously <span>update the image
+  data</span> of an <code>img</code> element whenever that element is created with a <code
+  data-x="attr-img-src">src</code> attribute, a <code data-x="attr-img-srcset">srcset</code>
+  attribute, or both. A user agent that obtains images immediately must also synchronously
+  <span>update the image data</span> of an <code>img</code> element whenever that element has its
+  <code data-x="attr-img-src">src</code>, <code data-x="attr-img-srcset">srcset</code>, or <code
+  data-x="attr-img-crossorigin">crossorigin</code> attribute set, changed, or removed, and whenever
+  that element's <span data-x="concept-node-adopt-ext">adopting steps</span> are run.</p> <!-- Note
+  how this does NOT happen when the base URL changes (except for when adopted into a new doc) -->
+
+  <p>A user agent that obtains images on demand must <span>update the image data</span> of an
+  <code>img</code> element whenever it needs the image data (i.e. on demand), but only if the
+  <code>img</code> element has a <code data-x="attr-img-src">src</code> or <code
+  data-x="attr-img-src">srcset</code> attribute, and only if the <code>img</code> element is in the
+  <span data-x="img-none">unavailable</span> state. When an <code>img</code> element's <code
+  data-x="attr-img-src">src</code>, <code data-x="attr-img-srcset">srcset</code>, or <code
+  data-x="attr-img-crossorigin">crossorigin</code> attribute set, changed, or removed, and whenever
+  that element's <span data-x="concept-node-adopt-ext">adopting steps</span> are run, if the user
+  agent only obtains images on demand, the <code>img</code> element must return to the <span
+  data-x="img-none">unavailable</span> state.</p> <!-- Note how this does NOT happen when the base
+  URL changes. -->
+
+  <p>Each <code>img</code> element has a <dfn>last selected source</dfn>, which must initially be
+  null, and a <dfn>current pixel density</dfn>, which must initially be undefined.</p>
+
+  <p>When an <code>img</code> element has a <span>current pixel density</span> that is not 1.0, the
+  element's image data must be treated as if its resolution, in device pixels per CSS pixels, was
+  the <span>current pixel density</span>.</p>
+
+  <p class="example">For example, if the <span>current pixel density</span> is 3.125, that means
+  that there are 300 device pixels per CSS inch, and thus if the image data is 300x600, it has an
+  intrinsic dimension of 96 CSS pixels by 192 CSS pixels.</p>
+
+  <p>Each <code>Document</code> object must have a <dfn>list of available images</dfn>. Each image
+  in this list is identified by a tuple consisting of an <span>absolute URL</span>, a <span>CORS
+  settings attribute</span> mode, and, if the mode is not <span data-x="attr-crossorigin-none">No
+  CORS</span>, an <span>origin</span>. User agents may copy entries from one <code>Document</code>
+  object's <span>list of available images</span> to another at any time (e.g. when the
+  <code>Document</code> is created, user agents can add to it all the images that are loaded in
+  other <code>Document</code>s), but must not change the keys of entries copied in this way when
+  doing so. User agents may also remove images from such lists at any time (e.g. to save
+  memory).</p>
+
+  <p>When the user agent is to <dfn>update the image data</dfn> of an <code>img</code> element, it
+  must run the following steps:</p>
+
+  <ol>
+
+   <li><p>Return the <code>img</code> element to the <span data-x="img-none">unavailable</span>
+   state.</p>
+
+   <li><p>If an instance of the <span data-x="fetch">fetching</span> algorithm is still running for
+   this element, then abort that algorithm, discarding any pending <span
+   data-x="concept-task">tasks</span> generated by that algorithm.</p></li>
+
+   <li><p>Forget the <code>img</code> element's current image data, if any.</p></li>
+
+   <li><p>If the user agent cannot support images, or its support for images has been disabled, then
+   abort these steps.</p></li>
+
+   <li>
+
+    <p>If the element has a <code data-x="attr-img-srcset">srcset</code> attribute specified, then
+    let <var data-x="">selected source</var> and <var data-x="">selected pixel density</var> be the
+    URL and pixel density that results from <span>processing the image candidates</span>,
+    respectively.
+
+    Otherwise, if the element has a <code data-x="attr-img-src">src</code> attribute specified and
+    its value is not the empty string, let <var data-x="">selected source</var> be the value of the
+    element's <code data-x="attr-img-src">src</code> attribute, and <var data-x="">selected pixel
+    density</var> be 1.0. Otherwise, let <var data-x="">selected source</var> be null and <var
+    data-x="">selected pixel density</var> be undefined.</p>
+
+   </li>
+
+   <li><p>Let the <code>img</code> element's <span>last selected source</span> be <var
+   data-x="">selected source</var> and the <code>img</code> element's <span>current pixel
+   density</span> be <var data-x="">selected pixel density</var>.</p></li>
+
+   <li>
+
+    <p>If <var data-x="">selected source</var> is not null, run these substeps:</p>
+
+    <ol>
+
+     <li><p><span data-x="resolve a url">Resolve</span> <var data-x="">selected source</var>, relative
+     to the element. If that is not successful, abort these steps.</p></li>
+
+     <li><p>Let <var data-x="">key</var> be a tuple consisting of the resulting <span>absolute
+     URL</span>, the <code>img</code> element's <code data-x="attr-img-crossorigin">crossorigin</code>
+     attribute's mode, and, if that mode is not <span data-x="attr-crossorigin-none">No CORS</span>,
+     the <code>Document</code> object's <span>origin</span>.</p></li>
+
+     <li><p>If the <span>list of available images</span> contains an entry for <var
+     data-x="">key</var>, then set the <code>img</code> element to the <span data-x="img-all">completely
+     available</span> state, update the presentation of the image appropriately, <span>queue a
+     task</span> to <span>fire a simple event</span> named <code data-x="event-load">load</code> at the
+     <code>img</code> element, and abort these steps.</p></li>
+
+    </ol>
+
+   </li>
+
+   <li><p>Asynchronously <span>await a stable state</span>, allowing the <span
+   data-x="concept-task">task</span> that invoked this algorithm to continue. The <span>synchronous
+   section</span> consists of all the remaining steps of this algorithm until the algorithm says the
+   <span>synchronous section</span> has ended. (Steps in <span data-x="synchronous
+   section">synchronous sections</span> are marked with &#x231B;.)</p></li>
+
+   <li>
+
+    <p>&#x231B; If another instance of this algorithm for this <code>img</code> element was started
+    after this instance (even if it aborted and is no longer running), then abort these steps.</p>
+
+    <p class="note">Only the last instance takes effect, to avoid multiple requests when, for
+    example, the <code data-x="attr-img-src">src</code>, <code data-x="attr-img-srcset">srcset</code>,
+    and <code data-x="attr-img-crossorigin">crossorigin</code> attributes are all set in
+    succession.</p>
+
+   </li>
+
+   <li>
+
+    <p>&#x231B; If <var data-x="">selected source</var> is null, then set the element to the <span
+    data-x="img-error">broken</span> state, <span>queue a task</span> to <span>fire a simple
+    event</span> named <code data-x="event-error">error</code> at the <code>img</code> element, and
+    abort these steps.</p>
+
+   </li>
+
+   <li>
+
+    <p>&#x231B; <span>Queue a task</span> to <span>fire a progress event</span> named <code data-x="event-loadstart">loadstart</code> at
+    the <code>img</code> element.</p>
+
+   </li>
+
+   <li>
+
+    <p>&#x231B; Do a <span>potentially CORS-enabled fetch</span><!--FETCH--> of the <span>absolute
+    URL</span> that resulted from the earlier step, with the <i>mode</i> being the current state of
+    the element's <code data-x="attr-img-crossorigin">crossorigin</code> content attribute, the <i
+    data-x="">origin</i> being the <span>origin</span> of the <code>img</code> element's
+    <code>Document</code>, and the <i>default origin behaviour</i> set to <i>taint</i>.</p>
+
+    <p>The resource obtained in this fashion, if any, is the <code>img</code> element's image data.
+    It can be either <span>CORS-same-origin</span> or <span>CORS-cross-origin</span>; this affects
+    the <span>origin</span> of the image itself (e.g. when used on a <code>canvas</code>).</p>
+
+    <!-- same text in <input type=image> section and similar text elsewhere -->
+    <p>Fetching the image must <span>delay the load event</span> of the element's document until the
+    <span data-x="concept-task">task</span> that is <span data-x="queue a task">queued</span> by the
+    <span>networking task source</span> once the resource has been <span
+    data-x="fetch">fetched</span> (<a href="#img-load">defined below</a>) has been run.</p>
+
+    <p class="warning">This, unfortunately, can be used to perform a rudimentary port scan of the
+    user's local network (especially in conjunction with scripting, though scripting isn't actually
+    necessary to carry out such an attack). User agents may implement <span
+    data-x="origin">cross-origin</span> access control policies that are stricter than those
+    described above to mitigate this attack, but unfortunately such policies are typically not
+    compatible with existing Web content.</p>
+
+    <p>If the resource is <span>CORS-same-origin</span>, each <span data-x="concept-task">task</span>
+    that is <span data-x="queue a task">queued</span> by the <span>networking task source</span>
+    while the image is being <span data-x="fetch">fetched</span> must <span>fire a progress
+    event</span> named <code data-x="event-progress">progress</code> at the <code>img</code>
+    element.</p>
+
+   </li>
+
+   <li><p>End the <span>synchronous section</span>, continuing the remaining steps asynchronously,
+   but without missing any data from the <span>fetch</span> algorithm.</p></li>
+
+   <li>
+
+    <p>As soon as possible, jump to the first applicable entry from the following list:</p>
+
+    <dl class="switch">
+
+     <dt>If the resource type is <code>multipart/x-mixed-replace</code></dt>
+
+     <dd>
+
+      <p>The next <span data-x="concept-task">task</span> that is <span data-x="queue a
+      task">queued</span> by the <span>networking task source</span> while the image is being <span
+      data-x="fetch">fetched</span> must set the <code>img</code> element's state to <span
+      data-x="img-inc">partially available</span>.</p>
+
+      <p>Each <span data-x="concept-task">task</span> that is <span data-x="queue a
+      task">queued</span> by the <span>networking task source</span> while the image is being <span
+      data-x="fetch">fetched</span> must update the presentation of the image, but as each new body
+      part comes in, it must replace the previous image. Once one body part has been completely
+      decoded, the user agent must set the <code>img</code> element to the <span
+      data-x="img-all">completely available</span> state and <span>queue a task</span> to <span>fire
+      a simple event</span> named <code data-x="event-load">load</code> at the <code>img</code>
+      element.</p>
+
+      <p class="note">The <code data-x="event-progress">progress</code> and <code
+      data-x="event-loadend">loadend</code> events are not fired for
+      <code>multipart/x-mixed-replace</code> image streams.</p>
+
+     </dd>
+
+     <dt>If the resource type and data corresponds to a supported image format, <a
+     href="#img-determine-type">as described below</a></dt>
+
+     <dd>
+
+      <p>The next <span data-x="concept-task">task</span> that is <span data-x="queue a
+      task">queued</span> by the <span>networking task source</span> while the image is being <span
+      data-x="fetch">fetched</span> must set the <code>img</code> element's state to <span
+      data-x="img-inc">partially available</span>.</p>
+
+      <p id="img-load">That <span data-x="concept-task">task</span>, and each subsequent <span
+      data-x="concept-task">task</span>, that is <span data-x="queue a task">queued</span> by the
+      <span>networking task source</span> while the image is being <span
+      data-x="fetch">fetched</span> must update the presentation of the image appropriately (e.g. if
+      the image is a progressive JPEG, each packet can improve the resolution of the image).</p>
+
+      <p>Furthermore, the last <span data-x="concept-task">task</span> that is <span data-x="queue a
+      task">queued</span> by the <span>networking task source</span> once the resource has been
+      <span data-x="fetch">fetched</span> must additionally run the steps for the matching entry in
+      the following list:</p>
+
+      <dl class="switch">
+
+       <dt>If the download was successful and the user agent was able to determine the image's width
+       and height</dt>
+
+       <dd>
+
+        <ol>
+
+         <li><p>Set the <code>img</code> element to the <span data-x="img-all">completely
+         available</span> state.</p>
+
+         <li><p>Add the image to the <span>list of available images</span> using the key <var
+         data-x="">key</var>.</p></li>
+
+         <li>
+
+          <p>If the resource is <span>CORS-same-origin</span>: <span>fire a progress event</span>
+          named <code data-x="event-load">load</code> at the <code>img</code> element.</p>
+
+          <p>If the resource is <span>CORS-cross-origin</span>: <span>fire a simple event</span> named
+          <code data-x="event-load">load</code> at the <code>img</code> element.</p>
+
+         </li>
+
+         <li>
+
+          <p>If the resource is <span>CORS-same-origin</span>: <span>fire a progress event</span>
+          named <code data-x="event-load">loadend</code> at the <code>img</code> element.</p>
+
+          <p>If the resource is <span>CORS-cross-origin</span>: <span>fire a simple event</span> named
+          <code data-x="event-load">loadend</code> at the <code>img</code> element.</p>
+
+         </li>
+
+        </ol>
+
+       </dd>
+
+       <!-- http://software.hixie.ch/utilities/js/live-dom-viewer/saved/1222 -->
+
+       <dt>Otherwise</dt>
+
+       <dd>
+
+        <ol>
+
+         <li><p>Set the <code>img</code> element to the <span data-x="img-error">broken</span>
+         state.</p></li>
+
+         <li>
+
+          <p>If the resource is <span>CORS-same-origin</span>: <span>fire a progress event</span>
+          named <code data-x="event-load">load</code> at the <code>img</code> element.</p>
+
+          <p>If the resource is <span>CORS-cross-origin</span>: <span>fire a simple event</span> named
+          <code data-x="event-load">load</code> at the <code>img</code> element.</p>
+
+         </li>
+
+         <li>
+
+          <p>If the resource is <span>CORS-same-origin</span>: <span>fire a progress event</span>
+          named <code data-x="event-load">loadend</code> at the <code>img</code> element.</p>
+
+          <p>If the resource is <span>CORS-cross-origin</span>: <span>fire a simple event</span> named
+          <code data-x="event-load">loadend</code> at the <code>img</code> element.</p>
+
+         </li>
+
+        </ol>
+
+       </dd>
+
+      </dl>
+
+     </dd>
+
+     <dt>Otherwise</dt>
+
+     <dd>
+
+      <p>Either the image data is corrupted in some fatal way such that the image dimensions cannot
+      be obtained, or the image data is not in a supported file format; the user agent must set the
+      <code>img</code> element to the <span data-x="img-error">broken</span> state, abort the <span
+      data-x="fetch">fetching</span> algorithm, discarding any pending <span
+      data-x="concept-task">tasks</span> generated by that algorithm, and then <span>queue a
+      task</span> to first <span>fire a simple event</span> named <code
+      data-x="event-error">error</code> at the <code>img</code> element and then <span>fire a simple
+      event</span> named <code data-x="event-loadend">loadend</code> at the <code>img</code>
+      element.</p>
+
+     </dd>
+
+    </dl>
+
+   </li>
+
+  </ol>
+
+  <p>While a user agent is running the above algorithm for an element <var data-x="">x</var>, there
+  must be a strong reference from the element's <code>Document</code> to the element <var
+  data-x="">x</var>, even if that element is not <span data-x="in a Document">in</span> its
+  <code>Document</code>.</p>
+
+  <p>When an <code>img</code> element is in the <span data-x="img-all">completely available</span>
+  state <em>and</em> the user agent can decode the media data without errors, then the
+  <code>img</code> element is said to be <dfn data-x="img-good">fully decodable</dfn>.</p>
+
+  <p>Whether the image is fetched successfully or not (e.g. whether the response code was a 2xx code
+  <span data-x="concept-http-equivalent-codes">or equivalent</span>) must be ignored when determining
+  the image's type and whether it is a valid image.</p>
+
+  <p class="note">This allows servers to return images with error responses, and have them
+  displayed.</p>
+
+  <p id="img-determine-type">The user agent should apply the <span data-x="Content-Type sniffing:
+  image">image sniffing rules</span> to determine the type of the image, with the image's <span
+  data-x="Content-Type">associated Content-Type headers</span> giving the <var data-x="">official
+  type</var>. If these rules are not applied, then the type of the image must be the type given by
+  the image's <span data-x="Content-Type">associated Content-Type headers</span>.</p>
+
+  <p>User agents must not support non-image resources with the <code>img</code> element (e.g. XML
+  files whose root element is an HTML element). User agents must not run executable code (e.g.
+  scripts) embedded in the image resource. User agents must only display the first page of a
+  multipage resource (e.g. a PDF file). User agents must not allow the resource to act in an
+  interactive fashion, but should honor any animation in the resource.</p>
+
+  <p>This specification does not specify which image types are to be supported.</p>
+
+  <hr>
+
+  <p>When the user agent is required to <dfn data-x="processing the image candidates">process the
+  image candidates</dfn> of an <code>img</code> element's <code
+  data-x="attr-img-srcset">srcset</code> attribute, the user agent must run the following steps,
+  which return a URL and pixel density (null and undefined respectively if no selection can be
+  made):</p>
+
+  <ol>
+
+   <li><p>Let <var data-x="">input</var> be the value of the <code>img</code> element's <code
+   data-x="attr-img-srcset">srcset</code> attribute.</p></li>
+
+   <li><p>Let <var data-x="">position</var> be a pointer into <var data-x="">input</var>, initially
+   pointing at the start of the string.</p></li>
+
+   <li><p>Let <var data-x="">raw candidates</var> be an initially empty ordered list of <span
+   data-x="URL">URLs</span> with associated unparsed descriptors. The order of entries in the list is
+   the order in which entries are added to the list.</p></li>
+
+   <li><p><i>Splitting loop</i>: <span>Skip whitespace</span>.</p></li>
+
+   <li><p><span>Collect a sequence of characters</span> that are not <span data-x="space
+   character">space characters</span>, and let that be <var data-x="">url</var>.</p></li> <!-- if
+   /url/ is empty, we're at the end of the string -->
+
+   <li><p>If <var data-x="">url</var> is empty, then jump to the step labeled <i>descriptor
+   parser</i>.</p></li>
+
+   <li><p><span>Collect a sequence of characters</span> that are not U+002C COMMA characters (,),
+   and let that be <var data-x="">descriptors</var>.</p></li>
+
+   <li><p>Add <var data-x="">url</var> to <var data-x="">raw candidates</var>, associated with <var
+   data-x="">descriptors</var>.</p></li>
+
+   <li><p>If <var data-x="">position</var> is past the end of <var data-x="">input</var>, then jump to
+   the step labeled <i>descriptor parser</i>.</p></li>
+
+   <li><p>Advance <var data-x="">position</var> to the next character in <var data-x="">input</var>
+   (skipping past the U+002C COMMA character (,) separating this candidate from the next).</p></li>
+
+   <li><p>Return to the step labeled <i>splitting loop</i>.</p></li>
+
+   <li><p><i>Descriptor parser</i>: Let <var data-x="">candidates</var> be an initially empty ordered
+   list of <span data-x="URL">URLs</span> each with an associated pixel density, and optionally an
+   associated width, height, or both. The order of entries in the list is the order in which entries
+   are added to the list.</p>
+
+   <li>
+
+    <p>For each entry in <var data-x="">raw candidates</var> with <span>URL</span> <var
+    data-x="">url</var> associated with the unparsed descriptors <var data-x="">unparsed
+    descriptors</var>, in the order they were originally added to the list, run these substeps:</p>
+
+    <ol>
+
+     <li><p>Let <var data-x="">descriptor list</var> be the result of <span data-x="split a string on
+     spaces">splitting <var data-x="">unparsed descriptors</var> on spaces</span>.</p></li>
+
+     <li><p>Let <var data-x="">error</var> be <i>no</i>.</p></li>
+
+     <li><p>Let <var data-x="">width</var> be <i>absent</i>.</p></li>
+
+     <li><p>Let <var data-x="">height</var> be <i>absent</i>.</p></li>
+
+     <li><p>Let <var data-x="">density</var> be <i>absent</i>.</p></li>
+
+     <li>
+
+      <p>For each token in <var data-x="">descriptor list</var>, run the appropriate set of steps
+      from the following list:</p>
+
+      <dl class="switch">
+
+       <dt>If the token consists of a <span>valid non-negative integer</span> followed by a U+0077 LATIN SMALL LETTER W character</dt>
+
+       <dd>
+
+        <ol>
+
+         <li><p>If <var data-x="">width</var> is not <i>absent</i>, then let <var
+         data-x="">error</var> be <i>yes</i>.</p></li>
+
+         <li><p>Apply the <span>rules for parsing non-negative integers</span> to the token. Let
+         <var data-x="">width</var> be the result.</p></li>
+
+        </ol>
+
+       </dd>
+
+
+       <dt>If the token consists of a <span>valid non-negative integer</span> followed by a U+0068 LATIN SMALL LETTER H character</dt>
+
+       <dd>
+
+        <ol>
+
+         <li><p>If <var data-x="">height</var> is not <i>absent</i>,
+         then let <var data-x="">error</var> be <i>yes</i>.</p></li>
+
+         <li><p>Apply the <span>rules for parsing non-negative
+         integers</span> to the token. Let <var data-x="">height</var>
+         be the result.</p></li>
+
+        </ol>
+
+       </dd>
+
+
+       <dt>If the token consists of a <span>valid floating-point number</span> followed by a U+0078 LATIN SMALL LETTER X character</dt>
+
+       <dd>
+
+        <ol>
+
+         <li><p>If <var data-x="">density</var> is not <i>absent</i>, then let <var
+         data-x="">error</var> be <i>yes</i>.</p></li>
+
+         <li><p>Apply the <span>rules for parsing floating-point number values</span> to the token.
+         Let <var data-x="">density</var> be the result.</p></li>
+
+        </ol>
+
+       </dd>
+
+
+      </dl>
+
+     </li>
+
+     <li><p>If <var data-x="">width</var> is still <i>absent</i>, set it to Infinity.</p></li>
+
+     <li><p>If <var data-x="">height</var> is still <i>absent</i>, set it to Infinity.</p></li>
+
+     <li><p>If <var data-x="">density</var> is still <i>absent</i>, set it to 1.0.</p></li>
+
+     <li><p>If <var data-x="">error</var> is still <i>no</i>, then add an entry to <var
+     data-x="">candidates</var> whose <span>URL</span> is <var data-x="">url</var>, associated with a
+     width <var data-x="">width</var>, a height <var data-x="">height</var>, and a pixel density <var
+     data-x="">density</var>.</p></li>
+
+    </ol>
+
+   </li>
+
+   <li>
+
+    <p>If the <code>img</code> element has a <code data-x="attr-img-src">src</code> attribute whose
+    value is not the empty string, then run the following substeps:</p>
+
+    <ol>
+
+     <li><p>Let <var data-x="">url</var> be the value of the element's <code
+     data-x="attr-img-src">src</code> attribute.</p></li>
+
+     <li><p>Add an entry to <var data-x="">candidates</var> whose <span>URL</span> is <var
+     data-x="">url</var>, associated with a width Infinity, a height Infinity, and a pixel density
+     1.0.</p></li>
+
+    </ol>
+
+   </li>
+
+   <li><p>If <var data-x="">candidates</var> is empty, return null as the URL and undefined as the
+   pixel density and abort these steps.</p></li>
+
+   <li><p>If an entry <var data-x="">b</var> in <var data-x="">candidates</var> has the same
+   associated width, height, and pixel density as an earlier entry <var data-x="">a</var> in <var
+   data-x="">candidates</var>, then remove entry <var data-x="">b</var>. Repeat this step until none
+   of the entries in <var data-x="">candidates</var> have the same associated width, height, and
+   pixel density as an earlier entry.</p></li>
+
+   <li>
+
+    <p>Optionally, return the <span>URL</span> of an entry in <var data-x="">candidates</var> chosen
+    by the user agent, and that entry's associated pixel density, and then abort these steps. The
+    user agent may apply any algorithm or heuristic in its selection of an entry for the purposes of
+    this step.</p>
+
+    <p class="note">This allows a user agent to override the default algorithm (as described in
+    subsequent steps) in case the user agent has a reason to do so. For example, it would allow the
+    user agent in highly bandwidth-constrained conditions to intentionally opt to use an image
+    intended for a smaller screen size, on the assumption that it'll probably be good enough.
+    Implementors are urged to avoid doing this if at all possible, to let authors have predictable
+    results. The results of using an image intended for a different viewport size can be, at a
+    minimum, aesthetically displeasing.</p>
+
+    <p class="note">This clause is not necessary to select images that are of lower pixel density
+    than the display can handle, because the definition of pixel density below is also left up to
+    the user agent. This step is only needed to allow user agents to pick images intended for
+    viewports with other dimensions.</p>
+
+   </li>
+
+   <li><p>Let <var data-x="">max width</var> be the width of the viewport, and let <var data-x="">max
+   height</var> be the height of the viewport. <a href="#refsCSS">[CSS]</a></p></li>
+
+   <li><p>If there are any entries in <var data-x="">candidates</var> that have an associated width
+   that is less than <var data-x="">max width</var>, then remove them, unless that would remove all
+   the entries, in which case remove only the entries whose associated width is less than the
+   greatest such width.</p></li>
+
+   <li><p>If there are any entries in <var data-x="">candidates</var> that have an associated height
+   that is less than <var data-x="">max height</var>, then remove them, unless that would remove all
+   the entries, in which case remove only the entries whose associated height is less than the
+   greatest such height.</p></li>
+
+   <li><p>If there are any entries in <var data-x="">candidates</var> that have an associated pixel
+   density that is less than a user-agent-defined value giving the nominal pixel density of the
+   display, then remove them, unless that would remove all the entries, in which case remove only
+   the entries whose associated pixel density is less than the greatest such pixel density.</p></li>
+
+   <li><p>Remove all the entries in <var data-x="">candidates</var> that have an associated width
+   that is greater than the smallest such width.</p></li>
+
+   <li><p>Remove all the entries in <var data-x="">candidates</var> that have an associated height
+   that is greater than the smallest such height.</p></li>
+
+   <li><p>Remove all the entries in <var data-x="">candidates</var> that have an associated pixel
+   density that is greater than the smallest such pixel density.</p></li>
+
+   <li><p>Return the <span>URL</span> of the sole remaining entry in <var data-x="">candidates</var>,
+   and that entry's associated pixel density.</p></li>
+
+  </ol>
+
+  <p>The user agent may at any time run the following algorithm to update an <code>img</code>
+  element's image in order to react to changes in the environment. (User agents are <em>not
+  required</em> to ever run this algorithm; for example, if the user is not looking at the page any
+  more, the user agent might want to wait until the user has returned to the page before determining
+  which image to use, in case the environment changes again in the meantime.)</p>
+
+  <ol>
+
+   <li><p>Asynchronously <span>await a stable state</span>. The <span>synchronous section</span>
+   consists of all the remaining steps of this algorithm until the algorithm says the
+   <span>synchronous section</span> has ended. (Steps in <span data-x="synchronous
+   section">synchronous sections</span> are marked with &#x231B;.)</p></li>
+
+   <li><p>&#x231B; If the <code>img</code> element does not have a <code
+   data-x="attr-img-srcset">srcset</code> attribute specified, is not in the <span
+   data-x="img-all">completely available</span> state, has image data whose resource type is
+   <code>multipart/x-mixed-replace</code>, or if its <span>update the image data</span> algorithm is
+   running, then abort this algorithm.</p></li> <!-- we don't support replacing push-JPEG images
+   because defining what happens with the tasks and events and so on in that case would become
+   implausibly complicated. -->
+
+   <li><p>&#x231B; Let <var data-x="">selected source</var> and <var data-x="">selected pixel
+   density</var> be the URL and pixel density that results from <span>processing the image
+   candidates</span>, respectively.</p></li>
+
+   <li><p>&#x231B; If <var data-x="">selected source</var> is null, then abort these steps.</p></li>
+   <!-- not sure this can ever actually happen -->
+
+   <li><p>&#x231B; If <var data-x="">selected source</var> and <var data-x="">selected pixel
+   density</var> are the same as the element's <span>last selected source</span> and <span>current
+   pixel density</span>, then abort these steps.</p></li> <!-- note that this check happens before
+   base URL resolution, so changing the base URL doesn't trigger an update if nothing else changed
+   -->
+
+   <li><p>&#x231B; <span data-x="resolve a url">Resolve</span> <var data-x="">selected source</var>,
+   relative to the element.</p></li>
+
+   <li><p>&#x231B; Let <var data-x="">CORS mode</var> be the state of the element's <code
+   data-x="attr-img-crossorigin">crossorigin</code> content attribute.</p></li>
+
+   <li><p>&#x231B; If the <span>resolve a URL</span> algorithm is not successful, abort these
+   steps.</p>
+
+   <li><p>End the <span>synchronous section</span>, continuing the remaining steps
+   asynchronously.</p></li>
+
+   <li>
+
+    <p>Do a <span>potentially CORS-enabled fetch</span><!--FETCH--> of the resulting <span>absolute
+    URL</span>, with the <i>mode</i> being <var data-x="">CORS mode</var>, the <i data-x="">origin</i>
+    being the <span>origin</span> of the <code>img</code> element's <code>Document</code>, and the
+    <i>default origin behaviour</i> set to <i>taint</i>.</p>
+
+    <p>If this download fails in any way (other than the response code not being a 2xx code, as
+    mentioned earlier), or if the image format is unsupported (as determined by applying the <span
+    data-x="Content-Type sniffing: image">image sniffing rules</span>, again as mentioned earlier),
+    or if the resource type is <code>multipart/x-mixed-replace</code>, then abort these steps.</p>
+
+    <p>Otherwise, wait for the <span>fetch</span> algorithm to queue its last task, and then
+    continue with these steps. The data obtained in this way is used in the steps below.</p>
+
+   </li>
+
+   <li>
+
+    <p><span>Queue a task</span> to run the following substeps:</p>
+
+    <ol>
+
+     <li><p>If the <code>img</code> element's <code data-x="attr-img-src">src</code>, <code
+     data-x="attr-img-srcset">srcset</code>, or <code data-x="attr-img-crossorigin">crossorigin</code>
+     attributes have been set, changed, or removed since this algorithm started, then abort these
+     steps.</p>
+
+     <li><p>Let the <code>img</code> element's <span>last selected source</span> be <var
+     data-x="">selected source</var> and the <code>img</code> element's <span>current pixel
+     density</span> be <var data-x="">selected pixel density</var>.</p></li>
+
+     <li><p>Replace the <code>img</code> element's image data with the resource obtained by the
+     earlier step of this algorithm. It can be either <span>CORS-same-origin</span> or
+     <span>CORS-cross-origin</span>; this affects the <span>origin</span> of the image itself (e.g.
+     when used on a <code>canvas</code>).</p></li>
+
+     <li><p><span>Fire a simple event</span> named <code data-x="">load</code> at the
+     <code>img</code> element.</p></li>
+
+    </ol>
+
+   </li>
+
+  </ol>
+
+  <hr>
+
+  <p>The <span>task source</span> for the <span data-x="concept-task">tasks</span> <span data-x="queue
+  a task">queued</span> by algorithms in this section is the <span>DOM manipulation task
+  source</span>.</p>
+
+  <hr>
+
+  <p>What an <code>img</code> element represents depends on the <code
+  data-x="attr-img-src">src</code> attribute and the <code data-x="attr-img-alt">alt</code>
+  attribute.</p>
+
+  <dl class="switch">
+
+   <dt>If the <code data-x="attr-img-src">src</code> attribute is set and the <code
+   data-x="attr-img-alt">alt</code> attribute is set to the empty string</dt>
+
+   <dd>
+
+    <p>The image is either decorative or supplemental to the rest of the content, redundant with
+    some other information in the document.</p>
+
+    <p>If the image is <span data-x="img-available">available</span> and the user agent is configured
+    to display that image, then the element <span>represents</span> the element's image data.</p>
+
+    <p>Otherwise, the element <span>represents</span> nothing, and may be omitted completely from
+    the rendering. User agents may provide the user with a notification that an image is present but
+    has been omitted from the rendering.</p>
+
+   </dd>
+
+   <dt>If the <code data-x="attr-img-src">src</code> attribute is set and the <code
+   data-x="attr-img-alt">alt</code> attribute is set to a value that isn't empty</dt>
+
+   <dd>
+
+    <p>The image is a key part of the content; the <code data-x="attr-img-alt">alt</code> attribute
+    gives a textual equivalent or replacement for the image.</p>
+
+    <p>If the image is <span data-x="img-available">available</span> and the user agent is configured
+    to display that image, then the element <span>represents</span> the element's image data.</p>
+
+    <p>Otherwise, the element <span>represents</span> the text given by the <code
+    data-x="attr-img-alt">alt</code> attribute. User agents may provide the user with a notification
+    that an image is present but has been omitted from the rendering.</p>
+
+   </dd>
+
+   <dt>If the <code data-x="attr-img-src">src</code> attribute is set and the <code
+   data-x="attr-img-alt">alt</code> attribute is not</dt>
+
+   <dd>
+
+    <p>The image might be a key part of the content, and there is no textual equivalent of the image
+    available.</p>
+
+    <p class="note">In a conforming document, the absence of the <code
+    data-x="attr-img-alt">alt</code> attribute indicates that the image is a key part of the content
+    but that a textual replacement for the image was not available when the image was generated.</p>
+
+    <p>If the image is <span data-x="img-available">available</span> and the user agent is configured
+    to display that image, then the element <span>represents</span> the element's image data.</p>
+
+    <p>Otherwise, the user agent should display some sort of indicator that there is an image that
+    is not being rendered, and may, if requested by the user, or if so configured, or when required
+    to provide contextual information in response to navigation, provide caption information for the
+    image, derived as follows:</p>
+
+    <ol>
+
+     <!-- when editing this list, search for the two other occurrences of 'critical-no-alt' -->
+
+     <!-- NOTE: the order of these steps is important; it's intended to make the innermost caption
+     override the outer ones -->
+
+     <li><p>If the image has a <code data-x="attr-title">title</code> attribute whose value is not
+     the empty string, then the value of that attribute is the caption information; abort these
+     steps.</p></li>
+
+<!--CLEANUP-->
+     <li><p>If the image is a descendant of a <code>figure</code> element that has a child
+     <code>figcaption</code> element, and, ignoring the <code>figcaption</code> element and its
+     descendants, the <code>figure</code> element has no <span>flow content</span> descendants other
+     than <span>inter-element whitespace</span> and the <code>img</code> element, then the contents of the first such
+     <code>figcaption</code> element are the caption information; abort these steps.</p></li>
+
+     <li><p>There is no caption information.</p></li>
+
+    </ol>
+
+   </dd>
+
+   <dt>If the <code data-x="attr-img-src">src</code> attribute is not set and either the <code
+   data-x="attr-img-alt">alt</code> attribute is set to the empty string or the <code
+   data-x="attr-img-alt">alt</code> attribute is not set at all</dt>
+
+   <dd>
+
+    <p>The element <span>represents</span> nothing.</p>
+
+   </dd>
+
+   <dt>Otherwise</dt>
+
+   <dd>
+
+    <p>The element <span>represents</span> the text given by the <code
+    data-x="attr-img-alt">alt</code> attribute.</p>
+
+   </dd>
+
+  </dl>
+
+  <p>The <code data-x="attr-img-alt">alt</code> attribute does not represent advisory information.
+  User agents must not present the contents of the <code data-x="attr-img-alt">alt</code> attribute
+  in the same way as content of the <code data-x="attr-title">title</code> attribute.</p>
+
+  <p>User agents may always provide the user with the option to display any image, or to prevent any
+  image from being displayed. User agents may also apply heuristics to help the user make use of the
+  image when the user is unable to see it, e.g. due to a visual disability or because they are using
+  a text terminal with no graphics capabilities. Such heuristics could include, for instance,
+  optical character recognition (OCR) of text found within the image.</p>
+
+  <p class="warning">While user agents are encouraged to repair cases of missing <code
+  data-x="attr-img-alt">alt</code> attributes, authors must not rely on such behavior. <a
+  href="#alt">Requirements for providing text to act as an alternative for images</a> are described
+  in detail below.</p>
+
+  <p>The <em>contents</em> of <code>img</code> elements, if any, are ignored for the purposes of
+  rendering.</p>
+
+  </div>
+
+  <hr>
+
+  <p>The <code data-x="attr-hyperlink-usemap">usemap</code> attribute,
+  if present, can indicate that the image has an associated
+  <span>image map</span>.</p>
+
+  <p>The <dfn data-x="attr-img-ismap"><code>ismap</code></dfn>
+  attribute, when used on an element that is a descendant of an
+  <code>a</code> element with an <code
+  data-x="attr-hyperlink-href">href</code> attribute, indicates by its
+  presence that the element provides access to a server-side image
+  map. This affects how events are handled on the corresponding
+  <code>a</code> element.</p>
+
+  <p>The <code data-x="attr-img-ismap">ismap</code> attribute is a
+  <span>boolean attribute</span>. The attribute must not be specified
+  on an element that does not have an ancestor <code>a</code> element
+  with an <code data-x="attr-hyperlink-href">href</code> attribute.</p>
+
+  <p>The <code>img</code> element supports <span>dimension
+  attributes</span>.</p>
+
+  <div class="impl">
+
+  <p>The <dfn data-x="dom-img-alt"><code>alt</code></dfn>, <dfn
+  data-x="dom-img-src"><code>src</code></dfn>, and <dfn
+  data-x="dom-img-srcset"><code>srcset</code></dfn> IDL attributes must <span>reflect</span> the
+  respective content attributes of the same name.</p>
+
+  <p>The <dfn data-x="dom-img-crossOrigin"><code>crossOrigin</code></dfn> IDL attribute must
+  <span>reflect</span> the <code data-x="attr-img-crossorigin">crossorigin</code> content attribute,
+  <span>limited to only known values</span>.</p>
+
+  <p>The <dfn data-x="dom-img-useMap"><code>useMap</code></dfn> IDL attribute must
+  <span>reflect</span> the <code data-x="attr-hyperlink-usemap">usemap</code> content attribute.</p>
+
+  <p>The <dfn data-x="dom-img-isMap"><code>isMap</code></dfn> IDL attribute must <span>reflect</span>
+  the <code data-x="attr-img-ismap">ismap</code> content attribute.</p>
+
+  </div>
+
+<!--TOPIC:DOM APIs-->
+  <dl class="domintro">
+
+   <dt><var data-x="">image</var> . <code data-x="dom-img-width">width</code> [ = <var data-x="">value</var> ]</dt>
+   <dt><var data-x="">image</var> . <code data-x="dom-img-height">height</code> [ = <var data-x="">value</var> ]</dt>
+
+   <dd>
+
+<!--CLEANUP-->
+    <p>These attributes return the actual rendered dimensions of the
+    image, or zero if the dimensions are not known.</p>
+
+    <p>They can be set, to change the corresponding content
+    attributes.</p>
+
+   </dd>
+
+   <dt><var data-x="">image</var> . <code data-x="dom-img-naturalWidth">naturalWidth</code></dt>
+   <dt><var data-x="">image</var> . <code data-x="dom-img-naturalHeight">naturalHeight</code></dt>
+
+   <dd>
+
+<!--CLEANUP-->
+    <p>These attributes return the intrinsic dimensions of the image,
+    or zero if the dimensions are not known.</p>
+
+   </dd>
+
+   <dt><var data-x="">image</var> . <code data-x="dom-img-complete">complete</code></dt>
+
+   <dd>
+
+<!--CLEANUP-->
+    <p>Returns true if the image has been completely downloaded or if
+    no image is specified; otherwise, returns false.</p>
+
+   </dd>
+
+   <dt><var data-x="">image</var> = new <code data-x="dom-image">Image</code>( [ <var data-x="">width</var> [, <var data-x="">height</var> ] ] )</dt>
+
+   <dd>
+
+<!--CLEANUP-->
+    <p>Returns a new <code>img</code> element, with the <code
+    data-x="attr-dim-width">width</code> and <code
+    data-x="attr-dim-height">height</code> attributes set to the values
+    passed in the relevant arguments, if applicable.</p>
+
+   </dd>
+
+  </dl>
+
+  <div class="impl">
+
+  <p>The IDL attributes <dfn data-x="dom-img-width"><code>width</code></dfn> and <dfn
+  data-x="dom-img-height"><code>height</code></dfn> must return the rendered width and height of the
+  image, in CSS pixels, if the image is <span>being rendered</span>, and is being rendered to a
+  visual medium; or else the intrinsic width and height of the image, in CSS pixels, if the image is
+  <i data-x="img-available">available</i> but not being rendered to a visual medium; or else 0, if
+  the image is not <i data-x="img-available">available</i>. <a href="#refsCSS">[CSS]</a></p>
+
+  <p>On setting, they must act as if they <span data-x="reflect">reflected</span> the respective
+  content attributes of the same name.</p>
+
+  <p>The IDL attributes <dfn data-x="dom-img-naturalWidth"><code>naturalWidth</code></dfn> and <dfn
+  data-x="dom-img-naturalHeight"><code>naturalHeight</code></dfn> must return the intrinsic width and
+  height of the image, in CSS pixels, if the image is <i data-x="img-available">available</i>, or
+  else 0. <a href="#refsCSS">[CSS]</a></p>
+
+  <p>The IDL attribute <dfn data-x="dom-img-complete"><code>complete</code></dfn> must return true if
+  any of the following conditions is true:</p>
+
+  <ul class="brief">
+
+   <li>Both the <code data-x="attr-img-src">src</code> attribute and the <code
+   data-x="attr-img-srcset">srcset</code> attribute are omitted.
+
+   <li>The <code data-x="attr-img-srcset">srcset</code> attribute is omitted and the <code
+   data-x="attr-img-src">src</code> attribute's value is the empty string. <!-- we only have this
+   hack for src="", not srcset=""; present but empty or bogus srcset="" still means complete=false
+   if it's not in the img-error state -->
+
+   <li>The final <span data-x="concept-task">task</span> that is <span data-x="queue a
+   task">queued</span> by the <span>networking task source</span> once the resource has been <span
+   data-x="fetch">fetched</span> has been <span data-x="queue a task">queued</span>.
+
+   <li>The <code>img</code> element is <span data-x="img-all">completely available</span>.
+
+   <li>The <code>img</code> element is <span data-x="img-error">broken</span>.
+
+  </ul>
+
+  <p>Otherwise, the attribute must return false.</p>
+
+  <p class="note">The value of <code data-x="dom-img-complete">complete</code> can thus change while
+  a <span data-x="concept-script">script</span> is executing.</p>
+
+  <p>A constructor is provided for creating <code>HTMLImageElement</code> objects (in addition to
+  the factory methods from DOM such as <code data-x="">createElement()</code>): <dfn
+  data-x="dom-image"><code>Image(<var data-x="">width</var>, <var data-x="">height</var>)</code></dfn>.
+  When invoked as a constructor, this must return a new <code>HTMLImageElement</code> object (a new
+  <code>img</code> element). If the <var data-x="">width</var> argument is present, the new object's
+  <code data-x="attr-dim-width">width</code> content attribute must be set to <var
+  data-x="">width</var>. If the <var data-x="">height</var> argument is also present, the new object's
+  <code data-x="attr-dim-height">height</code> content attribute must be set to <var
+  data-x="">height</var>. The element's document must be the <span>active document</span> of the
+  <span>browsing context</span> of the <code>Window</code> object on which the interface object of
+  the invoked constructor is found.</p>
+
+  </div>
+<!--TOPIC:HTML-->
+
+  <div class="example">
+
+   <p>A single image can have different appropriate alternative text depending on the context.</p>
+
+   <p>In each of the following cases, the same image is used, yet the <code
+   data-x="attr-img-alt">alt</code> text is different each time. The image is the coat of arms of the
+   Carouge municipality in the canton Geneva in Switzerland.</p>
+
+   <p>Here it is used as a supplementary icon:</p>
+   <pre>&lt;p>I lived in &lt;img src="carouge.svg" alt=""> Carouge.&lt;/p></pre>
+
+   <p>Here it is used as an icon representing the town:</p>
+   <pre>&lt;p>Home town: &lt;img src="carouge.svg" alt="Carouge">&lt;/p></pre>
+
+   <p>Here it is used as part of a text on the town:</p>
+
+   <pre>&lt;p>Carouge has a coat of arms.&lt;/p>
+&lt;p>&lt;img src="carouge.svg" alt="The coat of arms depicts a lion, sitting in front of a tree.">&lt;/p>
+&lt;p>It is used as decoration all over the town.&lt;/p></pre>
+
+   <p>Here it is used as a way to support a similar text where the description is given as well as,
+   instead of as an alternative to, the image:</p>
+
+   <pre>&lt;p>Carouge has a coat of arms.&lt;/p>
+&lt;p>&lt;img src="carouge.svg" alt="">&lt;/p>
+&lt;p>The coat of arms depicts a lion, sitting in front of a tree.
+It is used as decoration all over the town.&lt;/p></pre>
+
+   <p>Here it is used as part of a story:</p>
+
+   <pre>&lt;p>He picked up the folder and a piece of paper fell out.&lt;/p>
+&lt;p>&lt;img src="carouge.svg" alt="Shaped like a shield, the paper had a
+red background, a green tree, and a yellow lion with its tongue
+hanging out and whose tail was shaped like an S.">&lt;/p>
+&lt;p>He stared at the folder. S! The answer he had been looking for all
+this time was simply the letter S! How had he not seen that before? It all
+came together now. The phone call where Hector had referred to a lion's tail,
+the time Marco had stuck his tongue out...&lt;/p></pre>
+
+   <p>Here it is not known at the time of publication what the image will be, only that it will be a
+   coat of arms of some kind, and thus no replacement text can be provided, and instead only a brief
+   caption for the image is provided, in the <code data-x="attr-title">title</code> attribute:</p>
+
+   <pre>&lt;p>The last user to have uploaded a coat of arms uploaded this one:&lt;/p>
+&lt;p>&lt;img src="last-uploaded-coat-of-arms.cgi" title="User-uploaded coat of arms.">&lt;/p></pre>
+
+   <p>Ideally, the author would find a way to provide real replacement text even in this case, e.g.
+   by asking the previous user. Not providing replacement text makes the document more difficult to
+   use for people who are unable to view images, e.g. blind users, or users or very low-bandwidth
+   connections or who pay by the byte, or users who are forced to use a text-only Web browser.</p>
+
+  </div>
+
+  <div class="example">
+
+   <p>Here are some more examples showing the same picture used in different contexts, with
+   different appropriate alternate texts each time.</p>
+
+   <pre>&lt;article>
+ &lt;h1>My cats&lt;/h1>
+ &lt;h2>Fluffy&lt;/h2>
+ &lt;p>Fluffy is my favorite.&lt;/p>
+ &lt;img src="fluffy.jpg" alt="She likes playing with a ball of yarn.">
+ &lt;p>She's just too cute.&lt;/p>
+ &lt;h2>Miles&lt;/h2>
+ &lt;p>My other cat, Miles just eats and sleeps.&lt;/p>
+&lt;/article></pre>
+
+   <pre>&lt;article>
+ &lt;h1>Photography&lt;/h1>
+ &lt;h2>Shooting moving targets indoors&lt;/h2>
+ &lt;p>The trick here is to know how to anticipate; to know at what speed and
+ what distance the subject will pass by.&lt;/p>
+ &lt;img src="fluffy.jpg" alt="A cat flying by, chasing a ball of yarn, can be
+ photographed quite nicely using this technique.">
+ &lt;h2>Nature by night&lt;/h2>
+ &lt;p>To achieve this, you'll need either an extremely sensitive film, or
+ immense flash lights.&lt;/p>
+&lt;/article></pre>
+
+   <pre>&lt;article>
+ &lt;h1>About me&lt;/h1>
+ &lt;h2>My pets&lt;/h2>
+ &lt;p>I've got a cat named Fluffy and a dog named Miles.&lt;/p>
+ &lt;img src="fluffy.jpg" alt="Fluffy, my cat, tends to keep itself busy.">
+ &lt;p>My dog Miles and I like go on long walks together.&lt;/p>
+ &lt;h2>music&lt;/h2>
+ &lt;p>After our walks, having emptied my mind, I like listening to Bach.&lt;/p>
+&lt;/article></pre>
+
+   <pre>&lt;article>
+ &lt;h1>Fluffy and the Yarn&lt;/h1>
+ &lt;p>Fluffy was a cat who liked to play with yarn. He also liked to jump.&lt;/p>
+ &lt;aside>&lt;img src="fluffy.jpg" alt="" title="Fluffy">&lt;/aside>
+ &lt;p>He would play in the morning, he would play in the evening.&lt;/p>
+&lt;/article></pre>
+
+  </div>
+
+  <!-- END OF PICTURE SECTION -->
