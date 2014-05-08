@@ -26,6 +26,9 @@ Editor: Simon Pieters <simonp@opera.com>, Opera Software
 
   <!-- START OF PICTURE SECTION -->
 
+  <p class="XXX">The <a href="http://picture.responsiveimages.org/">picture element specification</a>
+  will be folded in to this specification, replacing some of the requirements in this section.</p>
+
   <!-- <h4>The <dfn><code>picture</code></dfn> * element</h4> -->
 
   <!-- <h4>The <dfn><code>imgcandidate</code></dfn> * element</h4> --> <!--(or whatever it gets called)-->
