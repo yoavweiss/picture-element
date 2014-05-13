@@ -67,7 +67,7 @@ When to use <code>picture</code></h3>
 <h3 id='examples'>
 Examples of usage</h3>
 
-	<div class='example'>
+	<div class='example' id='example-1'>
 		This example shows a basic usage of the <a element>picture</a> element
 		to present the same image at multiple resolutions.
 
@@ -104,7 +104,7 @@ Examples of usage</h3>
 		                      src="pix1x.jpg" width="500" height="500"></pre>
 	</div>
 
-	<div class='example'>
+	<div class='example' id='example-2'>
 		When doing responsive design,
 		it is sometimes necessary to produce slightly different versions of an image
 		depending on the user's device.
@@ -127,7 +127,7 @@ Examples of usage</h3>
 		For example, on a large desktop screen “large.jpg” will be displayed in the <a element>img</a> element.
 	</div>
 
-	<div class='example'>
+	<div class='example' id='example-3'>
 		Of course, one can use both multiple <a element>source</a> elements
 		<em>and</em> multiple sources within a single <a element>source</a> element together:
 
@@ -147,7 +147,7 @@ Examples of usage</h3>
 		based on information it knows about the user’s device.
 	</div>
 
-	<div class='example'>
+	<div class='example' id='example-4'>
 		If the final size of the <a element>img</a> element isn’t known ahead of time,
 		it can be difficult or impossible to specify a density descriptor for the image sources.
 		For example,
@@ -184,7 +184,7 @@ Examples of usage</h3>
 		regardless of how large the user's device is.
 	</div>
 
-	<div class='example'>
+	<div class='example' id='example-5'>
 		The previous example showed how to deal with the <a element>img</a> element’s size being unpredictable
 		because it was a fraction of the viewport’s size.
 		Sometimes, though, the size of an image can also change based on a site’s layout breakpoints.
@@ -232,7 +232,7 @@ Examples of usage</h3>
 		as the <a element-attr for="source">srcset</a> attributes have to be duplicated for each of them.
 	</div>
 
-	<div class='example'>
+	<div class='example' id='example-6'>
 		This example shows how picture and other HTML elements can be used
 		together.
 
@@ -248,7 +248,7 @@ Examples of usage</h3>
 		</pre>
 	</div>
 
-	<div class='example'>
+	<div class='example' id='example-7'>
 		The <a element-attr for="img">srcset</a> and <a element-attr for="img">sizes</a> attributes can
 		also be used on the <a element>img</a> element directly, removing the need for the
 		<a element>picture</a> and <a element>source</a> elements in simpler cases.
@@ -262,7 +262,7 @@ Examples of usage</h3>
 		since the default value is ''100vw''.
 	</div>
 
-	<div class='example'>
+	<div class='example' id='example-8'>
 		The <a element-attr>type</a> attribute can be used to serve images of
 		different file types depending on user agent support.
 
