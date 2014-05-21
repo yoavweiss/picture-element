@@ -674,6 +674,11 @@ Parsing a <code>srcset</code> Attribute</h4>
 					that are not U+002C COMMA characters
 					(,), and let that be
 					<var>descriptors</var>.
+
+				<li>
+					Advance <var>position</var> to the next character in
+					<var>input</var> (skipping past the U+002C COMMA
+					character (,) separating this candidate from the next).
 			</ol>
 
 		<li>
@@ -684,11 +689,6 @@ Parsing a <code>srcset</code> Attribute</h4>
 			If <var>position</var> is past the end of
 			<var>input</var>, then jump to the step labeled
 			<i title>descriptor parser</i>.
-
-		<li>
-			Advance <var>position</var> to the next character in
-			<var>input</var> (skipping past the U+002C COMMA
-			character (,) separating this candidate from the next).
 
 		<li>
 			Return to the step labeled <i title>splitting loop</i>.
