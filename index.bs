@@ -749,6 +749,10 @@ Parsing a <code>srcset</code> Attribute</h4>
 					<i title>absent</i>.
 
 				<li>
+					Let <var>future-compat-h</var> be
+					<i title>absent</i>.
+
+				<li>
 					For each token in <var>descriptor
 					list</var>, run the appropriate set of
 					steps from the following list:
@@ -777,13 +781,29 @@ Parsing a <code>srcset</code> Attribute</h4>
 						<dd>
 							<ol>
 								<li>
-									If <var>width</var> and <var>density</var> are not both <i title>absent</i>, then
+									If <var>width</var>, <var>density</var> and <var>future-compat-h</var> are not all <i title>absent</i>, then
 									let <var>error</var> be <i title>yes</i>.
 
 								<li>
 									Apply the <a>rules for parsing floating-point number values</a> to the token. Let
 									<var>density</var> be the result.
 							</ol>
+
+						<dt>If the token consists of a <a>valid non-negative integer</a>
+						followed by a "h" (U+0068 LATIN SMALL LETTER H) character
+
+						<dd>
+							<ol>
+								<li>
+									If <var>future-compat-h</var> and <var>density</var> are not both <i title>absent</i>, then
+									let <var>error</var> be <i title>yes</i>.
+
+								<li>
+									Apply the <a>rules for parsing non-negative integers</a> to the token.
+									If the result is zero, let <var>error</var> be <i title>yes</i>.
+									Otherwise, let <var>future-compat-h</var> be the result.
+							</ol>
+
 					</dl>
 
 				<li>
