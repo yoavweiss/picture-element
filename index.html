@@ -1203,8 +1203,21 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 
 		<li>
 			If <var>url</var> ends with a U+002C COMMA character
-			(,), remove that character from <var>url</var> and let
-			<var>descriptors</var> be the empty string. Otherwise,
+			(,), follow these substeps:
+
+			<ol>
+				<li>
+					Remove all trailing U+002C COMMA characters from <var>url</var>.
+
+				<li>
+					If <var>url</var> is empty, then jump to
+					the step labeled <i title="">splitting loop</i>.
+
+				<li>
+					Let <var>descriptors</var> be the empty string.
+			</ol>
+
+<p>			Otherwise,
 			follow these substeps:
 
 			<ol>
