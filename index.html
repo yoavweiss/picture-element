@@ -1202,6 +1202,9 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 			<a data-link-type=dfn href=#dfn-space-character title="space characters">space characters</a>, and let that be <var>url</var>.
 
 		<li>
+			Let <var>descriptors</var> be the empty string.
+
+		<li>
 			If <var>url</var> ends with a U+002C COMMA character
 			(,), follow these substeps:
 
@@ -1212,9 +1215,6 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 				<li>
 					If <var>url</var> is empty, then jump to
 					the step labeled <i title="">splitting loop</i>.
-
-				<li>
-					Let <var>descriptors</var> be the empty string.
 			</ol>
 
 <p>			Otherwise,
@@ -1227,15 +1227,26 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 					parser</i>.
 
 				<li>
+					<i title="">Descriptor collection loop</i>:
 					<a data-link-type=dfn href=#dfn-collect-a-sequence-of-characters title="collect a sequence of characters">Collect a sequence of characters</a>
 					that are not U+002C COMMA characters
-					(,), and let that be
-					<var>descriptors</var>.
+					(,) or U+0028 LEFT PARENTHESIS ((),
+					and append the result to <var>descriptors</var>.
 
 				<li>
-					Advance <var>position</var> to the next character in
-					<var>input</var> (skipping past the U+002C COMMA
-					character (,) separating this candidate from the next).
+					If the character at <var>position</var> is a U+002C COMMA character,
+					jump to the step labeled <i title="">skip comma</i>.
+
+				<li>
+					<a data-link-type=dfn href=#dfn-collect-a-sequence-of-characters title="collect a sequence of characters">Collect a sequence of characters</a> that are not
+					U+0029 RIGHT PARENTHESIS ()) and append the result to <var>descriptors</var>.
+
+				<li>
+					Jump to the step labeled <i title="">descriptor collection loop</i>.
+
+				<li>
+					<i title="">Skip comma</i>: Advance <var>position</var> to the next character in
+					<var>input</var>.
 			</ol>
 
 		<li>
