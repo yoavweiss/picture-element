@@ -647,18 +647,23 @@ Parsing a <code>srcset</code> Attribute</h4>
 		<li>
 			Let <var>raw candidates</var> be an initially empty
 			ordered list of URLs with associated unparsed
-			descriptors. The order of entries in the list is the
-			order in which entries are added to the list.
+			descriptor list. The order of entries in the lists is the
+			order in which entries are added to the lists.
 
 		<li>
 			<i title>Splitting loop</i>: <a>Skip whitespace</a>.
+
+		<li>
+			If <var>position</var> is past the end of
+			<var>input</var>, then jump to the step labeled
+			<i title>descriptor parser</i>.
 
 		<li>
 			<a>Collect a sequence of characters</a> that are not
 			<a>space characters</a>, and let that be <var>url</var>.
 
 		<li>
-			Let <var>descriptors</var> be the empty string.
+			Let <var>descriptors</var> be a new empty list.
 
 		<li>
 			If <var>url</var> ends with a U+002C COMMA character
@@ -671,48 +676,135 @@ Parsing a <code>srcset</code> Attribute</h4>
 				<li>
 					If <var>url</var> is empty, then jump to
 					the step labeled <i title>splitting loop</i>.
+
 			</ol>
 
 			Otherwise,
 			follow these substeps:
 
 			<ol>
-				<li>
-					If <var>url</var> is empty, then jump to
-					the step labeled <i title>descriptor
-					parser</i>.
 
 				<li>
-					<i title>Descriptor collection loop</i>:
-					<a>Collect a sequence of characters</a>
-					that are not U+002C COMMA characters
-					(,) or U+0028 LEFT PARENTHESIS ((),
-					and append the result to <var>descriptors</var>.
+					Let <var>current token</var> be the empty string.
 
 				<li>
-					If the character at <var>position</var> is a U+002C COMMA character,
-					jump to the step labeled <i title>skip comma</i>.
+					Let <var>state</var> be <i title>start</i>.
 
 				<li>
-					<a>Collect a sequence of characters</a> that are not
-					U+0029 RIGHT PARENTHESIS ()) and append the result to <var>descriptors</var>.
+					Let <var>c</var> be the character at <var>position</var>.
+					Do the following depending on the value of <var>state</var>. For the purpose of this step,
+					"EOF" is a special character representing that <var>position</var> is past the end of <var>input</var>.
 
-				<li>
-					Jump to the step labeled <i title>descriptor collection loop</i>.
+					<dl class="switch">
 
-				<li>
-					<i title>Skip comma</i>: Advance <var>position</var> to the next character in
-					<var>input</var>.
+						<dt><i title>Start</i>
+
+						<dd>
+
+							Do the following, depending on the value of <var>c</var>:
+
+							<dl class="switch">
+
+								<dt><a>Space character</a>
+
+								<dd>
+									If <var>current token</var> is not empty,
+									append <var>current token</var> to <var>descriptors</var>
+									and let <var>current token</var> be the empty string.
+									Set <var>state</var> to <i title>after token</i>.
+
+								<dt>U+002C COMMA (,)
+
+								<dd>
+									Advance <var>position</var> to the next character in <var>input</var>.
+									If <var>current token</var> is not empty,
+									append <var>current token</var> to <var>descriptors</var>.
+									Jump to the next step in this algorithm.
+
+								<dt>U+0028 LEFT PARANTHESIS (()
+
+								<dd>
+									Append <var>c</var> to <var>current token</var>.
+									Set <var>state</var> to <i title>in parens</i>.
+
+								<dt>EOF
+
+								<dd>
+									If <var>current token</var> is not empty,
+									append <var>current token</var> to <var>descriptors</var>.
+									Jump to the next step in this algorithm.
+
+								<dt>Anything else
+
+								<dd>
+									Append <var>c</var> to <var>current token</var>.
+
+							</dl>
+
+						<dt><i title>In parens</i>
+
+						<dd>
+
+							Do the following, depending on the value of <var>c</var>:
+
+							<dl class="switch">
+
+								<dt>U+0029 RIGHT PARENTHESIS ())
+
+								<dd>
+									Append <var>c</var> to <var>current token</var>.
+									Set <var>state</var> to <i title>start</i>.
+
+								<dt>EOF
+
+								<dd>
+									Append <var>current token</var> to <var>descriptors</var>.
+									Jump to the next step in this algorithm.
+
+								<dt>Anything else
+
+								<dd>
+									Append <var>c</var> to <var>current token</var>.
+
+							</dl>
+						</dd>
+
+						<dt><i title>After token</i>
+
+						<dd>
+
+							Do the following, depending on the value of <var>c</var>:
+
+							<dl class="switch">
+
+								<dt><a>Space character</a>
+
+								<dd>
+									Stay in this state.
+
+								<dt>EOF
+
+								<dd>
+									Jump to the next step in this algorithm.
+
+								<dt>Anything else
+
+								<dd>
+									Set <var>state</var> to <i title>start</i>.
+									Set <var>position</var> to the <em>previous</em> character in <var>input</var>.
+
+							</dl>
+						</dd>
+					</dl>
+
+					Advance <var>position</var> to the next character in <var>input</var>.
+					Repeat this step.
+
 			</ol>
 
 		<li>
 			Add <var>url</var> to <var>raw candidates</var>,
 			associated with <var>descriptors</var>.
-
-		<li>
-			If <var>position</var> is past the end of
-			<var>input</var>, then jump to the step labeled
-			<i title>descriptor parser</i>.
 
 		<li>
 			Return to the step labeled <i title>splitting loop</i>.
@@ -725,17 +817,10 @@ Parsing a <code>srcset</code> Attribute</h4>
 
 		<li>
 			For each entry in <var>raw candidates</var> with URL
-			<var>url</var> associated with the unparsed descriptors
-			<var>unparsed descriptors</var>, in the order they were
-			originally added to the list, run these substeps:
+			<var>url</var> associated with the unparsed descriptor list
+			<var>descriptor list</var>, run these substeps:
 
 			<ol>
-				<li>
-					Let <var>descriptor list</var> be the
-					result of
-					<a title="split a string on spaces">splitting
-					<var>unparsed descriptors</var> on
-					spaces</a>.
 
 				<li>
 					Let <var>error</var> be no.
