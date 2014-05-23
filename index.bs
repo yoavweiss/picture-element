@@ -651,7 +651,8 @@ Parsing a <code>srcset</code> Attribute</h4>
 			order in which entries are added to the lists.
 
 		<li>
-			<i title>Splitting loop</i>: <a>Skip whitespace</a>.
+			<i title>Splitting loop</i>: <a>Collect a sequence of characters</a> that are
+			<a>space characters</a> or U+002C COMMA characters.
 
 		<li>
 			If <var>position</var> is past the end of
