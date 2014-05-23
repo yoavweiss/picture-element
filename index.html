@@ -1414,8 +1414,9 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 									let <var>error</var> be <i title="">yes</i>.
 
 								<li>
-									Apply the <a data-link-type=dfn href=#dfn-rules-for-parsing-floating-point-number-values title="rules for parsing floating-point number values">rules for parsing floating-point number values</a> to the token. Let
-									<var>density</var> be the result.
+									Apply the <a data-link-type=dfn href=#dfn-rules-for-parsing-floating-point-number-values title="rules for parsing floating-point number values">rules for parsing floating-point number values</a> to the token.
+									If the result is less than zero, let <var>error</var> be <i title="">yes</i>.
+									Otherwise, let <var>density</var> be the result.
 							</ol>
 
 						<dt>If the token consists of a <a data-link-type=dfn href=#dfn-valid-non-negative-integer title="valid non-negative integer">valid non-negative integer</a>
