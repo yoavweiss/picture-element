@@ -243,8 +243,9 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   <p>A user agent that obtains images immediately must synchronously <span>update the image
   data</span> of an <code>img</code> element that has the
   <span data-x="img-parser-created">parser-created flag</span> set to true whenever that element is
-  inserted into a <code>Document</code>. A user agent that obtains images immediately must also synchronously
-  <span>update the image data</span> of an <code>img</code> element whenever that element has its
+  inserted into another <code>Node</code>. A user agent that obtains images immediately must also synchronously
+  <span>update the image data</span> of an <code>img</code> element whenever that element
+  is created and has the <span data-x="img-parser-created">parser-created flag</span> unset, or has its
   <code data-x="attr-img-src">src</code>, <code data-x="attr-img-srcset">srcset</code>, or <code
   data-x="attr-img-crossorigin">crossorigin</code> attribute set, changed, or removed, and whenever
   that element's <span data-x="concept-node-adopt-ext">adopting steps</span> are run.</p> <!-- Note
@@ -280,6 +281,9 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   will set the <span data-x="img-parser-created">parser-created flag</span> to true
   when they create an <code>img</code> element,
   both when parsing a fragment and when parsing a document.</p>
+
+  <p class="note">When an <code>img</code> element is <span data-x="concept-node-clone">cloned</span>,
+  the <span data-x="img-parser-created">parser-created flag</span> is <em>not</em> copied.</p>
 
   <p>Each <code>Document</code> object must have a <dfn>list of available images</dfn>. Each image
   in this list is identified by a tuple consisting of an <span>absolute URL</span>, a <span>CORS
@@ -318,13 +322,9 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    <li>
 
-    <p>If <var>parser-created</var> is true and
-    the element has a <code data-x="attr-img-srcset">srcset</code> attribute specified, then
-    let <var data-x="">selected source</var> and <var data-x="">selected pixel density</var> be the
-    URL and pixel density that results from <span>processing the image candidates</span>,
-    respectively.
-
-    Otherwise, if the element has a <code data-x="attr-img-src">src</code> attribute specified and
+    <p>If the element does not have a <code data-x="attr-img-srcset">srcset</code> attribute specified <!--XXX and
+    it does not have a parent or it has a parent but it is not a <code>picture</code> element,-->
+    and it has a <code data-x="attr-img-src">src</code> attribute specified and
     its value is not the empty string, let <var data-x="">selected source</var> be the value of the
     element's <code data-x="attr-img-src">src</code> attribute, and <var data-x="">selected pixel
     density</var> be 1.0. Otherwise, let <var data-x="">selected source</var> be null and <var
@@ -381,10 +381,31 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    <li>
 
-    <p>&#x231B; If <var data-x="">selected source</var> is null, then set the element to the <span
-    data-x="img-error">broken</span> state, <span>queue a task</span> to <span>fire a simple
-    event</span> named <code data-x="event-error">error</code> at the <code>img</code> element, and
-    abort these steps.</p>
+    <p>&#x231B; If the element has a <code data-x="attr-img-srcset">srcset</code> attribute specified<!--
+    XXX or it has a parent that is a <code>picture</code> element-->, then
+    let <var data-x="">selected source</var> and <var data-x="">selected pixel density</var> be the
+    URL and pixel density that results from <span>processing the image candidates</span>,
+    respectively.
+
+   </li>
+
+   <li>
+
+    <p>&#x231B; If <var data-x="">selected source</var> is null, run these substeps:</p>
+
+    <ol>
+
+     <li><p>&#x231B; Set the element to the <span data-x="img-error">broken</span> state.</p></li>
+
+		 <li><p>&#x231B; If the element has a <code data-x="attr-img-src">src</code> attribute
+		 or a <code data-x="attr-img-srcset">srcset</code> attribute<!-- XXX
+		 or a parent that is a <code>picture</code> element-->,
+		 <span>queue a task</span> to <span>fire a simple
+		 event</span> named <code data-x="event-error">error</code> at the <code>img</code> element
+
+		 <li><p>&#x231B; Abort this algorithm.</p></li>
+
+    </ol>
 
    </li>
 
