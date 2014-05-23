@@ -719,7 +719,7 @@ Parsing a <code>srcset</code> Attribute</h4>
 									Advance <var>position</var> to the next character in <var>input</var>.
 									If <var>current token</var> is not empty,
 									append <var>current token</var> to <var>descriptors</var>.
-									Jump to the next step in this algorithm.
+									Jump to the step labeled <i title>add candidate</i>.
 
 								<dt>U+0028 LEFT PARANTHESIS (()
 
@@ -732,7 +732,7 @@ Parsing a <code>srcset</code> Attribute</h4>
 								<dd>
 									If <var>current token</var> is not empty,
 									append <var>current token</var> to <var>descriptors</var>.
-									Jump to the next step in this algorithm.
+									Jump to the step labeled <i title>add candidate</i>.
 
 								<dt>Anything else
 
@@ -759,7 +759,7 @@ Parsing a <code>srcset</code> Attribute</h4>
 
 								<dd>
 									Append <var>current token</var> to <var>descriptors</var>.
-									Jump to the next step in this algorithm.
+									Jump to the step labeled <i title>add candidate</i>.
 
 								<dt>Anything else
 
@@ -785,7 +785,7 @@ Parsing a <code>srcset</code> Attribute</h4>
 								<dt>EOF
 
 								<dd>
-									Jump to the next step in this algorithm.
+									Jump to the step labeled <i title>add candidate</i>.
 
 								<dt>Anything else
 
@@ -803,7 +803,7 @@ Parsing a <code>srcset</code> Attribute</h4>
 			</ol>
 
 		<li>
-			Add <var>url</var> to <var>raw candidates</var>,
+			<i title>Add candidate</i>: Add <var>url</var> to <var>raw candidates</var>,
 			associated with <var>descriptors</var>.
 
 		<li>
