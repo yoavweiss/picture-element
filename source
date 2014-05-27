@@ -397,13 +397,13 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
      <li><p>&#x231B; Set the element to the <span data-x="img-error">broken</span> state.</p></li>
 
-		 <li><p>&#x231B; If the element has a <code data-x="attr-img-src">src</code> attribute
-		 or a <code data-x="attr-img-srcset">srcset</code> attribute<!-- XXX
-		 or a parent that is a <code>picture</code> element-->,
-		 <span>queue a task</span> to <span>fire a simple
-		 event</span> named <code data-x="event-error">error</code> at the <code>img</code> element
+     <li><p>&#x231B; If the element has a <code data-x="attr-img-src">src</code> attribute
+     or a <code data-x="attr-img-srcset">srcset</code> attribute<!-- XXX
+     or a parent that is a <code>picture</code> element-->,
+     <span>queue a task</span> to <span>fire a simple
+     event</span> named <code data-x="event-error">error</code> at the <code>img</code> element
 
-		 <li><p>&#x231B; Abort this algorithm.</p></li>
+     <li><p>&#x231B; Abort this algorithm.</p></li>
 
     </ol>
 
