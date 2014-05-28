@@ -552,14 +552,14 @@ span.issue, span.note {
 </p>
   <h1 class="p-name no-ref" id=title>The picture Element</h1>
   <h2 class="no-num no-toc no-ref heading settled heading" id=subtitle><span class=content>Editor’s Draft,
-    <span class=dt-updated><span class=value-title title=20140523>23 May 2014</span></span></span></h2>
+    <span class=dt-updated><span class=value-title title=20140528>28 May 2014</span></span></span></h2>
   <div data-fill-with=spec-metadata><dl><dt>This version:<dd><a class=u-url href=http://picture.responsiveimages.org>http://picture.responsiveimages.org</a><dt>Editor’s Draft:<dd><a href=http://picture.responsiveimages.org>http://picture.responsiveimages.org</a><dt>Test Suite:<dd>None Yet<dt>Editors:
-<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://xanthir.com/contact/>Tab Atkins</a> (<span class="p-org org">Google</span>)<dd class="p-author h-card vcard"><span class="p-name fn">Marcos Cáceres</span> (<span class="p-org org">Mozilla</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://matmarquis.com/>Mat Marquis</a><dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://blog.yoav.ws/>Yoav Weiss</a><dd class="p-author h-card vcard"><a class="p-name fn u-email email" href=mailto:simonp@opera.com>Simon Pieters</a> (<span class="p-org org">Opera Software</span>)<dt>Version History:<dd><a href=https://github.com/ResponsiveImagesCG/picture-element/commits/gh-pages>Commit History</a><dd><a href=https://twitter.com/respimg_commits>Github commits on Twitter</a><dt>Participate:<dd><a href=http://w3c.responsiveimages.org>Join the Responsive Images Community Group</a><dd><a href=http://list.responsiveimages.org>Public Mailing List</a><dd><a href=irc://irc.w3.org:6665/#respimg>IRC: #respimg on W3C’s IRC</a><dd><a href=https://twitter.com/respimg>Twitter</a><dd><a href=https://github.com/ResponsiveImagesCG/picture-element>Github</a></dl></div>
+<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://xanthir.com/contact/>Tab Atkins</a> (<span class="p-org org">Google</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-email email" href=mailto:simonp@opera.com>Simon Pieters</a> (<span class="p-org org">Opera Software</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://blog.yoav.ws/>Yoav Weiss</a><dd class="p-author h-card vcard"><span class="p-name fn">Marcos Cáceres</span> (<span class="p-org org">Mozilla</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://matmarquis.com/>Mat Marquis</a><dt>Version History:<dd><a href=https://github.com/ResponsiveImagesCG/picture-element/commits/gh-pages>Commit History</a><dd><a href=https://twitter.com/respimg_commits>Github commits on Twitter</a><dt>Participate:<dd><a href=http://w3c.responsiveimages.org>Join the Responsive Images Community Group</a><dd><a href=http://list.responsiveimages.org>Public Mailing List</a><dd><a href=irc://irc.w3.org:6665/#respimg>IRC: #respimg on W3C’s IRC</a><dd><a href=https://twitter.com/respimg>Twitter</a><dd><a href=https://github.com/ResponsiveImagesCG/picture-element>Github</a></dl></div>
   <div data-fill-with=warning></div>
   <p class=copyright data-fill-with=copyright><a href=http://creativecommons.org/publicdomain/zero/1.0/ rel=license><img alt=CC0 src=http://i.creativecommons.org/p/zero/1.0/80x15.png></a>
 To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 23 May 2014,
+In addition, as of 28 May 2014,
 the editors have made this specification available under the
 <a href=http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0 rel=license>Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
@@ -606,39 +606,40 @@ Parts of this work may be from another specification document.  If so, those par
 
 
 
+
 <h2 class="heading settled heading" data-level=1 id=intro><span class=secno>1 </span><span class=content>
 Introduction</span><a class=self-link href=#intro></a></h2>
 
-<p>	This specification provides developers with a means to declare multiple versions of an image at different resolutions,
+<p>This specification provides developers with a means to declare multiple versions of an image at different resolutions,
 	and, through <a data-biblio-type=normative data-link-type=biblio href=#mediaq title=mediaq>[MEDIAQ]</a> (<cite>CSS Media Queries</cite>),
 	a means to create specialized presentations of an image and control when they are presented to a user.
 	This is achieved by introducing the <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element to HTML,
-	and by enhancing the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element to support specifying multiple source urls.
+	and by enhancing the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element to support specifying multiple source urls.</p>
 
-<p>	By relying on <a data-biblio-type=normative data-link-type=biblio href=#mediaq title=mediaq>[MEDIAQ]</a>, a user agent can <em>respond</em> to changes in the browsing environment
+<p>By relying on <a data-biblio-type=normative data-link-type=biblio href=#mediaq title=mediaq>[MEDIAQ]</a>, a user agent can <em>respond</em> to changes in the browsing environment
 	by selecting the image source that most closely matches the browsing environment –
 	thus embodying a technique known as <a href=http://en.wikipedia.org/wiki/Responsive_web_design>responsive web design</a> directly in the HTML markup.
 	<a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-feature title="media features">Media features</a> that a user agent can potentially respond to include, but are not limited to,
 	pixel widths and heights,
 	and pixel densities,
 	as well as environmental lighting conditions, changes in orientation,
-	and changes in media type such as going from screen to print.
+	and changes in media type such as going from screen to print.</p>
 
-<p>	The <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element remains backwards compatible with legacy user agents
+<p>The <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element remains backwards compatible with legacy user agents
 	(they will use the child <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element)
-	while offering the same accessibility options as the existing <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element.
+	while offering the same accessibility options as the existing <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element.</p>
 
 
 <h3 class="heading settled heading" data-level=1.1 id=when-to-use><span class=secno>1.1 </span><span class=content>
 When to use <code>picture</code></span><a class=self-link href=#when-to-use></a></h3>
 
-<p>	The <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element should be used when an image source exists in multiple densities,
-	or when a responsive design dictates a somewhat different image on some types of screens (“art direction”).
+<p>The <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element should be used when an image source exists in multiple densities,
+	or when a responsive design dictates a somewhat different image on some types of screens (“art direction”).</p>
 
-<p>	The <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element is not a general replacement for the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element.
+<p>The <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element is not a general replacement for the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element.
 	When there is only a single image source,
 	authors should just use the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element as usual,
-	rather than cluttering their page with additional unnecessary syntax.
+	rather than cluttering their page with additional unnecessary syntax.</p>
 
 
 <h3 class="heading settled heading" data-level=1.2 id=examples><span class=secno>1.2 </span><span class=content>
@@ -654,26 +655,28 @@ Examples of usage</span><a class=self-link href=#examples></a></h3>
         src="pic1x.jpg" width="500" height="500"&gt;
   &lt;/picture&gt;
 </pre>
-<p>		In this example, the user agent will choose one of the three URLs—<wbr>“pic1x.jpg”, “pic2x.jpg”, or “pic4x.jpg”—<wbr>depending on whether the quality of the user’s screen
+
+<p>In this example, the user agent will choose one of the three URLs—<wbr>“pic1x.jpg”, “pic2x.jpg”, or “pic4x.jpg”—<wbr>depending on whether the quality of the user’s screen
 		and perhaps other factors,
-		such as the user’s bandwidth.
+		such as the user’s bandwidth.</p>
 
-<p>		It will then load the chosen URL in the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> child,
-		as if it were specified in the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element’s own <a data-link-for=img data-link-type=element-attr title=src>src</a> attribute.
+<p>It will then load the chosen URL in the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> child,
+		as if it were specified in the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element’s own <a data-link-for=img data-link-type=element-attr title=src>src</a> attribute.</p>
 
-<p>		For backwards compatibility with older user agents that don’t yet understand the <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element,
+<p>For backwards compatibility with older user agents that don’t yet understand the <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element,
 		one of the URLs is duplicated in the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element’s <a data-link-type=element-attr href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#attr-img-src title=src>src</a> attribute.
 		This is ignored in modern user agents,
 		but will result in something useful
 		(though perhaps lower-resolution than the user would like)
-		being displayed even in older user agents.
+		being displayed even in older user agents.</p>
 
-<p>		Alternately, because this example uses only a single <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element
+<p>Alternately, because this example uses only a single <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element
 		and none of the more advanced attributes,
-		it can be rewritten to use only <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a>:
+		it can be rewritten to use only <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a>:</p>
 
 		<pre>&lt;img alt="A rad wolf" srcset="pic1x.jpg 1x, pic2x.jpg 2x, pic4x.jpg 4x"
-                      src="pix1x.jpg" width="500" height="500"&gt;</pre>	</div>
+                      src="pix1x.jpg" width="500" height="500"&gt;</pre>
+	</div>
 
 	<div class=example id=example-2><a class=self-link href=#example-2></a>
 		When doing responsive design,
@@ -691,10 +694,11 @@ Examples of usage</span><a class=self-link href=#examples></a></h3>
     &lt;img src="small.jpg" alt="The president giving an award."&gt;
   &lt;/picture&gt;
 </pre>
-<p>		In this example, depending on the user’s screen size,
+
+<p>In this example, depending on the user’s screen size,
 		one of the URLs will be downloaded.
 		For example, on a large desktop screen “large.jpg” will be displayed in the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element.
-	</div>
+	</div><p></p>
 
 	<div class=example id=example-3><a class=self-link href=#example-3></a>
 		Of course, one can use both multiple <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> elements
@@ -707,12 +711,13 @@ Examples of usage</span><a class=self-link href=#examples></a></h3>
     &lt;img src="small-1.jpg" alt="The president giving an award."&gt;
   &lt;/picture&gt;
 </pre>
-<p>		In this example,
+
+<p>In this example,
 		the user agent first chooses which set of sources to look at,
 		depending on the size of the user’s screen.
 		Then it chooses which of the different-density sources to load,
 		based on information it knows about the user’s device.
-	</div>
+	</div><p></p>
 
 	<div class=example id=example-4><a class=self-link href=#example-4></a>
 		If the final size of the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element isn’t known ahead of time,
@@ -723,39 +728,40 @@ Examples of usage</span><a class=self-link href=#examples></a></h3>
 		approximately <span class=css data-link-type=maybe title=1x>1x</span> on a larger tablet display,
 		and less than <span class=css data-link-type=maybe title=1x>1x</span> on a large desktop monitor.
 
-<p>		To help with this,
+<p>To help with this,
 		rather than specifying the densities of each image source,
 		the sizes of each image source can be specified directly,
 		along with the size of the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element.
 		The user agent will then automatically calculate the effective pixel density of the image
-		and choose which one to download accordingly.
+		and choose which one to download accordingly.</p>
 
 		<pre>  &lt;picture&gt;
     &lt;source sizes="100vw" srcset="pic400.jpg 400w, pic800.jpg 800w, pic1600.jpg 1600w"&gt;
     &lt;img src="pic400.jpg" alt="The president giving an award."&gt;
   &lt;/picture&gt;
 </pre>
-<p>		In this example, the image source is provided at three sizes—<wbr>400 pixels wide, 800 pixels wide, and 1600 pixels wide.
+
+<p>In this example, the image source is provided at three sizes—<wbr>400 pixels wide, 800 pixels wide, and 1600 pixels wide.
 		As well, it declares that the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element is intrinsically sized to be as wide as the entire viewport.
 		If the user’s device is <span class=css data-link-type=maybe title=320px>320px</span> wide,
 		this is equivalent to specifying <span class=css data-link-type=maybe title="pic400.jpg 1.25x, pic800.jpg 2.5x, pic1600.jpg 5x">pic400.jpg 1.25x, pic800.jpg 2.5x, pic1600.jpg 5x</span>.
 		On the other hand,
 		if the user’s device is <span class=css data-link-type=maybe title=1200px>1200px</span> wide,
-		this is equivalent to specifying <span class=css data-link-type=maybe title="pic400.jpg .33x, pic800.jpg .67x, pic1600.jpg 1.33x">pic400.jpg .33x, pic800.jpg .67x, pic1600.jpg 1.33x</span>.
+		this is equivalent to specifying <span class=css data-link-type=maybe title="pic400.jpg .33x, pic800.jpg .67x, pic1600.jpg 1.33x">pic400.jpg .33x, pic800.jpg .67x, pic1600.jpg 1.33x</span>.</p>
 
-<p>		With this information,
+<p>With this information,
 		the user agent can choose the correct image source to download
 		regardless of how large the user’s device is.
-	</div>
+	</div><p></p>
 
 	<div class=example id=example-5><a class=self-link href=#example-5></a>
 		The previous example showed how to deal with the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element’s size being unpredictable
 		because it was a fraction of the viewport’s size.
 		Sometimes, though, the size of an image can also change based on a site’s layout breakpoints.
 
-<p>		For example, say your site had three basic layouts:
+<p>For example, say your site had three basic layouts:</p>
 
-		</p><figure>
+		<figure>
 			<img src=images/viewport_selection_mob_first.jpg>
 			<figcaption>
 				Single-column (100%) on small screens,
@@ -764,10 +770,10 @@ Examples of usage</span><a class=self-link href=#examples></a></h3>
 			</figcaption>
 		</figure>
 
-<p>		Assuming that the same image is supposed to be used at all of these layouts
+<p>Assuming that the same image is supposed to be used at all of these layouts
 		(that is, you aren’t doing <a data-link-type=dfn href=http://usecases.responsiveimages.org/#art-direction title="art direction">art direction</a> cropping to optimize the display of the image for a given size),
 		then all of these cases can be addressed by a handful of images at various sizes.
-		In that case, the following code specifies the image’s display:
+		In that case, the following code specifies the image’s display:</p>
 
 		<pre>  &lt;picture&gt;
     &lt;source sizes="(max-width: 30em) 100vw, (max-width: 50em) 50vw, calc(33vw - 100px)"
@@ -776,23 +782,24 @@ Examples of usage</span><a class=self-link href=#examples></a></h3>
     &lt;img src="pic400.jpg" alt="The president giving an award."&gt;
   &lt;/picture&gt;
 </pre>
-<p>		The <a data-link-for=source data-link-type=element-attr href=#element-attrdef-sizes0 title=sizes>sizes</a> attribute sets up the layout breakpoints at <span class=css data-link-type=maybe title=30em>30em</span> and <span class=css data-link-type=maybe title=50em>50em</span>,
-		and declares the image sizes between these breakpoints to be <span class=css data-link-type=maybe title=100vw>100vw</span>, <span class=css data-link-type=maybe title=50vw>50vw</span>, or <span class=css data-link-type=maybe title="calc(33vw - 100px)">calc(33vw - 100px)</span>.
 
-<p>		The six image sources provided automatically cover every reasonable possibility.
+<p>The <a data-link-for=source data-link-type=element-attr href=#element-attrdef-sizes0 title=sizes>sizes</a> attribute sets up the layout breakpoints at <span class=css data-link-type=maybe title=30em>30em</span> and <span class=css data-link-type=maybe title=50em>50em</span>,
+		and declares the image sizes between these breakpoints to be <span class=css data-link-type=maybe title=100vw>100vw</span>, <span class=css data-link-type=maybe title=50vw>50vw</span>, or <span class=css data-link-type=maybe title="calc(33vw - 100px)">calc(33vw - 100px)</span>.</p>
+
+<p>The six image sources provided automatically cover every reasonable possibility.
 		For small screens (phone size, or even smaller, like watches),
 		anything from the 100 pixel wide image to the 800 pixel wide image may be downloaded,
 		depending on screen size and density.
 		For medium and large screens,
 		anything from the 400 pixel wide image and up may be chosen.
 		The author doesn’t have to do any math or complex figuring,
-		just provide the image in enough sizes to cover everything they believe reasonable.
+		just provide the image in enough sizes to cover everything they believe reasonable.</p>
 
-<p>		Specifying this information with multiple <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> elements,
+<p>Specifying this information with multiple <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> elements,
 		one for each of the <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-query title="media queries">media queries</a>,
 		is possible, but much more verbose,
 		as the <a data-link-for=source data-link-type=element-attr href=#element-attrdef-srcset title=srcset>srcset</a> attributes have to be duplicated for each of them.
-	</div>
+	</div><p></p>
 
 	<div class=example id=example-6><a class=self-link href=#example-6></a>
 		This example shows how picture and other HTML elements can be used
@@ -806,7 +813,8 @@ Examples of usage</span><a class=self-link href=#examples></a></h3>
       &lt;/picture&gt;
       &lt;figcaption&gt;A figure of a fox jumping over a lazy box.&lt;/figcaption&gt;
   &lt;/figure&gt;
-</pre>	</div>
+</pre>
+	</div>
 
 	<div class=example id=example-7><a class=self-link href=#example-7></a>
 		The <a data-link-for=img data-link-type=element-attr title=srcset>srcset</a> and <a data-link-for=img data-link-type=element-attr href=#element-attrdef-sizes title=sizes>sizes</a> attributes can
@@ -816,9 +824,10 @@ Examples of usage</span><a class=self-link href=#examples></a></h3>
 		<pre>  &lt;img src="pic400.jpg" alt="The president giving an award." sizes="100vw"
       srcset="pic400.jpg 400w, pic800.jpg 800w, pic1600.jpg 1600w"&gt;
 </pre>
-<p>		In this example, the <a data-link-for=img data-link-type=element-attr href=#element-attrdef-sizes title=sizes>sizes</a> attribute could also be removed,
+
+<p>In this example, the <a data-link-for=img data-link-type=element-attr href=#element-attrdef-sizes title=sizes>sizes</a> attribute could also be removed,
 		since the default value is <span class=css data-link-type=maybe title=100vw>100vw</span>.
-	</div>
+	</div><p></p>
 
 	<div class=example id=example-8><a class=self-link href=#example-8></a>
 		The <a data-link-type=element-attr href=#element-attrdef-type title=type>type</a> attribute can be used to serve images of
@@ -830,7 +839,8 @@ Examples of usage</span><a class=self-link href=#examples></a></h3>
       &lt;img src="dogs-1.jpg" srcset="dogs-2.jpg 2x" alt="Hundreds of hot dogs" width="600" height="200"&gt;
     &lt;/picture&gt;
 </pre>
-<p>		In this example, the user agent will choose the first source that has a
+
+<p>In this example, the user agent will choose the first source that has a
 		<a data-link-type=element-attr href=#element-attrdef-type title=type>type</a> attribute with a supported MIME type. If the
 		user agent supports WebP images, the first <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element
 		will be chosen. If not, but the user agent does support JPEG XR images,
@@ -838,12 +848,12 @@ Examples of usage</span><a class=self-link href=#examples></a></h3>
 		those formats are supported, the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element will be
 		chosen. Then, the user agent chooses which of the different-density
 		sources to load, based on information it knows about the user’s device.
-	</div>
+	</div><p></p>
 
 <h3 class="heading settled heading" data-level=1.3 id=relationship-to-srcset><span class=secno>1.3 </span><span class=content>
 Relationship to <code>srcset</code></span><a class=self-link href=#relationship-to-srcset></a></h3>
 
-<p>	The <code>srcset</code> attribute allows authors to define various
+	The <code>srcset</code> attribute allows authors to define various
 	image resources and “hints” that assist a user agent in determining
 	the most appropriate image source to display. Given a set of image
 	resources, the user agent has the option of either following or
@@ -852,7 +862,7 @@ Relationship to <code>srcset</code></span><a class=self-link href=#relationship-
 	display density</a>, network connection type, user preferences, and
 	so on.
 
-<p>	The <code>picture</code> element defines conditions under which the
+	The <code>picture</code> element defines conditions under which the
 	user agent needs to follow the author’s explicit instructions when
 	selecting which resource to display. This includes image sources with
 	inherent sizes designed to align with layout variations specified in
@@ -862,22 +872,22 @@ Relationship to <code>srcset</code></span><a class=self-link href=#relationship-
 	(i.e., <a href=http://usecases.responsiveimages.org/#art-direction><q>art
 	direction</q></a>) based on the client’s viewport.
 
-<p>	The proposed solutions are not mutually exclusive. They work together
+<p>The proposed solutions are not mutually exclusive. They work together
 	to address the complete set of <a href=http://usecases.responsiveimages.org/>use cases and requirements
-	for responsive images</a> (see <a data-biblio-type=normative data-link-type=biblio href=#respimg-usecases title=respimg-usecases>[respimg-usecases]</a>).
+	for responsive images</a> (see <a data-biblio-type=normative data-link-type=biblio href=#respimg-usecases title=respimg-usecases>[respimg-usecases]</a>).</p>
 
-<p>	Furthermore, this specification <a href=#parse-srcset-attr>extends the <code>srcset</code> attribute</a>
+	Furthermore, this specification <a href=#parse-srcset-attr>extends the <code>srcset</code> attribute</a>
 	to adequately address the <a href=http://usecases.responsiveimages.org/#h3_viewport-based-selection>viewport based selection</a> use case.
 
 <h2 class="heading settled heading" data-level=2 id=defs><span class=secno>2 </span><span class=content>
 Definitions</span><a class=self-link href=#defs></a></h2>
 
-<p>	The following terms are used throughout this specification so they are
+<p>The following terms are used throughout this specification so they are
 	gathered here for the readers convenience. The following list of terms
 	is not exhaustive; other terms are defined throughout this
-	specification.
+	specification.</p>
 
-<p>	The following terms are defined by the <a data-biblio-type=normative data-link-type=biblio href=#html title=html>[HTML]</a> specification:
+<p>The following terms are defined by the <a data-biblio-type=normative data-link-type=biblio href=#html title=html>[HTML]</a> specification:
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-skip-whitespace>skip whitespace<a class=self-link href=#dfn-skip-whitespace></a></dfn>,
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-collect-a-sequence-of-characters>collect a sequence of characters<a class=self-link href=#dfn-collect-a-sequence-of-characters></a></dfn>,
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-space-character>space character<a class=self-link href=#dfn-space-character></a></dfn>,
@@ -890,44 +900,45 @@ Definitions</span><a class=self-link href=#defs></a></h2>
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-update-the-image-data><a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/embedded-content-1.html#update-the-image-data>update the image data</a><a class=self-link href=#dfn-update-the-image-data></a></dfn>,
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-valid-media-query><a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/common-microsyntaxes.html#valid-media-query>valid media query</a><a class=self-link href=#dfn-valid-media-query></a></dfn>,
 	and
-	<dfn data-dfn-type=dfn data-noexport="" id=dfn-current-pixel-density>current pixel density<a class=self-link href=#dfn-current-pixel-density></a></dfn>.
+	<dfn data-dfn-type=dfn data-noexport="" id=dfn-current-pixel-density>current pixel density<a class=self-link href=#dfn-current-pixel-density></a></dfn>.</p>
 
 
 <h2 class="heading settled heading" data-level=3 id=the-picture-element><span class=secno>3 </span><span class=content>
 The <a data-link-type=element href=#elementdef-picture title=picture>picture</a> Element</span><a class=self-link href=#the-picture-element></a></h2>
 
 <table class="definition elementdef"><tr><th>Name:<td><dfn data-dfn-type=element data-export="" id=elementdef-picture>picture<a class=self-link href=#elementdef-picture></a></dfn><tr><th>Categories:<td>Flow content, Phrasing content, Embedded content, Palpable content<tr><th>Contexts:<td>Where embedded content is expected<tr><th>Content model:<td>Zero or more <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> elements, followed by one <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element, optionally intermixed with script-supporting elements.<tr><th>Attributes:<td>Global attributes</table>
-<p>	The <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element is a container which provides multiples sources to its contained <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element,
-	allowing the displayed image to vary based on the density of the screen
-	or other environmental factors expressed as <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-query title="media queries">media queries</a>.
 
-<p class=note>	Note: <a data-link-type=element href=#elementdef-picture title=picture>picture</a> is somewhat different from the similar-looking elements <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#video title=video>video</a> and <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#audio title=audio>audio</a>.
+<p>The <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element is a container which provides multiples sources to its contained <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element,
+	allowing the displayed image to vary based on the density of the screen
+	or other environmental factors expressed as <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-query title="media queries">media queries</a>.</p>
+
+<p class=note>Note: <a data-link-type=element href=#elementdef-picture title=picture>picture</a> is somewhat different from the similar-looking elements <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#video title=video>video</a> and <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#audio title=audio>audio</a>.
 	While all of them contain <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> elements,
 	the <a data-link-for=source data-link-type=element-attr title=src>src</a> attribute has no meaning when the element is nested within <a data-link-type=element href=#elementdef-picture title=picture>picture</a>,
 	and the resource selection algorithm is different.
 	As well,
 	the <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element itself does not display anything;
 	it merely provides a context for its contained <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a>
-	that enables it to choose from multiple source urls.
+	that enables it to choose from multiple source urls.</p>
 
-<p>	An <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element is associated with a <a data-link-type=dfn href=#source-set title="source set">source set</a>.
+<p>An <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element is associated with a <a data-link-type=dfn href=#source-set title="source set">source set</a>.</p>
 
-<p>	A <dfn data-dfn-type=dfn data-export="" id=source-set>source set<a class=self-link href=#source-set></a></dfn> is a set of zero or more <a data-link-type=dfn href=#image-source title="image sources">image sources</a>,
+<p>A <dfn data-dfn-type=dfn data-export="" id=source-set>source set<a class=self-link href=#source-set></a></dfn> is a set of zero or more <a data-link-type=dfn href=#image-source title="image sources">image sources</a>,
 	a <a data-link-type=dfn href=#source-size title="source size">source size</a>,
-	and optionally a <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-query title="media query">media query</a>.
+	and optionally a <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-query title="media query">media query</a>.</p>
 
-<p>	An <dfn data-dfn-type=dfn data-export="" id=image-source>image source<a class=self-link href=#image-source></a></dfn> is a URL,
+<p>An <dfn data-dfn-type=dfn data-export="" id=image-source>image source<a class=self-link href=#image-source></a></dfn> is a URL,
 	and optionally either a density descriptor,
-	or a width descriptor.
+	or a width descriptor.</p>
 
-<p>	A <dfn data-dfn-type=dfn data-export="" id=source-size>source size<a class=self-link href=#source-size></a></dfn> is a <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>.
+<p>A <dfn data-dfn-type=dfn data-export="" id=source-size>source size<a class=self-link href=#source-size></a></dfn> is a <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>.
 	When a <a data-link-type=dfn href=#source-size title="source size">source size</a> has a unit relative to the viewport,
 	it must be interpreted relative to the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element’s document’s viewport.
-	Other units must be interpreted the same as in media queries. <a data-biblio-type=normative data-link-type=biblio href=#mediaq title=mediaq>[MEDIAQ]</a>
+	Other units must be interpreted the same as in media queries. <a data-biblio-type=normative data-link-type=biblio href=#mediaq title=mediaq>[MEDIAQ]</a></p>
 
-<p>	The <dfn data-dfn-type=dfn data-noexport="" id=relevant-mutations>relevant mutations<a class=self-link href=#relevant-mutations></a></dfn> for an <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element are as follows:
+<p>The <dfn data-dfn-type=dfn data-noexport="" id=relevant-mutations>relevant mutations<a class=self-link href=#relevant-mutations></a></dfn> for an <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element are as follows:</p>
 
-<p>	<ul>
+	<ul>
 		<li>
 			The element’s <a data-link-for=img data-link-type=element-attr title=src>src</a>,
 			<a data-link-for=img data-link-type=element-attr title=srcset>srcset</a>,
@@ -959,9 +970,9 @@ The <a data-link-type=element href=#elementdef-picture title=picture>picture</a>
 			set, changed, or removed.
 	</ul>
 
-<p class=note>	Note: User agents are expected to have limits in how big images can be
+<p class=note>Note: User agents are expected to have limits in how big images can be
 	rendered, which is allowed by HTML’s
-	<a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#hardwareLimitations>hardware limitations</a> clause. <a data-biblio-type=informative data-link-type=biblio href=#html title=html>[HTML]</a>
+	<a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#hardwareLimitations>hardware limitations</a> clause. <a data-biblio-type=informative data-link-type=biblio href=#html title=html>[HTML]</a></p>
 
 <h3 class="heading settled heading" data-level=3.1 id=algos><span class=secno>3.1 </span><span class=content>
 Sub-Algorithms</span><a class=self-link href=#algos></a></h3>
@@ -969,7 +980,7 @@ Sub-Algorithms</span><a class=self-link href=#algos></a></h3>
 <h4 class="heading settled heading" data-level=3.1.1 id=select-image-source><span class=secno>3.1.1 </span><span class=content>
 Selecting an Image Source</span><a class=self-link href=#select-image-source></a></h4>
 
-	<div class="issue monkey-patch" id=issue-58bdc3bf><a class=self-link href=#issue-58bdc3bf></a>
+	<div class="issue monkey-patch" id=issue-89de0bb6><a class=self-link href=#issue-89de0bb6></a>
 		In the HTML spec, in the algorithm <a data-link-type=dfn href=#dfn-update-the-image-data title="update the image data">update the image data</a>,
 		replace the whole step that calls "processing the image
 		candidates" with the following step:
@@ -982,12 +993,12 @@ Selecting an Image Source</span><a class=self-link href=#select-image-source></a
 				<a data-link-type=dfn href=#select-an-image-source title="select an image source">selecting an image source</a>.
 		</ol>
 
-<p>		Also in the HTML spec, in the algorithm "The user agent may at
+<p>Also in the HTML spec, in the algorithm "The user agent may at
 		any time run the following algorithm to update an
 		<a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element’s image in order to react to changes
-		in the environment.", make the following changes:
+		in the environment.", make the following changes:</p>
 
-<p>		<ul>
+		<ul>
 			<li>
 				Remove "does not have a srcset attribute
 				specified,"
@@ -1004,9 +1015,9 @@ Selecting an Image Source</span><a class=self-link href=#select-image-source></a
 				element has experienced <a data-link-type=dfn href=#relevant-mutations title="relevant mutations">relevant mutations</a>"
 		</ul>
 
-<p>		While at it, do the following changes elsewhere in the HTML spec:
+<p>While at it, do the following changes elsewhere in the HTML spec:</p>
 
-<p>		<ul>
+		<ul>
 			<li>
 				Replace "A user agent that obtains images
 				immediately must also synchronously update the
@@ -1042,8 +1053,8 @@ Selecting an Image Source</span><a class=self-link href=#select-image-source></a
 		</ul>
 	</div>
 
-<p>	When asked to <dfn data-dfn-type=dfn data-noexport="" id=select-an-image-source>select an image source<a class=self-link href=#select-an-image-source></a></dfn> for a given <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element <var>el</var>,
-	user agents must do the following:
+<p>When asked to <dfn data-dfn-type=dfn data-noexport="" id=select-an-image-source>select an image source<a class=self-link href=#select-an-image-source></a></dfn> for a given <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element <var>el</var>,
+	user agents must do the following:</p>
 
 	<ol>
 		<li>
@@ -1076,8 +1087,8 @@ Selecting an Image Source</span><a class=self-link href=#select-image-source></a
 <h4 class="heading settled heading" data-level=3.1.2 id=update-source-set><span class=secno>3.1.2 </span><span class=content>
 Updating the Source Set</span><a class=self-link href=#update-source-set></a></h4>
 
-<p>	When asked to <dfn data-dfn-type=dfn data-noexport="" id=update-the-source-set>update the source set<a class=self-link href=#update-the-source-set></a></dfn> for a given <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element <var>el</var>,
-	user agents must do the following:
+<p>When asked to <dfn data-dfn-type=dfn data-noexport="" id=update-the-source-set>update the source set<a class=self-link href=#update-the-source-set></a></dfn> for a given <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element <var>el</var>,
+	user agents must do the following:</p>
 
 	<ol>
 		<li>
@@ -1175,8 +1186,8 @@ Updating the Source Set</span><a class=self-link href=#update-source-set></a></h
 <h4 class="heading settled heading" data-level=3.1.3 id=parse-srcset-attr><span class=secno>3.1.3 </span><span class=content>
 Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-srcset-attr></a></h4>
 
-<p>	When asked to <dfn data-dfn-type=dfn data-noexport="" id=parse-a-srcset-attribute title="parse a srcset attribute|parse its srcset attribute">parse a srcset attribute<a class=self-link href=#parse-a-srcset-attribute></a></dfn> from an element,
-	parse the value of the element’s <code>srcset</code> attribute as follows:
+<p>When asked to <dfn data-dfn-type=dfn data-noexport="" id=parse-a-srcset-attribute title="parse a srcset attribute|parse its srcset attribute">parse a srcset attribute<a class=self-link href=#parse-a-srcset-attribute></a></dfn> from an element,
+	parse the value of the element’s <code>srcset</code> attribute as follows:</p>
 
 	<ol>
 		<li>
@@ -1224,8 +1235,8 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 
 			</ol>
 
-<p>			Otherwise,
-			follow these substeps:
+<p>Otherwise,
+			follow these substeps:</p>
 
 			<ol>
 
@@ -1246,7 +1257,7 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 
 						<dd>
 
-<p>							Do the following, depending on the value of <var>c</var>:
+<p>Do the following, depending on the value of <var>c</var>:</p>
 
 							<dl class=switch>
 
@@ -1290,7 +1301,7 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 
 						<dd>
 
-<p>							Do the following, depending on the value of <var>c</var>:
+<p>Do the following, depending on the value of <var>c</var>:</p>
 
 							<dl class=switch>
 
@@ -1318,7 +1329,7 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 
 						<dd>
 
-<p>							Do the following, depending on the value of <var>c</var>:
+<p>Do the following, depending on the value of <var>c</var>:</p>
 
 							<dl class=switch>
 
@@ -1342,8 +1353,8 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 						</dd>
 					</dl>
 
-<p>					Advance <var>position</var> to the next character in <var>input</var>.
-					Repeat this step.
+<p>Advance <var>position</var> to the next character in <var>input</var>.
+					Repeat this step.</p>
 
 			</ol>
 
@@ -1452,8 +1463,8 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 			Return <var>candidates</var>.
 	</ol>
 
-<p>	An <dfn data-dfn-type=dfn data-noexport="" id=image-candidate-string>image candidate string<a class=self-link href=#image-candidate-string></a></dfn> consists of the following
-	components, in order:
+<p>An <dfn data-dfn-type=dfn data-noexport="" id=image-candidate-string>image candidate string<a class=self-link href=#image-candidate-string></a></dfn> consists of the following
+	components, in order:</p>
 
 	<ol>
 		<li>
@@ -1471,7 +1482,7 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 		<li>
 			Zero or one of the following:
 
-<p>			<ul>
+			<ul>
 				<li>
 					A <i title="">width descriptor</i>,
 					consisting of: a <a data-link-type=dfn href=#dfn-space-character title="space character">space character</a>,
@@ -1494,27 +1505,27 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 			Zero or more <a data-link-type=dfn href=#dfn-space-character title="space characters">space characters</a>.
 	</ol>
 
-<p>	If the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> or <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element has a
+<p>If the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> or <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element has a
 	sizes attribute present, all <a data-link-type=dfn href=#image-candidate-string title="image candidate strings">image candidate strings</a> for that
-	element must have the <i title="">width descriptor</i> specified.
+	element must have the <i title="">width descriptor</i> specified.</p>
 
-<p>	If an <a data-link-type=dfn href=#image-candidate-string title="image candidate string">image candidate string</a> for an <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> or <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element
+<p>If an <a data-link-type=dfn href=#image-candidate-string title="image candidate string">image candidate string</a> for an <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> or <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element
 	has the <i title="">width descriptor</i> specified,
 	all other <a data-link-type=dfn href=#image-candidate-string title="image candidate strings">image candidate strings</a> for that element
-	must also have the <i title="">width descriptor</i> specified.
+	must also have the <i title="">width descriptor</i> specified.</p>
 
-<p>	The specified width in an <a data-link-type=dfn href=#image-candidate-string title="image candidate string">image candidate string</a>’s <i title="">width descriptor</i>
-	must match the intrinsic width in the resource given by the <a data-link-type=dfn href=#image-candidate-string title="image candidate string">image candidate string</a>’s URL.
+<p>The specified width in an <a data-link-type=dfn href=#image-candidate-string title="image candidate string">image candidate string</a>’s <i title="">width descriptor</i>
+	must match the intrinsic width in the resource given by the <a data-link-type=dfn href=#image-candidate-string title="image candidate string">image candidate string</a>’s URL.</p>
 
 <h4 class="heading settled heading" data-level=3.1.4 id=parse-sizes-attr><span class=secno>3.1.4 </span><span class=content>
 Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-sizes-attr></a></h4>
 
-<p>	When asked to <dfn data-dfn-type=dfn data-noexport="" id=parse-a-sizes-attribute title="parse a sizes attribute|parse its sizes attribute">parse a sizes attribute<a class=self-link href=#parse-a-sizes-attribute></a></dfn> from an element,
+<p>When asked to <dfn data-dfn-type=dfn data-noexport="" id=parse-a-sizes-attribute title="parse a sizes attribute|parse its sizes attribute">parse a sizes attribute<a class=self-link href=#parse-a-sizes-attribute></a></dfn> from an element,
 	<a data-link-type=dfn href=http://dev.w3.org/csswg/css-syntax-3/#parse-a-comma-separated-list-of-component-values0 title="parse a comma-separated list of component values">parse a comma-separated list of component values</a> from the value of the element’s <a data-link-type=element-attr title="">sizes</a> attribute
 	(or the empty string, if the attribute is absent),
-	and let <var>unparsed sizes list</var> be the result.
+	and let <var>unparsed sizes list</var> be the result.</p>
 
-<p>	For each <var>unparsed size</var> in <var>unparsed sizes list</var>:
+<p>For each <var>unparsed size</var> in <var>unparsed sizes list</var>:</p>
 
 	<ol>
 		<li>
@@ -1548,36 +1559,37 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 			Return <var>size</var> and exit this algorithm.
 	</ol>
 
-<p>	If the above algorithm exhausts <var>unparsed sizes list</var> without returning a <var>size</var> value,
-	return <span class=css data-link-type=maybe title=100vw>100vw</span>.
+<p>If the above algorithm exhausts <var>unparsed sizes list</var> without returning a <var>size</var> value,
+	return <span class=css data-link-type=maybe title=100vw>100vw</span>.</p>
 
-<p>	A <dfn data-dfn-type=dfn data-export="" id=valid-source-size-list>valid source size list<a class=self-link href=#valid-source-size-list></a></dfn> is a string that matches the following grammar: <a data-biblio-type=normative data-link-type=biblio href=#css3val title=css3val>[CSS3VAL]</a>
+<p>A <dfn data-dfn-type=dfn data-export="" id=valid-source-size-list>valid source size list<a class=self-link href=#valid-source-size-list></a></dfn> is a string that matches the following grammar: <a data-biblio-type=normative data-link-type=biblio href=#css3val title=css3val>[CSS3VAL]</a></p>
 
 	<pre>  <dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size-list>&lt;source-size-list&gt;<a class=self-link href=#typedef-source-size-list></a></dfn> = <a class="production css-code" data-link-type=type href=#typedef-source-size title="<source-size>">&lt;source-size&gt;</a># [ , <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a> ]? | <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>
   <dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size>&lt;source-size&gt;<a class=self-link href=#typedef-source-size></a></dfn> = <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a> <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>
   <dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size-value>&lt;source-size-value&gt;<a class=self-link href=#typedef-source-size-value></a></dfn> = <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/css-values-3/#length-value title="<length>">&lt;length&gt;</a>
 </pre>
-<p>	A <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a> must not be negative.
 
-<p class=note>	Note: While a <a data-link-type=dfn href=#valid-source-size-list title="valid source size list">valid source size list</a> only contains a bare <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>
+<p>A <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a> must not be negative.</p>
+
+<p class=note>Note: While a <a data-link-type=dfn href=#valid-source-size-list title="valid source size list">valid source size list</a> only contains a bare <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>
 	(without an accompanying <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a>)
 	as the last entry in the <a class="production css-code" data-link-type=type href=#typedef-source-size-list title="<source-size-list>">&lt;source-size-list&gt;</a>,
 	the parsing algorithm technically allows such at any point in the list,
 	and will accept it immediately as the size
 	if the preceding entries in the list weren’t used.
 	This is to enable future extensions,
-	and protect against simple author errors such as a final trailing comma.
+	and protect against simple author errors such as a final trailing comma.</p>
 
 <h4 class="heading settled heading" data-level=3.1.5 id=normalize-source-densities><span class=secno>3.1.5 </span><span class=content>
 Normalizing the Source Densities</span><a class=self-link href=#normalize-source-densities></a></h4>
 
-<p>	An <a data-link-type=dfn href=#image-source title="image source">image source</a> can have a density descriptor,
+<p>An <a data-link-type=dfn href=#image-source title="image source">image source</a> can have a density descriptor,
 	a width descriptor,
 	or no descriptor at all accompanying its URL.
-	Normalizing a <a data-link-type=dfn href=#source-set title="source set">source set</a> gives every <a data-link-type=dfn href=#image-source title="image source">image source</a> a density descriptor.
+	Normalizing a <a data-link-type=dfn href=#source-set title="source set">source set</a> gives every <a data-link-type=dfn href=#image-source title="image source">image source</a> a density descriptor.</p>
 
-<p>	When asked to <dfn data-dfn-type=dfn data-noexport="" id=normalize-the-source-densities>normalize the source densities<a class=self-link href=#normalize-the-source-densities></a></dfn> of a <a data-link-type=dfn href=#source-set title="source set">source set</a> <var>source set</var>,
-	user agents must do the following:
+<p>When asked to <dfn data-dfn-type=dfn data-noexport="" id=normalize-the-source-densities>normalize the source densities<a class=self-link href=#normalize-the-source-densities></a></dfn> of a <a data-link-type=dfn href=#source-set title="source set">source set</a> <var>source set</var>,
+	user agents must do the following:</p>
 
 	<ol>
 		<li>
@@ -1607,20 +1619,20 @@ Normalizing the Source Densities</span><a class=self-link href=#normalize-source
 <h3 class="heading settled heading" data-level=3.2 id=preloader><span class=secno>3.2 </span><span class=content>
 Interaction with the Preload Scanner</span><a class=self-link href=#preloader></a></h3>
 
-<p>	Some UAs utilize a “preload scanner”,
+<p>Some UAs utilize a “preload scanner”,
 	which is a simplified parser that runs ahead of the main HTML parser
 	during the initial load of the page,
-	looking for URLs that it can begin loading as quickly as possible.
+	looking for URLs that it can begin loading as quickly as possible.</p>
 
-<p>	The definition of the <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element is compatible with a preload scanner,
-	at least for some <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-query title="media queries">media queries</a>.
+<p>The definition of the <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element is compatible with a preload scanner,
+	at least for some <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-query title="media queries">media queries</a>.</p>
 
-<p>	If a UA uses a preload scanner,
+<p>If a UA uses a preload scanner,
 	it must recognize when a an <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element is a child of a <a data-link-type=element href=#elementdef-picture title=picture>picture</a>,
 	and use the full algorithm to <a data-link-type=dfn href=#select-an-image-source title="select an image source">select an image source</a> to determine which URL to pre-load,
-	with the following caveats:
+	with the following caveats:</p>
 
-<p>	<ul>
+	<ul>
 		<li>
 			The preload scanner must be able to correctly determine the truth value of
 			<span class=css data-link-type=maybe title=@media/width>@media/width</span>, <span class=css data-link-type=maybe title=@media/device-width>@media/device-width</span>, <span class=css data-link-type=maybe title=@media/height>@media/height</span>, <span class=css data-link-type=maybe title=@media/device-height>@media/device-height</span>, and <span class=css data-link-type=maybe title=@media/resolution>@media/resolution</span> <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-feature title="media features">media features</a>.
@@ -1637,7 +1649,7 @@ Interaction with the Preload Scanner</span><a class=self-link href=#preloader></
 		is when the preload scanner is operating on a <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-iframe-element title=iframe>iframe</a> based document, which has its dimensions defined in an external
 		style-sheet.
 
-<p>		Authors should be aware of these limitations, and should follow the following best practices:
+<p>Authors should be aware of these limitations, and should follow the following best practices:
 		<ul>
 			<li>
 				@viewport CSS rules should be defined inline whenever viewport dependant resources need to be fetched as part of the
@@ -1646,7 +1658,7 @@ Interaction with the Preload Scanner</span><a class=self-link href=#preloader></
 				iframes that may contain viewport dependant resources should have their dimensions defined either in markup
 					(as <a data-link-for=iframe data-link-type=element-attr title=height>height</a> and <a data-link-for=iframe data-link-type=element-attr title=width>width</a> attributes) or as inline CSS rules.
 		</ul>
-	</div>
+	</div><p></p>
 
 <h3 class="heading settled heading" data-level=3.3 id=picture-idl><span class=secno>3.3 </span><span class=content>
 <code>HTMLPictureElement</code> interface</span><a class=self-link href=#picture-idl></a></h3>
@@ -1654,13 +1666,14 @@ Interaction with the Preload Scanner</span><a class=self-link href=#preloader></
 	<pre class=idl>interface <dfn class=idl-code data-dfn-type=interface data-export="" data-global-name="" id=dom-htmlpictureelement>HTMLPictureElement<a class=self-link href=#dom-htmlpictureelement></a></dfn> : <a data-link-type=idl href=http://www.w3.org/html/wg/drafts/html/CR/dom.html#htmlelement title=htmlelement>HTMLElement</a> {
   };
 </pre>
+
 	<p class=note>
 		The <code>HTMLPictureElement</code> serves as an extension point for future API extensions.
 
 <h2 class="heading settled heading" data-level=4 id=the-source-element><span class=secno>4 </span><span class=content>
 Changes to the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> Element</span><a class=self-link href=#the-source-element></a></h2>
 
-<p>	The <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element, if it has a <a data-link-type=element href=#elementdef-picture title=picture>picture</a>
+<p>The <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element, if it has a <a data-link-type=element href=#elementdef-picture title=picture>picture</a>
 	element as its parent, must have the
 	<dfn data-dfn-for=source data-dfn-type=element-attr data-export="" id=element-attrdef-srcset>srcset<a class=self-link href=#element-attrdef-srcset></a></dfn> attribute specified. The
 	value must consist of one or more <a data-link-type=dfn href=#image-candidate-string title="image candidate strings">image candidate strings</a>, each
@@ -1668,45 +1681,46 @@ Changes to the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/h
 	If an <a data-link-type=dfn href=#image-candidate-string title="image candidate string">image candidate string</a> contains no descriptors
 	and no <a data-link-type=dfn href=#dfn-space-character title="space characters">space characters</a> after the URL,
 	the following <a data-link-type=dfn href=#image-candidate-string title="image candidate string">image candidate string</a>, if there is one,
-	must begin with one or more <a data-link-type=dfn href=#dfn-space-character title="space characters">space characters</a>.
+	must begin with one or more <a data-link-type=dfn href=#dfn-space-character title="space characters">space characters</a>.</p>
 
-<p>	The <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element, if it has a <a data-link-type=element href=#elementdef-picture title=picture>picture</a>
+<p>The <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element, if it has a <a data-link-type=element href=#elementdef-picture title=picture>picture</a>
 	element as its parent, may also have the
 	<dfn data-dfn-for=source data-dfn-type=element-attr data-export="" id=element-attrdef-sizes0>sizes<a class=self-link href=#element-attrdef-sizes0></a></dfn> attribute specified. If it is
-	specified, the value must be a <a data-link-type=dfn href=#valid-source-size-list title="valid source size list">valid source size list</a>.
+	specified, the value must be a <a data-link-type=dfn href=#valid-source-size-list title="valid source size list">valid source size list</a>.</p>
 
-<p>	The <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element, if it has a <a data-link-type=element href=#elementdef-picture title=picture>picture</a>
+<p>The <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element, if it has a <a data-link-type=element href=#elementdef-picture title=picture>picture</a>
 	element as its parent, may also have the
 	<dfn data-dfn-for=source data-dfn-type=element-attr data-export="" id=element-attrdef-media>media<a class=self-link href=#element-attrdef-media></a></dfn> attributes specified. If it
-	is specified, the value must contain a <a data-link-type=dfn href=#dfn-valid-media-query title="valid media query">valid media query</a>.
+	is specified, the value must contain a <a data-link-type=dfn href=#dfn-valid-media-query title="valid media query">valid media query</a>.</p>
 
-<p>	The <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element, if it has a <a data-link-type=element href=#elementdef-picture title=picture>picture</a>
+<p>The <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element, if it has a <a data-link-type=element href=#elementdef-picture title=picture>picture</a>
 	element as its parent, must not have the
-	<a data-link-for=source data-link-type=element-attr title=src>src</a> attribute specified.
+	<a data-link-for=source data-link-type=element-attr title=src>src</a> attribute specified.</p>
 
-<p>	The <dfn data-dfn-for=source data-dfn-type=element-attr data-export="" id=element-attrdef-type>type<a class=self-link href=#element-attrdef-type></a></dfn> attribute, when specified
+<p>The <dfn data-dfn-for=source data-dfn-type=element-attr data-export="" id=element-attrdef-type>type<a class=self-link href=#element-attrdef-type></a></dfn> attribute, when specified
 	on a <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element that has a <a data-link-type=element href=#elementdef-picture title=picture>picture</a>
 	element as its parent, gives the type of the images in the <a data-link-type=dfn href=#source-set title="source set">source
 	set</a>, to allow the user agent to skip to the next
-	<a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> if it does not support the given type.
+	<a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> if it does not support the given type.</p>
 
 	<p class=note>If the <a data-link-for=source data-link-type=element-attr href=#element-attrdef-type title=type>type</a> attribute
 	is <em>not</em> specified, the user agent will not select a different
 	<a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element if it finds that it does not support
 	the image format after fetching it.
 
-<p>	The IDL attributes <a class=idl-code data-link-for=HTMLSourceElement data-link-type=attribute href=#dom-htmlsourceelement-srcset title=srcset>srcset</a>,
+<p>The IDL attributes <a class=idl-code data-link-for=HTMLSourceElement data-link-type=attribute href=#dom-htmlsourceelement-srcset title=srcset>srcset</a>,
 	<a class=idl-code data-link-for=HTMLSourceElement data-link-type=attribute href=#dom-htmlsourceelement-sizes title=sizes>sizes</a> and
 	<a class=idl-code data-link-for=HTMLSourceElement data-link-type=attribute href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#dom-source-media title=media>media</a> must reflect the
-	respective content attributes of the same name. <a data-biblio-type=normative data-link-type=biblio href=#html title=html>[HTML]</a>
+	respective content attributes of the same name. <a data-biblio-type=normative data-link-type=biblio href=#html title=html>[HTML]</a></p>
 
 	<pre class=idl>partial interface <a class=idl-code data-global-name="" data-link-type=interface href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#htmlsourceelement title=htmlsourceelement>HTMLSourceElement</a> {
-    attribute DOMString <dfn class=idl-code data-dfn-for=HTMLSourceElement data-dfn-type=attribute data-export="" data-global-name="HTMLSourceElement<interface>/srcset<attribute>" id=dom-htmlsourceelement-srcset>srcset<a class=self-link href=#dom-htmlsourceelement-srcset></a></dfn>;
-    attribute DOMString <dfn class=idl-code data-dfn-for=HTMLSourceElement data-dfn-type=attribute data-export="" data-global-name="HTMLSourceElement<interface>/sizes<attribute>" id=dom-htmlsourceelement-sizes>sizes<a class=self-link href=#dom-htmlsourceelement-sizes></a></dfn>;
-    attribute DOMString <a class=idl-code data-global-name="HTMLSourceElement<interface>/media<attribute>" data-link-for=HTMLSourceElement data-link-type=attribute href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#dom-source-media title=media>media</a>;
+    attribute DOMString <dfn class=idl-code data-dfn-for=HTMLSourceElement data-dfn-type=attribute data-export="" data-global-name="HTMLSourceElement<interface>/srcset<attribute>" data-type=DOMString id=dom-htmlsourceelement-srcset>srcset<a class=self-link href=#dom-htmlsourceelement-srcset></a></dfn>;
+    attribute DOMString <dfn class=idl-code data-dfn-for=HTMLSourceElement data-dfn-type=attribute data-export="" data-global-name="HTMLSourceElement<interface>/sizes<attribute>" data-type=DOMString id=dom-htmlsourceelement-sizes>sizes<a class=self-link href=#dom-htmlsourceelement-sizes></a></dfn>;
+    attribute DOMString <a class=idl-code data-global-name="HTMLSourceElement<interface>/media<attribute>" data-link-for=HTMLSourceElement data-link-type=attribute data-type=DOMString href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#dom-source-media title=media>media</a>;
   };
 </pre>
-<p>	When a <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element is a child of a
+
+<p>When a <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element is a child of a
 	<a data-link-type=element href=#elementdef-picture title=picture>picture</a> element and has a following sibling
 	<a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> element or <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element with a
 	<a data-link-for=img data-link-type=element-attr title=srcset>srcset</a> attribute specified, it must have
@@ -1717,26 +1731,27 @@ Changes to the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/h
 		(e.g. <code title="">all</code> or variations thereof).
 		<a data-biblio-type=normative data-link-type=biblio href=#mediaq title=mediaq>[MEDIAQ]</a>
 		<li> A <a data-link-for=source data-link-type=element-attr href=#element-attrdef-type title=type>type</a> attribute specified.
-	</ul>
+	</ul><p></p>
 
 <h2 class="heading settled heading" data-level=5 id=the-img-element><span class=secno>5 </span><span class=content>
 Changes to the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> Element</span><a class=self-link href=#the-img-element></a></h2>
 
-<p>	The <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element, if it has a
+<p>The <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element, if it has a
 	<a data-link-for=img data-link-type=element-attr title=srcset>srcset</a> attribute, may have a
 	<dfn data-dfn-for=img data-dfn-type=element-attr data-export="" id=element-attrdef-sizes>sizes<a class=self-link href=#element-attrdef-sizes></a></dfn> attribute specified. If it is
-	specified, the value must be a <a data-link-type=dfn href=#valid-source-size-list title="valid source size list">valid source size list</a>.
+	specified, the value must be a <a data-link-type=dfn href=#valid-source-size-list title="valid source size list">valid source size list</a>.</p>
 
-<p>	The IDL attribute <a class=idl-code data-link-for=HTMLImageElement data-link-type=attribute href=#dom-htmlimageelement-sizes title=sizes>sizes</a> must
+<p>The IDL attribute <a class=idl-code data-link-for=HTMLImageElement data-link-type=attribute href=#dom-htmlimageelement-sizes title=sizes>sizes</a> must
 	reflect the <a data-link-for=img data-link-type=element-attr href=#element-attrdef-sizes title=sizes>sizes</a> content attribute.
-	<a data-biblio-type=normative data-link-type=biblio href=#html title=html>[HTML]</a>
+	<a data-biblio-type=normative data-link-type=biblio href=#html title=html>[HTML]</a></p>
 
 	<pre class=idl>partial interface <a class=idl-code data-global-name="" data-link-type=interface href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#htmlimageelement title=htmlimageelement>HTMLImageElement</a> {
-    attribute DOMString <dfn class=idl-code data-dfn-for=HTMLImageElement data-dfn-type=attribute data-export="" data-global-name="HTMLImageElement<interface>/sizes<attribute>" id=dom-htmlimageelement-sizes>sizes<a class=self-link href=#dom-htmlimageelement-sizes></a></dfn>;
-    readonly attribute DOMString? <dfn class=idl-code data-dfn-for=HTMLImageElement data-dfn-type=attribute data-export="" data-global-name="HTMLImageElement<interface>/currentsrc<attribute>" id=dom-htmlimageelement-currentsrc>currentSrc<a class=self-link href=#dom-htmlimageelement-currentsrc></a></dfn>;
+    attribute DOMString <dfn class=idl-code data-dfn-for=HTMLImageElement data-dfn-type=attribute data-export="" data-global-name="HTMLImageElement<interface>/sizes<attribute>" data-type=DOMString id=dom-htmlimageelement-sizes>sizes<a class=self-link href=#dom-htmlimageelement-sizes></a></dfn>;
+    readonly attribute DOMString? <dfn class=idl-code data-dfn-for=HTMLImageElement data-dfn-type=attribute data-export="" data-global-name="HTMLImageElement<interface>/currentsrc<attribute>" data-readonly="" data-type=DOMString? id=dom-htmlimageelement-currentsrc>currentSrc<a class=self-link href=#dom-htmlimageelement-currentsrc></a></dfn>;
   };
 </pre>
-<p>	The IDL attribute <a class=idl-code data-link-type=attribute href=#dom-htmlimageelement-currentsrc title=currentsrc>currentSrc</a> must initially be set to the value <code>null</code>.
+
+	The IDL attribute <a class=idl-code data-link-type=attribute href=#dom-htmlimageelement-currentsrc title=currentsrc>currentSrc</a> must initially be set to the value <code>null</code>.
 	When asked to <a data-link-type=dfn href=#select-an-image-source title="select an image source">select an image source</a> for the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element,
 	if the algorithm returns a <var>selected source</var>,
 	the <a class=idl-code data-link-type=attribute href=#dom-htmlimageelement-currentsrc title=currentsrc>currentSrc</a> IDL attribute must be set to the serialization of that source’s URL;
@@ -1745,13 +1760,13 @@ Changes to the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/h
 <h2 class="heading settled heading" data-level=6 id=acks><span class=secno>6 </span><span class=content>
 Acknowledgements</span><a class=self-link href=#acks></a></h2>
 
-<p>	A <a href=http://www.w3.org/community/respimg/participants>complete
+<p>A <a href=http://www.w3.org/community/respimg/participants>complete
 	list of participants</a> of the Responsive Images Community Group is
-	available at the W3C Community Group Website.
+	available at the W3C Community Group Website.</p>
 
-<p>	Contributions also from: David Newton, Ilya Grigorik, John Schoenick and Leon de
+<p>Contributions also from: David Newton, Ilya Grigorik, John Schoenick and Leon de
 	Rijke. Special thanks to Adrian Bateman for providing the group with
-	guidance.
+	guidance.</p>
 
 <h2 class="no-ref no-num heading settled heading" id=conformance><span class=content>
 Conformance</span><a class=self-link href=#conformance></a></h2>
@@ -1857,12 +1872,12 @@ Property index</span><a class=self-link href=#property-index></a></h2>
 				<a data-link-type=dfn href=#select-an-image-source title="select an image source">selecting an image source</a>.
 		</ol>
 
-<p>		Also in the HTML spec, in the algorithm "The user agent may at
+<p>Also in the HTML spec, in the algorithm "The user agent may at
 		any time run the following algorithm to update an
 		<a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element’s image in order to react to changes
-		in the environment.", make the following changes:
+		in the environment.", make the following changes:</p>
 
-<p>		<ul>
+		<ul>
 			<li>
 				Remove "does not have a srcset attribute
 				specified,"
@@ -1879,9 +1894,9 @@ Property index</span><a class=self-link href=#property-index></a></h2>
 				element has experienced <a data-link-type=dfn href=#relevant-mutations title="relevant mutations">relevant mutations</a>"
 		</ul>
 
-<p>		While at it, do the following changes elsewhere in the HTML spec:
+<p>While at it, do the following changes elsewhere in the HTML spec:</p>
 
-<p>		<ul>
+		<ul>
 			<li>
 				Replace "A user agent that obtains images
 				immediately must also synchronously update the
@@ -1915,7 +1930,7 @@ Property index</span><a class=self-link href=#property-index></a></h2>
 				<a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element must return to the
 				unavailable state."
 		</ul>
-	<a href=#issue-58bdc3bf> ↵ </a></div>
+	<a href=#issue-89de0bb6> ↵ </a></div>
 
 <div class=issue>
 		This just selects a single image and then sticks with it,
