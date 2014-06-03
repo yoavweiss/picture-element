@@ -386,10 +386,12 @@ The <a element>picture</a> Element</h2>
 	<ul>
 		<li>
 			The element's <a element-attr for="img">src</a>,
-			<a element-attr for="img">srcset</a>,
-			<a element-attr for="img">sizes</a> or
-			<a element-attr for="img">crossorigin</a> attributes are
+			<a element-attr for="img">srcset</a> or
+			<a element-attr for="img">sizes</a> attributes are
 			set, changed, or removed.
+
+		<li>
+			The element's <a element-attr for="img">crossorigin</a> attribute's state is changed.
 
 		<li>
 			The element is inserted into or removed from a
