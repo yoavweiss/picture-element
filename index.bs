@@ -328,6 +328,8 @@ Definitions</h2>
 
 	The following terms are defined by the [[!HTML]] specification:
 	<dfn id="dfn-skip-whitespace">skip whitespace</dfn>,
+	<dfn id="dfn-resolve">resolve</dfn>,
+	<dfn id="dfn-last-selected-source">last selected source</dfn>,
 	<dfn id="dfn-collect-a-sequence-of-characters">collect a sequence of characters</dfn>,
 	<dfn id="dfn-space-character">space character</dfn>,
 	<dfn id="dfn-split-a-string-on-spaces">split a string on spaces</dfn>,
@@ -1202,11 +1204,12 @@ Changes to the <a element>img</a> Element</h2>
 		};
 	</pre>
 
-	The IDL attribute <a attribute>currentSrc</a> must initially be set to the value <code>null</code>.
-	When asked to <a>select an image source</a> for the <a element>img</a> element,
-	if the algorithm returns a <var>selected source</var>,
-	the <a attribute>currentSrc</a> IDL attribute must be set to the serialization of that source's URL;
-	otherwise, it must be set to the value <code>null</code>.
+	The IDL attribute <a attribute>currentSrc</a> must initially be set to the empty string.
+	When the <span>update the image data</span> algorithm queues a task to fire a <code>load</code> event, or an <code>error</code> event,
+	or when the algorithm to react to changes in the environment queues a task to fire a <code>load</code> event,
+	the user agent must in the same task, before firing the event,
+	set the <a attribute>currentSrc</a> IDL attribute to the <a>last selected source</a>, <a title=resolve>resolved</a> relative to the <a element>img</a> element,
+	or to the empty string if the <a>last selected source</a> is null.
 
 <h2 id='acks'>
 Acknowledgements</h2>
