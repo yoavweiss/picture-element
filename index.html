@@ -552,14 +552,14 @@ span.issue, span.note {
 </p>
   <h1 class="p-name no-ref" id=title>The picture Element</h1>
   <h2 class="no-num no-toc no-ref heading settled heading" id=subtitle><span class=content>Editor’s Draft,
-    <span class=dt-updated><span class=value-title title=20140603>3 June 2014</span></span></span></h2>
+    <span class=dt-updated><span class=value-title title=20140605>5 June 2014</span></span></span></h2>
   <div data-fill-with=spec-metadata><dl><dt>This version:<dd><a class=u-url href=http://picture.responsiveimages.org>http://picture.responsiveimages.org</a><dt>Editor’s Draft:<dd><a href=http://picture.responsiveimages.org>http://picture.responsiveimages.org</a><dt>Test Suite:<dd>None Yet<dt>Editors:
 <dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://xanthir.com/contact/>Tab Atkins</a> (<span class="p-org org">Google</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-email email" href=mailto:simonp@opera.com>Simon Pieters</a> (<span class="p-org org">Opera Software</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://blog.yoav.ws/>Yoav Weiss</a><dd class="p-author h-card vcard"><span class="p-name fn">Marcos Cáceres</span> (<span class="p-org org">Mozilla</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://matmarquis.com/>Mat Marquis</a><dt>Version History:<dd><a href=https://github.com/ResponsiveImagesCG/picture-element/commits/gh-pages>Commit History</a><dd><a href=https://twitter.com/respimg_commits>Github commits on Twitter</a><dt>Participate:<dd><a href=http://w3c.responsiveimages.org>Join the Responsive Images Community Group</a><dd><a href=http://list.responsiveimages.org>Public Mailing List</a><dd><a href=irc://irc.w3.org:6665/#respimg>IRC: #respimg on W3C’s IRC</a><dd><a href=https://twitter.com/respimg>Twitter</a><dd><a href=https://github.com/ResponsiveImagesCG/picture-element>Github</a></dl></div>
   <div data-fill-with=warning></div>
   <p class=copyright data-fill-with=copyright><a href=http://creativecommons.org/publicdomain/zero/1.0/ rel=license><img alt=CC0 src=http://i.creativecommons.org/p/zero/1.0/80x15.png></a>
 To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 3 June 2014,
+In addition, as of 5 June 2014,
 the editors have made this specification available under the
 <a href=http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0 rel=license>Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
@@ -879,6 +879,8 @@ Definitions</span><a class=self-link href=#defs></a></h2>
 
 <p>	The following terms are defined by the <a data-biblio-type=normative data-link-type=biblio href=#html title=html>[HTML]</a> specification:
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-skip-whitespace>skip whitespace<a class=self-link href=#dfn-skip-whitespace></a></dfn>,
+	<dfn data-dfn-type=dfn data-noexport="" id=dfn-resolve>resolve<a class=self-link href=#dfn-resolve></a></dfn>,
+	<dfn data-dfn-type=dfn data-noexport="" id=dfn-last-selected-source>last selected source<a class=self-link href=#dfn-last-selected-source></a></dfn>,
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-collect-a-sequence-of-characters>collect a sequence of characters<a class=self-link href=#dfn-collect-a-sequence-of-characters></a></dfn>,
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-space-character>space character<a class=self-link href=#dfn-space-character></a></dfn>,
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-split-a-string-on-spaces>split a string on spaces<a class=self-link href=#dfn-split-a-string-on-spaces></a></dfn>,
@@ -1738,11 +1740,12 @@ Changes to the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/h
     readonly attribute DOMString? <dfn class=idl-code data-dfn-for=HTMLImageElement data-dfn-type=attribute data-export="" data-global-name="HTMLImageElement<interface>/currentsrc<attribute>" id=dom-htmlimageelement-currentsrc>currentSrc<a class=self-link href=#dom-htmlimageelement-currentsrc></a></dfn>;
   };
 </pre>
-<p>	The IDL attribute <a class=idl-code data-link-type=attribute href=#dom-htmlimageelement-currentsrc title=currentsrc>currentSrc</a> must initially be set to the value <code>null</code>.
-	When asked to <a data-link-type=dfn href=#select-an-image-source title="select an image source">select an image source</a> for the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element,
-	if the algorithm returns a <var>selected source</var>,
-	the <a class=idl-code data-link-type=attribute href=#dom-htmlimageelement-currentsrc title=currentsrc>currentSrc</a> IDL attribute must be set to the serialization of that source’s URL;
-	otherwise, it must be set to the value <code>null</code>.
+<p>	The IDL attribute <a class=idl-code data-link-type=attribute href=#dom-htmlimageelement-currentsrc title=currentsrc>currentSrc</a> must initially be set to the empty string.
+	When the <span>update the image data</span> algorithm queues a task to fire a <code>load</code> event, or an <code>error</code> event,
+	or when the algorithm to react to changes in the environment queues a task to fire a <code>load</code> event,
+	the user agent must in the same task, before firing the event,
+	set the <a class=idl-code data-link-type=attribute href=#dom-htmlimageelement-currentsrc title=currentsrc>currentSrc</a> IDL attribute to the <a data-link-type=dfn href=#dfn-last-selected-source title="last selected source">last selected source</a>, <a data-link-type=dfn href=#dfn-resolve title=resolve>resolved</a> relative to the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element,
+	or to the empty string if the <a data-link-type=dfn href=#dfn-last-selected-source title="last selected source">last selected source</a> is null.
 
 <h2 class="heading settled heading" data-level=6 id=acks><span class=secno>6 </span><span class=content>
 Acknowledgements</span><a class=self-link href=#acks></a></h2>
@@ -1805,6 +1808,7 @@ Index</span><a class=self-link href=#index></a></h2>
 <li>HTMLPictureElement, <a href=#dom-htmlpictureelement title="section 3.3">3.3</a>
 <li>image candidate string, <a href=#image-candidate-string title="section 3.1.3">3.1.3</a>
 <li>image source, <a href=#image-source title="section 3">3</a>
+<li>last selected source, <a href=#dfn-last-selected-source title="section 2">2</a>
 <li>media, <a href=#element-attrdef-media title="section 4">4</a>
 <li>normalize the source densities, <a href=#normalize-the-source-densities title="section 3.1.5">3.1.5</a>
 <li>parse a sizes attribute, <a href=#parse-a-sizes-attribute title="section 3.1.4">3.1.4</a>
@@ -1813,6 +1817,7 @@ Index</span><a class=self-link href=#index></a></h2>
 <li>parse its srcset attribute, <a href=#parse-a-srcset-attribute title="section 3.1.3">3.1.3</a>
 <li>picture, <a href=#elementdef-picture title="section 3">3</a>
 <li>relevant mutations, <a href=#relevant-mutations title="section 3">3</a>
+<li>resolve, <a href=#dfn-resolve title="section 2">2</a>
 <li>rules for parsing floating-point number values, <a href=#dfn-rules-for-parsing-floating-point-number-values title="section 2">2</a>
 <li>rules for parsing non-negative integers, <a href=#dfn-rules-for-parsing-non-negative-integers title="section 2">2</a>
 <li>select an image source, <a href=#select-an-image-source title="section 3.1.1">3.1.1</a>
