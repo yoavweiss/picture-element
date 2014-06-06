@@ -913,6 +913,7 @@ Parsing a <code>srcset</code> Attribute</h4>
 					A <i title>width descriptor</i>,
 					consisting of: a <a>space character</a>,
 					a <a>valid non-negative integer</a>
+					giving a number greater than zero
 					representing the <i title>width
 					descriptor</i> value, and a U+0077
 					LATIN SMALL LETTER W character.
