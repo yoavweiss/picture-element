@@ -1177,7 +1177,7 @@ Changes to the <a element>img</a> Element</h2>
 	<pre class='idl'>
 		partial interface HTMLImageElement {
 			attribute DOMString sizes;
-			readonly attribute DOMString? currentSrc;
+			readonly attribute DOMString currentSrc;
 		};
 	</pre>
 
