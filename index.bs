@@ -897,7 +897,7 @@ Parsing a <code>srcset</code> Attribute</h4>
 			Zero or more <a>space characters</a>.
 
 		<li>
-			A <a>valid non-empty URL</a> that does not end with a
+			A <a>valid non-empty URL</a> that does not start or end with a
 			U+002C COMMA character (,), referencing a
 			non-interactive, optionally animated, image resource
 			that is neither paged nor scripted.
