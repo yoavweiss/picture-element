@@ -1495,7 +1495,12 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 	</ol>
 
 <p>There must not be an <a data-link-type=dfn href=#image-candidate-string title="image candidate string">image candidate string</a> for an element that
-	has the same descriptor has another <a data-link-type=dfn href=#image-candidate-string title="image candidate string">image candidate string</a> for the same element.
+	has the same <i title="">width descriptor</i> value as another
+	<a data-link-type=dfn href=#image-candidate-string title="image candidate string">image candidate string</a>’s <i title="">width descriptor</i> value for the same element.</p>
+
+<p>There must not be an <a data-link-type=dfn href=#image-candidate-string title="image candidate string">image candidate string</a> for an element that
+	has the same <i title="">pixel density descriptor</i> value as another
+	<a data-link-type=dfn href=#image-candidate-string title="image candidate string">image candidate string</a>’s <i title="">pixel density descriptor</i> value for the same element.
 	For the purpose of this requirement,
 	an <a data-link-type=dfn href=#image-candidate-string title="image candidate string">image candidate string</a> with no descriptors is equivalent to an <a data-link-type=dfn href=#image-candidate-string title="image candidate string">image candidate string</a> with a <span class=css data-link-type=maybe title=1x>1x</span> descriptor.</p>
 

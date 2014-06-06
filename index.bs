@@ -935,7 +935,12 @@ Parsing a <code>srcset</code> Attribute</h4>
 	</ol>
 
 	There must not be an <a>image candidate string</a> for an element that
-	has the same descriptor has another <a>image candidate string</a> for the same element.
+	has the same <i title>width descriptor</i> value as another
+	<a>image candidate string</a>'s <i title>width descriptor</i> value for the same element.
+
+	There must not be an <a>image candidate string</a> for an element that
+	has the same <i title>pixel density descriptor</i> value as another
+	<a>image candidate string</a>'s <i title>pixel density descriptor</i> value for the same element.
 	For the purpose of this requirement,
 	an <a>image candidate string</a> with no descriptors is equivalent to an <a>image candidate string</a> with a ''1x'' descriptor.
 
