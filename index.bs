@@ -310,6 +310,8 @@ Definitions</h2>
 	<dfn id="dfn-collect-a-sequence-of-characters">collect a sequence of characters</dfn>,
 	<dfn id="dfn-space-character">space character</dfn>,
 	<dfn id="dfn-split-a-string-on-spaces">split a string on spaces</dfn>,
+	<dfn id="dfn-strip-leading-and-trailing-whitespace">strip leading and trailing whitespace</dfn>,
+	<dfn id="dfn-ascii-case-insensitive">ASCII-case insensitive</dfn>,
 	<dfn id="dfn-valid-non-negative-integer">valid non-negative integer</dfn>,
 	<dfn id="dfn-rules-for-parsing-non-negative-integers">rules for parsing non-negative integers</dfn>,
 	<dfn id="dfn-valid-floating-point-number">valid floating-point number</dfn>,
@@ -897,7 +899,7 @@ Parsing a <code>srcset</code> Attribute</h4>
 			Zero or more <a>space characters</a>.
 
 		<li>
-			A <a>valid non-empty URL</a> that does not end with a
+			A <a>valid non-empty URL</a> that does not start or end with a
 			U+002C COMMA character (,), referencing a
 			non-interactive, optionally animated, image resource
 			that is neither paged nor scripted.
@@ -913,6 +915,7 @@ Parsing a <code>srcset</code> Attribute</h4>
 					A <i title>width descriptor</i>,
 					consisting of: a <a>space character</a>,
 					a <a>valid non-negative integer</a>
+					giving a number greater than zero
 					representing the <i title>width
 					descriptor</i> value, and a U+0077
 					LATIN SMALL LETTER W character.
@@ -930,6 +933,16 @@ Parsing a <code>srcset</code> Attribute</h4>
 		<li>
 			Zero or more <a>space characters</a>.
 	</ol>
+
+	There must not be an <a>image candidate string</a> for an element that
+	has the same <i title>width descriptor</i> value as another
+	<a>image candidate string</a>'s <i title>width descriptor</i> value for the same element.
+
+	There must not be an <a>image candidate string</a> for an element that
+	has the same <i title>pixel density descriptor</i> value as another
+	<a>image candidate string</a>'s <i title>pixel density descriptor</i> value for the same element.
+	For the purpose of this requirement,
+	an <a>image candidate string</a> with no descriptors is equivalent to an <a>image candidate string</a> with a ''1x'' descriptor.
 
 	If the <a element>source</a> or <a element>img</a> element has a
 	sizes attribute present, all <a>image candidate strings</a> for that
@@ -1155,11 +1168,12 @@ Changes to the <a element>source</a> Element</h2>
 	<a element-attr for="img">srcset</a> attribute specified, it must have
 	at least one of the following:
 	<ul>
-		<li> A <a element-attr for="source">media</a> attribute specified with a
-		value that is not defined to always evaluate to true for all devices
-		(e.g. <code title>all</code> or variations thereof).
-		[[!MEDIAQ]]
-		<li> A <a element-attr for="source">type</a> attribute specified.
+		<li>
+			A <a element-attr for="source">media</a> attribute specified with a value that,
+			after <a title="strip leading and trailing whitespace">stripping leading and trailing whitespace</a>,
+			is not the empty string and is not an <a>ASCII-case insensitive</a> match for the string <code>all</code>.
+		<li>
+			A <a element-attr for="source">type</a> attribute specified.
 	</ul>
 
 <h2 id='the-img-element'>
