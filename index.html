@@ -876,6 +876,8 @@ Definitions</span><a class=self-link href=#defs></a></h2>
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-collect-a-sequence-of-characters>collect a sequence of characters<a class=self-link href=#dfn-collect-a-sequence-of-characters></a></dfn>,
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-space-character>space character<a class=self-link href=#dfn-space-character></a></dfn>,
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-split-a-string-on-spaces>split a string on spaces<a class=self-link href=#dfn-split-a-string-on-spaces></a></dfn>,
+	<dfn data-dfn-type=dfn data-noexport="" id=dfn-strip-leading-and-trailing-whitespace>strip leading and trailing whitespace<a class=self-link href=#dfn-strip-leading-and-trailing-whitespace></a></dfn>,
+	<dfn data-dfn-type=dfn data-noexport="" id=dfn-ascii-case-insensitive>ASCII-case insensitive<a class=self-link href=#dfn-ascii-case-insensitive></a></dfn>,
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-valid-non-negative-integer>valid non-negative integer<a class=self-link href=#dfn-valid-non-negative-integer></a></dfn>,
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-rules-for-parsing-non-negative-integers>rules for parsing non-negative integers<a class=self-link href=#dfn-rules-for-parsing-non-negative-integers></a></dfn>,
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-valid-floating-point-number>valid floating-point number<a class=self-link href=#dfn-valid-floating-point-number></a></dfn>,
@@ -1457,7 +1459,7 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 			Zero or more <a data-link-type=dfn href=#dfn-space-character title="space characters">space characters</a>.
 
 		<li>
-			A <a data-link-type=dfn href=#dfn-valid-non-empty-url title="valid non-empty url">valid non-empty URL</a> that does not end with a
+			A <a data-link-type=dfn href=#dfn-valid-non-empty-url title="valid non-empty url">valid non-empty URL</a> that does not start or end with a
 			U+002C COMMA character (,), referencing a
 			non-interactive, optionally animated, image resource
 			that is neither paged nor scripted.
@@ -1473,6 +1475,7 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 					A <i title="">width descriptor</i>,
 					consisting of: a <a data-link-type=dfn href=#dfn-space-character title="space character">space character</a>,
 					a <a data-link-type=dfn href=#dfn-valid-non-negative-integer title="valid non-negative integer">valid non-negative integer</a>
+					giving a number greater than zero
 					representing the <i title="">width
 					descriptor</i> value, and a U+0077
 					LATIN SMALL LETTER W character.
@@ -1490,6 +1493,10 @@ Parsing a <code>srcset</code> Attribute</span><a class=self-link href=#parse-src
 		<li>
 			Zero or more <a data-link-type=dfn href=#dfn-space-character title="space characters">space characters</a>.
 	</ol>
+
+<p>There must not be an <a data-link-type=dfn href=#image-candidate-string title="image candidate string">image candidate string</a> for an element that
+	has the same descriptor has another <a data-link-type=dfn href=#image-candidate-string title="image candidate string">image candidate string</a> for the same element.
+	For the purpose of this requirement, no descriptors is equivalent to <code>1x</code>.</p>
 
 <p>If the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-source-element title=source>source</a> or <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element has a
 	sizes attribute present, all <a data-link-type=dfn href=#image-candidate-string title="image candidate strings">image candidate strings</a> for that
@@ -1712,11 +1719,12 @@ Changes to the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/h
 	<a data-link-for=img data-link-type=element-attr title=srcset>srcset</a> attribute specified, it must have
 	at least one of the following:
 	<ul>
-		<li> A <a data-link-for=source data-link-type=element-attr href=#element-attrdef-media title=media>media</a> attribute specified with a
-		value that is not defined to always evaluate to true for all devices
-		(e.g. <code title="">all</code> or variations thereof).
-		<a data-biblio-type=normative data-link-type=biblio href=#biblio-mediaq title=biblio-mediaq>[MEDIAQ]</a>
-		<li> A <a data-link-for=source data-link-type=element-attr href=#element-attrdef-type title=type>type</a> attribute specified.
+		<li>
+			A <a data-link-for=source data-link-type=element-attr href=#element-attrdef-media title=media>media</a> attribute specified with a value that,
+			after <a data-link-type=dfn href=#dfn-strip-leading-and-trailing-whitespace title="strip leading and trailing whitespace">stripping leading and trailing whitespace</a>,
+			is not the empty string and is not an <a data-link-type=dfn href=#dfn-ascii-case-insensitive title="ascii-case insensitive">ASCII-case insensitive</a> match for the string <code>all</code>.
+		<li>
+			A <a data-link-for=source data-link-type=element-attr href=#element-attrdef-type title=type>type</a> attribute specified.
 	</ul><p></p>
 
 <h2 class="heading settled heading" data-level=5 id=the-img-element><span class=secno>5 </span><span class=content>
@@ -1806,6 +1814,7 @@ Informative References</span><a class=self-link href=#informative></a></h3>
 <h2 class="no-num no-ref heading settled heading" id=index><span class=content>
 Index</span><a class=self-link href=#index></a></h2>
 <div data-fill-with=index><ul class=indexlist>
+<li>ASCII-case insensitive, <a href=#dfn-ascii-case-insensitive title="section 2">2</a>
 <li>collect a sequence of characters, <a href=#dfn-collect-a-sequence-of-characters title="section 2">2</a>
 <li>current pixel density, <a href=#dfn-current-pixel-density title="section 2">2</a>
 <li>currentSrc, <a href=#dom-htmlimageelement-currentsrc title="section 5">5</a>
@@ -1839,7 +1848,8 @@ Index</span><a class=self-link href=#index></a></h2>
 <li>split a string on spaces, <a href=#dfn-split-a-string-on-spaces title="section 2">2</a>
 <li>srcset<ul><li>element-attr for source, <a href=#element-attrdef-srcset title="section 4">4</a>
 <li>attribute for HTMLSourceElement, <a href=#dom-htmlsourceelement-srcset title="section 4">4</a>
-</ul><li>type, <a href=#element-attrdef-type title="section 4">4</a>
+</ul><li>strip leading and trailing whitespace, <a href=#dfn-strip-leading-and-trailing-whitespace title="section 2">2</a>
+<li>type, <a href=#element-attrdef-type title="section 4">4</a>
 <li>update the image data, <a href=#dfn-update-the-image-data title="section 2">2</a>
 <li>update the source set, <a href=#update-the-source-set title="section 3.1.2">3.1.2</a>
 <li>valid floating-point number, <a href=#dfn-valid-floating-point-number title="section 2">2</a>

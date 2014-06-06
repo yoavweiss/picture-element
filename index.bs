@@ -310,6 +310,8 @@ Definitions</h2>
 	<dfn id="dfn-collect-a-sequence-of-characters">collect a sequence of characters</dfn>,
 	<dfn id="dfn-space-character">space character</dfn>,
 	<dfn id="dfn-split-a-string-on-spaces">split a string on spaces</dfn>,
+	<dfn id="dfn-strip-leading-and-trailing-whitespace">strip leading and trailing whitespace</dfn>,
+	<dfn id="dfn-ascii-case-insensitive">ASCII-case insensitive</dfn>,
 	<dfn id="dfn-valid-non-negative-integer">valid non-negative integer</dfn>,
 	<dfn id="dfn-rules-for-parsing-non-negative-integers">rules for parsing non-negative integers</dfn>,
 	<dfn id="dfn-valid-floating-point-number">valid floating-point number</dfn>,
@@ -1160,11 +1162,12 @@ Changes to the <a element>source</a> Element</h2>
 	<a element-attr for="img">srcset</a> attribute specified, it must have
 	at least one of the following:
 	<ul>
-		<li> A <a element-attr for="source">media</a> attribute specified with a
-		value that is not defined to always evaluate to true for all devices
-		(e.g. <code title>all</code> or variations thereof).
-		[[!MEDIAQ]]
-		<li> A <a element-attr for="source">type</a> attribute specified.
+		<li>
+			A <a element-attr for="source">media</a> attribute specified with a value that,
+			after <a title="strip leading and trailing whitespace">stripping leading and trailing whitespace</a>,
+			is not the empty string and is not an <a>ASCII-case insensitive</a> match for the string <code>all</code>.
+		<li>
+			A <a element-attr for="source">type</a> attribute specified.
 	</ul>
 
 <h2 id='the-img-element'>
