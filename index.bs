@@ -936,7 +936,8 @@ Parsing a <code>srcset</code> Attribute</h4>
 
 	There must not be an <a>image candidate string</a> for an element that
 	has the same descriptor has another <a>image candidate string</a> for the same element.
-	For the purpose of this requirement, no descriptors is equivalent to <code>1x</code>.
+	For the purpose of this requirement,
+	an <a>image candidate string</a> with no descriptors is equivalent to an <a>image candidate string</a> with a ''1x'' descriptor.
 
 	If the <a element>source</a> or <a element>img</a> element has a
 	sizes attribute present, all <a>image candidate strings</a> for that
