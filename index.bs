@@ -585,6 +585,11 @@ Updating the Source Set</h4>
 		overriding the default type specified by the <a element-attr for="source">type</a> attribute,
 		but I'm keeping things simple for now.
 
+	<p class='note'>
+		Each <a element>img</a> element independently considers its previous sibling <a element>source</a> elements plus the <a element>img</a> element itself
+		for selecting an image source, ignoring any other (invalid) elements,
+		including other <a element>img</a> elements in the same <a element>picture</a> element,
+		or <a element>source</a> elements that are following siblings of the relevant <a element>img</a> element.
 
 <h4 id='parse-srcset-attr'>
 Parsing a <code>srcset</code> Attribute</h4>
