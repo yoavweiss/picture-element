@@ -552,14 +552,14 @@ span.issue, span.note {
 </p>
   <h1 class="p-name no-ref" id=title>The picture Element</h1>
   <h2 class="no-num no-toc no-ref heading settled heading" id=subtitle><span class=content>Editor’s Draft,
-    <span class=dt-updated><span class=value-title title=20140606>6 June 2014</span></span></span></h2>
+    <span class=dt-updated><span class=value-title title=20140609>9 June 2014</span></span></span></h2>
   <div data-fill-with=spec-metadata><dl><dt>This version:<dd><a class=u-url href=http://picture.responsiveimages.org>http://picture.responsiveimages.org</a><dt>Editor’s Draft:<dd><a href=http://picture.responsiveimages.org>http://picture.responsiveimages.org</a><dt>Test Suite:<dd>None Yet<dt>Editors:
 <dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://xanthir.com/contact/>Tab Atkins</a> (<span class="p-org org">Google</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-email email" href=mailto:simonp@opera.com>Simon Pieters</a> (<span class="p-org org">Opera Software</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://blog.yoav.ws/>Yoav Weiss</a><dd class="p-author h-card vcard"><span class="p-name fn">Marcos Cáceres</span> (<span class="p-org org">Mozilla</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://matmarquis.com/>Mat Marquis</a><dt>Version History:<dd><a href=https://github.com/ResponsiveImagesCG/picture-element/commits/gh-pages>Commit History</a><dd><a href=https://twitter.com/respimg_commits>Github commits on Twitter</a><dt>Participate:<dd><a href=http://w3c.responsiveimages.org>Join the Responsive Images Community Group</a><dd><a href=http://list.responsiveimages.org>Public Mailing List</a><dd><a href=irc://irc.w3.org:6665/#respimg>IRC: #respimg on W3C’s IRC</a><dd><a href=https://twitter.com/respimg>Twitter</a><dd><a href=https://github.com/ResponsiveImagesCG/picture-element>Github</a></dl></div>
   <div data-fill-with=warning></div>
   <p class=copyright data-fill-with=copyright><a href=http://creativecommons.org/publicdomain/zero/1.0/ rel=license><img alt=CC0 src=https://i.creativecommons.org/p/zero/1.0/80x15.png></a>
 To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 6 June 2014,
+In addition, as of 9 June 2014,
 the editors have made this specification available under the
 <a href=http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0 rel=license>Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
@@ -594,7 +594,8 @@ Parts of this work may be from another specification document.  If so, those par
 		<li><a href=#picture-idl><span class=secno>3.3</span> <code>HTMLPictureElement</code> interface</a></ul>
 	<li><a href=#the-source-element><span class=secno>4</span> Changes to the <span data-link-type=element title=source>source</span> Element</a>
 	<li><a href=#the-img-element><span class=secno>5</span> Changes to the <span data-link-type=element title=img>img</span> Element</a>
-	<li><a href=#acks><span class=secno>6</span> Acknowledgements</a>
+	<li><a href=#dnd><span class=secno>6</span>Drag and drop</a>
+	<li><a href=#acks><span class=secno>7</span> Acknowledgements</a>
 	<li><a href=#conformance><span class=secno></span> Conformance</a>
 	<li><a href=#references><span class=secno></span> References</a>
 		<ul class=toc>
@@ -1758,7 +1759,16 @@ Changes to the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/h
 	set the <a class=idl-code data-link-type=attribute href=#dom-htmlimageelement-currentsrc title=currentsrc>currentSrc</a> IDL attribute to the <a data-link-type=dfn href=#dfn-last-selected-source title="last selected source">last selected source</a>, <a data-link-type=dfn href=#dfn-resolve title=resolve>resolved</a> relative to the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element,
 	or to the empty string if the <a data-link-type=dfn href=#dfn-last-selected-source title="last selected source">last selected source</a> is null.</p>
 
-<h2 class="heading settled heading" data-level=6 id=acks><span class=secno>6 </span><span class=content>
+<h2 class="heading settled heading" data-level=6 id=dnd><span class=secno>6 </span><span class=content>Drag and drop</span><a class=self-link href=#dnd></a></h2>
+
+<p>When an <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element’s <code>draggable</code> content attribute has the state <i title="">auto</i>,
+	and it has a parent that is a <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element,
+	the <a data-link-type=element href=http://www.w3.org/html/wg/drafts/html/CR/embedded-content-0.html#the-img-element title=img>img</a> element’s <code>draggable</code> IDL attribute must return false.</p>
+
+<p>When a <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element’s <code>draggable</code> content attribute has the state <i title="">auto</i>,
+	its <code>draggable</code> IDL attribute must return true.</p>
+
+<h2 class="heading settled heading" data-level=7 id=acks><span class=secno>7 </span><span class=content>
 Acknowledgements</span><a class=self-link href=#acks></a></h2>
 
 <p>A <a href=http://www.w3.org/community/respimg/participants>complete
