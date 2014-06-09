@@ -481,11 +481,6 @@ Selecting an Image Source</h4>
 			Return <var>selected source</var> and its associated pixel density.
 	</ol>
 
-	<p class='issue'>
-		This just selects a single image and then sticks with it,
-		unlike CSS's ''image()'',
-		but similar to <code>srcset</code>.
-		That okay?
 
 <h4 id='update-source-set'>
 Updating the Source Set</h4>
@@ -579,11 +574,6 @@ Updating the Source Set</h4>
 
 			</ol>
 	</ol>
-
-	<p class='issue'>
-		I'd like to allow individual sources to specify a type as well with a ''type()'' function,
-		overriding the default type specified by the <a element-attr for="source">type</a> attribute,
-		but I'm keeping things simple for now.
 
 
 <h4 id='parse-srcset-attr'>
