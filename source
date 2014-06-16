@@ -209,7 +209,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   The <span>pending request</span> is initially set to null.
   The <span>current request</span> is usually referred to as the <code>img</code> element itself.</p>
 
-  <p>An <dfn>image request</dfn> has a <dfn data-x="img-req-state">state</dfn> and <dfn data-x="img-req-data">image data</dfn>.</p>
+  <p>An <dfn>image request</dfn> has a <dfn data-x="img-req-state">state</dfn>, <dfn data-x="img-req-url">current URL</dfn> and <dfn data-x="img-req-data">image data</dfn>.</p>
 
   <p>An <span>image request</span>'s <span data-x="img-req-state">state</span> is one of the following:</p>
 
@@ -234,6 +234,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    supported, or no data could be obtained).</dd>
 
   </dl>
+
+  <p>An <span>image request</span>'s <span data-x="img-req-url">current URL</span> is initially the empty string.</p>
 
   <p>An <span>image request</span>'s <span data-x="img-req-data">image data</span> is the decoded image data.</p>
 
@@ -371,6 +373,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
      <li><p><span data-x="resolve a url">Resolve</span> <var data-x="">selected source</var>, relative
      to the element, and let the result be <var data-x="">absolute URL</var>. If that is not successful, then
      abort these inner set of steps.</p></li>
+     <!-- This does not change currentSrc -->
 
      <li><p>Let <var data-x="">key</var> be a tuple consisting of the resulting <span>absolute
      URL</span>, the <code>img</code> element's <code data-x="attr-img-crossorigin">crossorigin</code>
@@ -387,6 +390,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
      update the presentation of the image appropriately,
      let the <span>current request</span>'s <span>current pixel density</span> be <var data-x="">selected pixel density</var>,
      <span>queue a task</span> to <span>restart the animation</span> if <i data-x="">restart animation</i> is set,
+     change <span>current request</span>'s <span data-x="img-req-url">current URL</span> to <var data-x="">absolute URL</var>,
      and then <span>fire a simple event</span> named <code data-x="event-load">load</code> at the <code>img</code> element,
      and abort these steps.</p></li>
 
@@ -438,11 +442,11 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
      <span>abort the image request</span> for the <span>current request</span> and the <span>pending request</span>,
      and let <span>pending request</span> be null.</p></li>
 
-     <li><p>&#x231B; If the element has a <code data-x="attr-img-src">src</code> attribute
+     <li><p>&#x231B; <span>Queue a task</span> to change the <span>current request</span>'s <span data-x="img-req-url">current URL</span> to the empty string,
+     and then, if the element has a <code data-x="attr-img-src">src</code> attribute
      or a <code data-x="attr-img-srcset">srcset</code> attribute<!-- XXX
      or a parent that is a <code>picture</code> element-->,
-     <span>queue a task</span> to <span>fire a simple
-     event</span> named <code data-x="event-error">error</code> at the <code>img</code> element.</p></li>
+     <span>fire a simple event</span> named <code data-x="event-error">error</code> at the <code>img</code> element.</p></li>
 
      <!-- loadstart and loadend do not fire -->
 
@@ -464,7 +468,9 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    <span>abort the image request</span> for the <span>current request</span> and the <span>pending request</span>,
    set the <span>current request</span> to the <span data-x="img-error">broken</span> state,
    let <span>pending request</span> be null,
-   <span>queue a task</span> to <span>fire a simple event</span> named <code data-x="event-error">error</code> at the <code>img</code> element
+   <span>queue a task</span> to
+   change the <span>current request</span>'s <span data-x="img-req-url">current URL</span> to <var data-x="">absolute URL</var>,
+   <span>fire a simple event</span> named <code data-x="event-error">error</code> at the <code>img</code> element
    and then <span>fire a simple event</span> named <code data-x="event-loadend">loadend</code> at the <code>img</code> element,
    and abort these steps.</p></li>
 
@@ -473,7 +479,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
     <p>&#x231B; If the <span>pending request</span> is not null,
     <span>abort the image request</span> for the <span>pending request</span>.</p>
 
-    <p>&#x231B; Let <var data-x="">image request</var> be a new <span>image request</span>.</p>
+    <p>&#x231B; Let <var data-x="">image request</var> be a new <span>image request</span>
+    whose <span data-x="img-req-url">current URL</span> is <var data-x="">absolute URL</var>.</p>
 
     <p>&#x231B; Let the <span>pending request</span> be <var data-x="">image request</var>.</p>
 
@@ -1068,6 +1075,9 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
      <li><p>Let the <code>img</code> element's <span>last selected source</span> be <var
      data-x="">selected source</var> and the <code>img</code> element's <span>current pixel
      density</span> be <var data-x="">selected pixel density</var>.</p></li>
+
+     <li><p>Let the <code>img</code> element's <span>current request</span>'s
+     <span data-x="img-req-url">current URL</span> be the resulting <span>absolute URL</span> from the earlier step.</p></li>
 
      <li><p>Replace the <code>img</code> element's image data with the resource obtained by the
      earlier step of this algorithm. It can be either <span>CORS-same-origin</span> or

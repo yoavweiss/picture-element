@@ -293,6 +293,8 @@ Definitions</h2>
 	<dfn id="dfn-valid-non-empty-url">valid non-empty URL</dfn>,
 	<dfn id="dfn-update-the-image-data"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/embedded-content-1.html#update-the-image-data">update the image data</a></dfn>,
 	<dfn id="dfn-valid-media-query"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/common-microsyntaxes.html#valid-media-query">valid media query</a></dfn>,
+	<dfn id="dfn-current-request">current request</dfn>,
+	<dfn id="dfn-img-req-url" title="img-req-url">current URL</dfn>,
 	and
 	<dfn id="dfn-current-pixel-density">current pixel density</dfn>.
 
@@ -1168,12 +1170,7 @@ Changes to the <a element>img</a> Element</h2>
 		};
 	</pre>
 
-	The IDL attribute <a attribute>currentSrc</a> must initially be set to the empty string.
-	When the <span>update the image data</span> algorithm queues a task to fire a <code>load</code> event, or an <code>error</code> event,
-	or when the algorithm to react to changes in the environment queues a task to fire a <code>load</code> event,
-	the user agent must in the same task, before firing the event,
-	set the <a attribute>currentSrc</a> IDL attribute to the <a>last selected source</a>, <a title=resolve>resolved</a> relative to the <a element>img</a> element,
-	or to the empty string if the <a>last selected source</a> is null.
+	The IDL attribute <a attribute>currentSrc</a> must return the <a element>img</a> element's <a>current request</a>'s <a title=img-req-url>current URL</a>.
 
 	<p class='note'>The <code>usemap</code> and <code>ismap</code> attributes on <a element>img</a> do not work well together with <a>art direction</a>.
 

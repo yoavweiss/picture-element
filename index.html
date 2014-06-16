@@ -890,6 +890,8 @@ Definitions</span><a class=self-link href=#defs></a></h2>
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-valid-non-empty-url>valid non-empty URL<a class=self-link href=#dfn-valid-non-empty-url></a></dfn>,
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-update-the-image-data><a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/embedded-content-1.html#update-the-image-data>update the image data</a><a class=self-link href=#dfn-update-the-image-data></a></dfn>,
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-valid-media-query><a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/common-microsyntaxes.html#valid-media-query>valid media query</a><a class=self-link href=#dfn-valid-media-query></a></dfn>,
+	<dfn data-dfn-type=dfn data-noexport="" id=dfn-current-request>current request<a class=self-link href=#dfn-current-request></a></dfn>,
+	<dfn data-dfn-type=dfn data-noexport="" id=dfn-img-req-url title=img-req-url>current URL<a class=self-link href=#dfn-img-req-url></a></dfn>,
 	and
 	<dfn data-dfn-type=dfn data-noexport="" id=dfn-current-pixel-density>current pixel density<a class=self-link href=#dfn-current-pixel-density></a></dfn>.</p>
 
@@ -1755,12 +1757,7 @@ Changes to the <a data-link-type=element href=http://www.w3.org/TR/html5/embedde
 };
 </pre>
 
-<p>The IDL attribute <a class=idl-code data-link-type=attribute href=#dom-htmlimageelement-currentsrc title=currentsrc>currentSrc</a> must initially be set to the empty string.
-	When the <span>update the image data</span> algorithm queues a task to fire a <code>load</code> event, or an <code>error</code> event,
-	or when the algorithm to react to changes in the environment queues a task to fire a <code>load</code> event,
-	the user agent must in the same task, before firing the event,
-	set the <a class=idl-code data-link-type=attribute href=#dom-htmlimageelement-currentsrc title=currentsrc>currentSrc</a> IDL attribute to the <a data-link-type=dfn href=#dfn-last-selected-source title="last selected source">last selected source</a>, <a data-link-type=dfn href=#dfn-resolve title=resolve>resolved</a> relative to the <a data-link-type=element href=http://www.w3.org/TR/html5/embedded-content-0.html#the-img-element title=img>img</a> element,
-	or to the empty string if the <a data-link-type=dfn href=#dfn-last-selected-source title="last selected source">last selected source</a> is null.</p>
+<p>The IDL attribute <a class=idl-code data-link-type=attribute href=#dom-htmlimageelement-currentsrc title=currentsrc>currentSrc</a> must return the <a data-link-type=element href=http://www.w3.org/TR/html5/embedded-content-0.html#the-img-element title=img>img</a> element’s <a data-link-type=dfn href=#dfn-current-request title="current request">current request</a>’s <a data-link-type=dfn href=#dfn-img-req-url title=img-req-url>current URL</a>.</p>
 
 	<p class=note>The <code>usemap</code> and <code>ismap</code> attributes on <a data-link-type=element href=http://www.w3.org/TR/html5/embedded-content-0.html#the-img-element title=img>img</a> do not work well together with <a data-link-type=dfn href=http://usecases.responsiveimages.org/#art-direction title="art direction">art direction</a>.
 
@@ -1838,10 +1835,12 @@ Index</span><a class=self-link href=#index></a></h2>
 <li>ASCII-case insensitive, <a href=#dfn-ascii-case-insensitive title="section 2">2</a>
 <li>collect a sequence of characters, <a href=#dfn-collect-a-sequence-of-characters title="section 2">2</a>
 <li>current pixel density, <a href=#dfn-current-pixel-density title="section 2">2</a>
+<li>current request, <a href=#dfn-current-request title="section 2">2</a>
 <li>currentSrc, <a href=#dom-htmlimageelement-currentsrc title="section 5">5</a>
 <li>HTMLPictureElement, <a href=#dom-htmlpictureelement title="section 3.3">3.3</a>
 <li>image candidate string, <a href=#image-candidate-string title="section 3.1.3">3.1.3</a>
 <li>image source, <a href=#image-source title="section 3">3</a>
+<li>img-req-url, <a href=#dfn-img-req-url title="section 2">2</a>
 <li>last selected source, <a href=#dfn-last-selected-source title="section 2">2</a>
 <li>media, <a href=#element-attrdef-media title="section 4">4</a>
 <li>normalize the source densities, <a href=#normalize-the-source-densities title="section 3.1.5">3.1.5</a>
