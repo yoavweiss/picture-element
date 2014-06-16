@@ -477,6 +477,16 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    <li>
 
     <p>&#x231B; If the <span>pending request</span> is not null,
+    and <var data-x="">absolute URL</var> is the same as the <span>pending request</span>'s <span data-x="img-req-url">current URL</span>,
+    then abort these steps.</p>
+
+    <p>&#x231B; If <var data-x="">absolute URL</var> is the same as the <span>current request</span>'s <span data-x="img-req-url">current URL</span>,
+    and <span>current request</span> is in the <span data-x="img-partial">partially available</span> state,
+    then <span>abort the image request</span> for the <span>pending request</span>,
+    <span>queue a task</span> to <span>restart the animation</span> if <i data-x="">restart animation</i> is set,
+    and abort these steps.</p>
+
+    <p>&#x231B; If the <span>pending request</span> is not null,
     <span>abort the image request</span> for the <span>pending request</span>.</p>
 
     <p>&#x231B; Let <var data-x="">image request</var> be a new <span>image request</span>
