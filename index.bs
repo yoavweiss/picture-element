@@ -1174,15 +1174,6 @@ Changes to the <a element>img</a> Element</h2>
 
 	<p class='note'>The <code>usemap</code> and <code>ismap</code> attributes on <a element>img</a> do not work well together with <a>art direction</a>.
 
-<h2 id='dnd'>Drag and drop</h2>
-
-	When an <a element>img</a> element's <code>draggable</code> content attribute has the state <i title>auto</i>,
-	and it has a parent that is a <a element>picture</a> element,
-	the <a element>img</a> element's <code>draggable</code> IDL attribute must return false.
-
-	When a <a element>picture</a> element's <code>draggable</code> content attribute has the state <i title>auto</i>,
-	its <code>draggable</code> IDL attribute must return true.
-
 <h2 id='acks'>
 Acknowledgements</h2>
 
