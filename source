@@ -259,7 +259,9 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   <span>update the image data</span> of an <code>img</code> element whenever that element
   is created and has the <span data-x="img-parser-created">parser-created flag</span> unset, or has its
   <code data-x="attr-img-src">src</code>, <code data-x="attr-img-srcset">srcset</code>, or <code
-  data-x="attr-img-crossorigin">crossorigin</code> attribute set, changed, or removed, and whenever
+  data-x="attr-img-crossorigin">crossorigin</code> attribute set, changed, or removed,
+  or has its <code data-x="attr-img-src">src</code> attribute set to the same value as the previous value,
+  and whenever
   that element's <span data-x="concept-node-adopt-ext">adopting steps</span> are run.</p> <!-- Note
   how this does NOT happen when the base URL changes (except for when adopted into a new doc) -->
 
@@ -269,7 +271,9 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   data-x="attr-img-src">srcset</code> attribute, and only if the <code>img</code> element is in the
   <span data-x="img-none">unavailable</span> state. When an <code>img</code> element's <code
   data-x="attr-img-src">src</code>, <code data-x="attr-img-srcset">srcset</code>, or <code
-  data-x="attr-img-crossorigin">crossorigin</code> attribute set, changed, or removed, and whenever
+  data-x="attr-img-crossorigin">crossorigin</code> attribute set, changed, or removed,
+  or has its <code data-x="attr-img-src">src</code> attribute set to the same value as the previous value,
+  and whenever
   that element's <span data-x="concept-node-adopt-ext">adopting steps</span> are run, if the user
   agent only obtains images on demand, the <code>img</code> element must return to the <span
   data-x="img-none">unavailable</span> state.</p> <!-- Note how this does NOT happen when the base

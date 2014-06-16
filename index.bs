@@ -346,6 +346,9 @@ The <a element>picture</a> Element</h2>
 			set, changed, or removed.
 
 		<li>
+			The element's <a element-attr for="img">src</a> attribute is set to the same value as the previous value.
+
+		<li>
 			The element's <a element-attr for="img">crossorigin</a> attribute's state is changed.
 
 		<li>

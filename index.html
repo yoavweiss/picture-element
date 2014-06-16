@@ -56,7 +56,7 @@ h2 + h3, h3 + h4, h4 + h5, h5 + h6 { margin-top: 1.2em; }
 p.copyright { font-size: small; }
 p.copyright small { font-size: small; }
 
-pre { margin: 1em 0 1em 2em; overflow: auto; }
+pre { margin: 1em 0 1em 2em; }
 pre, code, .idl-code {
   font-size: .9em;
   font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
@@ -537,15 +537,6 @@ span.issue, span.note {
   border-right-style: solid;
 }
   </style>
-
-  <style>
-  a.logo-ricg { float: left; border-bottom: none; }
-  a.logo-w3c { float: right; border-bottom: none; }
-  p[data-fill-with="logo"] {
-    float: left;
-    width: 100%;
-  }
-  </style>
 <style>
 [data-link-type=element] { font-family: monospace; }
 [data-link-type=element]::before { content: "<" }
@@ -555,23 +546,20 @@ span.issue, span.note {
 </head>
 <body class=h-entry>
 <div class=head>
-  <p data-fill-with=logo><a class=logo-ricg href=http://responsiveimages.org>
-	<img alt="Responsive Images Community Group" height=49 src=https://raw.github.com/ResponsiveImagesCG/meta/master/logo/Web/RICG_logo_small.png>
-</a>
-<a class=logo-w3c href=http://www.w3.org/>
-	<img alt=W3C height=48 src=http://www.w3.org/Icons/w3c_home>
+  <p data-fill-with=logo><a href=http://responsiveimages.org>
+	<img alt="Responsive Images Community Group" src=https://raw.github.com/ResponsiveImagesCG/meta/master/logo/Web/RICG_logo_small.png>
 </a>
 </p>
   <h1 class="p-name no-ref" id=title>The picture Element</h1>
   <h2 class="no-num no-toc no-ref heading settled heading" id=subtitle><span class=content>W3C Working Draft,
-    <span class=dt-updated><span class=value-title title=20140610>10 June 2014</span></span></span></h2>
-  <div data-fill-with=spec-metadata><dl><dt>This version:<dd><a class=u-url href=http://www.w3.org/TR/2014/WD-html-picture-element-1-20140610/>http://www.w3.org/TR/2014/WD-html-picture-element-1-20140610/</a><dt>Editor’s Draft:<dd><a href=http://picture.responsiveimages.org/>http://picture.responsiveimages.org/</a><dt>Test Suite:<dd>None Yet<dt>Editors:
+    <span class=dt-updated><span class=value-title title=20140616>16 June 2014</span></span></span></h2>
+  <div data-fill-with=spec-metadata><dl><dt>This version:<dd><a class=u-url href=http://www.w3.org/TR/2014/WD-html-picture-element-1-20140616/>http://www.w3.org/TR/2014/WD-html-picture-element-1-20140616/</a><dt>Editor’s Draft:<dd><a href=http://picture.responsiveimages.org/>http://picture.responsiveimages.org/</a><dt>Test Suite:<dd>None Yet<dt>Editors:
 <dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://xanthir.com/contact/>Tab Atkins</a> (<span class="p-org org">Google</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-email email" href=mailto:simonp@opera.com>Simon Pieters</a> (<span class="p-org org">Opera Software</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://blog.yoav.ws/>Yoav Weiss</a><dd class="p-author h-card vcard"><span class="p-name fn">Marcos Cáceres</span> (<span class="p-org org">Mozilla</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://matmarquis.com/>Mat Marquis</a><dt>Version History:<dd><a href=https://github.com/ResponsiveImagesCG/picture-element/commits/gh-pages>Commit History</a><dd><a href=https://twitter.com/respimg_commits>Github commits on Twitter</a><dt>Participate:<dd><a href=http://w3c.responsiveimages.org/>Join the Responsive Images Community Group</a><dd><a href=http://list.responsiveimages.org/>Public Mailing List</a><dd><a href=irc://irc.w3.org:6665/#respimg>IRC: #respimg on W3C’s IRC</a><dd><a href=https://twitter.com/respimg>Twitter</a><dd><a href=https://github.com/ResponsiveImagesCG/picture-element>Github</a></dl></div>
   <div data-fill-with=warning></div>
   <p class=copyright data-fill-with=copyright><a href=http://creativecommons.org/publicdomain/zero/1.0/ rel=license><img alt=CC0 src=https://i.creativecommons.org/p/zero/1.0/80x15.png></a>
 To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 10 June 2014,
+In addition, as of 16 June 2014,
 the editors have made this specification available under the
 <a href=http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0 rel=license>Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
@@ -583,21 +571,6 @@ Parts of this work may be from another specification document.  If so, those par
 <h2 class="no-num no-toc no-ref heading settled heading" id=abstract><span class=content>Abstract</span></h2>
 <p class=p-summary data-fill-with=abstract>This specification defines the HTML <code>picture</code> element and extends the <code>img</code> and <code>source</code> elements to allow authors to declaratively control or give hints to the user agent about which image resource to use, based on the screen pixel density, viewport size, image format, and other factors.
 </p>
-<div data-fill-with=at-risk></div>
-
-<h2 class="no-num no-toc no-ref heading settled heading" id=status><span class=content>Status of this document</span></h2>
-<div data-fill-with=status><p>
-	This is a <strong>stable draft</strong> of this specification.
-	It is intended that no changes will be made to this specification
-	besides compatible bugfixes,
-	and future extensions.
-
-<p>
-	This document is appropriate to use for implementation.
-	If any changes are made that would affect the behavior of existing implementations,
-	it will be done only after consulting with existing implementations
-	to ensure that such a change is acceptable and compatible with existing usage.
-</div>
 <div data-fill-with=at-risk></div>
 
 <h2 class="no-num no-toc no-ref heading settled heading" id=contents><span class=content>Table of Contents</span></h2>
@@ -647,7 +620,7 @@ Introduction</span><a class=self-link href=#intro></a></h2>
 <p>By relying on <a data-biblio-type=normative data-link-type=biblio href=#biblio-mediaq title=biblio-mediaq>[MEDIAQ]</a>, a user agent can <em>respond</em> to changes in the browsing environment
 	by selecting the image source that most closely matches the browsing environment –
 	thus embodying a technique known as <a href=http://en.wikipedia.org/wiki/Responsive_web_design>responsive web design</a> directly in the HTML markup.
-	<a data-link-type=dfn href=http://www.w3.org/TR/mediaqueries-4/#media-feature title="media features">Media features</a> that a user agent can potentially respond to include, but are not limited to,
+	<a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-feature title="media features">Media features</a> that a user agent can potentially respond to include, but are not limited to,
 	pixel widths and heights,
 	and pixel densities,
 	as well as environmental lighting conditions, changes in orientation,
@@ -813,7 +786,7 @@ Examples of usage</span><a class=self-link href=#examples></a></h3>
 		just provide the image in enough sizes to cover everything they believe reasonable.</p>
 
 <p>Specifying this information with multiple <a data-link-type=element href=http://www.w3.org/TR/html5/embedded-content-0.html#the-source-element title=source>source</a> elements,
-		one for each of the <a data-link-type=dfn href=http://www.w3.org/TR/mediaqueries-4/#media-query title="media queries">media queries</a>,
+		one for each of the <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-query title="media queries">media queries</a>,
 		is possible, but much more verbose,
 		as the <a data-link-for=source data-link-type=element-attr href=#element-attrdef-srcset title=srcset>srcset</a> attributes have to be duplicated for each of them.</p>
 	</div>
@@ -901,7 +874,7 @@ The <a data-link-type=element href=#elementdef-picture title=picture>picture</a>
 
 <p>The <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element is a container which provides multiples sources to its contained <a data-link-type=element href=http://www.w3.org/TR/html5/embedded-content-0.html#the-img-element title=img>img</a> element,
 	allowing the displayed image to vary based on the density of the screen
-	or other environmental factors expressed as <a data-link-type=dfn href=http://www.w3.org/TR/mediaqueries-4/#media-query title="media queries">media queries</a>.</p>
+	or other environmental factors expressed as <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-query title="media queries">media queries</a>.</p>
 
 <p class=note>Note: <a data-link-type=element href=#elementdef-picture title=picture>picture</a> is somewhat different from the similar-looking elements <a data-link-type=element href=http://www.w3.org/TR/html5/embedded-content-0.html#video title=video>video</a> and <a data-link-type=element href=http://www.w3.org/TR/html5/embedded-content-0.html#audio title=audio>audio</a>.
 	While all of them contain <a data-link-type=element href=http://www.w3.org/TR/html5/embedded-content-0.html#the-source-element title=source>source</a> elements,
@@ -916,7 +889,7 @@ The <a data-link-type=element href=#elementdef-picture title=picture>picture</a>
 
 <p>A <dfn data-dfn-type=dfn data-export="" id=source-set>source set<a class=self-link href=#source-set></a></dfn> is a set of zero or more <a data-link-type=dfn href=#image-source title="image sources">image sources</a>,
 	a <a data-link-type=dfn href=#source-size title="source size">source size</a>,
-	and optionally a <a data-link-type=dfn href=http://www.w3.org/TR/mediaqueries-4/#media-query title="media query">media query</a>.</p>
+	and optionally a <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-query title="media query">media query</a>.</p>
 
 <p>An <dfn data-dfn-type=dfn data-export="" id=image-source>image source<a class=self-link href=#image-source></a></dfn> is a URL,
 	and optionally either a density descriptor,
@@ -935,6 +908,9 @@ The <a data-link-type=element href=#elementdef-picture title=picture>picture</a>
 			<a data-link-for=img data-link-type=element-attr title=srcset>srcset</a> or
 			<a data-link-for=img data-link-type=element-attr href=#element-attrdef-sizes title=sizes>sizes</a> attributes are
 			set, changed, or removed.
+
+		<li>
+			The element’s <a data-link-for=img data-link-type=element-attr title=src>src</a> attribute is set to the same value as the previous value.
 
 		<li>
 			The element’s <a data-link-for=img data-link-type=element-attr title=crossorigin>crossorigin</a> attribute’s state is changed.
@@ -1139,7 +1115,7 @@ Updating the Source Set</span><a class=self-link href=#update-source-set></a></h
 				<li>
 					If <var>child</var> has a <a data-link-for=source data-link-type=element-attr href=#element-attrdef-media title=media>media</a> attribute,
 					and its value is a <a data-link-type=dfn href=#dfn-valid-media-query title="valid media query">valid media query</a> which evaluates to true,
-					attach the <a data-link-type=dfn href=http://www.w3.org/TR/mediaqueries-4/#media-query title="media query">media query</a> to <var>source set</var>.
+					attach the <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-query title="media query">media query</a> to <var>source set</var>.
 					If its value is not a <a data-link-type=dfn href=#dfn-valid-media-query title="valid media query">valid media query</a>,
 					or is a <a data-link-type=dfn href=#dfn-valid-media-query title="valid media query">valid media query</a> that evaluates to false,
 					continue to the next child.
@@ -1550,9 +1526,9 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 
 		<li>
 			Parse the remaining <a data-link-type=dfn href=http://dev.w3.org/csswg/css-syntax-3/#component-value title="component values">component values</a> in <var>unparsed size</var>
-			as a <a class="production css-code" data-link-type=type href=http://www.w3.org/TR/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a>.
+			as a <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a>.
 			If it does not parse correctly,
-			or it does parse correctly but the <a class="production css-code" data-link-type=type href=http://www.w3.org/TR/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a> evaluates to false,
+			or it does parse correctly but the <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a> evaluates to false,
 			continue to the next iteration of this algorithm.
 
 		<li>
@@ -1565,14 +1541,14 @@ Parsing a <code>sizes</code> Attribute</span><a class=self-link href=#parse-size
 <p>A <dfn data-dfn-type=dfn data-export="" id=valid-source-size-list>valid source size list<a class=self-link href=#valid-source-size-list></a></dfn> is a string that matches the following grammar: <a data-biblio-type=normative data-link-type=biblio href=#biblio-css3val title=biblio-css3val>[CSS3VAL]</a></p>
 
 	<pre><dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size-list>&lt;source-size-list&gt;<a class=self-link href=#typedef-source-size-list></a></dfn> = <a class="production css-code" data-link-type=type href=#typedef-source-size title="<source-size>">&lt;source-size&gt;</a># [ , <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a> ]? | <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>
-<dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size>&lt;source-size&gt;<a class=self-link href=#typedef-source-size></a></dfn> = <a class="production css-code" data-link-type=type href=http://www.w3.org/TR/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a> <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>
+<dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size>&lt;source-size&gt;<a class=self-link href=#typedef-source-size></a></dfn> = <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a> <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>
 <dfn class=css-code data-dfn-type=type data-export="" id=typedef-source-size-value>&lt;source-size-value&gt;<a class=self-link href=#typedef-source-size-value></a></dfn> = <a class="production css-code" data-link-type=type href=http://www.w3.org/TR/css3-values/#length-value title="<length>">&lt;length&gt;</a>
 </pre>
 
 <p>A <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a> must not be negative.</p>
 
 <p class=note>Note: While a <a data-link-type=dfn href=#valid-source-size-list title="valid source size list">valid source size list</a> only contains a bare <a class="production css-code" data-link-type=type href=#typedef-source-size-value title="<source-size-value>">&lt;source-size-value&gt;</a>
-	(without an accompanying <a class="production css-code" data-link-type=type href=http://www.w3.org/TR/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a>)
+	(without an accompanying <a class="production css-code" data-link-type=type href=http://dev.w3.org/csswg/mediaqueries-4/#typedef-media-condition title="<media-condition>">&lt;media-condition&gt;</a>)
 	as the last entry in the <a class="production css-code" data-link-type=type href=#typedef-source-size-list title="<source-size-list>">&lt;source-size-list&gt;</a>,
 	the parsing algorithm technically allows such at any point in the list,
 	and will accept it immediately as the size
@@ -1625,7 +1601,7 @@ Interaction with the Preload Scanner</span><a class=self-link href=#preloader></
 	looking for URLs that it can begin loading as quickly as possible.</p>
 
 <p>The definition of the <a data-link-type=element href=#elementdef-picture title=picture>picture</a> element is compatible with a preload scanner,
-	at least for some <a data-link-type=dfn href=http://www.w3.org/TR/mediaqueries-4/#media-query title="media queries">media queries</a>.</p>
+	at least for some <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-query title="media queries">media queries</a>.</p>
 
 <p>If a UA uses a preload scanner,
 	it must recognize when a an <a data-link-type=element href=http://www.w3.org/TR/html5/embedded-content-0.html#the-img-element title=img>img</a> element is a child of a <a data-link-type=element href=#elementdef-picture title=picture>picture</a>,
@@ -1635,11 +1611,11 @@ Interaction with the Preload Scanner</span><a class=self-link href=#preloader></
 	<ul>
 		<li>
 			The preload scanner must be able to correctly determine the truth value of
-			<span class=css data-link-type=maybe title=@media/width>@media/width</span>, <span class=css data-link-type=maybe title=@media/device-width>@media/device-width</span>, <span class=css data-link-type=maybe title=@media/height>@media/height</span>, <span class=css data-link-type=maybe title=@media/device-height>@media/device-height</span>, and <span class=css data-link-type=maybe title=@media/resolution>@media/resolution</span> <a data-link-type=dfn href=http://www.w3.org/TR/mediaqueries-4/#media-feature title="media features">media features</a>.
+			<span class=css data-link-type=maybe title=@media/width>@media/width</span>, <span class=css data-link-type=maybe title=@media/device-width>@media/device-width</span>, <span class=css data-link-type=maybe title=@media/height>@media/height</span>, <span class=css data-link-type=maybe title=@media/device-height>@media/device-height</span>, and <span class=css data-link-type=maybe title=@media/resolution>@media/resolution</span> <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-feature title="media features">media features</a>.
 
 		<li>
-			The preload scanner may be able to correctly determine the truth value of any other <a data-link-type=dfn href=http://www.w3.org/TR/mediaqueries-4/#media-feature title="media feature">media feature</a>.
-			If it encounters an unknown <a data-link-type=dfn href=http://www.w3.org/TR/mediaqueries-4/#media-feature title="media feature">media feature</a>,
+			The preload scanner may be able to correctly determine the truth value of any other <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-feature title="media feature">media feature</a>.
+			If it encounters an unknown <a data-link-type=dfn href=http://dev.w3.org/csswg/mediaqueries-4/#media-feature title="media feature">media feature</a>,
 			or one which it cannot correctly determine the truth value of,
 			it must not attempt to preload <strong>any</strong> URL for the given <a data-link-type=element href=http://www.w3.org/TR/html5/embedded-content-0.html#the-img-element title=img>img</a> element.
 	</ul>
