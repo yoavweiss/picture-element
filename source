@@ -260,9 +260,11 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   is created and has the <span data-x="img-parser-created">parser-created flag</span> unset, or has its
   <code data-x="attr-img-src">src</code>, <code data-x="attr-img-srcset">srcset</code>, or <code
   data-x="attr-img-crossorigin">crossorigin</code> attribute set, changed, or removed,
-  or has its <code data-x="attr-img-src">src</code> attribute set to the same value as the previous value,
   and whenever
-  that element's <span data-x="concept-node-adopt-ext">adopting steps</span> are run.</p> <!-- Note
+  that element's <span data-x="concept-node-adopt-ext">adopting steps</span> are run.
+  A user agent that obtains images immediately must also synchronously
+  <span>update the image data</span> of an <code>img</code> element with the <i data-x="">restart animation</i> flag set whenever that element
+  has its <code data-x="attr-img-src">src</code> attribute set to the same value as the previous value.</p> <!-- Note
   how this does NOT happen when the base URL changes (except for when adopted into a new doc) -->
 
   <p>A user agent that obtains images on demand must <span>update the image data</span> of an
@@ -325,8 +327,9 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   the user agent would remove it from the <span>list of available images</span> but could keep the image data separately,
   and use that if the server responds with a <code data-x="">204 No Content</code> status.</p>
 
-  <p>When the user agent is to <dfn>update the image data</dfn> of an <code>img</code> element, it
-  must run the following steps:</p>
+  <p>When the user agent is to <dfn>update the image data</dfn> of an <code>img</code> element,
+  optionally with the <i data-x="">restart animations</i> flag set,
+  it must run the following steps:</p>
 
   <ol>
 
@@ -383,7 +386,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
      and whose state is set to the <span data-x="img-all">completely available</span> state,
      update the presentation of the image appropriately,
      let the <span>current request</span>'s <span>current pixel density</span> be <var data-x="">selected pixel density</var>,
-     <span>queue a task</span> to <span>fire a simple event</span> named <code data-x="event-load">load</code> at the <code>img</code> element,
+     <span>queue a task</span> to <span>restart the animation</span> if <i data-x="">restart animation</i> is set,
+     and then <span>fire a simple event</span> named <code data-x="event-load">load</code> at the <code>img</code> element,
      and abort these steps.</p></li>
 
      <!--
@@ -725,6 +729,11 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   depending on resource <var data-x>r</var>, means to
   <span>fire a progress event</span> named <var data-x="">type</var> at <var data-x="">e</var> if <var data-x="">r</var> is <span>CORS-same-origin</span>,
   and otherwise <span>fire a simple event</span> named <var data-x="">type</var> at <var data-x="">e</var>.</p>
+
+  <p>To <dfn>restart the animation</dfn> for an <code>img</code> element means that,
+  if the image is an animated image,
+  all animated images with the same <span>absolute URL</span> and the same image data in the <code>img</code> element's <code>Document</code>
+  are expected to restart their animation.</p>
 
   <p>While a user agent is running the above algorithm for an element <var data-x="">x</var>, there
   must be a strong reference from the element's <code>Document</code> to the element <var
