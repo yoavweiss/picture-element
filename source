@@ -118,15 +118,15 @@ Editor: Simon Pieters <simonp@opera.com>, Opera Software
 
   <p>The <code data-x="picture-source">source</code> element allows authors to specify multiple alternative
   <span data-x="source set">source sets</span> for <code>img</code> elements.
-  It does not <span>represent</span> anything on its own.</p>
+  It does not <span data-x="represents">represent</span> anything on its own.</p>
 
   <p>The <dfn data-x="attr-picture-source-srcset"><code>srcset</code></dfn> attribute must be present,
-  and must consist of one or more <span>image candidate strings</span>,
+  and must consist of one or more <span data-x="image candidate string">image candidate strings</span>,
   each separated from the next by a U+002C COMMA character (,).
   If an <span>image candidate string</span> contains no descriptors
-  and no <span>space characters</span> after the URL,
+  and no <span data-x="space character">space characters</span> after the URL,
   the following <span>image candidate string</span>, if there is one,
-  must begin with one or more <span>space characters</span>.</p>
+  must begin with one or more <span data-x="space character">space characters</span>.</p>
 
   <p>The <dfn data-x="attr-picture-source-sizes"><code>sizes</code></dfn> attribute may also be present.
   If present, the value must be a <span>valid source size list</span>.</p>
@@ -154,7 +154,7 @@ Editor: Simon Pieters <simonp@opera.com>, Opera Software
 
    <li><p>A <code data-x="attr-picture-source-media">media</code> attribute specified with a value that,
    after <span data-x="strip leading and trailing whitespace">stripping leading and trailing whitespace</span>,
-   is not the empty string and is not an <span>ASCII-case insensitive</span> match for the string <code>all</code>.</p></li>
+   is not the empty string and is not an <span>ASCII case-insensitive</span> match for the string <code>all</code>.</p></li>
 
    <li><p>A <code data-x="attr-picture-source-type">type</code> attribute specified.</p></li>
 
@@ -255,9 +255,9 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   <span data-x="image candidate string">image candidate strings</span>,
   each separated from the next by a U+002C COMMA character (,).
   If an <span>image candidate string</span> contains no descriptors
-  and no <span>space characters</span> after the URL,
+  and no <span data-x="space character">space characters</span> after the URL,
   the following <span>image candidate string</span>, if there is one,
-  must begin with one or more <span>space characters</span>.</p>
+  must begin with one or more <span data-x="space character">space characters</span>.</p>
 
   <!-- XXXX
   <div class="note">
@@ -329,12 +329,12 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   an <span>image candidate string</span> with a <code data-x="">1x</code> descriptor.</p>
 
   <p>If the <code data-x="picture-source">source</code> or <code>img</code> element has a
-  <code data-x="">sizes</code> attribute present, all <span>image candidate strings</span> for that
+  <code data-x="">sizes</code> attribute present, all <span data-x="image candidate string">image candidate strings</span> for that
   element must have the <i data-x="">width descriptor</i> specified.</p>
 
   <p>If an <span>image candidate string</span> for an <code data-x="picture-source">source</code> or <code>img</code> element
   has the <i data-x="">width descriptor</i> specified,
-  all other <span>image candidate strings</span> for that element
+  all other <span data-x="image candidate string">image candidate strings</span> for that element
   must also have the <i data-x="">width descriptor</i> specified.</p>
 
   <p>The specified width in an <span>image candidate string</span>'s <i data-x="">width descriptor</i>
@@ -633,7 +633,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    <li>
 
     <p>&#x231B; Let <var data-x="">selected source</var> and <var data-x="">selected pixel density</var> be the
-    URL and pixel density that results from <span>selecting an image source</span>,
+    URL and pixel density that results from <span data-x="select an image source">selecting an image source</span>,
     respectively.</p>
 
    </li>
@@ -687,7 +687,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
     then abort these steps.</p>
 
     <p>&#x231B; If <var data-x="">absolute URL</var> is the same as the <span>current request</span>'s <span data-x="img-req-url">current URL</span>,
-    and <span>current request</span> is in the <span data-x="img-partial">partially available</span> state,
+    and <span>current request</span> is in the <span data-x="img-inc">partially available</span> state,
     then <span>abort the image request</span> for the <span>pending request</span>,
     <span>queue a task</span> to <span>restart the animation</span> if <i data-x="">restart animation</i> is set,
     and abort these steps.</p>
@@ -994,7 +994,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   <p>An <code>img</code> element is associated with a <span>source set</span>.</p>
 
   <p>A <dfn>source set</dfn> is a set of zero or more <span data-x="image source">image sources</span>,
-  a <span>source size</span>, and optionally a <span>media query</span>.<!-- XXX
+  a <span>source size</span>, and optionally a media query.<!-- XXX
   the media query seems unnecessary --></p>
 
   <p>An <dfn>image source</dfn> is a <span>URL</span>,
@@ -1088,12 +1088,12 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
      <li><p>If <var>child</var> has a <code data-x="attr-picture-source-media">media</code> attribute,
      and its value is a <span>valid media query</span> which evaluates to true,
-     attach the <span>media query</span> to <var>source set</var>.
+     attach the media query to <var>source set</var>.
      If its value is not a <span>valid media query</span>,
      or is a <span>valid media query</span> that evaluates to false,
      continue to the next child.</p></li>
 
-     <li><p><span data-x="parse its sizes attribute">Parse <var>child</var>'s sizes attribute</span>
+     <li><p><span data-x="parse a sizes attribute">Parse <var>child</var>'s sizes attribute</span>
      and let <var>source set</var>'s <span>source size</span> be the returned value.</p></li>
 
      <li><p>If <var>child</var> has a <code data-x="attr-picture-source-type">type</code> attribute,
@@ -1135,13 +1135,13 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    The order of entries in the lists is the order in which entries are added to the lists.</p></li>
 
    <li><p><i data-x="">Splitting loop</i>: <span>Collect a sequence of characters</span>
-   that are <span>space characters</span> or U+002C COMMA characters.</p></li>
+   that are <span data-x="space character">space characters</span> or U+002C COMMA characters.</p></li>
 
    <li><p>If <var>position</var> is past the end of <var>input</var>,
    then jump to the step labeled <i data-x="">descriptor parser</i>.</p></li>
 
    <li><p><span>Collect a sequence of characters</span> that are not
-   <span>space characters</span>, and let that be <var>url</var>.</p></li>
+   <span data-x="space character">space characters</span>, and let that be <var>url</var>.</p></li>
 
    <li><p>Let <var data-x="">descriptors</var> be a new empty list.</p></li>
 
@@ -1730,7 +1730,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   on an element that does not have an ancestor <code>a</code> element
   with an <code data-x="attr-hyperlink-href">href</code> attribute.</p>
 
-  <p class="note">The <code data-x="attr-img-usemap">usemap</code> and
+  <p class="note">The <code data-x="attr-hyperlink-usemap">usemap</code> and
   <code data-x="attr-img-ismap">ismap</code> attributes
   can result in confusing behavior when used together with
   <code data-x="picture-source">source</code> elements with the
@@ -1868,7 +1868,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   a <span data-x="concept-script">script</span> is executing.</p>
 
   <p>The <dfn data-x="dom-img-currentSrc"><code>currentSrc</code></dfn> IDL attribute
-  must return the <code>img</code> element's <span>current request</span>'s <span>current URL</span>.</p>
+  must return the <code>img</code> element's <span>current request</span>'s <span data-x="img-req-url">current URL</span>.</p>
 
   <p>A constructor is provided for creating <code>HTMLImageElement</code> objects (in addition to
   the factory methods from DOM such as <code data-x="">createElement()</code>): <dfn
