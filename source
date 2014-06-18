@@ -993,9 +993,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   <p>An <code>img</code> element is associated with a <span>source set</span>.</p>
 
-  <p>A <dfn>source set</dfn> is a set of zero or more <span data-x="image source">image sources</span>,
-  a <span>source size</span>, and optionally a media query.<!-- XXX
-  the media query seems unnecessary --></p>
+  <p>A <dfn>source set</dfn> is a set of zero or more <span data-x="image source">image sources</span>
+  and a <span>source size</span>.</p>
 
   <p>An <dfn>image source</dfn> is a <span>URL</span>,
   and optionally either a density descriptor, or a width descriptor.</p>
@@ -1087,9 +1086,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
      continue to the next child.</p></li>
 
      <li><p>If <var data-x="">child</var> has a <code data-x="attr-picture-source-media">media</code> attribute,
-     and its value is a <span>valid media query</span> which evaluates to true,
-     attach the media query to <var data-x="">source set</var>.
-     If its value is not a <span>valid media query</span>,
+     and its value is not a <span>valid media query</span>,
      or is a <span>valid media query</span> that evaluates to false,
      continue to the next child.</p></li>
 
