@@ -1058,7 +1058,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
        let <var data-x="">source set</var>'s <span>source size</span> be the returned value.</p></li>
 
        <li><p>If <var data-x="">child</var> has a <code data-x="attr-img-src">src</code> attribute
-       <!-- XXX whose value is not the empty string? -->
+       whose value is not the empty string
        and <var data-x="">source set</var> does not contain an
        <span>image source</span> with a density descriptor value of 1,
        and no <span>image source</span> with a width descriptor,
