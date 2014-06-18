@@ -328,8 +328,9 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   an <span>image candidate string</span> with no descriptors is equivalent to
   an <span>image candidate string</span> with a <code data-x="">1x</code> descriptor.</p>
 
-  <p>If the <code data-x="picture-source">source</code> or <code>img</code> element has a
-  <code data-x="">sizes</code> attribute present, all <span data-x="image candidate string">image candidate strings</span> for that
+  <p>If a <code data-x="picture-source">source</code> element has a <code data-x="attr-picture-source-sizes">sizes</code> attribute present
+  or an <code>img</code> element has a <code data-x="attr-img-sizes">sizes</code> attribute present,
+  all <span data-x="image candidate string">image candidate strings</span> for that
   element must have the <i data-x="">width descriptor</i> specified.</p>
 
   <p>If an <span>image candidate string</span> for an <code data-x="picture-source">source</code> or <code>img</code> element
@@ -1566,7 +1567,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
      <span>CORS-cross-origin</span>; this affects the <span>origin</span> of the image itself (e.g.
      when used on a <code>canvas</code>).</p></li>
 
-     <li><p><span>Fire a simple event</span> named <code data-x="">load</code> at the
+     <li><p><span>Fire a simple event</span> named <code data-x="event-load">load</code> at the
      <code>img</code> element.</p></li>
 
     </ol>
