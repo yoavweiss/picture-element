@@ -1,7 +1,7 @@
 <h1>The picture Element</h1>
 <pre class='metadata'>
 Group: ricg
-Status: WD
+Status: ED
 ED: http://picture.responsiveimages.org/
 Shortname: html-picture-element
 Level: 1
@@ -26,7 +26,20 @@ Link Defaults: html5 (element) source/video/audio/iframe
 [data-link-type=element] { font-family: monospace; }
 [data-link-type=element]::before { content: "<" }
 [data-link-type=element]::after { content: ">" }
+
+#obsolete { position:fixed; z-index:1; background:#EEFFEE; border:solid #99FF99 0.25em; padding:1em; top:40%; left:20%; right:20% }
+#obsolete ~ *, #obsolete ~ * * { color:gray !important; background:transparent !important }
 </style>
+
+<link rel="canonical" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/edits.html#embedded-content">
+
+<div id="obsolete">
+
+ <strong>This specification has been superseded.</strong>
+ See the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/edits.html#embedded-content">HTML Standard</a>
+ (or the <a href="http://developers.whatwg.org/edits.html#embedded-content">Web developer version</a>).
+
+</div>
 
 <h2 id='intro'>
 Introduction</h2>
