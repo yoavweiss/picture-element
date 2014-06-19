@@ -30,8 +30,8 @@ Editor: Simon Pieters <simonp@opera.com>, Opera Software
 
   <p><i data-x="">This section is non-normative.</i></p>
 
-  <p>Embedding an image in HTML is usually a simple matter.
-  If you have a single image resource, use the <code>img</code> element and its <code data-x="attr-img-src">src</code> attribute.</p>
+  <p>To embed an image in HTML, when there is only a single image resource,
+  use the <code>img</code> element and its <code data-x="attr-img-src">src</code> attribute.</p>
 
   <div class="example">
 
@@ -58,6 +58,8 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, &hellip;<
       <p>The users' physical screen size might be different from one another.</p>
 
       <p class="example">A mobile phone's screen might be 4 inches diagonally, while a laptop's screen might be 14 inches diagonally.</p>
+
+      <p class="note">This is only relevant when an image's rendered size depends on the viewport size.</p>
 
      </li>
 
@@ -139,8 +141,11 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, &hellip;<
     This is usually referred to as <dfn>image format-based selection</dfn>.</p>
 
     <p class="example">A Web page might have some images in the JPEG, WebP and JPEG XR image formats,
-    with the latter two having better compression abilities compared to JPEG,
-    but still support user agents that only support JPEG.<!--XXX refs?--></p>
+    with the latter two having better compression abilities compared to JPEG.
+    Since different user agents can support different image formats,
+    with some formats offering better compression ratios,
+    the author would like to serve the better formats to user agenst that support them,
+    while providing JPEG fallback for user agents that don't.<!--XXX refs?--></p>
 
    </li>
 
@@ -182,6 +187,10 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, &hellip;<
     using the <code data-x="">x</code> descriptor,
     to provide multiple images that only vary in their size
     (the smaller image is a scaled-down version of the bigger image).</p>
+
+    <p class="note">The <code data-x="">x</code> descriptor is not appropriate when the
+    rendered size of the image depends on the viewport width (<span>viewport-based selection</span>),
+    but can be used together with <span>art direction</span>.</p>
 
     <div class="example">
 
