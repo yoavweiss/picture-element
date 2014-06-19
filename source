@@ -777,13 +777,10 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   context</span> where <span data-x="concept-bc-noscript">scripting is enabled</span>, user agents
   must obtain images immediately.</p>
 
-  <p>A user agent that obtains images immediately must synchronously <span>update the image
-  data</span> of an <code>img</code> element that has the
-  <span data-x="img-parser-created">parser-created flag</span> set to true whenever that element is
-  inserted into another <code>Node</code>. A user agent that obtains images immediately must also synchronously
+  <p>A user agent that obtains images immediately must synchronously
   <span>update the image data</span> of an <code>img</code> element,
-  with the <i data-x="">restart animation</i> flag set if so stated, whenever that element
-  is created and has the <span data-x="img-parser-created">parser-created flag</span> unset,
+  with the <i data-x="">restart animation</i> flag set if so stated,
+  whenever that element is created,
   or has experienced <span>relevant mutations</span>,
   and whenever that element's <span data-x="concept-node-adopt-ext">adopting steps</span> are run.</p> <!-- Note
   how this does NOT happen when the base URL changes (except for when adopted into a new doc) -->
@@ -841,17 +838,6 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   that there are 300 device pixels per CSS inch, and thus if the image data is 300x600, it has an
   intrinsic dimension of 96 CSS pixels by 192 CSS pixels.</p>
 
-  <p>Each <code>img</code> element has a <dfn data-x="img-parser-created">parser-created flag</dfn> that must be set to false
-  when the element is created, unless otherwise specified.</p>
-
-  <p class="note">The <span>HTML parser</span> and the <span>XML parser</span>
-  will set the <span data-x="img-parser-created">parser-created flag</span> to true
-  when they create an <code>img</code> element,
-  both when parsing a fragment and when parsing a document.</p>
-
-  <p class="note">When an <code>img</code> element is <span data-x="concept-node-clone">cloned</span>,
-  the <span data-x="img-parser-created">parser-created flag</span> is <em>not</em> copied.</p>
-
   <p>Each <code>Document</code> object must have a <dfn>list of available images</dfn>. Each image
   in this list is identified by a tuple consisting of an <span>absolute URL</span>, a <span>CORS
   settings attribute</span> mode, and, if the mode is not <span data-x="attr-crossorigin-none">No
@@ -882,11 +868,6 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    <li><p>If the element's <code>Document</code> is not the <span>active document</span>,
    abort these steps.</p></li>
-
-   <li><p>Let <var data-x="">parser-created</var> be the value of the element's
-   <span data-x="img-parser-created">parser-created flag</span>.</p></li>
-
-   <li><p>Set the element's <span data-x="img-parser-created">parser-created flag</span> to false.</p></li>
 
    <li><p>If the user agent cannot support images, or its support for images has been disabled, then
    <span>abort the image request</span> for the <span>current request</span> and the <span>pending request</span>,
@@ -948,9 +929,9 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    </li>
 
-   <li><p>If <var data-x="">parser-created</var> is false, asynchronously <span>await a stable state</span>, allowing the <span
+   <li><p>Asynchronously <span>await a stable state</span>, allowing the <span
    data-x="concept-task">task</span> that invoked this algorithm to continue.
-   Otherwise, continue running the steps in the <span>synchronous section</span>. The <span>synchronous
+   The <span>synchronous
    section</span> consists of all the remaining steps of this algorithm until the algorithm says the
    <span>synchronous section</span> has ended. (Steps in <span data-x="synchronous
    section">synchronous sections</span> are marked with &#x231B;.)</p></li>
