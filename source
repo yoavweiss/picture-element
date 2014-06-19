@@ -397,7 +397,6 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, &hellip;<
    <dd><span>Flow content</span>.</dd>
    <dd><span>Phrasing content</span>.</dd>
    <dd><span>Embedded content</span>.</dd>
-   <dd><span>Palpable content</span>.</dd>
    <dt><span data-x="element-dfn-contexts">Contexts in which this element can be used</span>:</dt>
    <dd>Where <span>embedded content</span> is expected.</dd>
    <dt><span data-x="element-dfn-content-model">Content model</span>:</dt>
