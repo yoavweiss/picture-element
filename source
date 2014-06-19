@@ -123,7 +123,7 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, &hellip;<
     <p class="example">A Web page might have a banner at the top that always spans the entire viewport width.
     In this case, the rendered size of the image depends on the physical size of the screen (assuming a maximized browser window).</p>
 
-    <p class="example">Another Web page might images in columns,
+    <p class="example">Another Web page might have images in columns,
     with a single column for screens with a small physical size,
     two columns for screens with medium physical size,
     and three columns for screens with big physical size,
@@ -224,7 +224,7 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, &hellip;<
 
 <pre>&lt;picture>
   &lt;source <strong>media="(min-width: 45em)"</strong> srcset="large.jpg">
-  &lt;source <strong>media="(min-width: 18em)"</strong> srcset="med.jpg">
+  &lt;source <strong>media="(min-width: 32em)"</strong> srcset="med.jpg">
   &lt;img src="small.jpg" alt="The president giving an award.">
 &lt;/picture></pre>
 
@@ -237,8 +237,8 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, &hellip;<
      CSS can be used.</p>
 
 <pre class="css">img { width: 300px; height: 300px }
-@media (min-width: 18em) { img { width: 600px; height:300px } }
-@media (min-width: 45em) { img { width: 1000px; height:400px } }</pre>
+@media (min-width: 32em) { img { width: 500px; height:300px } }
+@media (min-width: 45em) { img { width: 700px; height:400px } }</pre>
 
     </div>
 
