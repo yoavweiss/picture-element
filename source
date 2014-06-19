@@ -28,7 +28,345 @@ Editor: Simon Pieters <simonp@opera.com>, Opera Software
 
   <h4>Introduction</h4>
 
-  <p class="XXX">See the <a href="http://picture.responsiveimages.org/#intro">picture element specification</a>'s introduction for now.</p>
+  <p><i data-x="">This section is non-normative.</i></p>
+
+  <p>Embedding an image in HTML is usually a simple matter.
+  If you have a single image resource, use the <code>img</code> element and its <code data-x="attr-img-src">src</code> attribute.</p>
+
+  <div class="example">
+
+<pre>&lt;h2>From today's featured article&lt;/h2>
+<strong>&lt;img src="/uploads/100-marie-lloyd.jpg" alt="" width="100" height="150"></strong>
+&lt;p>&lt;b>&lt;a href="/wiki/Marie_Lloyd">Marie Lloyd&lt;/a>&lt;/b> (1870–1922)
+was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, &hellip;</pre>
+
+  </div>
+
+  <p>However, there are a number of situations for which the author might wish
+  to use multiple image resources that the user agent can choose from:</p>
+
+  <ul>
+
+   <li>
+
+    <p>Different users might have different environmental characteristics:</p>
+
+    <ul>
+
+     <li>
+
+      <p>The users' physical screen size might be different from one another.</p>
+
+      <p class="example">A mobile phone's screen might be 4 inches diagonally, while a laptop's screen might be 14 inches diagonally.</p>
+
+     </li>
+
+     <li>
+
+      <p>The users' screen pixel density might be different from one another.</p>
+
+      <p class="example">A mobile phone's screen might have three times as many physical pixels per inch
+      compared to another mobile phone's screen, regardless of their physical screen size.</p>
+
+     </li>
+
+     <li>
+
+      <p>The users' zoom level might different from one another, or might change for a single user over time.</p>
+
+      <p class="example">A user might zoom in to a particular image to be able to get a more detailed look.</p>
+
+      <p>The zoom level and the screen pixel density (the previous point) can both affect the number of physical screen pixels per CSS pixel.
+      This ratio is usually referred to as <dfn>device-pixel-ratio</dfn>.</p>
+
+     </li>
+
+     <li>
+
+      <p>The users' screen orientation might be different from one another, or might change for a single user over time.</p>
+
+      <p class="example">A tablet can be held upright or rotated 90 degrees, so that the screen is either "portrait" or "landscape".</p>
+
+     </li>
+
+     <li>
+
+      <p>The users' network speed, network latency and bandwidth cost might be different from one another, or might change for a single user over time.</p>
+
+      <p class="example">A user might be on a fast, low-latency and constant-cost connection while at work,
+      on a slow, low-latency and constant-cost connection while at home,
+      and on a variable-speed, high-latency and variable-cost connection anywhere else.</p>
+
+     </li>
+
+    </ul>
+
+   </li>
+
+   <li>
+
+    <p>Authors might want to show different image content depending on the rendered size of the image.
+    This is usually referred to as <dfn>art direction</dfn>.</p>
+
+    <p class="example">When a Web page is viewed on a screen with a large physical size (assuming a maximized browser window),
+    the author might wish to include some less relevant parts surrounding the critical part of the image.
+    When the same Web page is viewed on a screen with a small physical size,
+    the author might wish to show only the critical part of the image.</p>
+
+   </li>
+
+   <li>
+
+    <p>Authors might want to show the same image content but with different rendered size depending on, usually, the width of the viewport.
+    This is usually referred to as <dfn>viewport-based selection</dfn>.</p>
+
+    <p class="example">A Web page might have a banner at the top that always spans the entire viewport width.
+    In this case, the rendered size of the image depends on the physical size of the screen (assuming a maximized browser window).</p>
+
+    <p class="example">Another Web page might images in columns,
+    with a single column for screens with a small physical size,
+    two columns for screens with medium physical size,
+    and three columns for screens with big physical size,
+    with the images varying in rendered size in each case to fill up the viewport.
+    In this case, the rendered size of an image might be <em>bigger</em> in the one-column layout compared to the two-column layout,
+    despite the screen being smaller.</p>
+
+   </li>
+
+   <li>
+
+    <p>Authors might want to show the same image content but using different image formats, depending on which image formats the user agent supports.
+    This is usually referred to as <dfn>image format-based selection</dfn>.</p>
+
+    <p class="example">A Web page might have some images in the JPEG, WebP and JPEG XR image formats,
+    with the latter two having better compression abilities compared to JPEG,
+    but still support user agents that only support JPEG.<!--XXX refs?--></p>
+
+   </li>
+
+  </ul>
+
+  <p>The above situations are not mutually exclusive.
+  For example, it is reasonable to combine different resources for different <span>device-pixel-ratio</span>
+  with different resources for <span>art direction</span>.</p>
+
+  <p>While it is possible to solve these problems using scripting, doing so introduces some other problems:</p>
+
+  <ul>
+
+   <li><p>Some user agents agressively download images specified in the HTML markup,
+   before scripts have had a chance to run,
+   so that Web pages complete loading sooner.
+   If a script changes which image to download,
+   the user agent will potentially start two separate downloads,
+   which can instead cause worse page loading performance.</p></li>
+
+   <li><p>If the author avoids specifying any image in the HTML markup
+   and instead instantiates a single download from script,
+   that avoids the double download problem above
+   but instead it makes no image be downloaded at all for users with scripting disabled
+   and it disables the agressive image downloading optimization.</p></li>
+
+  </ul>
+
+  <p>With this in mind, this specification introduces a number of features to address the above problems in a declarative manner.</p>
+
+  <dl>
+
+   <dt><span>Device-pixel-ratio</span>-based selection when the rendered size of the image is fixed</dt>
+
+   <dd>
+
+    <p>The <code data-x="attr-img-src">src</code> and <code data-x="attr-img-srcset">srcset</code>
+    attributes on the <code>img</code> element can be used,
+    using the <code data-x="">x</code> descriptor,
+    to provide multiple images that only vary in their size
+    (the smaller image is a scaled-down version of the bigger image).</p>
+
+    <div class="example">
+
+<pre>&lt;h2>From today's featured article&lt;/h2>
+&lt;img <strong>src="/uploads/100-marie-lloyd.jpg"</strong>
+     <strong>srcset="/uploads/150-marie-lloyd.jpg 1.5x, /uploads/200-marie-lloyd.jpg 2x"</strong>
+     alt="" width="100" height="150">
+&lt;p>&lt;b>&lt;a href="/wiki/Marie_Lloyd">Marie Lloyd&lt;/a>&lt;/b> (1870–1922)
+was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, &hellip;</pre>
+
+     <p>The user agent can choose any of the given resources depending on
+     the user's screen's pixel density, zoom level, and possibly other factors such as the user's network conditions.</p>
+
+     <p>For backwards compatibility with older user agents that
+     don't yet understand the <code data-x="attr-img-srcset">srcset</code> attribute,
+     one of the URLs is specified in the <code>img</code> element's <code data-x="attr-img-src">src</code> attribute.
+     This will result in something useful (though perhaps lower-resolution than the user would like)
+     being displayed even in older user agents.
+     For new user agents, the <code data-x="attr-img-src">src</code> attribute participates in the resource selection,
+     as if it was specified in <code data-x="attr-img-srcset">srcset</code> with a <code data-x="">1x</code> descriptor.</p>
+
+     <p>The image's rendered size is given in the
+     <code data-x="attr-dim-width">width</code> and <code data-x="attr-dim-height">height</code> attributes,
+     which allows the user agent to allocate space for the image before it is downloaded.</p>
+
+    </div>
+
+   </dd>
+
+   <dt><span>Art direction</span>-based selection</dt>
+
+   <dd>
+
+    <p>The <code>picture</code> element and the <code data-x="picture-source">source</code> element,
+    together with the <code data-x="attr-picture-source-media">media</code> attribute,
+    can be used, to provide multiple images that vary the image content
+    (for intance the smaller image might be a cropped version of the bigger image).</p>
+
+    <div class="example">
+
+<pre>&lt;picture>
+  &lt;source <strong>media="(min-width: 45em)"</strong> srcset="large.jpg">
+  &lt;source <strong>media="(min-width: 18em)"</strong> srcset="med.jpg">
+  &lt;img src="small.jpg" alt="The president giving an award.">
+&lt;/picture></pre>
+
+     <p>The user agent will choose the first <code data-x="picture-source">source</code> element
+     for which the media query in the <code data-x="attr-picture-source-media">media</code> attribute matches,
+     and then choose an appropriate URL from its <code data-x="attr-picture-source-srcset">srcset</code> attribute.</p>
+
+     <p>The rendered size of the image varies depending on which resource is chosen.
+     To specify dimensions that the user agent can use before having downloaded the image,
+     CSS can be used.</p>
+
+<pre class="css">img { width: 300px; height: 300px }
+@media (min-width: 18em) { img { width: 600px; height:300px } }
+@media (min-width: 45em) { img { width: 1000px; height:400px } }</pre>
+
+    </div>
+
+    <div class="example">
+
+     <p>This example combines <span>art direction</span>- and <span>device-pixel-ratio</span>-based selection.
+     A banner that takes half the viewport is provided in two versions,
+     one for wide screens and one for narrow screens.</p>
+
+<pre>&lt;h1>
+ &lt;picture>
+  &lt;source media="(max-width: 500px)" srcset="banner-phone.jpeg, banner-phone-HD.jpeg 2x">
+  &lt;img src="banner.jpeg" srcset="banner-HD.jpeg 2x" alt="The Breakfast Combo">
+ &lt;/picture>
+&lt;/h1></pre>
+
+    </div>
+
+   </dd>
+
+   <dt><span>Viewport-based selection</span></dt>
+
+   <dd>
+
+    <p>The <code data-x="attr-img-srcset">srcset</code> and <code data-x="attr-img-sizes">sizes</code> attributes can be used,
+    using the <code data-x="">w</code> descriptor,
+    to provide multiple images that only vary in their size
+    (the smaller image is a scaled-down version of the bigger image).</p>
+
+    <div class="example">
+
+     <p>In this example, a banner image takes up the entire viewport width
+     (using appropriate CSS).</p>
+
+<pre>&lt;h1>&lt;img <strong>sizes="100vw" srcset="wolf-400.jpg 400w, wolf-800.jpg 800w, wolf-1600.jpg 1600w"</strong>
+     src="wolf-400.jpg" alt="The rad wolf">&lt;/h1></pre>
+
+     <p>The user agent will calculate the effective pixel density of each image
+     from the specified <code data-x="">w</code> descriptors and the specified rendered size in the <code data-x="attr-img-sizes">sizes</code> attribute.
+     It can then choose any of the given resources depending on
+     the user's screen's pixel density, zoom level, and possibly other factors such as the user's network conditions.</p>
+
+     <p>If the user's screen is 320 CSS pixels wide, this is equivalent to specifying
+     <code data-x="">wolf-400.jpg 1.25x, wolf-800.jpg 2.5x, wolf-1600.jpg 5x</code>.
+     On the other hand, if the user's screen is 1200 CSS pixels wide,
+     this is equivalent to specifying
+     <code data-x="">wolf-400.jpg .33x, wolf-800.jpg .67x, wolf-1600.jpg 1.33x</code>.
+     By using the <code data-x="">w</code> descriptors and the <code data-x="attr-img-sizes">sizes</code> attribute,
+     the user agent can choose the correct image source to download regardless of how large the user's device is.</p>
+
+     <p>For backwards compatibility,
+     one of the URLs is specified in the <code>img</code> element's <code data-x="attr-img-src">src</code> attribute.
+     In new user agents, the <code data-x="attr-img-src">src</code> attribute is ignored
+     when the <code data-x="attr-img-srcset">srcset</code> attribute uses <code data-x="">w</code> descriptors.</p>
+
+    </div>
+
+    <div class="example">
+
+     <p>In this example, the Web page has three layouts depending on the width of the viewport.
+     The narrow layout has one column of images (the width of each image is about 100%),
+     the middle layout has two colummns of images (the width of each image is about 50%),
+     and the widest layout has three columns of images, and some page margin (the width of each image is about 33%).
+     It breaks between these layouts when the viewport is <code data-x="">30em</code> wide and <code data-x="">50em</code> wide, respectively.</p>
+
+<pre>&lt;img <strong>sizes="(max-width: 30em) 100vw, (max-width: 50em) 50vw, calc(33vw - 100px)"</strong>
+     <strong>srcset="swing-200.jpg 200w, swing-400.jpg 400w, swing-800.jpg 800w, swing-1600.jpg 1600w"</strong>
+     src="swing-400.jpg" alt="Kettlebell Swing"></pre>
+
+     <p>The <code data-x="attr-img-sizes">sizes</code> attribute sets up the
+     layout breakpoints at <code data-x="">30em</code> and <code data-x="">50em</code>,
+     and declares the image sizes between these breakpoints to be
+     <code data-x="">100vw</code>, <code data-x="">50vw</code>, or <code data-x="">calc(33vw - 100px)</code>.
+     These sizes do not necessarily have to match up exactly with the actual image width as specified in the CSS.</p>
+
+     <p>The user agent will pick a width from the <code data-x="attr-img-sizes">sizes</code> attribute,
+     using the first item with a <span>&lt;media-condition></span> (the part in parentheses) that evaluates to true,
+     or using the last item (<code data-x="">calc(33vw - 100px)</code>) if they all evaluate to false.</p>
+
+     <p>For example, if the viewport width is <code data-x="">29em</code>,
+     then <code data-x="">(max-width: 30em)</code> evaluates to true and <code data-x="">100vw</code> is used,
+     so the image size, for the purpose of resource selection, is <code data-x="">29em</code>.
+     If the viewport width is instead <code data-x="">32em</code>,
+     then <code data-x="">(max-width: 30em)</code> evaluates to false,
+     but <code data-x="">(max-width: 50em)</code> evaluates to true and <code data-x="">50vw</code> is used,
+     so the image size, for the purpose of resource selection, is <code data-x="">16em</code> (half the viewport width).
+     Notice that the slightly wider viewport results in a smaller image because of the different layout.</p>
+
+     <p>The user agent can then calculate the effective pixel density and choose an appropriate resource
+     similarly to the previous example.</p>
+
+    </div>
+
+   </dd>
+
+   <dt><span>Image format-based selection</span></dt>
+
+   <dd>
+
+    <p>The <code data-x="attr-picture-source-type">type</code> attribute
+    on the <code data-x="picture-source">source</code> element can be used,
+    to provide multiple images in different formats.</p>
+
+    <div class="example">
+
+<pre>&lt;h2>From today's featured article&lt;/h2>
+&lt;picture>
+ &lt;source srcset="/uploads/100-marie-lloyd.webp" <strong>type="image/webp"</strong>>
+ &lt;source srcset="/uploads/100-marie-lloyd.jxr" <strong>type="image/vnd.ms-photo"</strong>>
+ &lt;img src="/uploads/100-marie-lloyd.jpg" alt="" width="100" height="150">
+&lt;/picture>
+&lt;p>&lt;b>&lt;a href="/wiki/Marie_Lloyd">Marie Lloyd&lt;/a>&lt;/b> (1870–1922)
+was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, &hellip;</pre>
+
+     <p>In this example, the user agent will choose the first source that has
+     a <code data-x="attr-picture-source-type">type</code> attribute with a supported MIME type.
+     If the user agent supports WebP images,
+     the first <code data-x="picture-source">source</code> element will be chosen.
+     If not, but the user agent does support JPEG XR images,
+     the second <code data-x="picture-source">source</code> element will be chosen.
+     If neither of those formats are supported,
+     the <code>img</code> element will be chosen.</p>
+
+    </div>
+
+   </dd>
+
+  </dl>
 
 
   <h4>Dependencies</h4>
@@ -340,19 +678,6 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   <p>The specified width in an <span>image candidate string</span>'s <i data-x="">width descriptor</i>
   must match the intrinsic width in the resource given by the <span>image candidate string</span>'s URL.</p>
-
-  <!--XXXX
-  <div class="example">
-
-   <p>In this example, a banner that takes half the viewport is provided in two versions, one for
-   wide screen and one for narrow screens.</p>
-
-   <pre>&lt;h1>&lt;img alt="The Breakfast Combo"
-         src="banner.jpeg"
-         srcset="banner-HD.jpeg 2x, banner-phone.jpeg 100w, banner-phone-HD.jpeg 100w 2x">&lt;/h1></pre>
-
-  </div>
-  -->
 
   <p class="note">The requirements above imply that images can be static bitmaps (e.g. PNGs, GIFs,
   JPEGs), single-page vector documents (single-page PDFs, XML files with an SVG root element),
