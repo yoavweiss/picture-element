@@ -303,6 +303,9 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, &hellip;<
      In new user agents, the <code data-x="attr-img-src">src</code> attribute is ignored
      when the <code data-x="attr-img-srcset">srcset</code> attribute uses <code data-x="">w</code> descriptors.</p>
 
+     <p>In this example, the <code data-x="attr-img-sizes">sizes</code> attribute could be omitted
+     because the default value is <code data-x="">100vw</code>.</p>
+
     </div>
 
     <div class="example">
