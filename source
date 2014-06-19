@@ -294,7 +294,7 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, &hellip;<
      <code data-x="">wolf-400.jpg 1.25x, wolf-800.jpg 2.5x, wolf-1600.jpg 5x</code>.
      On the other hand, if the user's screen is 1200 CSS pixels wide,
      this is equivalent to specifying
-     <code data-x="">wolf-400.jpg .33x, wolf-800.jpg .67x, wolf-1600.jpg 1.33x</code>.
+     <code data-x="">wolf-400.jpg 0.33x, wolf-800.jpg 0.67x, wolf-1600.jpg 1.33x</code>.
      By using the <code data-x="">w</code> descriptors and the <code data-x="attr-img-sizes">sizes</code> attribute,
      the user agent can choose the correct image source to download regardless of how large the user's device is.</p>
 
