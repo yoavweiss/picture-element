@@ -312,7 +312,7 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
 
      <p>In this example, the Web page has three layouts depending on the width of the viewport.
      The narrow layout has one column of images (the width of each image is about 100%),
-     the middle layout has two colummns of images (the width of each image is about 50%),
+     the middle layout has two columns of images (the width of each image is about 50%),
      and the widest layout has three columns of images, and some page margin (the width of each image is about 33%).
      It breaks between these layouts when the viewport is <code data-x="">30em</code> wide and <code data-x="">50em</code> wide, respectively.</p>
 
