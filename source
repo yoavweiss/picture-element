@@ -37,8 +37,8 @@ Editor: Simon Pieters <simonp@opera.com>, Opera Software
 
 <pre>&lt;h2>From today's featured article&lt;/h2>
 <strong>&lt;img src="/uploads/100-marie-lloyd.jpg" alt="" width="100" height="150"></strong>
-&lt;p>&lt;b>&lt;a href="/wiki/Marie_Lloyd">Marie Lloyd&lt;/a>&lt;/b> (1870–1922)
-was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, &hellip;</pre>
+&lt;p>&lt;b>&lt;a href="/wiki/Marie_Lloyd">Marie Lloyd&lt;/a>&lt;/b> (1870&ndash;1922)
+was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
 
   </div>
 
@@ -198,8 +198,8 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, &hellip;<
 &lt;img <strong>src="/uploads/100-marie-lloyd.jpg"</strong>
      <strong>srcset="/uploads/150-marie-lloyd.jpg 1.5x, /uploads/200-marie-lloyd.jpg 2x"</strong>
      alt="" width="100" height="150">
-&lt;p>&lt;b>&lt;a href="/wiki/Marie_Lloyd">Marie Lloyd&lt;/a>&lt;/b> (1870–1922)
-was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, &hellip;</pre>
+&lt;p>&lt;b>&lt;a href="/wiki/Marie_Lloyd">Marie Lloyd&lt;/a>&lt;/b> (1870&ndash;1922)
+was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
 
      <p>The user agent can choose any of the given resources depending on
      the user's screen's pixel density, zoom level, and possibly other factors such as the user's network conditions.</p>
@@ -362,8 +362,8 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, &hellip;<
  &lt;source srcset="/uploads/100-marie-lloyd.jxr" <strong>type="image/vnd.ms-photo"</strong>>
  &lt;img src="/uploads/100-marie-lloyd.jpg" alt="" width="100" height="150">
 &lt;/picture>
-&lt;p>&lt;b>&lt;a href="/wiki/Marie_Lloyd">Marie Lloyd&lt;/a>&lt;/b> (1870–1922)
-was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, &hellip;</pre>
+&lt;p>&lt;b>&lt;a href="/wiki/Marie_Lloyd">Marie Lloyd&lt;/a>&lt;/b> (1870&ndash;1922)
+was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
 
      <p>In this example, the user agent will choose the first source that has
      a <code data-x="attr-picture-source-type">type</code> attribute with a supported MIME type.
