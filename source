@@ -385,7 +385,7 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
 
   <dl>
 
-   <dt>Media Queries <a href="#refsMQ">[MQ]</a></dt>
+   <dt>Media Queries <a href="#refsMQ">[MQ]</a> <span class=XXX>Correct reference is <a href="http://dev.w3.org/csswg/mediaqueries-4/">http://dev.w3.org/csswg/mediaqueries-4/</a></span></dt>
 
    <dd><dfn>&lt;media-condition></dfn></dd>
 
