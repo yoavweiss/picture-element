@@ -27,18 +27,59 @@ Link Defaults: html5 (element) source/video/audio/iframe
 [data-link-type=element]::before { content: "<" }
 [data-link-type=element]::after { content: ">" }
 
-#obsolete { position:fixed; z-index:1; background:#EEFFEE; border:solid #99FF99 0.25em; padding:1em; top:40%; left:20%; right:20% }
-#obsolete ~ *, #obsolete ~ * * { color:gray !important; background:transparent !important }
+#obsolete {
+  background-image: -webkit-linear-gradient(rgba(0,0,0,0) 40%, rgba(255,255,255,.2) 100%);
+  background-image: -moz-linear-gradient(rgba(0,0,0,0) 40%, rgba(255,255,255,.2) 100%);
+  background-image: linear-gradient(rgba(0,0,0,0) 40%, rgba(255,255,255,.2) 100%);
+  background-color: #025691;
+  border: solid rgba(0,0,0,.4);
+  border-radius: .85em .85em 0 0;
+  border-width: 1px 1px 0 1px;
+  box-shadow: 0 0 .5em rgba(0,0,0,.5);
+  color: #fff;
+  color: rgba(255,255,255,.95);
+  opacity: .95;
+  padding: .5em 0 0 0;
+  position: fixed;
+  bottom: 0;
+  left: 5%;
+  margin: 0 auto;
+  right: 5%;
+  max-width: 50em;
+  z-index: 2;
+}
+#obsolete .hed {
+  font-size: .875em;
+  font-weight: bold;
+  letter-spacing: .02em;
+  margin-bottom: 0
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0,0,0,.85);
+}
+#obsolete p {
+  padding: .25em 7.5%;
+  font-size: .925em;
+  line-height: 1.4em;
+  margin-top: .25em;
+  text-shadow: 0 1px 1px rgba(0,0,0,.85);
+}
+#obsolete a {
+  color: #fff;
+}
+#obsolete a:hover {
+  background: none;
+  border-bottom: none;
+  padding-bottom: 1px;
+}
+#obsolete.ricg-flag { background-color: #920800 }
 </style>
 
 <link rel="canonical" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/edits.html#embedded-content">
 
-<div id="obsolete">
-
- <strong>This specification has been superseded.</strong>
- See the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/edits.html#embedded-content">HTML Standard</a>
- (or the <a href="http://developers.whatwg.org/edits.html#embedded-content">Web developer version</a>).
-
+<div id="obsolete" class="ricg-flag">
+ <p class="hed"><strong>This specification has been superseded</strong></p>
+ <p>For the latest stable version of this document, see the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/edits.html#embedded-content">HTML Living Standard</a>. For general usage details, see <a href="http://developers.whatwg.org/edits.html#embedded-content">HTML: The Living Standard for Web Developers</a>.</p>
 </div>
 
 <h2 id='intro'>

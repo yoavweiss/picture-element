@@ -551,8 +551,52 @@ span.issue, span.note {
 [data-link-type=element]::before { content: "<" }
 [data-link-type=element]::after { content: ">" }
 
-#obsolete { position:fixed; z-index:1; background:#EEFFEE; border:solid #99FF99 0.25em; padding:1em; top:40%; left:20%; right:20% }
-#obsolete ~ *, #obsolete ~ * * { color:gray !important; background:transparent !important }
+#obsolete {
+  background-image: -webkit-linear-gradient(rgba(0,0,0,0) 40%, rgba(255,255,255,.2) 100%);
+  background-image: -moz-linear-gradient(rgba(0,0,0,0) 40%, rgba(255,255,255,.2) 100%);
+  background-image: linear-gradient(rgba(0,0,0,0) 40%, rgba(255,255,255,.2) 100%);
+  background-color: #025691;
+  border: solid rgba(0,0,0,.4);
+  border-radius: .85em .85em 0 0;
+  border-width: 1px 1px 0 1px;
+  box-shadow: 0 0 .5em rgba(0,0,0,.5);
+  color: #fff;
+  color: rgba(255,255,255,.95);
+  opacity: .95;
+  padding: .5em 0 0 0;
+  position: fixed;
+  bottom: 0;
+  left: 5%;
+  margin: 0 auto;
+  right: 5%;
+  max-width: 50em;
+  z-index: 2;
+}
+#obsolete .hed {
+  font-size: .875em;
+  font-weight: bold;
+  letter-spacing: .02em;
+  margin-bottom: 0
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0,0,0,.85);
+}
+#obsolete p {
+  padding: .25em 7.5%;
+  font-size: .925em;
+  line-height: 1.4em;
+  margin-top: .25em;
+  text-shadow: 0 1px 1px rgba(0,0,0,.85);
+}
+#obsolete a {
+  color: #fff;
+}
+#obsolete a:hover {
+  background: none;
+  border-bottom: none;
+  padding-bottom: 1px;
+}
+#obsolete.ricg-flag { background-color: #920800 }
 </style>
 
 <link href=http://www.whatwg.org/specs/web-apps/current-work/multipage/edits.html#embedded-content rel=canonical>
@@ -569,14 +613,14 @@ span.issue, span.note {
 </p>
   <h1 class="p-name no-ref" id=title>The picture Element</h1>
   <h2 class="no-num no-toc no-ref heading settled heading" id=subtitle><span class=content>Editor’s Draft,
-    <span class=dt-updated><span class=value-title title=20140619>19 June 2014</span></span></span></h2>
+    <span class=dt-updated><span class=value-title title=20140621>21 June 2014</span></span></span></h2>
   <div data-fill-with=spec-metadata><dl><dt>This version:<dd><a class=u-url href=http://picture.responsiveimages.org/>http://picture.responsiveimages.org/</a><dt>Editor’s Draft:<dd><a href=http://picture.responsiveimages.org/>http://picture.responsiveimages.org/</a><dt>Test Suite:<dd>None Yet<dt>Editors:
 <dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://xanthir.com/contact/>Tab Atkins</a> (<span class="p-org org">Google</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-email email" href=mailto:simonp@opera.com>Simon Pieters</a> (<span class="p-org org">Opera Software</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://blog.yoav.ws/>Yoav Weiss</a><dd class="p-author h-card vcard"><span class="p-name fn">Marcos Cáceres</span> (<span class="p-org org">Mozilla</span>)<dd class="p-author h-card vcard"><a class="p-name fn u-url url" href=http://matmarquis.com/>Mat Marquis</a><dt>Version History:<dd><a href=https://github.com/ResponsiveImagesCG/picture-element/commits/gh-pages>Commit History</a><dd><a href=https://twitter.com/respimg_commits>Github commits on Twitter</a><dt>Participate:<dd><a href=http://w3c.responsiveimages.org/>Join the Responsive Images Community Group</a><dd><a href=http://list.responsiveimages.org/>Public Mailing List</a><dd><a href=irc://irc.w3.org:6665/#respimg>IRC: #respimg on W3C’s IRC</a><dd><a href=https://twitter.com/respimg>Twitter</a><dd><a href=https://github.com/ResponsiveImagesCG/picture-element>Github</a></dl></div>
   <div data-fill-with=warning></div>
   <p class=copyright data-fill-with=copyright><a href=http://creativecommons.org/publicdomain/zero/1.0/ rel=license><img alt=CC0 src=https://i.creativecommons.org/p/zero/1.0/80x15.png></a>
 To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 19 June 2014,
+In addition, as of 21 June 2014,
 the editors have made this specification available under the
 <a href=http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0 rel=license>Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
@@ -586,7 +630,8 @@ Parts of this work may be from another specification document.  If so, those par
 </div>
 
 <h2 class="no-num no-toc no-ref heading settled heading" id=abstract><span class=content>Abstract</span></h2>
-<p class=p-summary data-fill-with=abstract>This specification defines the HTML <code>picture</code> element and extends the <code>img</code> and <code>source</code> elements to allow authors to declaratively control or give hints to the user agent about which image resource to use, based on the screen pixel density, viewport size, image format, and other factors.
+<p class=p-summary data-fill-with=abstract><p>This specification defines the HTML <code>picture</code> element and extends the <code>img</code> and <code>source</code> elements to allow authors to declaratively control or give hints to the user agent about which image resource to use, based on the screen pixel density, viewport size, image format, and other factors.</p>
+
 </p>
 <div data-fill-with=at-risk></div>
 
@@ -633,12 +678,9 @@ Parts of this work may be from another specification document.  If so, those par
 
 
 
-<div id=obsolete>
-
-<p><strong>This specification has been superseded.</strong>
- See the <a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/edits.html#embedded-content>HTML Standard</a>
- (or the <a href=http://developers.whatwg.org/edits.html#embedded-content>Web developer version</a>).</p>
-
+<div class=ricg-flag id=obsolete>
+ <p class=hed><strong>This specification has been superseded</strong></p>
+ <p>For the latest stable version of this document, see the <a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/edits.html#embedded-content>HTML Living Standard</a>. For general usage details, see <a href=http://developers.whatwg.org/edits.html#embedded-content>HTML: The Living Standard for Web Developers</a>.</p>
 </div>
 
 <h2 class="heading settled heading" data-level=1 id=intro><span class=secno>1 </span><span class=content>
