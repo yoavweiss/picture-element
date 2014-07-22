@@ -28,7 +28,7 @@ Editor: Simon Pieters <simonp@opera.com>, Opera Software
 
   <h4>Introduction</h4>
 
-  <p><i data-x="">This section is non-normative.</i></p>
+  <!-- NON-NORMATIVE SECTION -->
 
   <p>To embed an image in HTML, when there is only a single image resource,
   use the <code>img</code> element and its <code data-x="attr-img-src">src</code> attribute.</p>
@@ -503,7 +503,7 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
 
    <li><p>A <code data-x="attr-picture-source-media">media</code> attribute specified with a value that,
    after <span data-x="strip leading and trailing whitespace">stripping leading and trailing whitespace</span>,
-   is not the empty string and is not an <span>ASCII case-insensitive</span> match for the string <code>all</code>.</p></li>
+   is not the empty string and is not an <span>ASCII case-insensitive</span> match for the string "<code data-x="">all</code>".</p></li>
 
    <li><p>A <code data-x="attr-picture-source-type">type</code> attribute specified.</p></li>
 
@@ -511,7 +511,7 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
 
   <p>The <code data-x="attr-source-src">src</code> attribute must not be present.</p>
 
-  <div class="impl">
+  <div w-nodev>
 
   <p>The IDL attributes <dfn data-x="dom-picture-source-srcset"><code>srcset</code></dfn>,
   <dfn data-x="dom-picture-source-sizes"><code>sizes</code></dfn> and
@@ -646,16 +646,16 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
     <ul>
 
-     <li><p>A <i data-x="">width descriptor</i>, consisting of:
+     <li><p>A <i>width descriptor</i>, consisting of:
      a <span>space character</span>,
      a <span>valid non-negative integer</span> giving a number greater than zero
-     representing the <i data-x="">width descriptor</i> value,
+     representing the <i>width descriptor</i> value,
      and a U+0077 LATIN SMALL LETTER W character.</p></li>
 
-     <li><p>A <i data-x="">pixel density descriptor</i>, consisting of:
+     <li><p>A <i>pixel density descriptor</i>, consisting of:
      a <span>space character</span>,
      a <span>valid floating-point number</span> giving a number greater than zero
-     representing the <i data-x="">pixel density descriptor</i> value,
+     representing the <i>pixel density descriptor</i> value,
      and a U+0078 LATIN SMALL LETTER X character.</p></li>
 
     </ul>
@@ -667,12 +667,12 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   </ol>
 
   <p>There must not be an <span>image candidate string</span> for an element that
-  has the same <i data-x="">width descriptor</i> value as another
-  <span>image candidate string</span>'s <i data-x="">width descriptor</i> value for the same element.</p>
+  has the same <i>width descriptor</i> value as another
+  <span>image candidate string</span>'s <i>width descriptor</i> value for the same element.</p>
 
   <p>There must not be an <span>image candidate string</span> for an element that
-  has the same <i data-x="">pixel density descriptor</i> value as another
-  <span>image candidate string</span>'s <i data-x="">pixel density descriptor</i> value for the same element.
+  has the same <i>pixel density descriptor</i> value as another
+  <span>image candidate string</span>'s <i>pixel density descriptor</i> value for the same element.
   For the purpose of this requirement,
   an <span>image candidate string</span> with no descriptors is equivalent to
   an <span>image candidate string</span> with a <code data-x="">1x</code> descriptor.</p>
@@ -680,14 +680,14 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   <p>If a <code data-x="picture-source">source</code> element has a <code data-x="attr-picture-source-sizes">sizes</code> attribute present
   or an <code>img</code> element has a <code data-x="attr-img-sizes">sizes</code> attribute present,
   all <span data-x="image candidate string">image candidate strings</span> for that
-  element must have the <i data-x="">width descriptor</i> specified.</p>
+  element must have the <i>width descriptor</i> specified.</p>
 
   <p>If an <span>image candidate string</span> for an <code data-x="picture-source">source</code> or <code>img</code> element
-  has the <i data-x="">width descriptor</i> specified,
+  has the <i>width descriptor</i> specified,
   all other <span data-x="image candidate string">image candidate strings</span> for that element
-  must also have the <i data-x="">width descriptor</i> specified.</p>
+  must also have the <i>width descriptor</i> specified.</p>
 
-  <p>The specified width in an <span>image candidate string</span>'s <i data-x="">width descriptor</i>
+  <p>The specified width in an <span>image candidate string</span>'s <i>width descriptor</i>
   must match the intrinsic width in the resource given by the <span>image candidate string</span>'s URL.</p>
 
   <p class="note">The requirements above imply that images can be static bitmaps (e.g. PNGs, GIFs,
@@ -723,7 +723,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   settings attribute</span>. Its purpose is to allow images from third-party sites that allow
   cross-origin access to be used with <code>canvas</code>.</p>
 
-  <div class="impl">
+  <div w-nodev>
 
   <hr>
 
@@ -779,7 +779,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   <p>A user agent that obtains images immediately must synchronously
   <span>update the image data</span> of an <code>img</code> element,
-  with the <i data-x="">restart animation</i> flag set if so stated,
+  with the <i>restart animation</i> flag set if so stated,
   whenever that element is created,
   or has experienced <span>relevant mutations</span>,
   and whenever that element's <span data-x="concept-node-adopt-ext">adopting steps</span> are run.</p> <!-- Note
@@ -804,7 +804,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    or <code data-x="attr-img-sizes">sizes</code> attributes are set, changed, or removed.</p></li>
 
    <li><p>The element's <code data-x="attr-img-src">src</code> attribute is set to the same value as the previous value.
-   This must set the <i data-x="">restart animation</i> flag for the <span>update the image data</span> algorithm.</p></li>
+   This must set the <i>restart animation</i> flag for the <span>update the image data</span> algorithm.</p></li>
 
    <li><p>The element's <code data-x="attr-img-crossorigin">crossorigin</code> attribute's state is changed.</p></li>
 
@@ -861,7 +861,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   and use that if the server responds with a <code data-x="">204 No Content</code> status.</p>
 
   <p>When the user agent is to <dfn>update the image data</dfn> of an <code>img</code> element,
-  optionally with the <i data-x="">restart animations</i> flag set,
+  optionally with the <i>restart animations</i> flag set,
   it must run the following steps:</p>
 
   <ol>
@@ -880,43 +880,40 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
     <p>If the element does not have a <code data-x="attr-img-srcset">srcset</code> attribute specified and
     it does not have a parent or it has a parent but it is not a <code>picture</code> element,
     and it has a <code data-x="attr-img-src">src</code> attribute specified and
-    its value is not the empty string, let <var data-x="">selected source</var> be the value of the
-    element's <code data-x="attr-img-src">src</code> attribute, and <var data-x="">selected pixel
-    density</var> be 1.0. Otherwise, let <var data-x="">selected source</var> be null and <var
-    data-x="">selected pixel density</var> be undefined.</p>
+    its value is not the empty string, let <var>selected source</var> be the value of the
+    element's <code data-x="attr-img-src">src</code> attribute, and <var>selected pixel
+    density</var> be 1.0. Otherwise, let <var>selected source</var> be null and <var>selected pixel density</var> be undefined.</p>
 
    </li>
 
-   <li><p>Let the <code>img</code> element's <span>last selected source</span> be <var
-   data-x="">selected source</var>.</p></li>
+   <li><p>Let the <code>img</code> element's <span>last selected source</span> be <var>selected source</var>.</p></li>
 
    <li>
 
-    <p>If <var data-x="">selected source</var> is not null, run these substeps:</p>
+    <p>If <var>selected source</var> is not null, run these substeps:</p>
 
     <ol>
 
-     <li><p><span data-x="resolve a url">Resolve</span> <var data-x="">selected source</var>, relative
-     to the element, and let the result be <var data-x="">absolute URL</var>. If that is not successful, then
+     <li><p><span data-x="resolve a url">Resolve</span> <var>selected source</var>, relative
+     to the element, and let the result be <var>absolute URL</var>. If that is not successful, then
      abort these inner set of steps.</p></li>
      <!-- This does not change currentSrc -->
 
-     <li><p>Let <var data-x="">key</var> be a tuple consisting of the resulting <span>absolute
+     <li><p>Let <var>key</var> be a tuple consisting of the resulting <span>absolute
      URL</span>, the <code>img</code> element's <code data-x="attr-img-crossorigin">crossorigin</code>
      attribute's mode, and, if that mode is not <span data-x="attr-crossorigin-none">No CORS</span>,
      the <code>Document</code> object's <span>origin</span>.</p></li>
 
-     <li><p>If the <span>list of available images</span> contains an entry for <var
-     data-x="">key</var>, then
+     <li><p>If the <span>list of available images</span> contains an entry for <var>key</var>, then
      set the <span>ignore higher-layer caching</span> flag for that entry,
      <span>abort the image request</span> for the <span>current request</span> and the <span>pending request</span>,
      let <span>pending request</span> be null,
      let <span>current request</span> be a new <span>image request</span> whose <span data-x="img-req-data">image data</span> is that of the entry
      and whose state is set to the <span data-x="img-all">completely available</span> state,
      update the presentation of the image appropriately,
-     let the <span>current request</span>'s <span>current pixel density</span> be <var data-x="">selected pixel density</var>,
-     <span>queue a task</span> to <span>restart the animation</span> if <i data-x="">restart animation</i> is set,
-     change <span>current request</span>'s <span data-x="img-req-url">current URL</span> to <var data-x="">absolute URL</var>,
+     let the <span>current request</span>'s <span>current pixel density</span> be <var>selected pixel density</var>,
+     <span>queue a task</span> to <span>restart the animation</span> if <i>restart animation</i> is set,
+     change <span>current request</span>'s <span data-x="img-req-url">current URL</span> to <var>absolute URL</var>,
      and then <span>fire a simple event</span> named <code data-x="event-load">load</code> at the <code>img</code> element,
      and abort these steps.</p></li>
 
@@ -950,7 +947,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    <li>
 
-    <p>&#x231B; Let <var data-x="">selected source</var> and <var data-x="">selected pixel density</var> be the
+    <p>&#x231B; Let <var>selected source</var> and <var>selected pixel density</var> be the
     URL and pixel density that results from <span data-x="select an image source">selecting an image source</span>,
     respectively.</p>
 
@@ -958,7 +955,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    <li>
 
-    <p>&#x231B; If <var data-x="">selected source</var> is null, run these substeps:</p>
+    <p>&#x231B; If <var>selected source</var> is null, run these substeps:</p>
 
     <ol>
 
@@ -987,13 +984,13 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    </li>
 
-   <li><p><span data-x="resolve a url">Resolve</span> <var data-x="">selected source</var>, relative
-   to the element, and let the result be <var data-x="">absolute URL</var>. If that is not successful, then
+   <li><p><span data-x="resolve a url">Resolve</span> <var>selected source</var>, relative
+   to the element, and let the result be <var>absolute URL</var>. If that is not successful, then
    <span>abort the image request</span> for the <span>current request</span> and the <span>pending request</span>,
    set the <span>current request</span> to the <span data-x="img-error">broken</span> state,
    let <span>pending request</span> be null,
    <span>queue a task</span> to
-   change the <span>current request</span>'s <span data-x="img-req-url">current URL</span> to <var data-x="">absolute URL</var>,
+   change the <span>current request</span>'s <span data-x="img-req-url">current URL</span> to <var>absolute URL</var>,
    <span>fire a simple event</span> named <code data-x="event-error">error</code> at the <code>img</code> element
    and then <span>fire a simple event</span> named <code data-x="event-loadend">loadend</code> at the <code>img</code> element,
    and abort these steps.</p></li>
@@ -1001,32 +998,32 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    <li>
 
     <p>&#x231B; If the <span>pending request</span> is not null,
-    and <var data-x="">absolute URL</var> is the same as the <span>pending request</span>'s <span data-x="img-req-url">current URL</span>,
+    and <var>absolute URL</var> is the same as the <span>pending request</span>'s <span data-x="img-req-url">current URL</span>,
     then abort these steps.</p>
 
-    <p>&#x231B; If <var data-x="">absolute URL</var> is the same as the <span>current request</span>'s <span data-x="img-req-url">current URL</span>,
+    <p>&#x231B; If <var>absolute URL</var> is the same as the <span>current request</span>'s <span data-x="img-req-url">current URL</span>,
     and <span>current request</span> is in the <span data-x="img-inc">partially available</span> state,
     then <span>abort the image request</span> for the <span>pending request</span>,
-    <span>queue a task</span> to <span>restart the animation</span> if <i data-x="">restart animation</i> is set,
+    <span>queue a task</span> to <span>restart the animation</span> if <i>restart animation</i> is set,
     and abort these steps.</p>
 
     <p>&#x231B; If the <span>pending request</span> is not null,
     <span>abort the image request</span> for the <span>pending request</span>.</p>
 
-    <p>&#x231B; Let <var data-x="">image request</var> be a new <span>image request</span>
-    whose <span data-x="img-req-url">current URL</span> is <var data-x="">absolute URL</var>.</p>
+    <p>&#x231B; Let <var>image request</var> be a new <span>image request</span>
+    whose <span data-x="img-req-url">current URL</span> is <var>absolute URL</var>.</p>
 
-    <p>&#x231B; Let the <span>pending request</span> be <var data-x="">image request</var>.</p>
+    <p>&#x231B; Let the <span>pending request</span> be <var>image request</var>.</p>
 
-    <p>&#x231B; Do a <span>potentially CORS-enabled fetch</span><!--FETCH--> of <var data-x="">absolute URL</var>,
-    with the <i data-x="">mode</i> being the current state of
-    the element's <code data-x="attr-img-crossorigin">crossorigin</code> content attribute, the <i
-    data-x="">origin</i> being the <span>origin</span> of the <code>img</code> element's
-    <code>Document</code>, and the <i data-x="">default origin behaviour</i> set to <i data-x="">taint</i>.
-    Let this instance of the <span data-x="fetch">fetching</span> algorithm be associated with <var data-x="">image request</var>.<!-- XXXX
+    <p>&#x231B; Do a <span>potentially CORS-enabled fetch</span><!--FETCH--> of <var>absolute URL</var>,
+    with the <i>mode</i> being the current state of
+    the element's <code data-x="attr-img-crossorigin">crossorigin</code> content attribute,
+    the <i>origin</i> being the <span>origin</span> of the <code>img</code> element's
+    <code>Document</code>, and the <i>default origin behaviour</i> set to <i>taint</i>.
+    Let this instance of the <span data-x="fetch">fetching</span> algorithm be associated with <var>image request</var>.<!-- XXXX
     "Interaction with the Preload Scanner" from the picture spec --></p>
 
-    <p>The resource obtained in this fashion, if any, is <var data-x="">image request</var>'s <span data-x="img-req-data">image data</span>.
+    <p>The resource obtained in this fashion, if any, is <var>image request</var>'s <span data-x="img-req-data">image data</span>.
     It can be either <span>CORS-same-origin</span> or <span>CORS-cross-origin</span>; this affects
     the <span>origin</span> of the image itself (e.g. when used on a <code>canvas</code>).</p>
 
@@ -1047,7 +1044,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
     <p>If the resource is <span>CORS-same-origin</span>, each <span data-x="concept-task">task</span>
     that is <span data-x="queue a task">queued</span> by the <span>networking task source</span>
     while the image is being <span data-x="fetch">fetched</span>,
-    if <var data-x="">image request</var> is the <span>current request</span>,
+    if <var>image request</var> is the <span>current request</span>,
     must <span>fire a progress event</span> named <code data-x="event-progress">progress</code> at the <code>img</code> element.</p>
 
    </li>
@@ -1073,8 +1070,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
        <li>
 
-        <p>If <var data-x="">image request</var> is the <span>pending request</span>
-        and the user agent is able to determine <var data-x="">image request</var>'s image's width and height,
+        <p>If <var>image request</var> is the <span>pending request</span>
+        and the user agent is able to determine <var>image request</var>'s image's width and height,
         <span>abort the image request</span> for the <span>current request</span>,
         <span>upgrade the pending request to the current request</span> and
         set the <span>current request</span>'s state to <span data-x="img-inc">partially available</span>.</p>
@@ -1083,8 +1080,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
        <li>
 
-        <p>Otherwise, if <var data-x="">image request</var> is the <span>pending request</span>
-        and the user agent is able to determine that <var data-x="">image request</var>'s image
+        <p>Otherwise, if <var>image request</var> is the <span>pending request</span>
+        and the user agent is able to determine that <var>image request</var>'s image
         is corrupted in some fatal way such that the image dimensions cannot be obtained,
         <span>abort the image request</span> for the <span>current request</span>,
         <span>upgrade the pending request to the current request</span>
@@ -1094,18 +1091,18 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
        <li>
 
-        <p>Otherwise, if <var data-x="">image request</var> is the <span>current request</span>,
+        <p>Otherwise, if <var>image request</var> is the <span>current request</span>,
         it is in the <span data-x="img-none">unavailable</span> state,
-        and the user agent is able to determine <var data-x="">image request</var>'s image's width and height,
+        and the user agent is able to determine <var>image request</var>'s image's width and height,
         set the <span>current request</span>'s state to <span data-x="img-inc">partially available</span>.</p>
 
        </li>
 
        <li>
 
-        <p>Otherwise, if <var data-x="">image request</var> is the <span>current request</span>,
+        <p>Otherwise, if <var>image request</var> is the <span>current request</span>,
         it is in the <span data-x="img-none">unavailable</span> state,
-        and the user agent is able to determine that <var data-x="">image request</var>'s image
+        and the user agent is able to determine that <var>image request</var>'s image
         is corrupted in some fatal way such that the image dimensions cannot be obtained,
         set the <span>current request</span>'s state to <span data-x="img-error">broken</span>.
         <!--XXX abort the fetch? fire error event?--></p>
@@ -1142,29 +1139,29 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
        <li>
 
-        <p>If the user agent is able to determine <var data-x="">image request</var>'s image's width and height,
-        and <var data-x="">image request</var> is <span>pending request</span>,
+        <p>If the user agent is able to determine <var>image request</var>'s image's width and height,
+        and <var>image request</var> is <span>pending request</span>,
         <span>abort the image request</span> for the <span>current request</span>,
         <span>upgrade the pending request to the current request</span>,
         update the <code>img</code> element's presentation appropriately,
-        and set <var data-x="">image request</var>'s state to <span data-x="img-inc">partially available</span>.</p>
+        and set <var>image request</var>'s state to <span data-x="img-inc">partially available</span>.</p>
 
        </li>
 
        <li>
 
-        <p>Otherwise, if the user agent is able to determine <var data-x="">image request</var>'s image's width and height,
-        and <var data-x="">image request</var> is <span>current request</span>,
+        <p>Otherwise, if the user agent is able to determine <var>image request</var>'s image's width and height,
+        and <var>image request</var> is <span>current request</span>,
         update the <code>img</code> element's presentation appropriately
-        and set <var data-x="">image request</var>'s state to <span data-x="img-inc">partially available</span>.</p>
+        and set <var>image request</var>'s state to <span data-x="img-inc">partially available</span>.</p>
 
        </li>
 
        <li>
 
-        <p>Otherwise, if the user agent is able to determine that <var data-x="">image request</var>'s image
+        <p>Otherwise, if the user agent is able to determine that <var>image request</var>'s image
         is corrupted in some fatal way such that the image dimensions cannot be obtained,
-        and <var data-x="">image request</var> is <span>pending request</span>,
+        and <var>image request</var> is <span>pending request</span>,
         <span>abort the image request</span> for the <span>current request</span> and the <span>pending request</span>,
         <span>upgrade the pending request to the current request</span>,
         set <span>current request</span> to the <span data-x="img-error">broken</span> state,
@@ -1176,10 +1173,10 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
        <li>
 
-        <p>Otherwise, if the user agent is able to determine that <var data-x="">image request</var>'s image
+        <p>Otherwise, if the user agent is able to determine that <var>image request</var>'s image
         is corrupted in some fatal way such that the image dimensions cannot be obtained,
-        and <var data-x="">image request</var> is <span>current request</span>,
-        <span>abort the image request</span> for <var data-x="">image request</var>,
+        and <var>image request</var> is <span>current request</span>,
+        <span>abort the image request</span> for <var>image request</var>,
         <span>fire a simple event</span> named <code data-x="event-error">error</code> at the <code>img</code> element,
         <span>fire a simple event</span> named <code data-x="event-loadend">loadend</code> at the <code>img</code> element,
         and abort these steps.</p>
@@ -1192,7 +1189,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
       data-x="concept-task">task</span>, that is <span data-x="queue a task">queued</span> by the
       <span>networking task source</span> while the image is being <span
       data-x="fetch">fetched</span>,
-      if <var data-x="">image request</var> is the <span>current request</span>,
+      if <var>image request</var> is the <span>current request</span>,
       must update the presentation of the image appropriately (e.g. if
       the image is a progressive JPEG, each packet can improve the resolution of the image).</p>
 
@@ -1209,17 +1206,16 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
        pending request might be null or non-null
        -->
 
-       <li><p>Set <var data-x="">image request</var> to the <span data-x="img-all">completely
+       <li><p>Set <var>image request</var> to the <span data-x="img-all">completely
        available</span> state.</p>
 
-       <li><p>Add the image to the <span>list of available images</span> using the key <var
-       data-x="">key</var>, with the <span>ignore higher-layer caching</span> flag set.</p></li>
+       <li><p>Add the image to the <span>list of available images</span> using the key <var>key</var>, with the <span>ignore higher-layer caching</span> flag set.</p></li>
 
        <li><p><span>Fire a progress event or simple event</span> named <code data-x="event-load">load</code>
-       at the <code>img</code> element, depending on the resource in <var data-x="">image request</var>.</p></li>
+       at the <code>img</code> element, depending on the resource in <var>image request</var>.</p></li>
 
        <li><p><span>Fire a progress event or simple event</span> named <code data-x="event-loadend">loadend</code>
-       at the <code>img</code> element, depending on the resource in <var data-x="">image request</var>.</p></li>
+       at the <code>img</code> element, depending on the resource in <var>image request</var>.</p></li>
 
       </ol>
 
@@ -1230,7 +1226,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
      <dd>
 
       <p>The image data is not in a supported file format; the user agent must set
-      <var data-x="">image request</var> to the <span data-x="img-error">broken</span> state,
+      <var>image request</var> to the <span data-x="img-error">broken</span> state,
       <span>abort the image request</span> for the <span>current request</span> and the <span>pending request</span>,
       <span>upgrade the pending request to the current request</span>,
       and then <span>queue a task</span> to first <span>fire a simple event</span> named <code
@@ -1246,13 +1242,13 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   </ol>
 
-  <p>To <dfn>abort the image request</dfn> for an <span>image request</span> <var data-x="">image request</var> means to run the following steps:</p>
+  <p>To <dfn>abort the image request</dfn> for an <span>image request</span> <var>image request</var> means to run the following steps:</p>
 
   <ol>
 
-   <li><p>Forget <var data-x="">image request</var>'s <span data-x="img-req-data">image data</span>, if any.</p></li>
+   <li><p>Forget <var>image request</var>'s <span data-x="img-req-data">image data</span>, if any.</p></li>
 
-   <li><p>Abort any instance of the <span data-x="fetch">fetching</span> algorithm for <var data-x="">image request</var>,
+   <li><p>Abort any instance of the <span data-x="fetch">fetching</span> algorithm for <var>image request</var>,
    discarding any pending tasks generated by that algorithm.</p></li>
 
   </ol>
@@ -1267,19 +1263,18 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   </ol>
 
-  <p>To <dfn>fire a progress event or simple event</dfn> named <var data-x="">type</var> at an element <var data-x="">e</var>,
-  depending on resource <var data-x>r</var>, means to
-  <span>fire a progress event</span> named <var data-x="">type</var> at <var data-x="">e</var> if <var data-x="">r</var> is <span>CORS-same-origin</span>,
-  and otherwise <span>fire a simple event</span> named <var data-x="">type</var> at <var data-x="">e</var>.</p>
+  <p>To <dfn>fire a progress event or simple event</dfn> named <var>type</var> at an element <var>e</var>,
+  depending on resource <var>r</var>, means to
+  <span>fire a progress event</span> named <var>type</var> at <var>e</var> if <var>r</var> is <span>CORS-same-origin</span>,
+  and otherwise <span>fire a simple event</span> named <var>type</var> at <var>e</var>.</p>
 
   <p>To <dfn>restart the animation</dfn> for an <code>img</code> element means that,
   if the image is an animated image,
   all animated images with the same <span>absolute URL</span> and the same image data in the <code>img</code> element's <code>Document</code>
   are expected to restart their animation.</p>
 
-  <p>While a user agent is running the above algorithm for an element <var data-x="">x</var>, there
-  must be a strong reference from the element's <code>Document</code> to the element <var
-  data-x="">x</var>, even if that element is not <span data-x="in a Document">in</span> its
+  <p>While a user agent is running the above algorithm for an element <var>x</var>, there
+  must be a strong reference from the element's <code>Document</code> to the element <var>x</var>, even if that element is not <span data-x="in a Document">in</span> its
   <code>Document</code>.</p>
 
   <p>When an <code>img</code> element is in the <span data-x="img-all">completely available</span>
@@ -1295,7 +1290,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   <p id="img-determine-type">The user agent should apply the <span data-x="Content-Type sniffing:
   image">image sniffing rules</span> to determine the type of the image, with the image's <span
-  data-x="Content-Type">associated Content-Type headers</span> giving the <var data-x="">official
+  data-x="Content-Type">associated Content-Type headers</span> giving the <var>official
   type</var>. If these rules are not applied, then the type of the image must be the type given by
   the image's <span data-x="Content-Type">associated Content-Type headers</span>.</p>
 
@@ -1322,67 +1317,67 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   it must be interpreted relative to the <code>img</code> element's document's viewport.
   Other units must be interpreted the same as in Media Queries. <a href="#refsMQ">[MQ]</a></p>
 
-  <p>When asked to <dfn>select an image source</dfn> for a given <code>img</code> element <var data-x="">el</var>,
+  <p>When asked to <dfn>select an image source</dfn> for a given <code>img</code> element <var>el</var>,
   user agents must do the following:</p>
 
   <ol>
 
-   <li><p><span>Update the source set</span> for <var data-x="">el</var>.</p></li>
+   <li><p><span>Update the source set</span> for <var>el</var>.</p></li>
 
-   <li><p>If <var data-x="">el</var>'s <span>source set</span> is empty,
+   <li><p>If <var>el</var>'s <span>source set</span> is empty,
    return null as the URL and undefined as the pixel density and abort these steps.</p></li>
 
-   <li><p>Otherwise, take <var data-x="">el</var>'s <span>source set</span>
-   and let it be <var data-x="">source set</var>.</p></li>
+   <li><p>Otherwise, take <var>el</var>'s <span>source set</span>
+   and let it be <var>source set</var>.</p></li>
 
    <li><p>In a user agent-specific manner,
-   choose one <span>image source</span> from <var data-x="">source set</var>.
-   Let this be <var data-x="">selected source</var>.</p></li>
+   choose one <span>image source</span> from <var>source set</var>.
+   Let this be <var>selected source</var>.</p></li>
 
-   <li><p>Return <var data-x="">selected source</var> and its associated pixel density.</p></li>
+   <li><p>Return <var>selected source</var> and its associated pixel density.</p></li>
 
   </ol>
 
-  <p>When asked to <dfn>update the source set</dfn> for a given <code>img</code> element <var data-x="">el</var>,
+  <p>When asked to <dfn>update the source set</dfn> for a given <code>img</code> element <var>el</var>,
   user agents must do the following:</p>
 
   <ol>
 
-   <li><p>Set <var data-x="">el</var>'s <span>source set</span> to an empty <span>source set</span>.</p></li>
+   <li><p>Set <var>el</var>'s <span>source set</span> to an empty <span>source set</span>.</p></li>
 
-   <li><p>If <var data-x="">el</var> has a parent node and that is a <code>picture</code> element,
-   let <var data-x="">elements</var> be an array containing <var data-x="">el</var>'s parent node's child elements, retaining relative order.
-   Otherwise, let <var data-x="">elements</var> be array containing only <var data-x="">el</var>.</p></li>
+   <li><p>If <var>el</var> has a parent node and that is a <code>picture</code> element,
+   let <var>elements</var> be an array containing <var>el</var>'s parent node's child elements, retaining relative order.
+   Otherwise, let <var>elements</var> be array containing only <var>el</var>.</p></li>
 
    <li>
 
-    <p>Iterate through <var data-x="">elements</var>,
-    doing the following for each item <var data-x="">child</var>:</p>
+    <p>Iterate through <var>elements</var>,
+    doing the following for each item <var>child</var>:</p>
 
     <ol>
 
      <li>
 
-      <p>If <var data-x="">child</var> is <var data-x="">el</var>:</p>
+      <p>If <var>child</var> is <var>el</var>:</p>
 
       <ol>
 
-       <li><p>If <var data-x="">child</var> has a <code data-x="attr-img-srcset">srcset</code> attribute,
-       <span data-x="parse a srcset attribute">parse <var data-x="">child</var>'s srcset attribute</span>
-       and let the returned <span>source set</span> be <var data-x="">source set</var>.
-       Otherwise, let <var data-x="">source set</var> be an empty <span>source set</span>.</p></li>
+       <li><p>If <var>child</var> has a <code data-x="attr-img-srcset">srcset</code> attribute,
+       <span data-x="parse a srcset attribute">parse <var>child</var>'s srcset attribute</span>
+       and let the returned <span>source set</span> be <var>source set</var>.
+       Otherwise, let <var>source set</var> be an empty <span>source set</span>.</p></li>
 
-       <li><p><span data-x="parse a sizes attribute">Parse <var data-x="">child</var>'s sizes attribute</span> and
-       let <var data-x="">source set</var>'s <span>source size</span> be the returned value.</p></li>
+       <li><p><span data-x="parse a sizes attribute">Parse <var>child</var>'s sizes attribute</span> and
+       let <var>source set</var>'s <span>source size</span> be the returned value.</p></li>
 
-       <li><p>If <var data-x="">child</var> has a <code data-x="attr-img-src">src</code> attribute
+       <li><p>If <var>child</var> has a <code data-x="attr-img-src">src</code> attribute
        whose value is not the empty string
-       and <var data-x="">source set</var> does not contain an
+       and <var>source set</var> does not contain an
        <span>image source</span> with a density descriptor value of 1,
        and no <span>image source</span> with a width descriptor,
-       append <var data-x="">child</var>'s <code data-x="attr-img-src">src</code> attribute value to <var data-x="">source set</var>.</p></li>
+       append <var>child</var>'s <code data-x="attr-img-src">src</code> attribute value to <var>source set</var>.</p></li>
 
-       <li><p>Let <var data-x="">el</var>'s <span>source set</span> be <var data-x="">source set</var>.</p></li>
+       <li><p>Let <var>el</var>'s <span>source set</span> be <var>source set</var>.</p></li>
 
        <li><p>Abort this algorithm.</p></li>
 
@@ -1390,34 +1385,34 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
      </li>
 
-     <li><p>If <var data-x="">child</var> is not a <code data-x="picture-source">source</code> element,
+     <li><p>If <var>child</var> is not a <code data-x="picture-source">source</code> element,
      continue to the next child.
-     Otherwise, <var data-x="">child</var> is a <code data-x="picture-source">source</code> element.</p></li>
+     Otherwise, <var>child</var> is a <code data-x="picture-source">source</code> element.</p></li>
 
-     <li><p>If <var data-x="">child</var> does not have a <code data-x="attr-picture-source-srcset">srcset</code> attribute,
+     <li><p>If <var>child</var> does not have a <code data-x="attr-picture-source-srcset">srcset</code> attribute,
      continue to the next child.</p></li>
 
-     <li><p><span data-x="parse a srcset attribute">Parse <var data-x="">child</var>'s srcset attribute</span> and
-     let the returned <span>source set</span> be <var data-x="">source set</var>.</p></li>
+     <li><p><span data-x="parse a srcset attribute">Parse <var>child</var>'s srcset attribute</span> and
+     let the returned <span>source set</span> be <var>source set</var>.</p></li>
 
-     <li><p>If <var data-x="">source set</var> has zero <span data-x="image source">image sources</span>,
+     <li><p>If <var>source set</var> has zero <span data-x="image source">image sources</span>,
      continue to the next child.</p></li>
 
-     <li><p>If <var data-x="">child</var> has a <code data-x="attr-picture-source-media">media</code> attribute,
+     <li><p>If <var>child</var> has a <code data-x="attr-picture-source-media">media</code> attribute,
      and its value is not a <span>valid media query</span>,
      or is a <span>valid media query</span> that evaluates to false,
      continue to the next child.</p></li>
 
-     <li><p><span data-x="parse a sizes attribute">Parse <var data-x="">child</var>'s sizes attribute</span>
-     and let <var data-x="">source set</var>'s <span>source size</span> be the returned value.</p></li>
+     <li><p><span data-x="parse a sizes attribute">Parse <var>child</var>'s sizes attribute</span>
+     and let <var>source set</var>'s <span>source size</span> be the returned value.</p></li>
 
-     <li><p>If <var data-x="">child</var> has a <code data-x="attr-picture-source-type">type</code> attribute,
+     <li><p>If <var>child</var> has a <code data-x="attr-picture-source-type">type</code> attribute,
      and its value is an unknown or unsupported <span>MIME type</span>,
      continue to the next child.</p></li>
 
-     <li><p><span>Normalize the source densities</span> of <var data-x="">source set</var>.</p></li>
+     <li><p><span>Normalize the source densities</span> of <var>source set</var>.</p></li>
 
-     <li><p>Let <var data-x="">el</var>'s <span>source set</span> be <var data-x="">source set</var>.</p></li>
+     <li><p>Let <var>el</var>'s <span>source set</span> be <var>source set</var>.</p></li>
 
      <li><p>Abort this algorithm.</p></li>
 
@@ -1440,37 +1435,37 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   <ol>
 
-   <li><p>Let <var data-x="">input</var> be the value passed to this algorithm.</p></li>
+   <li><p>Let <var>input</var> be the value passed to this algorithm.</p></li>
 
-   <li><p>Let <var data-x="">position</var> be a pointer into <var data-x="">input</var>,
+   <li><p>Let <var>position</var> be a pointer into <var>input</var>,
    initially pointing at the start of the string.</p></li>
 
-   <li><p>Let <var data-x="">raw candidates</var> be an initially empty
+   <li><p>Let <var>raw candidates</var> be an initially empty
    ordered list of URLs with associated unparsed descriptor list.
    The order of entries in the lists is the order in which entries are added to the lists.</p></li>
 
-   <li><p><i data-x="">Splitting loop</i>: <span>Collect a sequence of characters</span>
+   <li><p><i>Splitting loop</i>: <span>Collect a sequence of characters</span>
    that are <span data-x="space character">space characters</span> or U+002C COMMA characters.</p></li>
 
-   <li><p>If <var data-x="">position</var> is past the end of <var data-x="">input</var>,
-   then jump to the step labeled <i data-x="">descriptor parser</i>.</p></li>
+   <li><p>If <var>position</var> is past the end of <var>input</var>,
+   then jump to the step labeled <i>descriptor parser</i>.</p></li>
 
    <li><p><span>Collect a sequence of characters</span> that are not
-   <span data-x="space character">space characters</span>, and let that be <var data-x="">url</var>.</p></li>
+   <span data-x="space character">space characters</span>, and let that be <var>url</var>.</p></li>
 
-   <li><p>Let <var data-x="">descriptors</var> be a new empty list.</p></li>
+   <li><p>Let <var>descriptors</var> be a new empty list.</p></li>
 
    <li>
 
-    <p>If <var data-x="">url</var> ends with a U+002C COMMA character (,),
+    <p>If <var>url</var> ends with a U+002C COMMA character (,),
     follow these substeps:</p>
 
     <ol>
 
-     <li><p>Remove all trailing U+002C COMMA characters from <var data-x="">url</var>.</p></li>
+     <li><p>Remove all trailing U+002C COMMA characters from <var>url</var>.</p></li>
 
-     <li><p>If <var data-x="">url</var> is empty,
-     then jump to the step labeled <i data-x="">splitting loop</i>.</p></li>
+     <li><p>If <var>url</var> is empty,
+     then jump to the step labeled <i>splitting loop</i>.</p></li>
 
     </ol>
 
@@ -1478,16 +1473,16 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
     <ol>
 
-     <li><p>Let <var data-x="">current token</var> be the empty string.</p></li>
+     <li><p>Let <var>current token</var> be the empty string.</p></li>
 
-     <li><p>Let <var data-x="">state</var> be <i data-x="">start</i>.</p></li>
+     <li><p>Let <var>state</var> be <i>start</i>.</p></li>
 
      <li>
 
-      <p>Let <var data-x="">c</var> be the character at <var data-x="">position</var>.
-      Do the following depending on the value of <var data-x="">state</var>.
+      <p>Let <var>c</var> be the character at <var>position</var>.
+      Do the following depending on the value of <var>state</var>.
       For the purpose of this step, "EOF" is a special character representing
-      that <var data-x="">position</var> is past the end of <var data-x="">input</var>.</p>
+      that <var>position</var> is past the end of <var>input</var>.</p>
 
       <dl class="switch">
 
@@ -1495,38 +1490,38 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
        <dd>
 
-        <p>Do the following, depending on the value of <var data-x="">c</var>:</p>
+        <p>Do the following, depending on the value of <var>c</var>:</p>
 
         <dl class="switch">
 
          <dt><span>Space character</span></dt>
 
-         <dd><p>If <var data-x="">current token</var> is not empty,
-         append <var data-x="">current token</var> to <var data-x="">descriptors</var>
-         and let <var data-x="">current token</var> be the empty string.
-         Set <var data-x="">state</var> to <i data-x="">after token</i>.</p></dd>
+         <dd><p>If <var>current token</var> is not empty,
+         append <var>current token</var> to <var>descriptors</var>
+         and let <var>current token</var> be the empty string.
+         Set <var>state</var> to <i>after token</i>.</p></dd>
 
          <dt>U+002C COMMA (,)</dt>
 
-         <dd><p>Advance <var data-x="">position</var> to the next character in <var data-x="">input</var>.
-         If <var data-x="">current token</var> is not empty,
-         append <var data-x="">current token</var> to <var data-x="">descriptors</var>.
-         Jump to the step labeled <i data-x="">add candidate</i>.</p></dd>
+         <dd><p>Advance <var>position</var> to the next character in <var>input</var>.
+         If <var>current token</var> is not empty,
+         append <var>current token</var> to <var>descriptors</var>.
+         Jump to the step labeled <i>add candidate</i>.</p></dd>
 
          <dt>U+0028 LEFT PARANTHESIS (()</dt>
 
-         <dd><p>Append <var data-x="">c</var> to <var data-x="">current token</var>.
-         Set <var data-x="">state</var> to <i data-x="">in parens</i>.</p></dd>
+         <dd><p>Append <var>c</var> to <var>current token</var>.
+         Set <var>state</var> to <i>in parens</i>.</p></dd>
 
          <dt>EOF</dt>
 
-         <dd><p>If <var data-x="">current token</var> is not empty,
-         append <var data-x="">current token</var> to <var data-x="">descriptors</var>.
-         Jump to the step labeled <i data-x="">add candidate</i>.</p></dd>
+         <dd><p>If <var>current token</var> is not empty,
+         append <var>current token</var> to <var>descriptors</var>.
+         Jump to the step labeled <i>add candidate</i>.</p></dd>
 
          <dt>Anything else</dt>
 
-         <dd><p>Append <var data-x="">c</var> to <var data-x="">current token</var>.</p></dd>
+         <dd><p>Append <var>c</var> to <var>current token</var>.</p></dd>
 
         </dl>
 
@@ -1536,23 +1531,23 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
        <dd>
 
-        <p>Do the following, depending on the value of <var data-x="">c</var>:</p>
+        <p>Do the following, depending on the value of <var>c</var>:</p>
 
         <dl class="switch">
 
          <dt>U+0029 RIGHT PARENTHESIS ())</dt>
 
-         <dd><p>Append <var data-x="">c</var> to <var data-x="">current token</var>.
-         Set <var data-x="">state</var> to <i data-x="">start</i>.</p></dd>
+         <dd><p>Append <var>c</var> to <var>current token</var>.
+         Set <var>state</var> to <i>start</i>.</p></dd>
 
          <dt>EOF</dt>
 
-         <dd><p>Append <var data-x="">current token</var> to <var data-x="">descriptors</var>.
-         Jump to the step labeled <i data-x="">add candidate</i>.</p></dd>
+         <dd><p>Append <var>current token</var> to <var>descriptors</var>.
+         Jump to the step labeled <i>add candidate</i>.</p></dd>
 
          <dt>Anything else</dt>
 
-         <dd><p>Append <var data-x="">c</var> to <var data-x="">current token</var>.</p></dd>
+         <dd><p>Append <var>c</var> to <var>current token</var>.</p></dd>
 
         </dl>
 
@@ -1562,7 +1557,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
        <dd>
 
-        <p>Do the following, depending on the value of <var data-x="">c</var>:</p>
+        <p>Do the following, depending on the value of <var>c</var>:</p>
 
         <dl class="switch">
 
@@ -1572,12 +1567,12 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
          <dt>EOF</dt>
 
-         <dd><p>Jump to the step labeled <i data-x="">add candidate</i>.</p></dd>
+         <dd><p>Jump to the step labeled <i>add candidate</i>.</p></dd>
 
          <dt>Anything else</dt>
 
-         <dd><p>Set <var data-x="">state</var> to <i data-x="">start</i>.
-         Set <var data-x="">position</var> to the <em>previous</em> character in <var data-x="">input</var>.</p></dd>
+         <dd><p>Set <var>state</var> to <i>start</i>.
+         Set <var>position</var> to the <em>previous</em> character in <var>input</var>.</p></dd>
 
         </dl>
 
@@ -1585,7 +1580,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
       </dl>
 
-      <p>Advance <var data-x="">position</var> to the next character in <var data-x="">input</var>.
+      <p>Advance <var>position</var> to the next character in <var>input</var>.
       Repeat this step.</p>
 
      </li>
@@ -1594,34 +1589,34 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    </li>
 
-   <li><p><i data-x="">Add candidate</i>: Add <var data-x="">url</var> to <var data-x="">raw candidates</var>,
-   associated with <var data-x="">descriptors</var>.</p></li>
+   <li><p><i>Add candidate</i>: Add <var>url</var> to <var>raw candidates</var>,
+   associated with <var>descriptors</var>.</p></li>
 
-   <li><p>Return to the step labeled <i data-x="">splitting loop</i>.</p></li>
+   <li><p>Return to the step labeled <i>splitting loop</i>.</p></li>
 
-   <li><p><i data-x="">Descriptor parser</i>:
-   Let <var data-x="">candidates</var> be an initially empty <span>source set</span>.
+   <li><p><i>Descriptor parser</i>:
+   Let <var>candidates</var> be an initially empty <span>source set</span>.
    The order of entries in the list is the order in which entries are added to the list.</p></li>
 
    <li>
 
-    <p>For each entry in <var data-x="">raw candidates</var> with URL <var data-x="">url</var>
-    associated with the unparsed descriptor list <var data-x="">descriptor list</var>,
+    <p>For each entry in <var>raw candidates</var> with URL <var>url</var>
+    associated with the unparsed descriptor list <var>descriptor list</var>,
     run these substeps:</p>
 
     <ol>
 
-     <li><p>Let <var data-x="">error</var> be <i data-x="">no</i>.</p></li>
+     <li><p>Let <var>error</var> be <i>no</i>.</p></li>
 
-     <li><p>Let <var data-x="">width</var> be <i data-x="">absent</i>.</p></li>
+     <li><p>Let <var>width</var> be <i>absent</i>.</p></li>
 
-     <li><p>Let <var data-x="">density</var> be <i data-x="">absent</i>.</p></li>
+     <li><p>Let <var>density</var> be <i>absent</i>.</p></li>
 
-     <li><p>Let <var data-x="">future-compat-h</var> be <i data-x="">absent</i>.</p></li>
+     <li><p>Let <var>future-compat-h</var> be <i>absent</i>.</p></li>
 
      <li>
 
-      <p>For each token in <var data-x="">descriptor list</var>,
+      <p>For each token in <var>descriptor list</var>,
       run the appropriate set of steps from the following list:</p>
 
       <dl class=switch>
@@ -1633,13 +1628,13 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
         <ol>
 
-         <li><p>If <var data-x="">width</var> and <var data-x="">density</var>
-         are not both <i data-x="">absent</i>,
-         then let <var data-x="">error</var> be <i data-x="">yes</i>.</p></li>
+         <li><p>If <var>width</var> and <var>density</var>
+         are not both <i>absent</i>,
+         then let <var>error</var> be <i>yes</i>.</p></li>
 
          <li><p>Apply the <span>rules for parsing non-negative integers</span> to the token.
-         If the result is zero, let <var data-x="">error</var> be <i data-x="">yes</i>.
-         Otherwise, let <var data-x="">width</var> be the result.</p></li>
+         If the result is zero, let <var>error</var> be <i>yes</i>.
+         Otherwise, let <var>width</var> be the result.</p></li>
 
         </ol>
 
@@ -1652,17 +1647,17 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
         <ol>
 
-         <li><p>If <var data-x="">width</var>, <var data-x="">density</var> and <var data-x="">future-compat-h</var>
-         are not all <i data-x="">absent</i>,
-         then let <var data-x="">error</var> be <i data-x="">yes</i>.</p></li>
+         <li><p>If <var>width</var>, <var>density</var> and <var>future-compat-h</var>
+         are not all <i>absent</i>,
+         then let <var>error</var> be <i>yes</i>.</p></li>
 
          <li>
 
           <p>Apply the <span>rules for parsing floating-point number values</span> to the token.
-          If the result is less than zero, let <var data-x="">error</var> be <i data-x="">yes</i>.
-          Otherwise, let <var data-x="">density</var> be the result.</p>
+          If the result is less than zero, let <var>error</var> be <i>yes</i>.
+          Otherwise, let <var>density</var> be the result.</p>
 
-          <p class="note">If <var data-x="">density</var> is zero,
+          <p class="note">If <var>density</var> is zero,
           the intrinsic dimensions will be infinite.
           User agents are expected to have limits in how big images can be rendered,
           which is allowed by the <a href="#hardwareLimitations">hardware limitations</a> clause.</p>
@@ -1680,13 +1675,13 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
         <ol>
 
-         <li><p>If <var data-x="">future-compat-h</var> and <var data-x="">density</var>
-         are not both <i data-x="">absent</i>,
-         then let <var data-x="">error</var> be <i data-x="">yes</i>.</p></li>
+         <li><p>If <var>future-compat-h</var> and <var>density</var>
+         are not both <i>absent</i>,
+         then let <var>error</var> be <i>yes</i>.</p></li>
 
          <li><p>Apply the <span>rules for parsing non-negative integers</span> to the token.
-         If the result is zero, let <var data-x="">error</var> be <i data-x="">yes</i>.
-         Otherwise, let <var data-x="">future-compat-h</var> be the result.</p></li>
+         If the result is zero, let <var>error</var> be <i>yes</i>.
+         Otherwise, let <var>future-compat-h</var> be the result.</p></li>
 
         </ol>
 
@@ -1696,17 +1691,17 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
      </li>
 
-     <li><p>If <var data-x="">error</var> is still <i data-x="">no</i>,
-     then add a new <span>image source</span> to <var data-x="">candidates</var>
-     whose URL is <var data-x="">url</var>,
-     associated with a width <var data-x="">width</var> if not <i data-x="">absent</i>
-     and a pixel density <var data-x="">density</var> if not <i data-x="">absent</i>.</p></li>
+     <li><p>If <var>error</var> is still <i>no</i>,
+     then add a new <span>image source</span> to <var>candidates</var>
+     whose URL is <var>url</var>,
+     associated with a width <var>width</var> if not <i>absent</i>
+     and a pixel density <var>density</var> if not <i>absent</i>.</p></li>
 
     </ol>
 
    </li>
 
-   <li><p>Return <var data-x="">candidates</var>.</p></li>
+   <li><p>Return <var>candidates</var>.</p></li>
 
   </ol>
 
@@ -1714,39 +1709,39 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   <span>parse a comma-separated list of component values</span>
   from the value of the element's <code data-x="">sizes</code> attribute
   (or the empty string, if the attribute is absent),
-  and let <var data-x="">unparsed sizes list</var> be the result. <a href="#refsCSSSYNTAX">[CSSSYNTAX]</a></p>
+  and let <var>unparsed sizes list</var> be the result. <a href="#refsCSSSYNTAX">[CSSSYNTAX]</a></p>
 
-  <p>For each <var data-x="">unparsed size</var> in <var data-x="">unparsed sizes list</var>:</p>
+  <p>For each <var>unparsed size</var> in <var>unparsed sizes list</var>:</p>
 
   <ol>
 
    <li><p>Remove all consecutive <span>&lt;whitespace-token></span>s
-   from the end of <var data-x="">unparsed size</var>.
-   If <var data-x="">unparsed size</var> is now empty,
+   from the end of <var>unparsed size</var>.
+   If <var>unparsed size</var> is now empty,
    continue to the next iteration of this algorithm.</p></li>
 
-   <li><p>If the last <span>component value</span> in <var data-x="">unparsed size</var>
+   <li><p>If the last <span>component value</span> in <var>unparsed size</var>
    is a valid non-negative <span>&lt;source-size-value></span>,
-   let <var data-x="">size</var> be its value
-   and remove the <span>component value</span> from <var data-x="">unparsed size</var>.
+   let <var>size</var> be its value
+   and remove the <span>component value</span> from <var>unparsed size</var>.
    Otherwise, continue to the next iteration of this algorithm.</p></li>
 
    <li><p>Remove all consecutive <span>&lt;whitespace-token></span>s
-   from the end of <var data-x="">unparsed size</var>.
-   If <var data-x="">unparsed size</var> is now empty,
-   return <var data-x="">size</var> and exit this algorithm.</p></li>
+   from the end of <var>unparsed size</var>.
+   If <var>unparsed size</var> is now empty,
+   return <var>size</var> and exit this algorithm.</p></li>
 
-   <li><p>Parse the remaining <span data-x="component value">component values</span> in <var data-x="">unparsed size</var>
+   <li><p>Parse the remaining <span data-x="component value">component values</span> in <var>unparsed size</var>
    as a <span>&lt;media-condition></span>.
    If it does not parse correctly,
    or it does parse correctly but the <span>&lt;media-condition></span> evaluates to false,
    continue to the next iteration of this algorithm. <a href="#refsMQ">[MQ]</a></p></li>
 
-   <li><p>Return <var data-x="">size</var> and exit this algorithm.</p></li>
+   <li><p>Return <var>size</var> and exit this algorithm.</p></li>
 
   </ol>
 
-  <p>If the above algorithm exhausts <var data-x="">unparsed sizes list</var> without returning a <var data-x="">size</var> value,
+  <p>If the above algorithm exhausts <var>unparsed sizes list</var> without returning a <var>size</var> value,
   return <code data-x="">100vw</code>.</p>
 
   <p class="note">While a <span>valid source size list</span> only contains a bare <span>&lt;source-size-value></span>
@@ -1763,16 +1758,16 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   or no descriptor at all accompanying its URL.
   Normalizing a <span>source set</span> gives every <span>image source</span> a density descriptor.</p>
 
-  <p>When asked to <dfn>normalize the source densities</dfn> of a <span>source set</span> <var data-x="">source set</var>,
+  <p>When asked to <dfn>normalize the source densities</dfn> of a <span>source set</span> <var>source set</var>,
   the user agent must do the following:</p>
 
   <ol>
 
-   <li><p>Let <var data-x="">source size</var> be <var data-x="">source set</var>'s <span>source size</span>.</p></li>
+   <li><p>Let <var>source size</var> be <var>source set</var>'s <span>source size</span>.</p></li>
 
    <li>
 
-    <p>For each <span>image source</span> in <var data-x="">source set</var>:</p>
+    <p>For each <span>image source</span> in <var>source set</var>:</p>
 
     <ol>
 
@@ -1822,22 +1817,22 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    because defining what happens with the tasks and events and so on in that case would become
    implausibly complicated. -->
 
-   <li><p>&#x231B; Let <var data-x="">selected source</var> and <var data-x="">selected pixel
+   <li><p>&#x231B; Let <var>selected source</var> and <var>selected pixel
    density</var> be the URL and pixel density that results from <span data-x="select an image source">selecting an image source</span>, respectively.</p></li>
 
-   <li><p>&#x231B; If <var data-x="">selected source</var> is null, then abort these steps.</p></li>
+   <li><p>&#x231B; If <var>selected source</var> is null, then abort these steps.</p></li>
    <!-- not sure this can ever actually happen -->
 
-   <li><p>&#x231B; If <var data-x="">selected source</var> and <var data-x="">selected pixel
+   <li><p>&#x231B; If <var>selected source</var> and <var>selected pixel
    density</var> are the same as the element's <span>last selected source</span> and <span>current
    pixel density</span>, then abort these steps.</p></li> <!-- note that this check happens before
    base URL resolution, so changing the base URL doesn't trigger an update if nothing else changed
    -->
 
-   <li><p>&#x231B; <span data-x="resolve a url">Resolve</span> <var data-x="">selected source</var>,
+   <li><p>&#x231B; <span data-x="resolve a url">Resolve</span> <var>selected source</var>,
    relative to the element.</p></li>
 
-   <li><p>&#x231B; Let <var data-x="">CORS mode</var> be the state of the element's <code
+   <li><p>&#x231B; Let <var>CORS mode</var> be the state of the element's <code
    data-x="attr-img-crossorigin">crossorigin</code> content attribute.</p></li>
 
    <li><p>&#x231B; If the <span>resolve a URL</span> algorithm is not successful, abort these
@@ -1849,9 +1844,9 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    <li>
 
     <p>Do a <span>potentially CORS-enabled fetch</span><!--FETCH--> of the resulting <span>absolute
-    URL</span>, with the <i data-x="">mode</i> being <var data-x="">CORS mode</var>, the <i data-x="">origin</i>
+    URL</span>, with the <i>mode</i> being <var>CORS mode</var>, the <i>origin</i>
     being the <span>origin</span> of the <code>img</code> element's <code>Document</code>, and the
-    <i data-x="">default origin behaviour</i> set to <i data-x="">taint</i>.</p>
+    <i>default origin behaviour</i> set to <i>taint</i>.</p>
 
     <p>If this download fails in any way (other than the response code not being a 2xx code, as
     mentioned earlier), or if the image format is unsupported (as determined by applying the <span
@@ -1872,9 +1867,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
      <li><p>If the <code>img</code> element has experienced <span>relevant mutations</span>
      since this algorithm started, then abort these steps.</p>
 
-     <li><p>Let the <code>img</code> element's <span>last selected source</span> be <var
-     data-x="">selected source</var> and the <code>img</code> element's <span>current pixel
-     density</span> be <var data-x="">selected pixel density</var>.</p></li>
+     <li><p>Let the <code>img</code> element's <span>last selected source</span> be <var>selected source</var> and the <code>img</code> element's <span>current pixel
+     density</span> be <var>selected pixel density</var>.</p></li>
 
      <li><p>Let the <code>img</code> element's <span>current request</span>'s
      <span data-x="img-req-url">current URL</span> be the resulting <span>absolute URL</span> from the earlier step.</p></li>
@@ -2055,7 +2049,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   <p>The <code>img</code> element supports <span>dimension
   attributes</span>.</p>
 
-  <div class="impl">
+  <div w-nodev>
 
   <p>The <dfn data-x="dom-img-alt"><code>alt</code></dfn>, <dfn
   data-x="dom-img-src"><code>src</code></dfn>, <dfn
@@ -2078,8 +2072,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 <!--TOPIC:DOM APIs-->
   <dl class="domintro">
 
-   <dt><var data-x="">image</var> . <code data-x="dom-img-width">width</code> [ = <var data-x="">value</var> ]</dt>
-   <dt><var data-x="">image</var> . <code data-x="dom-img-height">height</code> [ = <var data-x="">value</var> ]</dt>
+   <dt><var>image</var> . <code data-x="dom-img-width">width</code> [ = <var>value</var> ]</dt>
+   <dt><var>image</var> . <code data-x="dom-img-height">height</code> [ = <var>value</var> ]</dt>
 
    <dd>
 
@@ -2092,8 +2086,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    </dd>
 
-   <dt><var data-x="">image</var> . <code data-x="dom-img-naturalWidth">naturalWidth</code></dt>
-   <dt><var data-x="">image</var> . <code data-x="dom-img-naturalHeight">naturalHeight</code></dt>
+   <dt><var>image</var> . <code data-x="dom-img-naturalWidth">naturalWidth</code></dt>
+   <dt><var>image</var> . <code data-x="dom-img-naturalHeight">naturalHeight</code></dt>
 
    <dd>
 
@@ -2103,7 +2097,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    </dd>
 
-   <dt><var data-x="">image</var> . <code data-x="dom-img-complete">complete</code></dt>
+   <dt><var>image</var> . <code data-x="dom-img-complete">complete</code></dt>
 
    <dd>
 
@@ -2113,7 +2107,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    </dd>
 
-   <dt><var data-x="">image</var> . <code data-x="dom-img-currentSrc">currentSrc</code></dt>
+   <dt><var>image</var> . <code data-x="dom-img-currentSrc">currentSrc</code></dt>
 
    <dd>
 
@@ -2121,7 +2115,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    </dd>
 
-   <dt><var data-x="">image</var> = new <code data-x="dom-image">Image</code>( [ <var data-x="">width</var> [, <var data-x="">height</var> ] ] )</dt>
+   <dt><var>image</var> = new <code data-x="dom-image">Image</code>( [ <var>width</var> [, <var>height</var> ] ] )</dt>
 
    <dd>
 
@@ -2135,7 +2129,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   </dl>
 
-  <div class="impl">
+  <div w-nodev>
 
   <p>The IDL attributes <dfn data-x="dom-img-width"><code>width</code></dfn> and <dfn
   data-x="dom-img-height"><code>height</code></dfn> must return the rendered width and height of the
@@ -2187,13 +2181,11 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   <p>A constructor is provided for creating <code>HTMLImageElement</code> objects (in addition to
   the factory methods from DOM such as <code data-x="">createElement()</code>): <dfn
-  data-x="dom-image"><code>Image(<var data-x="">width</var>, <var data-x="">height</var>)</code></dfn>.
+  data-x="dom-image"><code>Image(<var>width</var>, <var>height</var>)</code></dfn>.
   When invoked as a constructor, this must return a new <code>HTMLImageElement</code> object (a new
-  <code>img</code> element). If the <var data-x="">width</var> argument is present, the new object's
-  <code data-x="attr-dim-width">width</code> content attribute must be set to <var
-  data-x="">width</var>. If the <var data-x="">height</var> argument is also present, the new object's
-  <code data-x="attr-dim-height">height</code> content attribute must be set to <var
-  data-x="">height</var>. The element's document must be the <span>active document</span> of the
+  <code>img</code> element). If the <var>width</var> argument is present, the new object's
+  <code data-x="attr-dim-width">width</code> content attribute must be set to <var>width</var>. If the <var>height</var> argument is also present, the new object's
+  <code data-x="attr-dim-height">height</code> content attribute must be set to <var>height</var>. The element's document must be the <span>active document</span> of the
   <span>browsing context</span> of the <code>Window</code> object on which the interface object of
   the invoked constructor is found.</p>
 
