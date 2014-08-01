@@ -235,8 +235,8 @@ Examples of usage</h3>
 		For example, say your site had three basic layouts:
 
 		<figure>
-			<img src="images/viewport_selection_mob_first.jpg">
-			<figcaption>
+			<img src="images/viewport_selection_mob_first.jpg" aria-describedby="viewport-selection" >
+			<figcaption id="viewport-selection">
 				Single-column (100%) on small screens,
 				two-column (50%) on medium screens,
 				and three-column (approximately 33%) on large screens.
@@ -282,9 +282,9 @@ Examples of usage</h3>
 					&lt;picture>
 						&lt;source media="(min-width: 45em)" srcset="large-1.jpg, large-2.jpg 2x">
 						&lt;source media="(min-width: 18em)" srcset="med-1.jpg, med-2.jpg 2x">
-						&lt;img src="small-1.jpg" srcset="small-2.jpg 2x" alt="">
+						&lt;img src="small-1.jpg" srcset="small-2.jpg 2x" alt="A figure of a fox jumping over a box.">
 					&lt;/picture>
-					&lt;figcaption>A figure of a fox jumping over a lazy box.&lt;/figcaption>
+					&lt;figcaption>Here we see the rare North Cantabridgan jumping fox in its natural habitat, leaping over a box.&lt;/figcaption>
 			&lt;/figure>
 		</pre>
 	</div>
