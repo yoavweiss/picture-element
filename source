@@ -970,7 +970,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   given higher-layer caching semantics for the resource (e.g. the HTTP <code data-x="">Cache-Control</code>
   response header) when the <span>ignore higher-layer caching</span> is unset.</p>
 
-  <p class="note">The user agent can also store the image data in a separatly from the <span>list of available images</span>.</p>
+  <p class="note">The user agent can also store the image data in a separately from the <span>list of available images</span>.</p>
 
   <p class="example">For example, if a resource has the HTTP response header <code data-x="">Cache-Control: must-revalidate</code>,
   the user agent would remove it from the <span>list of available images</span> but could keep the image data separately,
