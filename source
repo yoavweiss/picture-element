@@ -399,6 +399,10 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
    <dd><dfn>component value</dfn></dd>
    <dd><dfn>&lt;whitespace-token></dfn></dd>
 
+   <dt>Fetch <ref spec=FETCH></dt>
+
+   <dd><dfn data-x="concept-request-context">context</dfn></dd>
+
   </dl>
 
 
@@ -1020,6 +1024,14 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
     <code>Document</code>, and the <i>default origin behaviour</i> set to <i>taint</i>.
     Let this instance of the <span data-x="fetch">fetching</span> algorithm be associated with <var>image request</var>.<!-- XXXX
     "Interaction with the Preload Scanner" from the picture spec --></p>
+
+    <p>If the element has a <code data-x="attr-img-srcset">srcset</code> attribute
+    or a parent that is a <code>picture</code> element,
+    the fetching request's <span data-x="concept-request-context">context</span> must be set to <i>imageset</i>.
+    Otherwise it must be set to <i>image</i>. <ref spec=FETCH></p>
+
+    <p class="critical">This specification does not yet use the "fetch" algorithm from the WHATWG Fetch specification.
+    It will be updated to do so in due course.</p>
 
     <p>The resource obtained in this fashion, if any, is <var>image request</var>'s <span data-x="img-req-data">image data</span>.
     It can be either <span>CORS-same-origin</span> or <span>CORS-cross-origin</span>; this affects
