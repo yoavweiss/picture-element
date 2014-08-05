@@ -385,15 +385,15 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
 
   <dl>
 
-   <dt>Media Queries <a href="#refsMQ">[MQ]</a> <span class=XXX>Correct reference is <a href="http://dev.w3.org/csswg/mediaqueries-4/">http://dev.w3.org/csswg/mediaqueries-4/</a></span></dt>
+   <dt>Media Queries <ref spec=MQ> <span class=XXX>Correct reference is <a href="http://dev.w3.org/csswg/mediaqueries-4/">http://dev.w3.org/csswg/mediaqueries-4/</a></span></dt>
 
    <dd><dfn>&lt;media-condition></dfn></dd>
 
-   <dt>CSS Values and Units <a href="#refsCSSVALUES">[CSSVALUES]</a></dt>
+   <dt>CSS Values and Units <ref spec=CSSVALUES></dt>
 
    <dd><dfn>&lt;length></dfn></dd>
 
-   <dt>CSS Syntax <a href="#refsCSSSYNTAX">[CSSSYNTAX]</a></dt>
+   <dt>CSS Syntax <ref spec=CSSSYNTAX></dt>
 
    <dd><dfn>Parse a comma-separated list of component values</dfn></dd>
    <dd><dfn>component value</dfn></dd>
@@ -695,17 +695,15 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   animated bitmaps (APNGs, animated GIFs), animated vector graphics (XML files with an SVG root
   element that use declarative SMIL animation), and so forth. However, these definitions preclude
   SVG files with script, multipage PDF files, interactive MNG files, HTML documents, plain text
-  documents, and so forth. <a href="#refsPNG">[PNG]</a> <a href="#refsGIF">[GIF]</a> <a
-  href="#refsJPEG">[JPEG]</a> <a href="#refsPDF">[PDF]</a> <a href="#refsXML">[XML]</a> <a
-  href="#refsAPNG">[APNG]</a> <!-- <a href="#refsAGIF">[AGIF]</a> --> <a href="#refsSVG">[SVG]</a>
-  <a href="#refsMNG">[MNG]</a> </p>
+  documents, and so forth. <ref spec=PNG> <ref spec=GIF> <ref spec=JPEG> <ref spec=PDF>
+  <ref spec=XML> <ref spec=APNG> <!-- <ref spec=AGIF> --> <ref spec=SVG> <ref spec=MNG> </p>
 
   <p>If the <code data-x="attr-img-srcset">srcset</code> attribute is present,
   the <dfn data-x="attr-img-sizes"><code>sizes</code></dfn> attribute may also be present.
   If present, its value must be a <span>valid source size list</span>.</p>
 
   <p>A <dfn>valid source size list</dfn> is a string that matches the following grammar:
-  <a href="#refsCSSVALUES">[CSSVALUES]</a> <a href="#refsMQ">[MQ]</a></p>
+  <ref spec=CSSVALUES> <ref spec=MQ></p>
 
 <pre><dfn>&lt;source-size-list></dfn> = <span>&lt;source-size></span># [ , <span>&lt;source-size-value></span> ]? | <span>&lt;source-size-value></span>
 <dfn>&lt;source-size></dfn> = <span>&lt;media-condition></span> <span>&lt;source-size-value></span>
@@ -1315,7 +1313,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   <p>A <dfn>source size</dfn> is a <span>&lt;source-size-value></span>.
   When a <span>source size</span> has a unit relative to the viewport,
   it must be interpreted relative to the <code>img</code> element's document's viewport.
-  Other units must be interpreted the same as in Media Queries. <a href="#refsMQ">[MQ]</a></p>
+  Other units must be interpreted the same as in Media Queries. <ref spec=MQ></p>
 
   <p>When asked to <dfn>select an image source</dfn> for a given <code>img</code> element <var>el</var>,
   user agents must do the following:</p>
@@ -1709,7 +1707,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   <span>parse a comma-separated list of component values</span>
   from the value of the element's <code data-x="">sizes</code> attribute
   (or the empty string, if the attribute is absent),
-  and let <var>unparsed sizes list</var> be the result. <a href="#refsCSSSYNTAX">[CSSSYNTAX]</a></p>
+  and let <var>unparsed sizes list</var> be the result. <ref spec=CSSSYNTAX></p>
 
   <p>For each <var>unparsed size</var> in <var>unparsed sizes list</var>:</p>
 
@@ -1735,7 +1733,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    as a <span>&lt;media-condition></span>.
    If it does not parse correctly,
    or it does parse correctly but the <span>&lt;media-condition></span> evaluates to false,
-   continue to the next iteration of this algorithm. <a href="#refsMQ">[MQ]</a></p></li>
+   continue to the next iteration of this algorithm. <ref spec=MQ></p></li>
 
    <li><p>Return <var>size</var> and exit this algorithm.</p></li>
 
@@ -2136,7 +2134,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   image, in CSS pixels, if the image is <span>being rendered</span>, and is being rendered to a
   visual medium; or else the intrinsic width and height of the image, in CSS pixels, if the image is
   <i data-x="img-available">available</i> but not being rendered to a visual medium; or else 0, if
-  the image is not <i data-x="img-available">available</i>. <a href="#refsCSS">[CSS]</a></p>
+  the image is not <i data-x="img-available">available</i>. <ref spec=CSS></p>
 
   <p>On setting, they must act as if they <span data-x="reflect">reflected</span> the respective
   content attributes of the same name.</p>
@@ -2144,7 +2142,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   <p>The IDL attributes <dfn data-x="dom-img-naturalWidth"><code>naturalWidth</code></dfn> and <dfn
   data-x="dom-img-naturalHeight"><code>naturalHeight</code></dfn> must return the intrinsic width and
   height of the image, in CSS pixels, if the image is <i data-x="img-available">available</i>, or
-  else 0. <a href="#refsCSS">[CSS]</a></p>
+  else 0. <ref spec=CSS></p>
 
   <p>The IDL attribute <dfn data-x="dom-img-complete"><code>complete</code></dfn> must return true if
   any of the following conditions is true:</p>
