@@ -380,17 +380,16 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
 
   </dl>
 
-<!-- the examples in this section should be rewritten to use <picture> once we have that done
 
   <h5>Adaptive images</h5>
 
-  <!- - NON-NORMATIVE SECTION - ->
+  <!-- NON-NORMATIVE SECTION -->
 
   <p>CSS and media queries can be used to construct graphical page layouts that adapt dynamically to
   the user's environment, in particular to different viewport dimensions and pixel densities. For
   content, however, CSS does not help; instead, we have the <code>img</code> element's <code
-  data-x="attr-img-srcset">srcset</code> attribute. This section walks through a sample case showing
-  how to use this attribute.</p>
+  data-x="attr-img-srcset">srcset</code> attribute and the <code>picture</code> element.
+  This section walks through a sample case showing how to use these features.</p>
 
   <p>Consider a situation where on wide screens (wider than 600 CSS pixels) a 300&times;150 image
   named <code data-x="">a-rectangle.png</code> is to be used, but on smaller screens (600 CSS pixels
@@ -398,13 +397,15 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
   The markup for this would look like this:</p>
 
   <pre>&lt;figure>
- &lt;img src="a-rectangle.png" srcset="a-square.png 600w"
-      alt="Barney Frank wears a suit and glasses.">
+ &lt;picture>
+  &lt;source srcset="a-square.png" media="(max-width: 600px)">
+  &lt;img src="a-rectangle.png" alt="Barney Frank wears a suit and glasses.">
+ &lt;/picture>
  &lt;figcaption>Barney Frank, 2011&lt;/figcaption>
 &lt;/figure></pre>
 
   <p class="note">For details on what to put in the <code data-x="attr-img-alt">alt</code> attribute,
-  see the earlier sections.</p>
+  see the <a href="#alt">Requirements for providing text to act as an alternative for images</a> section.</p>
 
   <p>The problem with this is that the user agent does not necessarily know what dimensions to use
   for the image when the image is loading. To avoid the layout having to be reflowed multiple times
@@ -413,75 +414,82 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
   <pre>&lt;figure>
  &lt;style scoped>
   #a { width: 300px; height: 150px; }
-  @media all and (max-width: 600px) { #a { width: 100px; height: 100px; } }
+  @media (max-width: 600px) { #a { width: 100px; height: 100px; } }
  &lt;/style>
- &lt;img src="a-rectangle.png" srcset="a-square.png 600w" id="a"
-      alt="Barney Frank wears a suit and glasses.">
+ &lt;picture>
+  &lt;source srcset="a-square.png" media="(max-width: 600px)">
+  &lt;img src="a-rectangle.png" alt="Barney Frank wears a suit and glasses." id="a">
+ &lt;/picture>
  &lt;figcaption>Barney Frank, 2011&lt;/figcaption>
 &lt;/figure></pre>
 
   <p>Alternatively, the <code data-x="attr-dim-width">width</code> and <code
   data-x="attr-dim-height">height</code> attributes can be used to provide the width for legacy user
-  agents, using CSS just for the user agents that support <code
-  data-x="attr-img-srcset">srcset</code>:</p>
+  agents, using CSS just for the user agents that support <code>picture</code>:</p>
 
   <pre>&lt;figure>
- &lt;style scoped media="all and (max-width: 600px)">
+ &lt;style scoped media="(max-width: 600px)">
   #a { width: 100px; height: 100px; }
  &lt;/style>
- &lt;img src="a-rectangle.png" width="300" height="100"
-      srcset="a-square.png 600w" id=a
-      alt="Barney Frank wears a suit and glasses.">
+ &lt;picture>
+  &lt;source srcset="a-square.png" media="(max-width: 600px)">
+  &lt;img src="a-rectangle.png" width="300" height="150"
+  alt="Barney Frank wears a suit and glasses." id="a">
+ &lt;/picture>
  &lt;figcaption>Barney Frank, 2011&lt;/figcaption>
 &lt;/figure></pre>
 
   <hr>
 
-  <p>The <code data-x="attr-img-srcset">srcset</code> attribute is used with the <code
+  <p>The <code data-x="picture-source">source</code> element is used with the <code
   data-x="attr-img-src">src</code> attribute, which gives the URL of the image to use for legacy user
-  agents that do not support the <code data-x="attr-img-srcset">srcset</code> attribute. This leads
+  agents that do not support the <code>picture</code> element. This leads
   to a question of which image to provide in the <code data-x="attr-img-src">src</code>
   attribute.</p>
 
-  <p>The answer that results in the least duplication is to provide the image suitable for an
-  infinite width and infinite height viewport with a pixel density of 1 CSS pixel per device
-  pixel:</p>
+  <p>If the author wants the biggest image in legacy user agents, the markup could be as follows:</p>
 
-  <pre>&lt;img src="pear-desktop.jpeg" srcset="pear-mobile.jpeg 720w, pear-tablet.jpeg 1280w"
-     alt="The pear is juicy."></pre>
+  <pre>&lt;picture>
+ &lt;source srcset="pear-mobile.jpeg" media="(max-width: 720px)">
+ &lt;source srcset="pear-tablet.jpeg" media="(max-width: 1280px)">
+ &lt;img src="pear-desktop.jpeg" alt="The pear is juicy.">
+&lt;/picture></pre>
 
   <p>However, if legacy mobile user agents are more important, one can list all three images in the
-  <code data-x="attr-img-srcset">srcset</code> attribute, overriding the <code
-  data-x="attr-img-src">src</code> attribute entirely. To do this, the widest image has to have the
-  pixel density descriptor instead of the width, since there is no way to specify an infinite width
-  explicitly:</p>
+  <code data-x="picture-source">source</code> elements, overriding the <code
+  data-x="attr-img-src">src</code> attribute entirely.</p>
 
-  <pre>&lt;img src="pear-mobile.jpeg"
-     srcset="pear-mobile.jpeg 720w, pear-tablet.jpeg 1280w, pear-desktop.jpeg 1x"
-     alt="The pear is juicy."></pre>
+  <pre>&lt;picture>
+ &lt;source srcset="pear-mobile.jpeg" media="(max-width: 720px)">
+ &lt;source srcset="pear-tablet.jpeg" media="(max-width: 1280px)">
+ &lt;source srcset="pear-desktop.jpeg">
+ &lt;img src="pear-mobile.jpeg" alt="The pear is juicy.">
+&lt;/picture></pre>
 
   <p>Since at this point the <code data-x="attr-img-src">src</code> attribute is actually being
-  ignored entirely by <code data-x="attr-img-srcset">srcset</code>-supporting user agents, the <code
+  ignored entirely by <code>picture</code>-supporting user agents, the <code
   data-x="attr-img-src">src</code> attribute can default to any image, including one that is neither
   the smallest nor biggest:</p>
 
-  <pre>&lt;img src="pear-tablet.jpeg"
-     srcset="pear-mobile.jpeg 720w, pear-tablet.jpeg 1280w, pear-desktop.jpeg 1x"
-     alt="The pear is juicy."></pre>
+  <pre>&lt;picture>
+ &lt;source srcset="pear-mobile.jpeg" media="(max-width: 720px)">
+ &lt;source srcset="pear-tablet.jpeg" media="(max-width: 1280px)">
+ &lt;source srcset="pear-desktop.jpeg">
+ &lt;img src="pear-tablet.jpeg" alt="The pear is juicy.">
+&lt;/picture></pre>
 
   <hr>
 
-  <p>The dimensions in the <code data-x="attr-img-srcset">srcset</code> attribute are the maximum
-  (viewport) dimensions that an image is intended for. It is possible to think of the numbers as
-  minimums, though... if the images are listed in order, then the minimum for an image is the
-  dimension given for the previous image. This example attempts to demonstrate this by using the
-  file names to show the minimum values for each image:</p>
+  <p>Above the <code data-x="">max-width</code> media feature is used, giving the maximum
+  (viewport) dimensions that an image is intended for.
+  It is also possible to use <code data-x="">min-width</code> instead.</p>
 
-  <pre>&lt;img src="pear-tablet.jpeg"
-     srcset="pear-min0.jpeg 720w, pear-min721.jpeg 1280w, pear-min1281.jpeg 1x"
-     alt="The pear is juicy."></pre>
+  <pre>&lt;picture>
+ &lt;source srcset="pear-desktop.jpeg" media="(min-width: 1281px)">
+ &lt;source srcset="pear-tablet.jpeg" media="(min-width: 721px)">
+ &lt;img src="pear-mobile.jpeg" alt="The pear is juicy.">
+&lt;/picture></pre>
 
--->
 
   <h4>Dependencies</h4>
 
