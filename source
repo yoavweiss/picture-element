@@ -970,6 +970,12 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   given higher-layer caching semantics for the resource (e.g. the HTTP <code data-x="">Cache-Control</code>
   response header) when the <span>ignore higher-layer caching</span> is unset.</p>
 
+  <p class="note">The <span>list of available images</span> is intended to enable synchronous switching
+  when changing the <code data-x="attr-img-src">src</code> attribute to a URL that has previously been loaded,
+  and to avoid re-downloading images in the same document even when they don't allow caching per HTTP.
+  It is not used to avoid re-downloading the same image while the previous image is still loading,
+  but the <span>fetch</span> algorithm allows the download to be reused in that case.</p>
+
   <p class="note">The user agent can also store the image data in a separately from the <span>list of available images</span>.</p>
 
   <p class="example">For example, if a resource has the HTTP response header <code data-x="">Cache-Control: must-revalidate</code>,
