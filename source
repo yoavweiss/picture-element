@@ -974,7 +974,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   <p class="example">For example, if a resource has the HTTP response header <code data-x="">Cache-Control: must-revalidate</code>,
   the user agent would remove it from the <span>list of available images</span> but could keep the image data separately,
-  and use that if the server responds with a <code data-x="">204 No Content</code> status.</p>
+  and use that if the server responds with a <code data-x="">304 Not Modified</code> status.</p>
 
   <p>When the user agent is to <dfn>update the image data</dfn> of an <code>img</code> element,
   optionally with the <i>restart animations</i> flag set,
