@@ -1587,18 +1587,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    <li>
 
     <p>If <var>url</var> ends with a U+002C COMMA character (,),
-    follow these substeps:</p>
-
-    <ol>
-
-     <li><p>Remove all trailing U+002C COMMA characters from <var>url</var>.</p></li>
-
-     <li><p>If <var>url</var> is empty,
-     then jump to the step labeled <i>splitting loop</i>.</p></li>
-
-    </ol>
-
-    <p>Otherwise, <span>skip whitespace</span> and then follow these substeps:</p>
+    remove all trailing U+002C COMMA characters from <var>url</var>.
+    Otherwise, <span>skip whitespace</span> and then follow these substeps:</p>
 
     <ol>
 
