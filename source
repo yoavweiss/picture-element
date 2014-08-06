@@ -1598,7 +1598,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
     <ol>
 
-     <li><p><i>Descriptor tokenizer</i>: Let <var>current token</var> be the empty string.</p></li>
+     <li><p><i>Descriptor tokenizer</i>: Let <var>current descriptor</var> be the empty string.</p></li>
 
      <li><p>Let <var>state</var> be <i>start</i>.</p></li>
 
@@ -1621,32 +1621,32 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
          <dt><span>Space character</span></dt>
 
-         <dd><p>If <var>current token</var> is not empty,
-         append <var>current token</var> to <var>descriptors</var>
-         and let <var>current token</var> be the empty string.
-         Set <var>state</var> to <i>after token</i>.</p></dd>
+         <dd><p>If <var>current descriptor</var> is not empty,
+         append <var>current descriptor</var> to <var>descriptors</var>
+         and let <var>current descriptor</var> be the empty string.
+         Set <var>state</var> to <i>after descriptor</i>.</p></dd>
 
          <dt>U+002C COMMA (,)</dt>
 
          <dd><p>Advance <var>position</var> to the next character in <var>input</var>.
-         If <var>current token</var> is not empty,
-         append <var>current token</var> to <var>descriptors</var>.
+         If <var>current descriptor</var> is not empty,
+         append <var>current descriptor</var> to <var>descriptors</var>.
          Jump to the step labeled <i>descriptor parser</i>.</p></dd>
 
          <dt>U+0028 LEFT PARANTHESIS (()</dt>
 
-         <dd><p>Append <var>c</var> to <var>current token</var>.
+         <dd><p>Append <var>c</var> to <var>current descriptor</var>.
          Set <var>state</var> to <i>in parens</i>.</p></dd>
 
          <dt>EOF</dt>
 
-         <dd><p>If <var>current token</var> is not empty,
-         append <var>current token</var> to <var>descriptors</var>.
+         <dd><p>If <var>current descriptor</var> is not empty,
+         append <var>current descriptor</var> to <var>descriptors</var>.
          Jump to the step labeled <i>descriptor parser</i>.</p></dd>
 
          <dt>Anything else</dt>
 
-         <dd><p>Append <var>c</var> to <var>current token</var>.</p></dd>
+         <dd><p>Append <var>c</var> to <var>current descriptor</var>.</p></dd>
 
         </dl>
 
@@ -1662,23 +1662,23 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
          <dt>U+0029 RIGHT PARENTHESIS ())</dt>
 
-         <dd><p>Append <var>c</var> to <var>current token</var>.
+         <dd><p>Append <var>c</var> to <var>current descriptor</var>.
          Set <var>state</var> to <i>start</i>.</p></dd>
 
          <dt>EOF</dt>
 
-         <dd><p>Append <var>current token</var> to <var>descriptors</var>.
+         <dd><p>Append <var>current descriptor</var> to <var>descriptors</var>.
          Jump to the step labeled <i>descriptor parser</i>.</p></dd>
 
          <dt>Anything else</dt>
 
-         <dd><p>Append <var>c</var> to <var>current token</var>.</p></dd>
+         <dd><p>Append <var>c</var> to <var>current descriptor</var>.</p></dd>
 
         </dl>
 
        </dd>
 
-       <dt><i title>After token</i></dt>
+       <dt><i title>After descriptor</i></dt>
 
        <dd>
 
@@ -1727,12 +1727,12 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    <li>
 
-    <p>For each token in <var>descriptors</var>,
+    <p>For each descriptor in <var>descriptors</var>,
     run the appropriate set of steps from the following list:</p>
 
     <dl class=switch>
 
-     <dt>If the token consists of a <span>valid non-negative integer</span>
+     <dt>If the descriptor consists of a <span>valid non-negative integer</span>
      followed by a U+0077 LATIN SMALL LETTER W character</dt>
 
      <dd>
@@ -1743,7 +1743,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
        are not both <i>absent</i>,
        then let <var>error</var> be <i>yes</i>.</p></li>
 
-       <li><p>Apply the <span>rules for parsing non-negative integers</span> to the token.
+       <li><p>Apply the <span>rules for parsing non-negative integers</span> to the descriptor.
        If the result is zero, let <var>error</var> be <i>yes</i>.
        Otherwise, let <var>width</var> be the result.</p></li>
 
@@ -1751,7 +1751,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
      </dd>
 
-     <dt>If the token consists of a <span>valid floating-point number</span>
+     <dt>If the descriptor consists of a <span>valid floating-point number</span>
      followed by a U+0078 LATIN SMALL LETTER X character</dt>
 
      <dd>
@@ -1764,7 +1764,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
        <li>
 
-        <p>Apply the <span>rules for parsing floating-point number values</span> to the token.
+        <p>Apply the <span>rules for parsing floating-point number values</span> to the descriptor.
         If the result is less than zero, let <var>error</var> be <i>yes</i>.
         Otherwise, let <var>density</var> be the result.</p>
 
@@ -1779,7 +1779,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
      </dd>
 
-     <dt>If the token consists of a <span>valid non-negative integer</span>
+     <dt>If the descriptor consists of a <span>valid non-negative integer</span>
      followed by a U+0068 LATIN SMALL LETTER H character</dt>
 
      <dd>
@@ -1790,7 +1790,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
        are not both <i>absent</i>,
        then let <var>error</var> be <i>yes</i>.</p></li>
 
-       <li><p>Apply the <span>rules for parsing non-negative integers</span> to the token.
+       <li><p>Apply the <span>rules for parsing non-negative integers</span> to the descriptor.
        If the result is zero, let <var>error</var> be <i>yes</i>.
        Otherwise, let <var>future-compat-h</var> be the result.</p></li>
 
