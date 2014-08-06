@@ -1598,7 +1598,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
     </ol>
 
-    <p>Otherwise, follow these substeps:</p>
+    <p>Otherwise, <span>skip whitespace</span> and then follow these substeps:</p>
 
     <ol>
 
