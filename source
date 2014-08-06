@@ -1567,7 +1567,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   of the relevant <code>img</code> element.</p>
 
   <p>When asked to <dfn>parse a srcset attribute</dfn> from an element,
-  parse the value of the element's <code>srcset</code> attribute as follows:</p>
+  parse the value of the element's <code data-x="">srcset</code> attribute as follows:</p>
 
   <ol>
 
