@@ -26,9 +26,7 @@ Link Defaults: html5 (element) source/video/audio/iframe
 [data-link-type=element] { font-family: monospace; }
 [data-link-type=element]::before { content: "<" }
 [data-link-type=element]::after { content: ">" }
-p,
-div,
-h2 { opacity: .75; }
+body > * { opacity: .5; }
 #obsolete {
   background-image: -webkit-linear-gradient(rgba(0,0,0,0) 40%, rgba(255,255,255,.2) 100%);
   background-image: -moz-linear-gradient(rgba(0,0,0,0) 40%, rgba(255,255,255,.2) 100%);
@@ -60,7 +58,6 @@ h2 { opacity: .75; }
   text-shadow: 0 1px 2px rgba(0,0,0,.85);
 }
 #obsolete p {
-  opacity: 1;
   padding: .25em 7.5%;
   font-size: .925em;
   line-height: 1.4em;
