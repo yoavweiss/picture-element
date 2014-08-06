@@ -1600,7 +1600,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
      <li><p><i>Descriptor tokenizer</i>: Let <var>current descriptor</var> be the empty string.</p></li>
 
-     <li><p>Let <var>state</var> be <i>start</i>.</p></li>
+     <li><p>Let <var>state</var> be <i>in descriptor</i>.</p></li>
 
      <li>
 
@@ -1611,7 +1611,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
       <dl class="switch">
 
-       <dt><i title>Start</i></dt>
+       <dt><i title>In descriptor</i></dt>
 
        <dd>
 
@@ -1663,7 +1663,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
          <dt>U+0029 RIGHT PARENTHESIS ())</dt>
 
          <dd><p>Append <var>c</var> to <var>current descriptor</var>.
-         Set <var>state</var> to <i>start</i>.</p></dd>
+         Set <var>state</var> to <i>in descriptor</i>.</p></dd>
 
          <dt>EOF</dt>
 
@@ -1696,7 +1696,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
          <dt>Anything else</dt>
 
-         <dd><p>Set <var>state</var> to <i>start</i>.
+         <dd><p>Set <var>state</var> to <i>in descriptor</i>.
          Set <var>position</var> to the <em>previous</em> character in <var>input</var>.</p></dd>
 
         </dl>
