@@ -1602,7 +1602,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
     <ol>
 
-     <li><p>Let <var>current token</var> be the empty string.</p></li>
+     <li><p><i>Descriptor tokenizer</i>: Let <var>current token</var> be the empty string.</p></li>
 
      <li><p>Let <var>state</var> be <i>start</i>.</p></li>
 
