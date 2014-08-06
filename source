@@ -1511,6 +1511,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
        and no <span>image source</span> with a width descriptor,
        append <var>child</var>'s <code data-x="attr-img-src">src</code> attribute value to <var>source set</var>.</p></li>
 
+       <li><p><span>Normalize the source densities</span> of <var>source set</var>.</p></li>
+
        <li><p>Let <var>el</var>'s <span>source set</span> be <var>source set</var>.</p></li>
 
        <li><p>Abort this algorithm.</p></li>
