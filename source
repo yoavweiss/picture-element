@@ -1106,7 +1106,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    </li>
 
-   <li><p><span data-x="resolve a url">Resolve</span> <var>selected source</var>, relative
+   <li><p>&#x231B; <span data-x="resolve a url">Resolve</span> <var>selected source</var>, relative
    to the element, and let the result be <var>absolute URL</var>. If that is not successful, then
    <span>abort the image request</span> for the <span>current request</span> and the <span>pending request</span>,
    set the <span>current request</span> to the <span data-x="img-error">broken</span> state,
