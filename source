@@ -825,7 +825,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   <p>A <span>&lt;source-size-value></span> must not be negative.</p>
 
-  <p class="note">Percentages are not allowed in a <span>&lt;source-size-value</span>,
+  <p class="note">Percentages are not allowed in a <span>&lt;source-size-value></span>,
   to avoid confusion about what it would be relative to.
   The <code data-x="">vw</code> unit can be used for sizes relative to the viewport width.</p>
 
