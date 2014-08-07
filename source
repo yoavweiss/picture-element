@@ -1580,7 +1580,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    The order of entries in the list is the order in which entries are added to the list.</p></li>
 
    <li><p><i>Splitting loop</i>: <span>Collect a sequence of characters</span>
-   that are <span data-x="space character">space characters</span> or U+002C COMMA characters.</p></li>
+   that are <span data-x="space character">space characters</span> or U+002C COMMA characters.
+   If any U+002C COMMA characters were collected, that is a <span data-x="concept-microsyntax-parse-error">parse error</span>.</p></li>
 
    <li><p>If <var>position</var> is past the end of <var>input</var>,
    return <var>candidates</var> and abort these steps.</p></li>
@@ -1593,7 +1594,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    <li>
 
     <p>If <var>url</var> ends with a U+002C COMMA character (,),
-    remove all trailing U+002C COMMA characters from <var>url</var>.
+    remove all trailing U+002C COMMA characters from <var>url</var>;
+    if this removed more than one character, that is a <span data-x="concept-microsyntax-parse-error">parse error</span>.
     Otherwise, <span>skip whitespace</span> and then follow these substeps:</p>
 
     <ol>
@@ -1784,6 +1786,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
      <dd>
 
+      <p>This is a <span data-x="concept-microsyntax-parse-error">parse error</span>.</p>
+
       <ol>
 
        <li><p>If <var>future-compat-h</var> and <var>density</var>
@@ -1798,6 +1802,10 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
      </dd>
 
+     <dt>Anything else</dt>
+
+     <dd><p>This is a <span data-x="concept-microsyntax-parse-error">parse error</span>.</p></dd>
+
     </dl>
 
    </li>
@@ -1806,7 +1814,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    then add a new <span>image source</span> to <var>candidates</var>
    whose URL is <var>url</var>,
    associated with a width <var>width</var> if not <i>absent</i>
-   and a pixel density <var>density</var> if not <i>absent</i>.</p></li>
+   and a pixel density <var>density</var> if not <i>absent</i>.
+   Otherwise, there is a <span data-x="concept-microsyntax-parse-error">parse error</span>.</p></li>
 
    <li><p>Return to the step labeled <i>splitting loop</i>.</p></li>
 
@@ -1825,18 +1834,22 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    <li><p>Remove all consecutive <span>&lt;whitespace-token></span>s
    from the end of <var>unparsed size</var>.
    If <var>unparsed size</var> is now empty,
+   that is a <span data-x="concept-microsyntax-parse-error">parse error</span>;
    continue to the next iteration of this algorithm.</p></li>
 
    <li><p>If the last <span>component value</span> in <var>unparsed size</var>
    is a valid non-negative <span>&lt;source-size-value></span>,
    let <var>size</var> be its value
    and remove the <span>component value</span> from <var>unparsed size</var>.
-   Otherwise, continue to the next iteration of this algorithm.</p></li>
+   Otherwise, there is a <span data-x="concept-microsyntax-parse-error">parse error</span>;
+   continue to the next iteration of this algorithm.</p></li>
 
    <li><p>Remove all consecutive <span>&lt;whitespace-token></span>s
    from the end of <var>unparsed size</var>.
    If <var>unparsed size</var> is now empty,
-   return <var>size</var> and exit this algorithm.</p></li>
+   return <var>size</var> and exit this algorithm.
+   If this was not the last item in <var>unparsed sizes list</var>,
+   that is a <span data-x="concept-microsyntax-parse-error">parse error</span>.</p></li>
 
    <li><p>Parse the remaining <span data-x="component value">component values</span> in <var>unparsed size</var>
    as a <span>&lt;media-condition></span>.
@@ -1850,6 +1863,10 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   <p>If the above algorithm exhausts <var>unparsed sizes list</var> without returning a <var>size</var> value,
   return <code data-x="">100vw</code>.</p>
+
+  <p>A <dfn data-x="concept-microsyntax-parse-error">parse error</dfn> for the algorithms above
+  indicates a non-fatal mismatch between input and requirements.
+  User agents are encouraged to expose <span data-x="concept-microsyntax-parse-error">parse error</span>s somehow.</p>
 
   <p class="note">While a <span>valid source size list</span> only contains a bare <span>&lt;source-size-value></span>
   (without an accompanying <span>&lt;media-condition></span>)
