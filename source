@@ -1810,6 +1810,9 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    </li>
 
+   <li><p>If <var>future-compat-h</var> is not <i>absent</i> and <var>width</var> is <i>absent</i>,
+   let <var>error</var> be <i>yes</i>.</p></li>
+
    <li><p>If <var>error</var> is still <i>no</i>,
    then add a new <span>image source</span> to <var>candidates</var>
    whose URL is <var>url</var>,
