@@ -495,7 +495,7 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
 
   <dl>
 
-   <dt>Media Queries <ref spec=MQ> <span class=XXX>Correct reference is <a href="http://dev.w3.org/csswg/mediaqueries-4/">http://dev.w3.org/csswg/mediaqueries-4/</a></span></dt>
+   <dt>Media Queries <ref spec=MQ></dt>
 
    <dd><dfn>&lt;media-condition></dfn></dd>
 
@@ -595,7 +595,7 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
   If present, the value must be a <span>valid source size list</span>.</p>
 
   <p>The <dfn data-x="attr-picture-source-media"><code>media</code></dfn> attributes may also be present.
-  If present, the value must contain a <span>valid media query</span>.</p>
+  If present, the value must contain a <span>valid media query list</span>.</p>
 
   <p>The <dfn data-x="attr-picture-source-type"><code>type</code></dfn> attribute may also be present.
   If present, the value must be a <span>valid MIME type</span>.
@@ -1530,8 +1530,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
      continue to the next child.</p></li>
 
      <li><p>If <var>child</var> has a <code data-x="attr-picture-source-media">media</code> attribute,
-     and its value is not a <span>valid media query</span>,
-     or is a <span>valid media query</span> that evaluates to false,
+     and its value is not a <span>valid media query list</span>,
+     or is a <span>valid media query list</span> that evaluates to false,
      continue to the next child.</p></li>
 
      <li><p><span data-x="parse a sizes attribute">Parse <var>child</var>'s sizes attribute</span>
