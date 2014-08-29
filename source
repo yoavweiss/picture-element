@@ -1398,11 +1398,6 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   <span>fire a progress event</span> named <var>type</var> at <var>e</var> if <var>r</var> is <span>CORS-same-origin</span>,
   and otherwise <span>fire a simple event</span> named <var>type</var> at <var>e</var>.</p>
 
-  <p>To <dfn>restart the animation</dfn> for an <code>img</code> element means that,
-  if the image is an animated image,
-  all animated images with the same <span>absolute URL</span> and the same image data in the <code>img</code> element's <code>Document</code>
-  are expected to restart their animation.</p>
-
   <p>While a user agent is running the above algorithm for an element <var>x</var>, there
   must be a strong reference from the element's <code>Document</code> to the element <var>x</var>, even if that element is not <span data-x="in a Document">in</span> its
   <code>Document</code>.</p>
