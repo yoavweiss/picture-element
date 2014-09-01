@@ -668,7 +668,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
            attribute DOMString <span data-x="dom-img-src">src</span>;
            attribute DOMString <span data-x="dom-img-srcset">srcset</span>;
            attribute DOMString <span data-x="dom-img-sizes">sizes</span>;
-           attribute DOMString <span data-x="dom-img-crossOrigin">crossOrigin</span>;
+           attribute DOMString? <span data-x="dom-img-crossOrigin">crossOrigin</span>;
            attribute DOMString <span data-x="dom-img-useMap">useMap</span>;
            attribute boolean <span data-x="dom-img-isMap">isMap</span>;
            attribute unsigned long <span data-x="dom-img-width">width</span>;
@@ -2180,8 +2180,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   respective content attributes of the same name.</p>
 
   <p>The <dfn data-x="dom-img-crossOrigin"><code>crossOrigin</code></dfn> IDL attribute must
-  <span>reflect</span> the <code data-x="attr-img-crossorigin">crossorigin</code> content attribute,
-  <span>limited to only known values</span>.</p>
+  <span>reflect</span> the <code data-x="attr-img-crossorigin">crossorigin</code> content attribute.</p>
 
   <p>The <dfn data-x="dom-img-useMap"><code>useMap</code></dfn> IDL attribute must
   <span>reflect</span> the <code data-x="attr-hyperlink-usemap">usemap</code> content attribute.</p>
