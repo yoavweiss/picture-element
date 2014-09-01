@@ -629,7 +629,7 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
 
   <p>The IDL attributes <dfn data-x="dom-picture-source-srcset"><code>srcset</code></dfn>,
   <dfn data-x="dom-picture-source-sizes"><code>sizes</code></dfn> and
-  <dfn data-x="dom-picture-source-media"><code>media</code></dfn> must reflect the
+  <dfn data-x="dom-picture-source-media"><code>media</code></dfn> must <span>reflect</span> the
   respective content attributes of the same name.</p>
 
   </div>
