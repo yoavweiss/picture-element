@@ -988,7 +988,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   <ol>
 
-   <li><p>If the element's <code>Document</code> is not the <span>active document</span>,
+   <li><p>If the element's <span>node document</span> is not the <span>active document</span>,
    abort these steps.</p></li>
 
    <li><p>If the user agent cannot support images, or its support for images has been disabled, then
@@ -1024,7 +1024,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
      <li><p>Let <var>key</var> be a tuple consisting of the resulting <span>absolute
      URL</span>, the <code>img</code> element's <code data-x="attr-img-crossorigin">crossorigin</code>
      attribute's mode, and, if that mode is not <span data-x="attr-crossorigin-none">No CORS</span>,
-     the <code>Document</code> object's <span>origin</span>.</p></li>
+     the <span>node document</span>'s <span>origin</span>.</p></li>
 
      <li><p>If the <span>list of available images</span> contains an entry for <var>key</var>, then
      set the <span>ignore higher-layer caching</span> flag for that entry,
@@ -1141,7 +1141,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
     with the <i>mode</i> being the current state of
     the element's <code data-x="attr-img-crossorigin">crossorigin</code> content attribute,
     the <i>origin</i> being the <span>origin</span> of the <code>img</code> element's
-    <code>Document</code>, and the <i>default origin behaviour</i> set to <i>taint</i>.
+    <span>node document</span>, and the <i>default origin behaviour</i> set to <i>taint</i>.
     Let this instance of the <span data-x="fetch">fetching</span> algorithm be associated with <var>image request</var>.<!-- XXXX
     "Interaction with the Preload Scanner" from the picture spec --></p>
 
@@ -1158,7 +1158,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
     the <span>origin</span> of the image itself (e.g. when used on a <code>canvas</code>).</p>
 
     <!-- same text in <input type=image> section and similar text elsewhere -->
-    <p>Fetching the image must <span>delay the load event</span> of the element's document until the
+    <p>Fetching the image must <span>delay the load event</span> of the element's <span>node document</span> until the
     <span data-x="concept-task">task</span> that is <span data-x="queue a task">queued</span> by the
     <span>networking task source</span> once the resource has been <span
     data-x="fetch">fetched</span> (<a href="#img-load">defined below</a>) has been run.
@@ -1399,8 +1399,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   and otherwise <span>fire a simple event</span> named <var>type</var> at <var>e</var>.</p>
 
   <p>While a user agent is running the above algorithm for an element <var>x</var>, there
-  must be a strong reference from the element's <code>Document</code> to the element <var>x</var>, even if that element is not <span data-x="in a Document">in</span> its
-  <code>Document</code>.</p>
+  must be a strong reference from the element's <span>node document</span> to the element <var>x</var>,
+  even if that element is not <span data-x="in a Document">in its <code>Document</code></span>.</p>
 
   <p>When an <code>img</code> element is in the <span data-x="img-all">completely available</span>
   state <em>and</em> the user agent can decode the media data without errors, then the
@@ -1439,7 +1439,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   <p>A <dfn>source size</dfn> is a <span>&lt;source-size-value></span>.
   When a <span>source size</span> has a unit relative to the viewport,
-  it must be interpreted relative to the <code>img</code> element's document's viewport.
+  it must be interpreted relative to the <code>img</code> element's <span>node document</span>'s viewport.
   Other units must be interpreted the same as in Media Queries. <ref spec=MQ></p>
 
   <p>When asked to <dfn>select an image source</dfn> for a given <code>img</code> element <var>el</var>,
@@ -1967,7 +1967,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
     <p>Do a <span>potentially CORS-enabled fetch</span><!--FETCH--> of the resulting <span>absolute
     URL</span>, with the <i>mode</i> being <var>CORS mode</var>, the <i>origin</i>
-    being the <span>origin</span> of the <code>img</code> element's <code>Document</code>, and the
+    being the <span>origin</span> of the <code>img</code> element's <span>node document</span>, and the
     <i>default origin behaviour</i> set to <i>taint</i>.</p>
 
     <p>If this download fails in any way (other than the response code not being a 2xx code, as
@@ -2306,7 +2306,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   When invoked as a constructor, this must return a new <code>HTMLImageElement</code> object (a new
   <code>img</code> element). If the <var>width</var> argument is present, the new object's
   <code data-x="attr-dim-width">width</code> content attribute must be set to <var>width</var>. If the <var>height</var> argument is also present, the new object's
-  <code data-x="attr-dim-height">height</code> content attribute must be set to <var>height</var>. The element's document must be the <span>active document</span> of the
+  <code data-x="attr-dim-height">height</code> content attribute must be set to <var>height</var>.
+  The element's <span>node document</span> must be the <span>active document</span> of the
   <span>browsing context</span> of the <code>Window</code> object on which the interface object of
   the invoked constructor is found.</p>
 
