@@ -1442,6 +1442,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   it must be interpreted relative to the <code>img</code> element's <span>node document</span>'s viewport.
   Other units must be interpreted the same as in Media Queries. <ref spec=MQ></p>
 
+  <p>A <span>source size</span> must not use CSS functions other than the <code data-x="">calc()</code> function.</p>
+
   <p>When asked to <dfn>select an image source</dfn> for a given <code>img</code> element <var>el</var>,
   user agents must do the following:</p>
 
@@ -1839,6 +1841,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    is a valid non-negative <span>&lt;source-size-value></span>,
    let <var>size</var> be its value
    and remove the <span>component value</span> from <var>unparsed size</var>.
+   Any CSS function other than the <code data-x="">calc()</code> function is invalid.
    Otherwise, there is a <span data-x="concept-microsyntax-parse-error">parse error</span>;
    continue to the next iteration of this algorithm.</p></li>
 
