@@ -1532,8 +1532,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
      continue to the next child.</p></li>
 
      <li><p>If <var>child</var> has a <code data-x="attr-picture-source-media">media</code> attribute,
-     and its value is not a <span>valid media query list</span>,
-     or is a <span>valid media query list</span> that evaluates to false,
+     and its value does not <span data-x="matches the environment">match the environment</span>,
      continue to the next child.</p></li>
 
      <li><p><span data-x="parse a sizes attribute">Parse <var>child</var>'s sizes attribute</span>
