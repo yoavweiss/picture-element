@@ -924,13 +924,14 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    <li><p>The element's <code data-x="attr-img-crossorigin">crossorigin</code> attribute's state is changed.</p></li>
 
-   <li><p>The element is inserted into or removed from a <code>picture</code> parent element.</p></li>
+   <li><p>The <span data-x="nodes are inserted">element is inserted</span> into or
+   <span data-x="nodes are removed">removed</span> from a <code>picture</code> parent element.</p></li>
 
    <li><p>The element's parent is a <code>picture</code> element and a
-   <code data-x="picture-source">source</code> element is inserted as a previous sibling.</p></li>
+   <code data-x="picture-source">source</code> <span data-x="nodes are inserted">element is inserted</span> as a previous sibling.</p></li>
 
    <li><p>The element's parent is a <code>picture</code> element and a
-   <code data-x="picture-source">source</code> element that was a previous sibling is removed.</p></li>
+   <code data-x="picture-source">source</code> element that was a previous sibling is <span data-x="nodes are removed">removed</span>.</p></li>
 
    <li><p>The element's parent is a <code>picture</code> element and a
    <code data-x="picture-source">source</code> element that is a previous sibling has its
