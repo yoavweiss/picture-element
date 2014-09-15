@@ -977,7 +977,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   It is not used to avoid re-downloading the same image while the previous image is still loading,
   but the <span>fetch</span> algorithm allows the download to be reused in that case.</p>
 
-  <p class="note">The user agent can also store the image data in a separately from the <span>list of available images</span>.</p>
+  <p class="note">The user agent can also store the image data separately from the <span>list of available images</span>.</p>
 
   <p class="example">For example, if a resource has the HTTP response header <code data-x="">Cache-Control: must-revalidate</code>,
   the user agent would remove it from the <span>list of available images</span> but could keep the image data separately,
