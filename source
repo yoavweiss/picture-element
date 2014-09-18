@@ -159,7 +159,7 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
 
   <ul>
 
-   <li><p>Some user agents agressively download images specified in the HTML markup,
+   <li><p>Some user agents aggressively download images specified in the HTML markup,
    before scripts have had a chance to run,
    so that Web pages complete loading sooner.
    If a script changes which image to download,
