@@ -169,8 +169,8 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
    <li><p>If the author avoids specifying any image in the HTML markup
    and instead instantiates a single download from script,
    that avoids the double download problem above
-   but instead it makes no image be downloaded at all for users with scripting disabled
-   and it disables the agressive image downloading optimization.</p></li>
+   but then no image will be downloaded at all for users with scripting disabled
+   and the aggressive image downloading optimization will also be disabled.</p></li>
 
   </ul>
 
