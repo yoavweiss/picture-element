@@ -1049,7 +1049,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    </li>
 
-   <li><p>Asynchronously <span>await a stable state</span>, allowing the <span
+   <li><p><span>Await a stable state</span>, allowing the <span
    data-x="concept-task">task</span> that invoked this algorithm to continue.
    The <span>synchronous
    section</span> consists of all the remaining steps of this algorithm until the algorithm says the
@@ -1180,7 +1180,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
    </li>
 
-   <li><p>End the <span>synchronous section</span>, continuing the remaining steps asynchronously,
+   <li><p>End the <span>synchronous section</span>, continuing the remaining steps <span>in parallel</span>,
    but without missing any data from the <span>fetch</span> algorithm.</p></li>
 
    <li>
@@ -1928,7 +1928,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   <ol>
 
-   <li><p>Asynchronously <span>await a stable state</span>. The <span>synchronous section</span>
+   <li><p><span>Await a stable state</span>. The <span>synchronous section</span>
    consists of all the remaining steps of this algorithm until the algorithm says the
    <span>synchronous section</span> has ended. (Steps in <span data-x="synchronous
    section">synchronous sections</span> are marked with &#x231B;.)</p></li>
@@ -1964,7 +1964,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    steps.</p>
 
    <li><p>End the <span>synchronous section</span>, continuing the remaining steps
-   asynchronously.</p></li>
+   <span>in parallel</span>.</p></li>
 
    <li>
 
