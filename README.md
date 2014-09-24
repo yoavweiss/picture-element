@@ -1,6 +1,6 @@
 # The ```<picture>``` Element
-This is repository for a subset of the [HTML Standard](http://www.whatwg.org/specs/web-apps/current-work/multipage/)
-covering most of the [Embedded content](http://www.whatwg.org/specs/web-apps/current-work/multipage/embedded-content.html#embedded-content) section,
+This is repository for a subset of the [HTML Standard](https://html.spec.whatwg.org/multipage/)
+covering most of the [Embedded content](https://html.spec.whatwg.org/multipage/embedded-content.html#embedded-content) section,
 including the `picture`, `source` and `img` elements.
 
 ## Found a bug?
