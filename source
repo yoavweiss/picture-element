@@ -1591,13 +1591,23 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    <li>
 
     <p>If <var>url</var> ends with a U+002C COMMA character (,),
-    remove all trailing U+002C COMMA characters from <var>url</var>;
-    if this removed more than one character, that is a <span data-x="concept-microsyntax-parse-error">parse error</span>.
-    Otherwise, <span>skip whitespace</span> and then follow these substeps:</p>
+    follow these substeps:</p>
 
     <ol>
 
-     <li><p><i>Descriptor tokeniser</i>: Let <var>current descriptor</var> be the empty string.</p></li>
+     <li><p>Remove all trailing U+002C COMMA characters from <var>url</var>.
+     If this removed more than one character,
+     that is a <span data-x="concept-microsyntax-parse-error">parse error</span>.</p></li>
+
+    </ol>
+
+    <p>Otherwise, follow these substeps:</p>
+
+    <ol>
+
+     <li><p><i>Descriptor tokeniser</i>: <span>Skip whitespace</span></p></li>
+
+     <li><p>Let <var>current descriptor</var> be the empty string.</p></li>
 
      <li><p>Let <var>state</var> be <i>in descriptor</i>.</p></li>
 
