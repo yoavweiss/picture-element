@@ -1738,6 +1738,16 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
       <ol>
 
+       <li>
+
+        <p>If the user agent does not support the <code data-x="attr-img-sizes">sizes</code> attribute,
+        let <var>error</var> be <i>yes</i>.</p>
+
+        <p class="note">A conforming user agent will support the <code data-x="attr-img-sizes">sizes</code> attribute.
+        However, user agents typically implement and ship features in an incremental manner in practice.</p>
+
+       </li>
+
        <li><p>If <var>width</var> and <var>density</var>
        are not both <i>absent</i>,
        then let <var>error</var> be <i>yes</i>.</p></li>
