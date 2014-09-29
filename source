@@ -1811,7 +1811,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
      <dt>Anything else</dt>
 
-     <dd><p>This is a <span data-x="concept-microsyntax-parse-error">parse error</span>.</p></dd>
+     <dd><p>Let <var>error</var> be <i>yes</i>.</p></dd>
 
     </dl>
 
