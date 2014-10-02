@@ -802,7 +802,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   must also have the <i>width descriptor</i> specified.</p>
 
   <p>The specified width in an <span>image candidate string</span>'s <i>width descriptor</i>
-  must match the intrinsic width in the resource given by the <span>image candidate string</span>'s URL.</p>
+  must match the intrinsic width in the resource given by the <span>image candidate string</span>'s URL,
+  if it has an intrinsic width.</p>
 
   <p class="note">The requirements above imply that images can be static bitmaps (e.g. PNGs, GIFs,
   JPEGs), single-page vector documents (single-page PDFs, XML files with an SVG root element),
@@ -885,8 +886,8 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   <p>An <span>image request</span> is initially <span data-x="img-none">unavailable</span>.</p>
 
   <p>When an <code>img</code> element is <span data-x="img-available">available</span>, it
-  <span>provides a paint source</span> whose width is the image's intrinsic width, whose height is
-  the image's intrinsic height, and whose appearance is the intrinsic appearance of the image.</p>
+  <span>provides a paint source</span> whose width is the image's intrinsic width (if any), whose height is
+  the image's intrinsic height (if any), and whose appearance is the intrinsic appearance of the image.</p>
 
   <p>In a <span>browsing context</span> where <span data-x="concept-bc-noscript">scripting is
   disabled</span>, user agents may obtain images immediately or on demand. In a <span>browsing
@@ -2278,16 +2279,16 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   <p>The IDL attributes <dfn data-x="dom-img-width"><code>width</code></dfn> and <dfn
   data-x="dom-img-height"><code>height</code></dfn> must return the rendered width and height of the
   image, in CSS pixels, if the image is <span>being rendered</span>, and is being rendered to a
-  visual medium; or else the intrinsic width and height of the image, in CSS pixels, if the image is
+  visual medium; or else the intrinsic width and height of the image, in CSS pixels, if the image has intrinsic dimensions and is
   <i data-x="img-available">available</i> but not being rendered to a visual medium; or else 0, if
-  the image is not <i data-x="img-available">available</i>. <ref spec=CSS></p>
+  the image is not <i data-x="img-available">available</i> or does not have intrinsic dimensions. <ref spec=CSS></p>
 
   <p>On setting, they must act as if they <span data-x="reflect">reflected</span> the respective
   content attributes of the same name.</p>
 
   <p>The IDL attributes <dfn data-x="dom-img-naturalWidth"><code>naturalWidth</code></dfn> and <dfn
   data-x="dom-img-naturalHeight"><code>naturalHeight</code></dfn> must return the intrinsic width and
-  height of the image, in CSS pixels, if the image is <i data-x="img-available">available</i>, or
+  height of the image, in CSS pixels, if the image has intrinsic dimensions and is <i data-x="img-available">available</i>, or
   else 0. <ref spec=CSS></p>
 
   <p>The IDL attribute <dfn data-x="dom-img-complete"><code>complete</code></dfn> must return true if
