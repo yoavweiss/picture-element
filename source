@@ -1433,7 +1433,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   <p>An <code>img</code> element is associated with a <span>source set</span>.</p>
 
-  <p>A <dfn>source set</dfn> is a set of zero or more <span data-x="image source">image sources</span>
+  <p>A <dfn>source set</dfn> is an ordered set of zero or more <span data-x="image source">image sources</span>
   and a <span>source size</span>.</p>
 
   <p>An <dfn>image source</dfn> is a <span>URL</span>,
@@ -1574,8 +1574,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    <li><p>Let <var>position</var> be a pointer into <var>input</var>,
    initially pointing at the start of the string.</p></li>
 
-   <li><p>Let <var>candidates</var> be an initially empty <span>source set</span>.
-   The order of entries in the list is the order in which entries are added to the list.</p></li>
+   <li><p>Let <var>candidates</var> be an initially empty <span>source set</span>.</p></li>
 
    <li><p><i>Splitting loop</i>: <span>Collect a sequence of characters</span>
    that are <span data-x="space character">space characters</span> or U+002C COMMA characters.
@@ -1832,7 +1831,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    let <var>error</var> be <i>yes</i>.</p></li>
 
    <li><p>If <var>error</var> is still <i>no</i>,
-   then add a new <span>image source</span> to <var>candidates</var>
+   then append a new <span>image source</span> to <var>candidates</var>
    whose URL is <var>url</var>,
    associated with a width <var>width</var> if not <i>absent</i>
    and a pixel density <var>density</var> if not <i>absent</i>.
