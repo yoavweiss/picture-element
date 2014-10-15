@@ -897,20 +897,15 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   <p>A user agent that obtains images immediately must synchronously
   <span>update the image data</span> of an <code>img</code> element,
   with the <i>restart animation</i> flag set if so stated,
-  whenever that element is created,
-  or has experienced <span>relevant mutations</span>,
-  and whenever that element's <span data-x="concept-node-adopt-ext">adopting steps</span> are run.</p> <!-- Note
-  how this does NOT happen when the base URL changes (except for when adopted into a new doc) -->
+  whenever that element is created or has experienced <span>relevant mutations</span>.</p>
 
   <p>A user agent that obtains images on demand must <span>update the image data</span> of an
   <code>img</code> element whenever it needs the image data (i.e. on demand),
   but only if the <code>img</code> element is in the
   <span data-x="img-none">unavailable</span> state. When an <code>img</code> element
-  has experienced <span>relevant mutations</span>,
-  and whenever that element's <span data-x="concept-node-adopt-ext">adopting steps</span> are run, if the user
+  has experienced <span>relevant mutations</span>, if the user
   agent only obtains images on demand, the <code>img</code> element must return to the <span
-  data-x="img-none">unavailable</span> state.</p> <!-- Note how this does NOT happen when the base
-  URL changes. -->
+  data-x="img-none">unavailable</span> state.</p>
 
   <p>The <dfn>relevant mutations</dfn> for an <code>img</code> element are as follows:</p>
 
@@ -940,6 +935,10 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    <code data-x="attr-picture-source-sizes">sizes</code>,
    <code data-x="attr-picture-source-media">media</code>
    or <code data-x="attr-picture-source-type">type</code> attributes set, changed, or removed.</p></li>
+
+   <li><p>The element's <span data-x="concept-node-adopt-ext">adopting steps</span> are run.</p></li>
+
+   <!-- NOT when the base URL changes (except for when adopted into a new doc) -->
 
   </ul>
 
