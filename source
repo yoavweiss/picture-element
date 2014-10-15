@@ -1137,7 +1137,10 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
     <p>&#x231B; Let <var>image request</var> be a new <span>image request</span>
     whose <span data-x="img-req-url">current URL</span> is <var>absolute URL</var>.</p>
 
-    <p>&#x231B; Let the <span>pending request</span> be <var>image request</var>.</p>
+    <p>&#x231B; If <span>current request</span> is in the <span data-x="img-none">unavailable</span> state
+    or the <span data-x="img-error">broken</span> state,
+    let the <span>current request</span> be <var>image request</var>.
+    Otherwise, let the <span>pending request</span> be <var>image request</var>.</p>
 
     <p>&#x231B; Do a <span>potentially CORS-enabled fetch</span><!--FETCH--> of <var>absolute URL</var>,
     with the <i>mode</i> being the current state of
@@ -1203,10 +1206,9 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
        <li>
 
         <p>If <var>image request</var> is the <span>pending request</span>
-        and the user agent is able to determine <var>image request</var>'s image's width and height,
+        and at least one body part has been completely decoded,
         <span>abort the image request</span> for the <span>current request</span>,
-        <span>upgrade the pending request to the current request</span> and
-        set the <span>current request</span>'s state to <span data-x="img-inc">partially available</span>.</p>
+        <span>upgrade the pending request to the current request</span>.</p>
 
        </li>
 
@@ -1273,10 +1275,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
         <p>If the user agent is able to determine <var>image request</var>'s image's width and height,
         and <var>image request</var> is <span>pending request</span>,
-        <span>abort the image request</span> for the <span>current request</span>,
-        <span>upgrade the pending request to the current request</span>,
-        update the <code>img</code> element's presentation appropriately,
-        and set <var>image request</var>'s state to <span data-x="img-inc">partially available</span>.</p>
+        set <var>image request</var>'s state to <span data-x="img-inc">partially available</span>.</p>
 
        </li>
 
@@ -1334,12 +1333,17 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
        <!--
        the download was successful
        the user agent was able to determine the image's width and height
-       image request is current request
+       image request is current request or pending request
        pending request might be null or non-null
        -->
 
+       <li><p>If <var>image request</var> is the <span>pending request</span>,
+       <span>abort the image request</span> for the <span>current request</span>,
+       <span>upgrade the pending request to the current request</span> and
+       update the <code>img</code> element's presentation appropriately.</p></li>
+
        <li><p>Set <var>image request</var> to the <span data-x="img-all">completely
-       available</span> state.</p>
+       available</span> state.</p></li>
 
        <li><p>Add the image to the <span>list of available images</span> using the key <var>key</var>, with the <span>ignore higher-layer caching</span> flag set.</p></li>
 
@@ -1360,7 +1364,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
       <p>The image data is not in a supported file format; the user agent must set
       <var>image request</var> to the <span data-x="img-error">broken</span> state,
       <span>abort the image request</span> for the <span>current request</span> and the <span>pending request</span>,
-      <span>upgrade the pending request to the current request</span>,
+      <span>upgrade the pending request to the current request</span> if <var>image request</span> is the <span>pending request</span>,
       and then <span>queue a task</span> to first <span>fire a simple event</span> named <code
       data-x="event-error">error</code> at the <code>img</code> element and then <span>fire a simple
       event</span> named <code data-x="event-loadend">loadend</code> at the <code>img</code>
