@@ -989,8 +989,25 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   <ol>
 
-   <li><p>If the element's <span>node document</span> is not the <span>active document</span>,
-   abort these steps.</p></li>
+   <li>
+
+    <p>If the element's <span>node document</span> is not the <span>active document</span>,
+    then run these substeps:</p>
+
+    <ol>
+
+     <li><p>Continue running this algorithm <span>in parallel</span>.</p></li>
+
+     <li><p>Wait until the element's <span>node document</span> is the <span>active document</span>.</p></li>
+
+     <li><p>If another instance of this algorithm for this <code>img</code> element was started after this instance
+     (even if it aborted and is no longer running), then abort these steps.</p></li>
+
+     <li><p><span>Queue a microtask</span> to continue this algorithm.</p></li>
+
+    </ol>
+
+   </li>
 
    <li><p>If the user agent cannot support images, or its support for images has been disabled, then
    <span>abort the image request</span> for the <span>current request</span> and the <span>pending request</span>,
