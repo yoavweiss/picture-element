@@ -536,7 +536,7 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
   </dl>
 
   <p>The <code>picture</code> element is a container
-  which provides multiples sources to its contained <code>img</code> element
+  which provides multiple sources to its contained <code>img</code> element
   to allow authors to declaratively control or give hints to the user agent about which image resource to use,
   based on the screen pixel density, viewport size, image format, and other factors. It <span>represents</span> its children.</p>
 
