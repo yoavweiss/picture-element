@@ -1380,7 +1380,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
       <p>The image data is not in a supported file format; the user agent must set
       <var>image request</var> to the <span data-x="img-error">broken</span> state,
       <span>abort the image request</span> for the <span>current request</span> and the <span>pending request</span>,
-      <span>upgrade the pending request to the current request</span> if <var>image request</span> is the <span>pending request</span>,
+      <span>upgrade the pending request to the current request</span> if <var>image request</var> is the <span>pending request</span>,
       and then <span>queue a task</span> to first <span>fire a simple event</span> named <code
       data-x="event-error">error</code> at the <code>img</code> element and then <span>fire a simple
       event</span> named <code data-x="event-loadend">loadend</code> at the <code>img</code>
