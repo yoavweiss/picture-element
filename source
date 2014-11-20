@@ -1735,7 +1735,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
       </dl>
 
       <p>Advance <var>position</var> to the next character in <var>input</var>.
-      Repeat this step.</p>
+      Repeat this substep.</p>
 
       <p class="note">In order to be compatible with future additions,
       this algorithm supports multiple descriptors and descriptors with parens.</p>
