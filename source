@@ -255,9 +255,6 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
      In new user agents, the <code data-x="attr-img-src">src</code> attribute is ignored
      when the <code data-x="attr-img-srcset">srcset</code> attribute uses <code data-x="">w</code> descriptors.</p>
 
-     <p>In this example, the <code data-x="attr-img-sizes">sizes</code> attribute could be omitted
-     because the default value is <code data-x="">100vw</code>.</p>
-
     </div>
 
     <div class="example">
@@ -591,8 +588,10 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
   the following <span>image candidate string</span>, if there is one,
   must begin with one or more <span data-x="space character">space characters</span>.</p>
 
-  <p>The <dfn data-x="attr-picture-source-sizes"><code>sizes</code></dfn> attribute may also be present.
-  If present, the value must be a <span>valid source size list</span>.</p>
+  <p>If the <code data-x="attr-picture-source-srcset">srcset</code> attribute has any
+  <span data-x="image candidate string">image candidate strings</span> using a <i>width descriptor</i>,
+  the <dfn data-x="attr-picture-source-sizes"><code>sizes</code></dfn> attribute must also be present,
+  and the value must be a <span>valid source size list</span>.</p>
 
   <p>The <dfn data-x="attr-picture-source-media"><code>media</code></dfn> attributes may also be present.
   If present, the value must contain a <span>valid media query list</span>.</p>
@@ -813,9 +812,10 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   documents, and so forth. <ref spec=PNG> <ref spec=GIF> <ref spec=JPEG> <ref spec=PDF>
   <ref spec=XML> <ref spec=APNG> <!-- <ref spec=AGIF> --> <ref spec=SVG> <ref spec=MNG> </p>
 
-  <p>If the <code data-x="attr-img-srcset">srcset</code> attribute is present,
-  the <dfn data-x="attr-img-sizes"><code>sizes</code></dfn> attribute may also be present.
-  If present, its value must be a <span>valid source size list</span>.</p>
+  <p>If the <code data-x="attr-img-srcset">srcset</code> attribute is present and has any
+  <span data-x="image candidate string">image candidate strings</span> using a <i>width descriptor</i>,
+  the <dfn data-x="attr-img-sizes"><code>sizes</code></dfn> attribute must also be present,
+  and the value must be a <span>valid source size list</span>.</p>
 
   <p>A <dfn>valid source size list</dfn> is a string that matches the following grammar:
   <ref spec=CSSVALUES> <ref spec=MQ></p>
