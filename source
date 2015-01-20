@@ -1970,6 +1970,11 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   more, the user agent might want to wait until the user has returned to the page before determining
   which image to use, in case the environment changes again in the meantime.)</p>
 
+  <p class=note>User agents are encouraged to run this algorithm in particular when the user changes the viewport's size
+  (e.g. by resizing the window or changing the page zoom),
+  so that the <span>density-corrected intrinsic width and height</span> match the new viewport,
+  and so that the correct image is chosen when <span>art direction</span> is involved.</p>
+
   <ol>
 
    <li><p><span>Await a stable state</span>. The <span>synchronous section</span>
