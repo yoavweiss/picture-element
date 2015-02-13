@@ -820,7 +820,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
   <p>A <dfn>valid source size list</dfn> is a string that matches the following grammar:
   <ref spec=CSSVALUES> <ref spec=MQ></p>
 
-<pre><dfn>&lt;source-size-list></dfn> = <span>&lt;source-size></span># [ , <span>&lt;source-size-value></span> ]? | <span>&lt;source-size-value></span>
+<pre><dfn>&lt;source-size-list></dfn> = [ <span>&lt;source-size></span># , ]? <span>&lt;source-size-value></span>
 <dfn>&lt;source-size></dfn> = <span>&lt;media-condition></span> <span>&lt;source-size-value></span>
 <dfn>&lt;source-size-value></dfn> = <span>&lt;length></span></pre>
 
