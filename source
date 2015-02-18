@@ -1972,6 +1972,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
 
   <p class=note>User agents are encouraged to run this algorithm in particular when the user changes the viewport's size
   (e.g. by resizing the window or changing the page zoom),
+  and when an <code>img</code> element is <span>inserted into a document</span>,
   so that the <span>density-corrected intrinsic width and height</span> match the new viewport,
   and so that the correct image is chosen when <span>art direction</span> is involved.</p>
 
@@ -1985,6 +1986,7 @@ interface <dfn>HTMLImageElement</dfn> : <span>HTMLElement</span> {
    <li><p>&#x231B; If the <code>img</code> element does not have a
    <code data-x="attr-img-srcset">srcset</code> attribute specified and
    it either has no parent or it is not a <code>picture</code> element,
+   it is not <span>in a <code>Document</code></span>,
    has image data whose resource type is <code>multipart/x-mixed-replace</code>,
    or the <span>pending request</span> is not null,
    then abort this algorithm.</p></li>
