@@ -438,7 +438,7 @@ was an English &lt;a href="/wiki/Music_hall">music hall&lt;/a> singer, ...</pre>
 
   <hr>
 
-  <p>The <code data-x="picture-source">source</code> element is used with the <code
+  <p>The <code>img</code> element is used with the <code
   data-x="attr-img-src">src</code> attribute, which gives the URL of the image to use for legacy user
   agents that do not support the <code>picture</code> element. This leads
   to a question of which image to provide in the <code data-x="attr-img-src">src</code>
